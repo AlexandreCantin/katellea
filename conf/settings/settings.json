@@ -49,5 +49,9 @@
     "contactEmail": "<set-it>",
     "apiKeyPublic": "<set it>",
     "apiKeyPrivate": "<set it>"
+  },
+
+  "sentry": {
+    "dsn": ""
   }
 }

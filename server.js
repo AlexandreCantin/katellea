@@ -2,9 +2,9 @@ import express from 'express';
 import cron from 'node-cron';
 import path from 'path';
 import cors from 'cors';
+import * as Sentry from '@sentry/node';
 
 import initMongoDB from './src/clients/moongose';
-
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 
@@ -35,6 +35,10 @@ import { environment } from './conf/environment';
 // INIT APP
 const app = express();
 
+// SENTRY
+const dsn = environment.sentry.dsn;
+if (dsn && dsn !== '') Sentry.init({ dsn, debug: true });
+
 // Days locale
 dayjs.locale('fr');
 
@@ -52,7 +56,6 @@ if (CRON.isMainLeader) {
   cron.schedule(CRON.firstDonationAdviceCron, () => FirstDonationAdviceCron.run());
 }
 
-
 // MIDDLEWARES
 // app.use(loggingMiddleware);
 app.use(bodyParser.json());
@@ -60,6 +63,8 @@ app.use(errorHandler);
 app.use(passport.initialize());
 if (process.env.NODE_ENV === 'production') app.use(helmet())
 if (process.env.NODE_ENV !== 'production') app.use(cors())
+
+
 
 // EJS
 app.set('view engine', 'ejs');
@@ -79,6 +84,8 @@ app.use(contactRoutes);
 // Serve preact build : Need to be last !
 app.use(express.static('frontend/build'));
 app.use(rootRoutes);
+
+
 
 // By using (!module.parent) condition, we avoid EADDRINUSE when testing because app will start once
 let startApp = process.env.NODE_ENV != 'test';

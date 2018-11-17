@@ -11,6 +11,8 @@ export const environmentValues = {
   GA_ID: '',
   // HOTJAR
   HOTJAR_CODE: '',
+  // SENTRY
+  SENTRY_CODE: '',
 
   // LOGIN ROUTES
   FACEBOOK_LOGIN_URL: '/auth/facebook',
@@ -44,7 +46,7 @@ export const environmentValues = {
 
   MOBILE_COLLECT_ENDPOINT_CLOSEST: '/mobile-collect/closest',
 
-  CONTACT_ENDPOINT_URL: '/contact-form'
+  CONTACT_ENDPOINT_URL: '/contact-form',
 };
 
 class EnvironmentValuesLoader {
