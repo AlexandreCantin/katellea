@@ -72,8 +72,8 @@ export default class OurMissionAndTeam extends Component {
             <div className="block">
               <h1 id="equipe">Notre équipe</h1>
               <p>
-                Katellea est une ONG (association loi 1901) dont le but est l’amélioration, la maintenance et l’exploitation du site <a href="katellea.fr">katellea.fr</a> et de l’application associé (du même nom).
-                Ses membres pensent que chacun peut contribuer à sauver davantage de vie, notamment via le don du sang.
+                {/*Katellea est une ONG (association loi 1901) dont le but est l’amélioration, la maintenance et l’exploitation du site <a href="katellea.fr">katellea.fr</a> et de l’application associé (du même nom).*/}
+                Les équipes de Katellea pensent que chacun peut contribuer à sauver davantage de vie, notamment via le don du sang.
                 Pour cela, la technologie et les réseaux sociaux peuvent y jouer un rôle prépondérant.
               </p>
             </div>
