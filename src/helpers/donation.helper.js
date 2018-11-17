@@ -2,7 +2,7 @@ import { POLL_ANSWERS, DONATION_VISIBILITY, NOTIFICATION_TYPES } from '../consta
 import { getSmallNetworkIds, getCloseNetworkIds } from './user.helper';
 import dayjs from 'dayjs';
 import User from '../models/user';
-import MailFactory from '../services/email/donation-attendees';
+import MailFactory from '../services/mail.service';
 import { createNotification } from './notification.helper';
 import { environment } from '../../conf/environment';
 

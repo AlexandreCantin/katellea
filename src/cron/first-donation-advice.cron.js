@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import User from '../models/user';
 import { createNotification } from '../helpers/notification.helper';
 import { NOTIFICATION_TYPES } from '../constants';
-import MailFactory from '../services/email/donation-attendees';
+import MailFactory from '../services/mail.service';
 
 const DELAY_BEFORE_DONATION_IN_DAYS = 2;
 

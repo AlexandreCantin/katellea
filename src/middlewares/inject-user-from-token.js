@@ -1,6 +1,7 @@
 import { JWTService } from '../services/jwt.service';
 import { UNAUTHORIZED } from 'http-status-codes';
 import User from '../models/user';
+import MailFactory from '../services/mail.service';
 
 export const injectUserFromToken = async (req, res, next) => {
 
@@ -25,6 +26,8 @@ export const injectUserFromToken = async (req, res, next) => {
           req.user = user;
           req.isAdmin = user.isAdmin || false;
           canContinue = true;
+
+          MailFactory.bloodDonationEligibleMail(user);
         }
 
       }

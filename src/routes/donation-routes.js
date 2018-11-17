@@ -12,7 +12,7 @@ import { canAccessDonation, canEditAsCreator, isUserCurrentDonation } from '../m
 import { INTERNAL_SERVER_ERROR, BAD_REQUEST, NOT_FOUND, UNAUTHORIZED, OK } from 'http-status-codes';
 import { generateRandomString } from '../helpers/string.helper';
 import { getSmallNetworkIds, getCloseNetworkIds } from '../helpers/user.helper';
-import MailFactory from '../services/email/donation-attendees';
+import MailFactory from '../services/mail.service';
 import { createNotification } from '../helpers/notification.helper';
 import sanitize from 'sanitize-html';
 

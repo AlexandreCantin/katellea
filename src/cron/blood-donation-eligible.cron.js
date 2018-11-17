@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import User from '../models/user';
 import { DONATION_TYPE, NOTIFICATION_TYPES } from '../constants';
 import { createNotification } from '../helpers/notification.helper';
-import MailFactory from '../services/email/donation-attendees';
+import MailFactory from '../services/mail.service';
 import { environment } from '../../conf/environment';
 
 const WEEKS_DELAY_BEFORE_ELIGIBILITY = environment.weeksDelayBeforeEligibilty;

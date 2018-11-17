@@ -1,8 +1,8 @@
-import { MailjetService } from '../mailjet.service';
-import User from '../../models/user';
-import { DONATION_TYPE_LABEL } from '../../constants';
+import { MailjetService } from './mailjet.service';
+import User from '../models/user';
+import { DONATION_TYPE_LABEL } from '../constants';
 import dayjs from 'dayjs';
-import { environment } from '../../../conf/environment';
+import { environment } from '../../conf/environment';
 
 const DISCLAIMER = `
   N'hésitez pas à prendre des photos/selfies de votre don et à les partager sur les réseaux sociaux.<br/>
