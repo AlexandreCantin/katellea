@@ -1,0 +1,123 @@
+@import './constants.scss';
+
+$animation-duration: 1s;
+
+#modal {
+  position: absolute;
+  z-index: 3500;
+  top: 0; left: 0; right: 0; bottom: 0;
+  color: initial;
+  text-align: left;
+
+  // Dark background
+  .dark-background {
+    position: fixed;
+    background: black;
+    opacity: 0.9;
+    top: 0; left: 0; right: 0; bottom: 0;
+  }
+
+  .modal-title {
+    position: relative;
+  }
+
+  .actions-right {
+    text-align: right;
+    color: black;
+    padding: 10px 10px 5px 10px;
+    background-color: white;
+  }
+
+  .modal-content {
+    animation-name: fadeIn;
+    animation-duration: $animation-duration;
+    animation-fill-mode: both;
+
+    // Black background
+    position: fixed;
+    //top: 50px;
+    overflow-y: auto;
+
+    width: 50%;
+    left: 50%;
+    margin-left: -25%;
+
+    max-width: 1000px;
+    border-radius: 10px;
+
+    background: white;
+    max-height: 90vh;
+    padding: 30px 45px 30px 45px;
+    min-height: 100px;
+
+    line-height: normal;
+
+    button.close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: 0 10px 0 0;
+      font-weight: bold;
+      overflow: hidden;
+
+      background: transparent;
+      background-image: none;
+      font-size: 1.25em;
+      color: $text-color;
+    }
+  }
+
+  // Mobile
+  @media (max-width: $min-width-desktop) {
+    position: fixed;
+    overflow-y: hidden;
+
+    .modal-content {
+      width: 80%;
+      left: 20%;
+      margin-left: -10%;
+
+      top: 30px;
+      max-height: 98vh;
+      padding: 15px;
+    }
+
+  }
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0; top: -50px; }
+  100% {opacity: 1; top: 50px; }
+}
+
+// Input with copy button
+.copy-link-container {
+  margin-top: 20px;
+
+  > div {
+    position: relative;
+    margin-top: 5px;
+    input {
+      width: 100%;
+      padding: 10px 55px 10px 10px;
+    }
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+
+    .tooltip {
+      position: absolute;
+      top: 20px;
+      right: -40px;
+      margin-left: 2px;
+      padding: 10px 20px;
+      font-size: .9em;
+      border-radius: 5px;
+      background-color: black;
+      color: white;
+    }
+  }
+}

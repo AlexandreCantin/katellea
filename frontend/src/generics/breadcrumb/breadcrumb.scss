@@ -1,0 +1,22 @@
+.breadcrumb-nav {
+  padding-top: 3px;
+  font-size: .8em;
+
+  li {
+    img {
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+    }
+
+    &::after {
+      content: '>';
+      margin-left: 10px;
+    }
+
+    // Remove > for the last element
+    &:last-child {
+      &::after { content: ''}
+    }
+  }
+}

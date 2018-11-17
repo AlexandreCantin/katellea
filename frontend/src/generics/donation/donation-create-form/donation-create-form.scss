@@ -1,0 +1,99 @@
+form#create-form-modal {
+  > fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 30px;
+
+    legend {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      padding: 10px;
+      width: 100%;
+      background: lightblue;
+    }
+  }
+
+  .radio-line {
+    display: flex;
+    margin-top: 15px;
+    label:hover {
+      cursor: pointer;
+      img { transform: scale(1.2);  }
+    }
+    > div {
+      flex: 1;
+      text-align: center;
+      max-width: 200px;
+      margin: auto;
+    }
+    img {
+      transition: transform .2s linear;
+      max-width: 100px;
+      max-height: 100px;
+      margin-bottom: 15px;
+    }
+  }
+
+  // Establishment location
+  .form-line.establishment {
+    display: flex;
+    padding: 10px;
+    span { flex: 2; }
+    div.establishment-actions {
+      button:first-child { border-radius: 5px 0 0 5px; }
+      button.danger { border-radius:  0 5px 5px 0; font-weight: bold; }
+      flex: 1; text-align: right;
+    }
+
+  }
+  #location-select-form {
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: solid 1px lightblue;
+    button.close { border: none; }
+  }
+
+  // Mobile collect location
+  .form-line.free-location {
+    > div.introduction button { float: right; }
+    textarea {
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+
+  // POLL SUGGESTIONS
+  .poll-suggestions {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  .poll-suggestion {
+    display: flex;
+    padding: 10px;
+    strong { width: 30px; }
+
+    > div {
+      flex: 1;
+      input[type=date] {
+        width: 65%;
+        display: block;
+        margin: auto;
+        min-width: 110px;
+        padding-left: 10px;
+      }
+    }
+
+    > ul {
+      flex: 2;
+      text-align: center;
+    }
+  }
+
+  .submit-zone {
+    text-align: center;
+    margin-top: 30px;
+    input { font-size: 1.1em; }
+  }
+
+}

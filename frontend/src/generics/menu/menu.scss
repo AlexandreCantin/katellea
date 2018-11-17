@@ -1,0 +1,159 @@
+@import '../../styles/constants.scss';
+
+nav.menu {
+  background-color: $block-background-color;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: $menu-width;
+  z-index: 200;
+  overflow-x: visible;
+  overflow-y: auto;
+  @media (max-width: $min-width-tablet) { overflow-y: visible; }
+  height: 100vh;
+
+  .katellea-logo {
+    font-size: 1.5em;
+    padding: 15px 0 5px 0;
+    img {
+      position: relative;
+      height: 40px;
+      top: 2px;
+    }
+  }
+
+  .active {
+    font-weight: bold;
+  }
+
+  button.menu {
+    position: absolute;
+    left: 0;
+    bottom: -60px;
+    height: 60px;
+    width: 70px;
+
+    border: none;
+    border-right: solid 1px $border-color;
+    background-color: white;
+  }
+
+  .menu-content {
+    display: table; display: grid; /* table for old browser compatibility */
+    grid-template-columns: 1fr;
+
+    > li {
+      text-align: center;
+      margin-top: 30px;
+
+      > a {
+        display: flex;
+        text-align: left;
+        align-items: center;
+      }
+      img {
+        text-align: center;
+        margin: 0 10px;
+        width: 50px;
+        height: 50px;
+      }
+      @media (max-width: $min-width-tablet) {
+        > a { flex-direction: column; }
+        img { margin-bottom: 10px; }
+      }
+    }
+
+    @media (max-width: $min-width-tablet) {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      li {
+        margin-top: 0;
+        padding: 20px;
+      }
+    }
+  }
+
+  .nav-footer {
+    margin-top: 50px;
+    font-size: .9em;
+    padding-bottom: 10px;
+    padding-left: 15px;
+
+    li {
+      padding-bottom: 5px;
+      &.social-networks {
+        margin-top: 20px;
+        text-align: center;
+      }
+      img { width: 40px; margin-right: 10px; }
+    }
+  }
+
+  @media (max-width: $min-width-tablet) {
+    top: -100%;
+    width: 100%;
+    position: absolute;
+
+    // Menu animation on mobile
+    transition: top .5s ease-in-out, bottom .5s ease-in-out;
+
+    .katellea-logo {
+      padding: 7px 0;
+      height: $menu-height;
+      line-height: $menu-height;
+      background-color: black;
+      color: white;
+    }
+
+    &.menu-open {
+      position: fixed;
+      right: 0;
+      width: 95%;
+      top: 0;
+      border-right: solid 1px black;
+
+      button.menu {
+        transition: top .5s ease-in-out, bottom .5s ease-in-out, background-color .5s ease-in-out;
+
+        top: 0;
+        background-color: black;
+        color: white;
+        font-size: 1.5em;
+        font-weight: bold;
+        border-right: none;
+      }
+
+      .nav-footer {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+
+        display: table; display: grid; /* table for old browser compatibility */
+        padding: 0;
+        grid-template-columns: repeat(4, 1fr);
+
+        @media (max-width: $min-width-mobile) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        li {
+          display: inline-block;
+          text-align: center;
+          padding: 7px 0;
+
+          &.social-networks {
+            grid-column: span 4;
+            margin-top: 0;
+
+            @media (max-width: $min-width-mobile) {
+            grid-column: span 3;
+          }
+          }
+
+        }
+      }
+    }
+
+  }
+}

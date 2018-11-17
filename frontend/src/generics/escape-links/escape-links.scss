@@ -1,0 +1,22 @@
+@import '../../styles/constants.scss';
+
+#escape-links {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  z-index: 1000;
+
+  a {
+    position: absolute;
+    left: -999999px;
+
+    &:focus {
+      background-color: white;
+      position: static;
+      font-weight: bold;
+      padding: 15px 40px;
+      border: solid 2px #00529b;
+      text-decoration: underline;
+    }
+  }
+}

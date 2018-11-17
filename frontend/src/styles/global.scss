@@ -1,0 +1,195 @@
+@import './mixins.scss';
+// Google Font
+@font-face {
+  font-family: 'Raleway';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyC0ITw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+// Globals styles
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $body-background-color;
+  font-family: $body-font;
+  color: $text-color;
+}
+
+#app {
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+button {
+  font-family: $body-font;
+}
+
+a:not(.native) {
+  text-decoration: none;
+  color: $text-color;
+}
+
+a[href^="tel:"] {
+  text-decoration: underline;
+  color: blue;
+  font-weight: bold;
+}
+
+p {
+  margin: 0;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.block {
+  display: block;
+}
+
+.no-break-word {
+  white-space: nowrap;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.img-responsive {
+  max-width: 100%;
+}
+
+.clearfix::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.block-base {
+  @include mx-block-base();
+}
+
+// Hide
+@media (max-width: $min-width-mobile) {
+  .hide-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: $min-width-mobile) {
+  .hide-tablet {
+    display: none;
+  }
+}
+
+@media (min-width: $min-width-tablet) {
+  .hide-desktop {
+    display: none;
+  }
+}
+
+// Accessibility
+/* Screen-reader only */
+
+.sr-only {
+  position: absolute !important;
+  left: -10000px !important;
+  bottom: -10000px !important;
+}
+
+/* Lock the scroll position by adding this class to the `<html>` element. */
+
+.lock-scroll {
+  overflow: hidden !important;
+}
+
+// Button/link behavior
+button:hover,
+input[type='submit']:hover,
+a:hover {
+  cursor: pointer;
+}
+
+button:hover,
+a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+
+.list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.inline-list li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.list-no-margin-padding {
+  margin: 0;
+  padding: 0;
+}
+
+li.divider {
+  margin-bottom: 10px;
+}
+
+*:focus {
+  outline: #93afca solid 2px;
+}
+
+/* Youtube iframe */
+
+.youtube-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  iframe,
+  object,
+  embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@import './form.scss';
+@import './modals.scss';
+@import './alerts.scss';
+@import './buttons.scss';
+@import './pages.scss';

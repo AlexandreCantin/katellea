@@ -1,0 +1,10 @@
+.sponsor-card {
+  border: solid 1px black;
+  padding: 10px;
+  margin-bottom: 20px;
+
+  &.has-establishment {
+    display: table; display: grid; /* table for old browser compatibility */
+    grid-template-columns: 1fr 1fr;
+  }
+}

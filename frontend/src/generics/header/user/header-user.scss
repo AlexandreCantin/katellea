@@ -1,0 +1,263 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/constants.scss';
+
+nav.katellea {
+  width: 100%;
+  height: $menu-height;
+  line-height: $menu-height;
+  margin-top: 25px;
+  @include mx-block-base(0 0 0 25px);
+  @media (max-width: $min-width-tablet) {
+    margin-top: 0;
+  }
+
+  > div {
+    height: $menu-height;
+  }
+
+  .my-account, .minimum-date, .notifications {
+    float: right;
+
+    > button.btn {
+      height: 60px;
+      border-left: solid 1px $border-color;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      font-weight: bold;
+
+      @media (max-width: $min-width-mobile) {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    .dropdown {
+      background-color: white;
+      z-index: 2;
+      li { text-align: center; height: 40px; line-height: 40px; }
+    }
+  }
+
+  /* ACCOUNT */
+  .my-account {
+    > button.btn {
+      padding-left: 35px;
+      padding-right: 35px;
+    }
+  }
+
+  /* AVAILABLE DATE */
+  .minimum-date {
+    max-width: 230px;
+    > button { display: flex; }
+
+    .block {
+      align-self: center;
+      img {
+        width: 15px;
+        text-align: center;
+      }
+    }
+
+    ul.dropdown {
+      text-align: center;
+      button {
+        font-size: .95em;
+      }
+    }
+
+    .modal-body {
+      form > div {
+        margin: 20px 0;
+      }
+    }
+  }
+
+  /* NOTIFICATIONS */
+  .notifications {
+    width: 60px;
+    > button {
+      position: relative;
+      width: 60px;
+
+      > span {
+        position: absolute;
+        z-index: 2;
+        background: purple;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 50%;
+        &.big { padding: 2px 4px; }
+      }
+      > img {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        top: 15px;
+        left: 15px;
+        &.ringing {
+          transform-origin: 50% 4px;
+          animation: ring 4s .7s ease-in-out infinite;
+        }
+      }
+
+      .first-donation-reminder button {
+        text-align: left;
+        border: none;
+        background: transparent;
+      }
+    }
+
+    .mark-as-read {
+      border-bottom: solid 1px lightgray;
+      height: 20px !important;
+      background: lightgray;
+      button {
+        display: inline;
+        width: auto;
+        height: auto;
+        float: right;
+        border: none;
+        background: transparent;
+        text-decoration: underline;
+      }
+    }
+
+    ul.dropdown {
+      width: 400px;
+      position: relative;
+      top: -20px;
+      > li.notification {
+        text-align: left;
+        font-weight: normal;
+        line-height: normal;
+        font-size: .9em;
+        padding: 10px;
+        height: auto;
+        border-bottom: solid 1px lightgray;
+        span { font-style: italic; }
+
+        &.not-read { background-color: $not-read-notification; }
+      }
+    }
+
+  }
+}
+
+@keyframes ring {
+  0% { transform: rotate(0); }
+  1% { transform: rotate(30deg); }
+  3% { transform: rotate(-28deg); }
+  5% { transform: rotate(34deg); }
+  7% { transform: rotate(-32deg); }
+  9% { transform: rotate(30deg); }
+  11% { transform: rotate(-28deg); }
+  13% { transform: rotate(26deg); }
+  15% { transform: rotate(-24deg); }
+  17% { transform: rotate(22deg); }
+  19% { transform: rotate(-20deg); }
+  21% { transform: rotate(18deg); }
+  23% { transform: rotate(-16deg); }
+  25% { transform: rotate(14deg); }
+  27% { transform: rotate(-12deg); }
+  29% { transform: rotate(10deg); }
+  31% { transform: rotate(-8deg); }
+  33% { transform: rotate(6deg); }
+  35% { transform: rotate(-4deg); }
+  37% { transform: rotate(2deg); }
+  39% { transform: rotate(-1deg); }
+  41% { transform: rotate(1deg); }
+
+  43% { transform: rotate(0); }
+  100% { transform: rotate(0); }
+}
+
+#modal .modal-body.advice-modal {
+  p {
+    margin: 0 0 10px 0;
+    font-weight :normal;
+    &.small { font-size: .7em; margin-top: 35px; margin-bottom: 0; }
+
+    &.img {
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: 20px;
+        width: 100px;
+        padding: 10px;
+      }
+    }
+
+    &.double-img {
+      display: flex;
+      align-items: center;
+      min-height: 110px;
+      > span {
+        position: relative;
+        width: 100px;
+        margin-right: 30px;
+        > img { position: absolute; height: 50px; width: 50px; }
+        > img:nth-child(1) { top: -30px; left: 5px; }
+        > img:nth-child(2) { top: -15px; right: 0; }
+      }
+    }
+
+
+    &.links {
+      margin-top: 20px;
+      > ul {
+        text-align: center;
+        margin-top: 20px;
+        a { text-decoration: underline; margin-right: 30px; }
+      }
+    }
+  }
+
+}
+
+.dropdown-container {
+
+  .has-dropdown {
+    position: relative;
+  }
+
+  li > .btn:hover,
+  li > .btn:focus-within {
+    border-bottom-right-radius: 0;
+    background-color: white;
+  }
+
+  li:focus-within a {
+    outline: none;
+  }
+
+  .has-dropdown > ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.25s ease-in-out;
+    left: -1px;
+    top: $menu-height;
+    width: 100%;
+  }
+
+  .has-dropdown:hover > ul,
+  .has-dropdown:focus-within > ul,
+  .has-dropdown > ul:hover,
+  .has-dropdown > ul:focus {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .has-dropdown > ul li {
+    clear: both;
+    width: 100%;
+  }
+
+  .dropdown a, .dropdown button {
+    width: 100%;
+    height: 100%;
+    display: block;
+    font-weight: normal;
+  }
+}

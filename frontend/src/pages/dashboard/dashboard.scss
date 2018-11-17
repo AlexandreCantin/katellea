@@ -1,0 +1,140 @@
+@import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+
+#dashboard {
+  main {
+    .dashboard-items {
+      display: table; display: grid; /* table for old browser compatibility */
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 25px;
+
+      .alert { grid-column: span 2; }
+
+      > div {
+        h2 { margin-top: 0; }
+      }
+
+      @media (max-width: $min-width-mobile) {
+        grid-template-columns: 1fr;
+        .alert { grid-column: span 1; }
+      }
+    }
+  }
+}
+
+// Promotion item
+#promotion-item {
+
+  ul.social-networks {
+    margin-top: 10px;
+    text-align: center;
+    img { height: 48px; }
+  }
+
+  .button-container {
+    margin-top: 20px;
+  }
+}
+
+// Establishment item
+#etablishment-item {
+  @include mx-only-top-bottom-padding();
+  h2, h4 { @include mx-only-right-left-padding(); }
+
+  .no-establishment {
+    text-align: center;
+    .btn {
+      margin-top: 15px;
+    }
+  }
+
+  .your-establishment ul.actions {
+    text-align: center;
+    margin-top: 30px;
+
+    .btn { margin-bottom: 15px; }
+  }
+}
+
+// Global design for mobile-collect-form and establishment-select-form
+#location-select-form {
+
+  text-align: center;
+  position: relative;
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .no-results {
+    text-align: center;
+    .btn {
+      margin-top: 15px;
+    }
+  }
+
+  .search-form-container {
+    display: inline-block;
+
+    > div, span, form { display: inline-block; }
+    > span { width: 30px; text-align: center; line-height: 33px; }
+
+    input {
+      padding: 7px 10px;
+    }
+  }
+
+  .suggestions {
+    margin-top: 30px;
+    .loader { margin: auto; }
+
+    > .suggestion {
+      display: flex;
+      margin: 5px 0;
+      line-height: 30px;
+      padding-left: 5px;
+
+      &:nth-child(odd) { background-color: lightgray; }
+
+      .mobile-connect-result {
+        display: flex;
+        font-size: .9em;
+        a { margin-left: 10px; font-size: .9em; }
+        > div { flex: 1; }
+      }
+
+      > div { flex: 10; }
+      > button { flex: 1; }
+    }
+  }
+}
+
+// About
+#about {
+  h3 {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: solid 1px $border-color;
+  }
+  ul {
+    display: table; display: grid; /* table for old browser compatibility */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  img { width: 20px; margin-right: 10px; height: 20px; }
+
+  li {
+    display: flex;
+    align-items: center;
+    margin: 7px 0;
+
+    > span { display: flex; align-items: center; }
+    a { line-height: normal; }
+
+    .btn {
+      padding: 0;
+      text-align: left;
+    }
+  }
+}

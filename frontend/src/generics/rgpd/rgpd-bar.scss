@@ -1,0 +1,41 @@
+.rgpd-banner {
+  position: fixed;
+  background: #000;
+  bottom: 0; left: 0; right: 0;
+
+  padding: 32px;
+
+  z-index: 2000;
+  color: white;
+  font-size: .95em;
+
+  > p:first-child {
+    text-align: center;
+  }
+  p { margin-bottom: 15px; }
+
+  ul.actions {
+    text-align: center;
+    li {
+      margin-right: 0 !important;
+      > a, > button {
+          color: white;
+          text-decoration: underline;
+      }
+
+      > button {
+          border: none;
+          font-size: 1em;
+          background: none;
+          b { font-weight: bold; }
+      }
+    }
+  }
+
+  p.actions {
+    margin-top: 40px;
+    button { margin-right: 20px; }
+  }
+
+
+}

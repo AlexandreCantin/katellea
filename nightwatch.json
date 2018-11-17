@@ -1,0 +1,42 @@
+{
+  "src_folders": [
+    "tests/e2e"
+  ],
+  "output_folder": "tests/e2e/reports",
+  "custom_commands_path": "",
+  "custom_assertions_path": "",
+  "page_objects_path": "",
+  "globals_path": "",
+  "selenium": {
+    "start_process": true,
+    "server_path": "/selenium/selenium-server-standalone-3.9.1.jar",
+    "log_path": "",
+    "port": 4444,
+    "cli_args": {
+      "webdriver.chrome.driver": "/selenium/chromedriver",
+      "webdriver.gecko.driver": "/selenium/geckodriver"
+    }
+  },
+  "test_settings": {
+    "default": {
+      "launch_url": "http://localhost",
+      "selenium_port": 4444,
+      "selenium_host": "localhost",
+      "silent": true,
+      "screenshots": {
+        "enabled": true,
+        "path": "tests/e2e/reports/screenshots"
+      },
+      "desiredCapabilities": {
+        "resolution": "1200x3000",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "browserName": "chrome",
+        "elementScrollBehavior": 1,
+        "chromeOptions" : {
+          "args" : ["headless", "no-sandbox", "disable-gpu", "ignore-certificate-errors"]
+        }
+      }
+    }
+  }
+}

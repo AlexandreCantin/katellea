@@ -1,0 +1,65 @@
+# Build command ==> docker build -f e2e-dockerfile .
+FROM ubuntu:16.04
+
+## http://nightwatchjs.org/gettingstarted
+
+# Update apt-cache
+RUN apt-get update
+RUN apt-get -y install wget curl unzip apt-utils mongodb-clients
+
+# Install OpenJDK-8
+RUN apt-get install -y openjdk-8-jdk && apt-get install -y ant && apt-get clean;
+# Fix certificate issues
+RUN apt-get install ca-certificates-java && update-ca-certificates -f;
+# Setup JAVA_HOME -- useful for docker commandline
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+RUN export JAVA_HOME
+RUN java -version
+
+# Install nvm with node and npm
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt-get install -y nodejs
+RUN npm install -g nightwatch
+RUN node -v
+RUN npm -v
+
+# Install mongoDB
+# Ref: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+RUN apt-get install -y mongodb
+RUN mkdir /data
+RUN mkdir /data/db
+RUN mongo --version
+RUN service mongodb stop
+
+## Install Selenium stand-alone
+WORKDIR /selenium
+RUN wget http://selenium-release.storage.googleapis.com/3.9/selenium-server-standalone-3.9.1.jar
+
+# Install Firefox
+RUN apt-get install -y firefox
+RUN firefox -v
+
+# Install Chrome
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+RUN apt-get update
+RUN apt-get install -y google-chrome-stable
+RUN google-chrome --version
+
+# Install Gecko and Chrome drivers
+RUN wget https://chromedriver.storage.googleapis.com/2.42/chromedriver_linux64.zip
+RUN unzip chromedriver_linux64.zip
+
+RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+RUN tar -xvzf geckodriver-v0.23.0-linux64.tar.gz
+
+# Install frontend/backend
+RUN ls
+WORKDIR /katellea/
+COPY . .
+RUN npm install
+WORKDIR /katellea/frontend
+RUN npm install
+
+WORKDIR /katellea/

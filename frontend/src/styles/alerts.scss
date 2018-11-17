@@ -1,0 +1,24 @@
+@import './constants.scss';
+
+/* Alerts */
+.alert {
+  font-size: 0.95em;
+  padding: 10px !important;
+  margin-bottom: 20px;
+}
+.alert.success {
+  background-color: $success-bg !important;
+  border: solid 1px $success-border !important;
+}
+.alert.info {
+  background-color: $info-bg !important;
+  border: solid 1px $info-border !important;
+}
+.alert.error, .alert.danger {
+  background-color: $error-bg !important;
+  border: solid 1px $error-border !important;
+}
+.alert.warning {
+  background-color: $warning-bg !important;
+  border: solid 1px $warning-border !important;
+}

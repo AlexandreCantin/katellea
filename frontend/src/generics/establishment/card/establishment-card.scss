@@ -1,0 +1,41 @@
+@import "../../../styles/mixins.scss";
+
+.establishment-card {
+  .text {
+    .title {
+      span { margin-left: 15px; }
+    }
+  }
+
+  .establishment-view {
+    display: flex;
+    width: 100%;
+  }
+  .tab-content {
+    border-bottom: solid 1px $border-color;
+    padding: 10px 15px;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    background-color: #eee;
+    border: none;
+
+    &.selected {
+      border-bottom: none;
+      background-color: lightgray;
+    }
+    button:hover {
+      background-color: lightgray;
+    }
+  }
+
+  .tab-map iframe {
+    width: 100%;
+    border: none;
+    height: 350px;
+  }
+
+}

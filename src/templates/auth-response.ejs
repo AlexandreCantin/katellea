@@ -1,0 +1,4 @@
+<script>
+  window.opener.postMessage('<%- profile %>', '<%= domain %>')
+  setTimeout(function() { window.close(), 200 });
+</script>

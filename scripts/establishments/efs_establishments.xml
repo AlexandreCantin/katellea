@@ -1,0 +1,4711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+# Questions en cas d'appel :
+    - Adresse
+    - Téléphone et email
+    - Dons disponibles et avec/sans rendez-vous
+    - Horaires d'ouverture
+    - Don de moelle osseuse
+-->
+
+<establishments>
+    <establishment>
+        <id>1</id>
+        <name>EFS Paris 13ème</name>
+        <address>Hôpital Pitié-Salpétrière, 12 rue Bruant Ou 47 Bd Hôpital-Pavillon Laveran, 75013 Paris 13ème</address>
+        <zipcode>75013</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-42-16-02-52</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-15h30</monday>
+            <tuesday>9h-15h30</tuesday>
+            <wenesday>9h-15h30</wenesday>
+            <thursday>9h-15h30</thursday>
+            <friday>9h-15h30</friday>
+            <sathurday>9h-15h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.36179209</longitude>
+            <latitude>48.83993912</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>2</id>
+        <name>EFS Paris 10ème</name>
+        <address>Hôpital Saint-Louis, 38 rue Bichat, 75010 Paris 10ème</address>
+        <zipcode>75010</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-53-72-22-50</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-16h</monday>
+            <tuesday>8h-18h</tuesday>
+            <wenesday>8h-18h</wenesday>
+            <thursday>8h-18h</thursday>
+            <friday>8h-18h</friday>
+            <sathurday>8h-15h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.36796117</longitude>
+            <latitude>48.87183380</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>3</id>
+        <name>EFS Paris 12ème</name>
+        <address>Saint-Antoine Crozatier, 21 rue Crozatier, 75012 Paris 12ème</address>
+        <zipcode>75012</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-53-02-92-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-16h</monday>
+            <tuesday>8h-18h</tuesday>
+            <wenesday>8h-18h</wenesday>
+            <thursday>8h-18h</thursday>
+            <friday>8h-18h</friday>
+            <sathurday>8h-15h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.38187099</longitude>
+            <latitude>48.84635925</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>4</id>
+        <name>EFS Paris 9ème</name>
+        <address>Site de Prélèvement de la Trinité, 55 rue de Châteaudun, 75009 Paris 9ème</address>
+        <zipcode>75009</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-55-31-60-60</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-16h</monday>
+            <tuesday>8h30-18h</tuesday>
+            <wenesday>8h30-18h</wenesday>
+            <thursday>8h30-18h</thursday>
+            <friday>8h30-18h</friday>
+            <sathurday>8h30-16h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.33316040</longitude>
+            <latitude>48.87618256</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>5</id>
+        <name>EFS Paris 15ème</name>
+        <address>Cabanel, 6 rue Alexandre Cabanel, 75015 Paris 15ème</address>
+        <zipcode>75015</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-45-66-97-17</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-16h</monday>
+            <tuesday>8h-18h</tuesday>
+            <wenesday>7h30-18h</wenesday>
+            <thursday>8h-18h</thursday>
+            <friday>8h-18h</friday>
+            <sathurday>8h-15h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.30202603</longitude>
+            <latitude>48.84884644</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- Actuellement fermé -->
+    <!--
+<establishment>
+    <id>6</id>
+    <name>EFS Paris 19ème</name>
+    <address>Hôpital Robert Debré, 48 Boulevard Sérurier-Point Jaune-Niveau -2, 75019 Paris 19ème</address>
+    <zipcode>75019</zipcode>
+
+
+    <contact>
+    <email></email>
+        <phone></phone>
+    </contact>
+
+
+    <donations-available>
+        <blood available="true" appointement="false" />
+        <plasma available="true" appointement="true" />
+        <platelet available="true" appointement="true" />
+        <bone-marrow available="true" appointement="true" />
+    </donations-available>
+
+
+    <opening-hours>
+        <monday></monday>
+        <tuesday></tuesday>
+        <wenesday></wenesday>
+        <thursday></thursday>
+        <friday></friday>
+        <sathurday></sathurday>
+    </opening-hours>
+
+
+    <coordinates>
+        <longitude>2.40198255</longitude>
+        <latitude>48.87871552</latitude>
+    </coordinates>
+
+
+    <comment></comment>
+</establishment>
+
+
+-->
+    <establishment>
+        <id>7</id>
+        <name>EFS Paris 18ème</name>
+        <address>Hôpital Bichat, 46 rue Henri Huchard-Secteur Claude Bernard, 75018 Paris 18ème</address>
+        <zipcode>75018</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-40-25-81-80</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>10h-16h30</monday>
+            <tuesday>10h-16h30</tuesday>
+            <wenesday>10h-16h30</wenesday>
+            <thursday>10h-16h30</thursday>
+            <friday>10h-16h30</friday>
+            <sathurday>8h30-15h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.33088970</longitude>
+            <latitude>48.89910126</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>8</id>
+        <name>EFS Paris 15ème</name>
+        <address>Hôpital Européen Georges Pompidou, 20 rue Leblanc-Rdc du Hall A, 75015 Paris 15ème</address>
+        <zipcode>75015</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-53-78-21-70</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-15h30</monday>
+            <tuesday>10h30-17h</tuesday>
+            <wenesday>9h-15h30</wenesday>
+            <thursday>10h30-17h</thursday>
+            <friday>9h-15h30</friday>
+            <sathurday>9h-15h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.27296472</longitude>
+            <latitude>48.83971405</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- Fermeture définitive depuis le 03/05/2016 -->
+    <!--
+<establishment>
+    <id>9</id>
+    <name>EFS Villejuif</name>
+    <address> Hôpital Paul Brousse, 14 av Paul Vaillant Couturier Rdc Bas Bâtiment Fred Siguier, 94800 Villejuif</address>
+    <zipcode>94800</zipcode>
+
+
+    <contact>
+    <email></email>
+        <phone>01-45-59-35-23</phone>
+    </contact>
+
+
+    <donations-available>
+        <blood available="false" appointement="false" />
+        <plasma available="false" appointement="false" />
+        <platelet available="false" appointement="false" />
+        <bone-marrow available="false" appointement="false" />
+    </donations-available>
+
+
+    <opening-hours>
+        <monday></monday>
+        <tuesday></tuesday>
+        <wenesday></wenesday>
+        <thursday></thursday>
+        <friday></friday>
+        <sathurday></sathurday>
+    </opening-hours>
+
+
+    <coordinates>
+        <longitude>2.36154556</longitude>
+        <latitude>48.79466629</latitude>
+    </coordinates>
+
+
+    <comment></comment>
+</establishment>
+
+
+-->
+    <establishment>
+        <id>10</id>
+        <name>EFS Clichy</name>
+        <address>Hôpital Beaujon, 100 bld du Général Leclerc Secteur Bleu-Porte 15-Niveau -1, 92110 Clichy</address>
+        <zipcode>92110</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-40-87-59-02</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-15h</monday>
+            <tuesday>8h30-15h</tuesday>
+            <wenesday>8h30-15h</wenesday>
+            <thursday>8h30-15h</thursday>
+            <friday>8h30-15h</friday>
+            <sathurday>8h30-15h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.30766535</longitude>
+            <latitude>48.90833282</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>11</id>
+        <name>EFS Bobigny</name>
+        <address>Hôpital Avicenne, 125 rue de Stalingrad-Secteur Orange-Porte 9, 93000 Bobigny</address>
+        <zipcode>93000</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-48-95-56-79</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-15h30</monday>
+            <tuesday>9h-15h30</tuesday>
+            <wenesday>9h-15h30</wenesday>
+            <thursday>9h-15h30</thursday>
+            <friday>9h-15h30</friday>
+            <sathurday>9h-15h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.42397666</longitude>
+            <latitude>48.91438293</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>12</id>
+        <name>EFS Créteil</name>
+        <address>Site Créteil l'Echat, 1 Voie Félix Eboué, 94010 Créteil</address>
+        <zipcode>94010</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-56-72-76-50</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-15h30</monday>
+            <tuesday>9h-15h30</tuesday>
+            <wenesday>9h-15h30</wenesday>
+            <thursday>9h-15h30</thursday>
+            <friday>9h-15h30</friday>
+            <sathurday>8h30-15h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.44948459</longitude>
+            <latitude>48.79700470</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>13</id>
+        <name>EFS Le Chesnay</name>
+        <address>Site de Prélèvement du Chesnay, 2 Rue Jean-Louis Forain, 78153 Le Chesnay</address>
+        <zipcode>78153</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-39-23-45-38</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-15h</monday>
+            <tuesday>8h30-15h</tuesday>
+            <wenesday>8h30-15h</wenesday>
+            <thursday>8h30-15h</thursday>
+            <friday>8h30-15h</friday>
+            <sathurday>8h-14h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.12279868</longitude>
+            <latitude>48.83046722</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- Site actuellement fermé -->
+    <!--
+<establishment>
+    <id>14</id>
+    <name>EFS Les Ulis</name>
+    <address>Maison du Don 2, avenue du Canada ZA Courtaboeuf, 91943 Les Ulis</address>
+    <zipcode>91943</zipcode>
+
+
+    <contact>
+    <email></email>
+        <phone>01-69-82-70-00</phone>
+    </contact>
+
+
+    <donations-available>
+        <blood available="true" appointement="false" />
+        <plasma available="true" appointement="true" />
+        <platelet available="false" appointement="false" />
+        <bone-marrow available="false" appointement="false" />
+    </donations-available>
+
+
+    <opening-hours>
+        <monday></monday>
+        <tuesday></tuesday>
+        <wenesday></wenesday>
+        <thursday></thursday>
+        <friday></friday>
+        <sathurday></sathurday>
+    </opening-hours>
+
+
+    <coordinates>
+        <longitude>2.14554811</longitude>
+        <latitude>48.67412567</latitude>
+    </coordinates>
+
+
+    <comment></comment>
+</establishment>
+
+
+-->
+    <establishment>
+        <id>15</id>
+        <name>EFS Poissy</name>
+        <address>Hôpital Poissy, 9 rue Champ Gaillard, 78300 Poissy</address>
+        <zipcode>78300</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-39-22-25-50</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-15h30</monday>
+            <tuesday>9h-15h30</tuesday>
+            <wenesday>9h-15h30</wenesday>
+            <thursday>12h30-19h</thursday>
+            <friday>9h-15h30</friday>
+            <sathurday>8h30-15h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.02229118</longitude>
+            <latitude>48.91908264</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>16</id>
+        <name>EFS Courcouronnes</name>
+        <address>Rue du Pont Amar Quartier du Canal, 91080 Courcouronnes</address>
+        <zipcode>91080</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-60-78-08-18</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-15h30</monday>
+            <tuesday>9h-15h30</tuesday>
+            <wenesday>9h-15h30</wenesday>
+            <thursday>9h-15h30</thursday>
+            <friday>9h-15h30</friday>
+            <sathurday>9h-15h30 (semaines paires)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.41470170</longitude>
+            <latitude>48.63188934</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>17</id>
+        <name>EFS Cergy Pontoise</name>
+        <address>Avenue de l'Ile de France, 95301 Cergy Pontoise</address>
+        <zipcode>95301</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-30-17-33-10</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-15h30</monday>
+            <tuesday>9h-15h30</tuesday>
+            <wenesday>9h-15h30</wenesday>
+            <thursday>9h-15h30</thursday>
+            <friday>9h-15h30</friday>
+            <sathurday>9h-15h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.09392262</longitude>
+            <latitude>49.06359863</latitude>
+        </coordinates>
+
+        <comment>Fermeture exceptionnelle du site les samedi 12 et lundi 14 août</comment>
+    </establishment>
+
+
+    <establishment>
+        <id>18</id>
+        <name>EFS Meaux</name>
+        <address>Centre Hospitalier de Meaux, 6/8 rue Saint Fiacre, 77100 Meaux</address>
+        <zipcode>77100</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-64-35-38-42</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>14h-16h</tuesday>
+            <wenesday>9h-12h30 / 14h-16h</wenesday>
+            <thursday>12h30-19h</thursday>
+            <friday>9h-12h30 / 14h-16h</friday>
+            <sathurday>8h30-15h (1er-3e samedi du mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.88777804</longitude>
+            <latitude>48.95944214</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>19</id>
+        <name>EFS Melun</name>
+        <address>Centre Hospitalier Marc Jacquet, 8 rue de Vaux le Pénil, 77011 Melun</address>
+        <zipcode>77011</zipcode>
+
+        <contact>
+            <email />
+            <phone>01-64-71-68-68</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-15h</monday>
+            <tuesday>8h30-15h</tuesday>
+            <wenesday>8h30-15h</wenesday>
+            <thursday>8h30-15h</thursday>
+            <friday>8h30-15h</friday>
+            <sathurday>8h30-15h (semaines impaires)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.67332554</longitude>
+            <latitude>48.53943253</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- Fermeture définitive depuis le 28/04/2016 -->
+    <!--
+<establishment>
+    <id>20</id>
+    <name>EFS Rambouillet</name>
+    <address>Hôpital de Rambouillet, 13 rue Pasteur-Bâtiment 18, 78514 Rambouillet</address>
+    <zipcode>78514</zipcode>
+
+
+    <contact>
+    <email></email>
+        <phone>01-34-83-77-06</phone>
+    </contact>
+
+
+    <donations-available>
+        <blood available="false" appointement="false" />
+        <plasma available="false" appointement="false" />
+        <platelet available="false" appointement="false" />
+        <bone-marrow available="false" appointement="false" />
+    </donations-available>
+
+
+    <opening-hours>
+        <monday></monday>
+        <tuesday></tuesday>
+        <wenesday></wenesday>
+        <thursday></thursday>
+        <friday></friday>
+        <sathurday></sathurday>
+    </opening-hours>
+
+
+    <coordinates>
+        <longitude>1.82677782</longitude>
+        <latitude>48.65072250</latitude>
+    </coordinates>
+
+</establishment>
+
+
+-->
+    <!-- TODO : horaires fiables ? Source : https://www.lechorepublicain.fr/luisant/2012/12/21/le-don-du-sang-change-dhoraires_1382529.html-->
+    <establishment>
+        <id>21</id>
+        <name>EFS Luisant</name>
+        <address>5 rue des Chênes, 28600 Luisant</address>
+        <zipcode>28600</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-37-35-50-50</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="true" appointement="true" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>13h30 - 20h</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>8h30-12h et 13h30-16h</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>Fermé</friday>
+            <sathurday>8h30-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.45910430</longitude>
+            <latitude>48.42576218</latitude>
+        </coordinates>
+
+    </establishment>
+
+
+    <establishment>
+        <id>22</id>
+        <name>EFS Evreux</name>
+        <address>Hôpital du Cambolle, Rue Léon Schwartzenberg,  Evreux</address>
+        <zipcode>27000</zipcode>
+        <contact>
+            <email />
+            <phone>02-32-33-01-67</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>10h-18h</thursday>
+            <friday>Fermé</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.11442566</longitude>
+            <latitude>49.03134155</latitude>
+        </coordinates>
+
+    </establishment>
+
+
+    <establishment>
+        <id>23</id>
+        <name>EFS Maison du don de Sens</name>
+        <address>1 avenue Pierre de Coubertin, 89100 Sens</address>
+        <zipcode>89100</zipcode>
+
+        <contact>
+            <email>sens@efs.sante.fr</email>
+            <phone>03-86-64-61-63</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>12h30-18h30</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>10h-18h</friday>
+            <sathurday>8h30-12h00 (Fermé le 2ème samedi du mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.29895258</longitude>
+            <latitude>48.19136047</latitude>
+        </coordinates>
+
+    </establishment>
+
+
+    <establishment>
+        <id>24</id>
+        <name>EFS Orléans</name>
+        <address>190 rue Léon Foucault, 45140 Saint Jean De La Ruelle</address>
+        <zipcode>45140</zipcode>
+        <contact>
+            <email />
+            <phone>02-38-72-49-49</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-15h00</monday>
+            <tuesday>10h30-18h</tuesday>
+            <wenesday>8h30-15h00</wenesday>
+            <thursday>8h30-13h</thursday>
+            <friday>8h30-15h00</friday>
+            <sathurday>8h30-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.86691403</longitude>
+            <latitude>47.91299057</latitude>
+        </coordinates>
+
+    </establishment>
+
+
+    <establishment>
+        <id>25</id>
+        <name>EFS Rouen</name>
+        <address>20 place Henri Gadeau de Kerville, 76100 Rouen</address>
+        <zipcode>76100</zipcode>
+
+        <contact>
+            <email>dondesang.rouen@efs.sante.fr</email>
+            <phone>02-32-10-97-80</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>10h-13h30</tuesday>
+            <wenesday>10h-13h30</wenesday>
+            <thursday>10h-13h30</thursday>
+            <friday>10h-13h30</friday>
+            <sathurday>9h30-13h (dernier samedi du mois seulement)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.08178675</longitude>
+            <latitude>49.43092728</latitude>
+        </coordinates>
+
+    </establishment>
+
+
+    <establishment>
+        <id>26</id>
+        <name>EFS Bois Guillaume</name>
+        <address>609 chemin de la Bretèque, 76230 Bois Guillaume</address>
+        <zipcode>76230</zipcode>
+
+        <contact>
+            <email>dondesang.rouen@efs.sante.fr</email>
+            <phone>02-35-60-06-39</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>10h-17h30</monday>
+            <tuesday>10h-17h30</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>10h-17h30</thursday>
+            <friday>10h-17h30</friday>
+            <sathurday>9h-12h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.11299145</longitude>
+            <latitude>49.47784805</latitude>
+        </coordinates>
+
+    </establishment>
+
+
+    <!-- TODO : confimer le avec/sans rendez-vous -->
+    <establishment>
+        <id>27</id>
+        <name>EFS Amiens</name>
+        <address>6 place Parmentier Quartier Saint Leu, 80000 Amiens</address>
+        <zipcode>80000</zipcode>
+
+        <contact>
+            <email />
+            <phone>08-00-10-99-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>9h-17h</tuesday>
+            <wenesday>9h-17h</wenesday>
+            <thursday>11h-19h</thursday>
+            <friday>9h-17h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.30458379</longitude>
+            <latitude>49.89578247</latitude>
+        </coordinates>
+
+    </establishment>
+
+
+    <establishment>
+        <id>28</id>
+        <name>EFS Reims</name>
+        <address>45 rue Cognacq Jay, 51092 Reims</address>
+        <zipcode>51092</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-26-49-33-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-16h</monday>
+            <tuesday>8h-16h</tuesday>
+            <wenesday>8h-16h</wenesday>
+            <thursday>8h-19h</thursday>
+            <friday>8h-16h</friday>
+            <sathurday>8h-12h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.01885939</longitude>
+            <latitude>49.23173141</latitude>
+        </coordinates>
+
+    </establishment>
+
+
+    <establishment>
+        <id>29</id>
+        <name>EFS Saint Quentin</name>
+        <address>8-10 rue de Bellevue, 02100 Saint Quentin</address>
+        <zipcode>02100</zipcode>
+
+        <contact>
+            <email />
+            <phone>08-00-10-99-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-17h</monday>
+            <tuesday>9h-17h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>11h-19h</thursday>
+            <friday>9h-17h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.29873848</longitude>
+            <latitude>49.85195160</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>30</id>
+        <name>EFS Troyes</name>
+        <address>Hôpital des Hauts-Clos, 101 avenue Anatole France, 10003 Troyes</address>
+        <zipcode>10003</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-25-75-15-17</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-13h30</monday>
+            <tuesday>8h30-13h30</tuesday>
+            <wenesday>8h30-13h30</wenesday>
+            <thursday>8h30-13h30</thursday>
+            <friday>8h30-13h30</friday>
+            <sathurday>8h30-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.06798840</longitude>
+            <latitude>48.27936554</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>31</id>
+        <name>EFS Auxerre</name>
+        <address>2 Boulevard de Verdun, 89011 Auxerre</address>
+        <zipcode>89011</zipcode>
+
+        <contact>
+            <email>donneurs.auxerre@efs.sante.fr</email>
+            <phone>03-86-42-03-70</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>10h-18h</tuesday>
+            <wenesday>8h30-13h</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>10h-18h</friday>
+            <sathurday>8h30-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.55298805</longitude>
+            <latitude>47.80329895</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- Le site de Châlons-en-Champagne a fermé ses portes le 1er janvier 2017 -->
+    <!--
+<establishment>
+    <id>32</id>
+    <name>EFS Chalons En Champagne</name>
+    <address>Centre Hospitalier 51, rue du Commandant Derrien, 51000 Chalons En Champagne</address>
+    <zipcode>51000</zipcode>
+
+
+    <contact>
+        <email></email>
+        <phone>08-00-10-99-00</phone>
+    </contact>
+
+
+    <donations-available>
+        <blood available="false" appointement="false" />
+        <plasma available="false" appointement="false" />
+        <platelet available="false" appointement="false" />
+        <bone-marrow available="false" appointement="false" />
+    </donations-available>
+
+
+    <opening-hours>
+        <monday></monday>
+        <tuesday></tuesday>
+        <wenesday></wenesday>
+        <thursday></thursday>
+        <friday></friday>
+        <sathurday></sathurday>
+    </opening-hours>
+
+
+    <coordinates>
+        <longitude>4.37255859</longitude>
+        <latitude>48.97191238</latitude>
+    </coordinates>
+
+
+    <comment></comment>
+</establishment>
+
+
+-->
+    <establishment>
+        <id>33</id>
+        <name>EFS Centre-Atlantique Site De Blois</name>
+        <address>email Pierre Charlot, 41000 Blois</address>
+        <zipcode>41000</zipcode>
+
+        <contact>
+            <email />
+            <phone>08-00-10-99-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>14h-19h</monday>
+            <tuesday>8h-13h</tuesday>
+            <wenesday>8h-13h</wenesday>
+            <thursday>8h-13h</thursday>
+            <friday>8h-13h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.34346485</longitude>
+            <latitude>47.60163498</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>34</id>
+        <name>EFS Dainville</name>
+        <address>26 Rue du 19 mars 1962, 62000 Dainville</address>
+        <zipcode>62000</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-28-54-22-85</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-16h</monday>
+            <tuesday>8h-16h</tuesday>
+            <wenesday>8h-16h</wenesday>
+            <thursday>11h-19h</thursday>
+            <friday>8h-16h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.73916960</longitude>
+            <latitude>50.29035950</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>35</id>
+        <name>EFS Alençon</name>
+        <address>25 rue de Fresnay, 61000 Alençon</address>
+        <zipcode>61000</zipcode>
+
+        <contact>
+            <email>dondesang.alencon@efs.sante.fr</email>
+            <phone>02-33-26-48-18</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h</monday>
+            <tuesday>9h-14h30</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>9h-14h30</thursday>
+            <friday>8h-13h (les 3 premiers vendredi du mois) // 15h-19h30 (le quatrième vendredi du mois)</friday>
+            <sathurday>8h30-13h (4ème samedi du mois seulement)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.08414620</longitude>
+            <latitude>48.42692184</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>36</id>
+        <name>EFS Le Havre</name>
+        <address>Rues Piétonnes, 75 rue Bernardin de Saint-Pierre, 76600 Le Havre</address>
+        <zipcode>76600</zipcode>
+
+        <contact>
+            <email>dondesang.lehavre@efs.sante.fr</email>
+            <phone>02-35-21-19-33</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>8h30-18h30</tuesday>
+            <wenesday>8h30-17h</wenesday>
+            <thursday>8h30-18h30</thursday>
+            <friday>8h30-17h</friday>
+            <sathurday>8h-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.10524550</longitude>
+            <latitude>49.49177551</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>37</id>
+        <name>EFS Le Mans</name>
+        <address>Centre Hospitalier, 194 avenue Rubillard, 72037 Le Mans</address>
+        <zipcode>72037</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-43-39-94-94</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-17h</monday>
+            <tuesday>9h-17h</tuesday>
+            <wenesday>9h-17h</wenesday>
+            <thursday>9h-17h</thursday>
+            <friday>9h-17h</friday>
+            <sathurday>8h-12h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.17827690</longitude>
+            <latitude>48.01266479</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : type de dons possibles -->
+    <establishment>
+        <id>38</id>
+        <name>EFS Valenciennes</name>
+        <address>Centre Tertival, Rue Ernest Macarez chemin des Alliés, 59300 Valenciennes</address>
+        <zipcode>59300</zipcode>
+
+        <contact>
+            <email />
+            <phone>08-00-10-99-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h30-17h</monday>
+            <tuesday>9h30-17h</tuesday>
+            <wenesday>9h30-17h</wenesday>
+            <thursday>11h-19h</thursday>
+            <friday>9h30-17h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.52742672</longitude>
+            <latitude>50.36656952</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>39</id>
+        <name>EFS Bourges</name>
+        <address>145 avenue François Mitterand, 18000 Bourges</address>
+        <zipcode>18000</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-48-48-49-02</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>13h-18h30</monday>
+            <tuesday>8h-13h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>8h-13h</thursday>
+            <friday>8h-13h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.43574619</longitude>
+            <latitude>47.08388901</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>40</id>
+        <name>EFS Charleville Mézières</name>
+        <address>43 avenue de Manchester, 08000 Charleville Mézières</address>
+        <zipcode>08000</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-24-57-71-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>12h-18h</monday>
+            <tuesday>8h-16h</tuesday>
+            <wenesday>8h-16h</wenesday>
+            <thursday>8h-16h</thursday>
+            <friday>12h-18h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.69795704</longitude>
+            <latitude>49.76294327</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>41</id>
+        <name>EFS Caen</name>
+        <address>1 rue Professeur Joseph Rousselot, 14000 Caen</address>
+        <zipcode>14000</zipcode>
+
+        <contact>
+            <email>dondesang.caen@efs.sante.fr</email>
+            <phone>02-31-53-53-53</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-17h</monday>
+            <tuesday>8h30-18h30</tuesday>
+            <wenesday>8h30-17h</wenesday>
+            <thursday>8h30-17h</thursday>
+            <friday>8h30-17h</friday>
+            <sathurday>9h30-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-0.35936359</longitude>
+            <latitude>49.20678711</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>42</id>
+        <name>EFS Lille</name>
+        <address>38-42 avenue Charles Saint Venant, 59000 Lille</address>
+        <zipcode>59000</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-28-54-21-22</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-18h</monday>
+            <tuesday>9h-18h</tuesday>
+            <wenesday>9h-18h</wenesday>
+            <thursday>9h-19h</thursday>
+            <friday>9h-18h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.07037330</longitude>
+            <latitude>50.63391495</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>43</id>
+        <name>EFS Tours</name>
+        <address>C.H.U. Bretonneau, 2 Boulevard Tonnellé, 37000 Tours</address>
+        <zipcode>37000</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-47-36-01-01</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-12h30 et 13h30-16h</monday>
+            <tuesday>13h-18h30</tuesday>
+            <wenesday>8h-16h</wenesday>
+            <thursday>8h-12h30 et 13h30-16h</thursday>
+            <friday>8h-16h</friday>
+            <sathurday>8h-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.66790169</longitude>
+            <latitude>47.38542557</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>44</id>
+        <name>EFS Nevers</name>
+        <address>Hôpital Pierre Bérégovoy, 1 Boulevard de l'Hôpital, 58000 Nevers</address>
+        <zipcode>58000</zipcode>
+
+        <contact>
+            <email>donneurs.nevers@efs.sante.fr</email>
+            <phone>03-86-61-82-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>13h-18h</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>9h-16h</friday>
+            <sathurday>9h-12h (2ème samedi du mois seulement)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.12428665</longitude>
+            <latitude>46.98009109</latitude>
+        </coordinates>
+
+        <comment>Fermeture exceptionnelle du 14 au 26 août</comment>
+    </establishment>
+
+
+    <establishment>
+        <id>45</id>
+        <name>EFS Chaumont</name>
+        <address>35 avenue des Etats-Unis, 52000 Chaumont</address>
+        <zipcode>52000</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-25-35-36-30</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-12h30</monday>
+            <tuesday>8h30-12h30</tuesday>
+            <wenesday>8h30-12h30</wenesday>
+            <thursday>8h30-12h30</thursday>
+            <friday>8h30-12h30</friday>
+            <sathurday>8h30-12h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.14230347</longitude>
+            <latitude>48.12068939</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>46</id>
+        <name>EFS Châteauroux</name>
+        <address>217 avenue de Verdun, 36000 Châteauroux</address>
+        <zipcode>36000</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-54-27-45-50</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>14h-19h</monday>
+            <tuesday>14h-19h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>8h30-12h30</thursday>
+            <friday>8h30-12h30</friday>
+            <sathurday>8h30-12h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.69826150</longitude>
+            <latitude>46.79843521</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>47</id>
+        <name>EFS Dunkerque</name>
+        <address>930 avenue de Rosendael, 59240 Dunkerque</address>
+        <zipcode>59240</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-28-54-23-92</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>8h-17h</tuesday>
+            <wenesday>8h-13h</wenesday>
+            <thursday>11h-19h</thursday>
+            <friday>8h-17h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.39851785</longitude>
+            <latitude>51.03763580</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>48</id>
+        <name>Maison du Don Laval</name>
+        <address>Maison du Don, 14 rue du Père Domaigné, 53000 Laval</address>
+        <zipcode>53000</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-43-66-90-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>09h00-17h00</monday>
+            <tuesday>09h00-17h00</tuesday>
+            <wenesday>09h00-17h00</wenesday>
+            <thursday>09h00-17h00</thursday>
+            <friday>09h00-17h00</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-0.78608721</longitude>
+            <latitude>48.05771637</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- A partir de janvier 2015, les collectes de sang auront lieu le dernier jeudi de chaque mois -->
+    <!--
+<establishment>
+    <id>49</id>
+    <name>EFS Chatellerault</name>
+    <address>5 rue Jean Perrin, Maison du don bâtiment Le Palissy-ZAC du Sanital, 86100 Châtellerault</address>
+    <zipcode>86100</zipcode>
+
+
+    <contact>
+        <email></email>
+        <phone>05-49-02-90-78</phone>
+    </contact>
+
+
+    <donations-available>
+        <blood available="false" appointement="false" />
+        <plasma available="false" appointement="false" />
+        <platelet available="false" appointement="false" />
+        <bone-marrow available="false" appointement="false" />
+    </donations-available>
+
+
+    <opening-hours>
+        <monday></monday>
+        <tuesday></tuesday>
+        <wenesday></wenesday>
+        <thursday></thursday>
+        <friday></friday>
+        <sathurday></sathurday>
+    </opening-hours>
+
+
+    <coordinates>
+        <longitude>0.53586245</longitude>
+        <latitude>46.82270432</latitude>
+    </coordinates>
+
+
+    <comment></comment>
+</establishment>
+
+
+-->
+    <establishment>
+        <id>50</id>
+        <name>EFS Angers</name>
+        <address>16 Boulevard Mirault, 49103 Angers</address>
+        <zipcode>49103</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-41-72-44-44</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-16h45</monday>
+            <tuesday>8h-16h45</tuesday>
+            <wenesday>8h-16h45</wenesday>
+            <thursday>8h-16h45</thursday>
+            <friday>8h-16h45</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-0.55678701</longitude>
+            <latitude>47.47939301</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>51</id>
+        <name>EFS Moulins</name>
+        <address>10 avenue du Général de Gaulle, 03006 Moulins</address>
+        <zipcode>03006</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-70-34-86-10</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h30</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>8h-13h30</thursday>
+            <friday>Fermé</friday>
+            <sathurday>7h45-11h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.32503200</longitude>
+            <latitude>46.57022476</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>52</id>
+        <name>EFS Dijon</name>
+        <address>Maison du Don, 2 rue du Stade, 21078 Dijon</address>
+        <zipcode>21078</zipcode>
+
+        <contact>
+            <email>donneurs.dijon@efs.sante.fr</email>
+            <phone>03-80-70-60-10</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>12h-19h</monday>
+            <tuesday>12h-19h</tuesday>
+            <wenesday>8h-13h</wenesday>
+            <thursday>12h-19h</thursday>
+            <friday>12h-19h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.06963015</longitude>
+            <latitude>47.32293320</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>53</id>
+        <name>EFS Metz</name>
+        <address>6 rue des Dames de Metz, 57036 Metz</address>
+        <zipcode>57036</zipcode>
+
+        <contact>
+            <email>gest-relation.donneurs@efs.sante.fr</email>
+            <phone>03-87-69-18-88</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-19h</monday>
+            <tuesday>8h-19h</tuesday>
+            <wenesday>8h-19h</wenesday>
+            <thursday>8h-19h</thursday>
+            <friday>8h-19h</friday>
+            <sathurday>8h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>6.18023157</longitude>
+            <latitude>49.09035873</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>54</id>
+        <name>EFS Nancy</name>
+        <address>85/87 Boulevard Lobau, 54000 Nancy</address>
+        <zipcode>54000</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-83-44-62-62</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-19h</monday>
+            <tuesday>8h-19h</tuesday>
+            <wenesday>8h-19h</wenesday>
+            <thursday>8h-19h</thursday>
+            <friday>8h-19h</friday>
+            <sathurday>8h-16h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>6.19642210</longitude>
+            <latitude>48.68486023</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>55</id>
+        <name>EFS Poitiers</name>
+        <address>Chu la Milétrie, 350 avenue Jacques Coeur, 86000 Poitiers</address>
+        <zipcode>86000</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-49-61-57-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-12h30 et 13h30-15h30</monday>
+            <tuesday>13h-18h</tuesday>
+            <wenesday>8h-12h30 et 13h30-15h30</wenesday>
+            <thursday>13h-18h</thursday>
+            <friday>8h-12h30 et 13h30-15h30</friday>
+            <sathurday>Sure rendez-vous</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.38820109</longitude>
+            <latitude>46.55973816</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>56</id>
+        <name>EFS Chalon Sur Saône</name>
+        <address>4 rue du Capitaine Drillien, 71100 Chalon Sur Saône</address>
+        <zipcode>71100</zipcode>
+
+        <contact>
+            <email>donneurs.chalon@efs.sante.fr</email>
+            <phone>03-85-42-74-90</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-13h</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>13h-18h</thursday>
+            <friday>8h30-13h</friday>
+            <sathurday>8h30-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.83795404</longitude>
+            <latitude>46.77532578</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>57</id>
+        <name>Cherbourg-En-Cotentin</name>
+        <address>Centre Hospitalier Public du Cotentin, Rue du Trottebec, 50100 Cherbourg-En-Cotentin</address>
+        <zipcode>50100</zipcode>
+
+        <contact>
+            <email>dondesang.cherbourg@efs.sante.fr</email>
+            <phone>02-33-20-76-32</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-13h30</monday>
+            <tuesday>12h-18h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>12h-18h</thursday>
+            <friday>9h-16h</friday>
+            <sathurday>9h-13h30 (1er et 3ème samedi du mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-1.61187887</longitude>
+            <latitude>49.63726044</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>58</id>
+        <name>EFS Gueret</name>
+        <address>39 avenue de la Sénatorerie, 23000 Gueret</address>
+        <zipcode>23000</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-55-52-08-13</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-15h</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>Fermé</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.87098026</longitude>
+            <latitude>46.16527557</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>59</id>
+        <name>EFS Rennes</name>
+        <address>Maison du Don Quartier Villejean, Rue Pierre Jean Gineste, 35016 Rennes</address>
+        <zipcode>35016</zipcode>
+
+        <contact>
+            <email>bretagne@efs.sante.fr</email>
+            <phone>02-99-54-42-22</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-19h</monday>
+            <tuesday>8h-19h</tuesday>
+            <wenesday>8h-19h</wenesday>
+            <thursday>8h-19h</thursday>
+            <friday>8h-19h</friday>
+            <sathurday>8h-14h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-1.69932961</longitude>
+            <latitude>48.12000275</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>60</id>
+        <name>EFS Epinal</name>
+        <address>11 rue Aristide Briand, 88000 Epinal</address>
+        <zipcode>88000</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-29-82-27-83</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>15h-19h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>8h-14h</thursday>
+            <friday>8h-13h et 14h-16h30</friday>
+            <sathurday>8h-12h (semaines impaires)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>6.45170641</longitude>
+            <latitude>48.17318726</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>61</id>
+        <name>EFS Besançon</name>
+        <address>Haut du Chazal-Témis Santé, 25000 Besançon</address>
+        <zipcode>25000</zipcode>
+
+        <contact>
+            <email>donneurs.besancon@efs.sante.fr</email>
+            <phone>03-81-61-56-15</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true " appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-17h</monday>
+            <tuesday>8h30-17h</tuesday>
+            <wenesday>8h30-17h</wenesday>
+            <thursday>8h30-17h</thursday>
+            <friday>8h30-17h</friday>
+            <sathurday>8h30-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.96563816</longitude>
+            <latitude>47.22791290</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>62</id>
+        <name>EFS Mâcon</name>
+        <address>Mâcon Ch des Chanaux Boulevard Louis Escande, 71018 Mâcon</address>
+        <zipcode>71018</zipcode>
+
+        <contact>
+            <email>macon@efs.sante.fr</email>
+            <phone>03-85-34-22-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-13h</monday>
+            <tuesday>8h30-13h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>10h-18h</thursday>
+            <friday>Fermé</friday>
+            <sathurday>8h30-11h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.81508017</longitude>
+            <latitude>46.31603622</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>63</id>
+        <name>EFS Roanne</name>
+        <address>28 Route de Charlieu, 42302 Roanne</address>
+        <zipcode>42302</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-77-70-87-87</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h</monday>
+            <tuesday>15h-18h30</tuesday>
+            <wenesday>8h-13h (plasma seulement)</wenesday>
+            <thursday>8h-13h (plasma seulement)</thursday>
+            <friday>15h-18h30</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.07616377</longitude>
+            <latitude>46.04187012</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>64</id>
+        <name>EFS Nantes</name>
+        <address>34 Boulevard Jean Monnet, 44011 Nantes</address>
+        <zipcode>44011</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-40-12-33-62</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-19h</monday>
+            <tuesday>8h-19h</tuesday>
+            <wenesday>8h-19h</wenesday>
+            <thursday>8h-19h</thursday>
+            <friday>8h-18h</friday>
+            <sathurday>8h-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-1.55047548</longitude>
+            <latitude>47.20913696</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>65</id>
+        <name>EFS Saint Dié</name>
+        <address>C.H. Saint Charles 26 rue du Nouvel Hopital, 88187 Saint Dié</address>
+        <zipcode>88187</zipcode>
+
+        <contact>
+            <email />
+            <phone>03-29-52-21-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>15h-19h (1er mardi du mois seulement)</tuesday>
+            <wenesday>8h-13h30</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>8h-13h et 14h-16h30</friday>
+            <sathurday>8h-13h (semaines paires)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>6.96124077</longitude>
+            <latitude>48.28895569</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>66</id>
+        <name>EFS Limoges</name>
+        <address>98 rue Charles le Gendre, 87039 Limoges</address>
+        <zipcode>87039</zipcode>
+        <contact>
+            <email />
+            <phone>05-55-33-09-09</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>8h30-16h</tuesday>
+            <wenesday>8h30-16h</wenesday>
+            <thursday>10h-18h</thursday>
+            <friday>8h30-16h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.24246359</longitude>
+            <latitude>45.81441498</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>67</id>
+        <name>EFS Clermont-Ferrand</name>
+        <address>58 rue Montalembert, 63058 Clermont-Ferrand</address>
+        <zipcode>63058</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-73-15-20-20</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-17h</monday>
+            <tuesday>8h-17h</tuesday>
+            <wenesday>8h-17h</wenesday>
+            <thursday>8h-17h</thursday>
+            <friday>8h-17h</friday>
+            <sathurday>8h-11h30 (sur rendez-vous uniquement)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.09018803</longitude>
+            <latitude>45.75810242</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>68</id>
+        <name>EFS Niort</name>
+        <address>40 avenue Charles de Gaulle Rond Point de l'Hôpital, 79000 Niort</address>
+        <zipcode>79000</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-49-79-43-11</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Sur rendez-vous uniquement</monday>
+            <tuesday>15h-19h15</tuesday>
+            <wenesday>8h-13h</wenesday>
+            <thursday>8h-13h</thursday>
+            <friday>8h-13h</friday>
+            <sathurday>8h-13h (1er samedi du mois, sauf juillet et août)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-0.45802474</longitude>
+            <latitude>46.31629562</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>69</id>
+        <name>EFS Belfort</name>
+        <address>90 rue René Cassin Zac de la Justice, 90000 Belfort</address>
+        <zipcode>90000</zipcode>
+
+        <contact>
+            <email>accueil.belfort@efs.sante.fr</email>
+            <phone>03-84-58-49-90</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>8h30-18h</tuesday>
+            <wenesday>8h30-16h30</wenesday>
+            <thursday>8h30-16h30</thursday>
+            <friday>8h30-16h30</friday>
+            <sathurday>8h-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>6.87816906</longitude>
+            <latitude>47.64026260</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>70</id>
+        <name>EFS Bourg En Bresse</name>
+        <address>Hôpital Fleyriat, 900 Route de Paris, 01000 Bourg-En-Bresse</address>
+        <zipcode>01000</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-74-50-62-20</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday />
+            <tuesday>8h-13h</tuesday>
+            <wenesday>13h-19h</wenesday>
+            <thursday>8h-13h</thursday>
+            <friday>8h-13h</friday>
+            <sathurday>8h30-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.21924591</longitude>
+            <latitude>46.20278931</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>71</id>
+        <name>EFS La-Roche-Sur-Yon</name>
+        <address>Centre Hospitalier les Oudairies, Boulevard Stephane Moreau, 85925 La-Roche-Sur-Yon</address>
+        <zipcode>85925</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-51-44-62-34</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-18h</monday>
+            <tuesday>8h-18h</tuesday>
+            <wenesday>8h-18h</wenesday>
+            <thursday>8h-18h</thursday>
+            <friday>8h-18h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-1.40979052</longitude>
+            <latitude>46.66719818</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>72</id>
+        <name>EFS Saint-Brieuc</name>
+        <address>Maison du Don Centre Hospitalier Yves le Foll, 10 rue Marcel Proust, 22021 Saint-Brieuc</address>
+        <zipcode>22021</zipcode>
+
+        <contact>
+            <email>bretagne@efs.sante.fr</email>
+            <phone>02-96-94-31-13</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h30</monday>
+            <tuesday>12h-18h30</tuesday>
+            <wenesday>8h-13h30</wenesday>
+            <thursday>12h-18h30</thursday>
+            <friday>8h-13h30</friday>
+            <sathurday>8h-13h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-2.74925351</longitude>
+            <latitude>48.49353409</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>73</id>
+        <name>EFS Colmar</name>
+        <address>Hôpital Louis Pasteur, 6 rue du Hohnack, 68025 Colmar</address>
+        <zipcode>68025</zipcode>
+
+        <contact>
+            <email>gest-relation.donneurs@efs.sante.fr</email>
+            <phone>03-89-30-12-60</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-19h</monday>
+            <tuesday>8h-15h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>8h-19h</thursday>
+            <friday>8h-15h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>7.33616352</longitude>
+            <latitude>48.07382202</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>74</id>
+        <name>EFS Saint Nazaire</name>
+        <address>11 Bd Georges Charpak, 44600 Saint Nazaire</address>
+        <zipcode>44600</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-40-00-20-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h et 13h45-17h</monday>
+            <tuesday>8h-13h et 13h45-17h</tuesday>
+            <wenesday>9h-17h</wenesday>
+            <thursday>8h-13h et 13h45-17h</thursday>
+            <friday>8h-13h et 13h45-17h</friday>
+            <sathurday>8h-12h (semaines impaires)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-2.25565195</longitude>
+            <latitude>47.26723099</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>75</id>
+        <name>EFS Mulhouse</name>
+        <address>Hôpital du Hasenrain, 87 avenue d'Altkirch, 68055 Mulhouse</address>
+        <zipcode>68055</zipcode>
+
+        <contact>
+            <email>gest-relation.donneurs@efs.sante.fr</email>
+            <phone>03-89-31-70-80</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-14h</monday>
+            <tuesday>8h-19h</tuesday>
+            <wenesday>8h-19h</wenesday>
+            <thursday>13h-19h</thursday>
+            <friday>9h-19h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>7.33212042</longitude>
+            <latitude>47.73605728</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>76</id>
+        <name>EFS Lyon-Confluence</name>
+        <address>3 Cours Charlemagne, 69002 Lyon-Confluence</address>
+        <zipcode>69002</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-78-65-63-63</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-19h</monday>
+            <tuesday>8h-19h</tuesday>
+            <wenesday>8h-19h</wenesday>
+            <thursday>8h-19h</thursday>
+            <friday>8h-19h</friday>
+            <sathurday>9h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.82491732</longitude>
+            <latitude>45.74728775</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- Fermé en avril 2016 -->
+    <!--
+<establishment>
+    <id>77</id>
+    <name>Lyon-Gerland</name>
+    <address>1/3 rue du Vercors, 69007 Lyon-Gerland</address>
+    <zipcode>69007</zipcode>
+
+
+    <contact>
+        <email></email>
+        <phone></phone>
+    </contact>
+
+
+    <donations-available>
+        <blood available="false" appointement="false" />
+        <plasma available="false" appointement="false" />
+        <platelet available="false" appointement="false" />
+        <bone-marrow available="false" appointement="false" />
+    </donations-available>
+
+
+    <opening-hours>
+        <monday></monday>
+        <tuesday></tuesday>
+        <wenesday></wenesday>
+        <thursday></thursday>
+        <friday></friday>
+        <sathurday></sathurday>
+    </opening-hours>
+
+
+    <coordinates>
+        <longitude>4.82689667</longitude>
+        <latitude>45.72671127</latitude>
+    </coordinates>
+
+
+    <comment></comment>
+</establishment>
+
+
+-->
+    <establishment>
+        <id>78</id>
+        <name>EFS Saint Michel-Angoulême</name>
+        <address>Centre Hospitalier d’Angoulême, Rond-Point de Girac, 16470 Saint Michel-Angoulême</address>
+        <zipcode>16470</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-45-91-46-44</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h et 14h-18h</monday>
+            <tuesday>13h30-19h</tuesday>
+            <wenesday>8h-13h30</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>8h-13h30 (et 14h30-19h, le premier vendredi du mois seulement)</friday>
+            <sathurday>8h-13h (deux samedis par mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.12242220</longitude>
+            <latitude>45.63492966</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>79</id>
+        <name>EFS Strasbourg</name>
+        <address>10 rue Spielmann, 67065 Strasbourg</address>
+        <zipcode>67065</zipcode>
+
+        <contact>
+            <email>gest-relation.donneurs@efs.sante.fr</email>
+            <phone>03-88-21-25-03</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>7h45-19h45</monday>
+            <tuesday>7h45-19h45</tuesday>
+            <wenesday>7h45-19h45</wenesday>
+            <thursday>7h45-19h45</thursday>
+            <friday>7h45-19h45</friday>
+            <sathurday>7h45-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>7.75137758</longitude>
+            <latitude>48.57572174</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>80</id>
+        <name>EFS La Rochelle</name>
+        <address>Hôpital Saint Louis, Avenue du Docteur Schweitzer, 17000 La Rochelle</address>
+        <zipcode>17000</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-46-28-92-92</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h</monday>
+            <tuesday>8h-13h</tuesday>
+            <wenesday>14h-19h</wenesday>
+            <thursday>8h-13h</thursday>
+            <friday>8h-13h</friday>
+            <sathurday>8h-12h (1er et 3ème samedis du mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-1.14455640</longitude>
+            <latitude>46.15835571</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>81</id>
+        <name>EFS Vannes</name>
+        <address>Maison du Don C.H. Bretagne Atlantique, 20 Boulevard du Général Guillaudot, 56017 Vannes</address>
+        <zipcode>56017</zipcode>
+
+        <contact>
+            <email>bretagne@efs.sante.fr</email>
+            <phone>02-97-67-53-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h30</monday>
+            <tuesday>12h-18h30</tuesday>
+            <wenesday>8h-13h30</wenesday>
+            <thursday>12h-18h30</thursday>
+            <friday>8h-12h40 et 14h30-15h30</friday>
+            <sathurday>8h-13h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-2.74549532</longitude>
+            <latitude>47.66680145</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>82</id>
+        <name>EFS Saint Etienne Châteaucreux</name>
+        <address>6 rue Jacques-Constant Milleret, 42000 Saint Etienne Châteaucreux</address>
+        <zipcode>42000</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-77-81-42-43</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-16h</monday>
+            <tuesday>8h-15h</tuesday>
+            <wenesday>10h-18h30</wenesday>
+            <thursday>8h-16h</thursday>
+            <friday>8h-16h</friday>
+            <sathurday>8h-11h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.40235853</longitude>
+            <latitude>45.44282150</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>83</id>
+        <name>EFS Saintes</name>
+        <address>33 chemin des Carrières de la Croix, 17100 Saintes</address>
+        <zipcode>17100</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-46-93-53-44</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>8h-13h</tuesday>
+            <wenesday>8h-13h</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>8h-13h</friday>
+            <sathurday>8h-13h (un samedi par mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-0.65181971</longitude>
+            <latitude>45.74814987</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>84</id>
+        <name>EFS Brive La Gaillarde</name>
+        <address>8 rue Vincent Chassaing, 19100 Brive La Gaillarde</address>
+        <zipcode>19100</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-55-74-98-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-15h30 (sans rendez-vous)</monday>
+            <tuesday>8h15-14h (sur rendez-vous)</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>13h-19h (1er jeudi du mois seulement)</thursday>
+            <friday>8h-15h30 (sans rendez-vous)</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.54137766</longitude>
+            <latitude>45.16063690</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>85</id>
+        <name>EFS Annemasse</name>
+        <address>1 Route de Taninges, 74100 Annemasse</address>
+        <zipcode>74100</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-50-87-69-70</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-13h30</monday>
+            <tuesday>14h-19h</tuesday>
+            <wenesday>8h30-13h30</wenesday>
+            <thursday>14h-19h</thursday>
+            <friday>8h30-13h30</friday>
+            <sathurday>8h30-12h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>6.25549507</longitude>
+            <latitude>46.19116974</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>86</id>
+        <name>EFS Périgueux</name>
+        <address>14 rue Victoria, 24000 Périgueux</address>
+        <zipcode>24000</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-53-45-52-40</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>9h45-15h30 (avec rendez-vous)</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>8h-17h30 (avec rendez-vous)</thursday>
+            <friday>8h-15h30 (sans rendez-vous)</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.72680748</longitude>
+            <latitude>45.19489288</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>87</id>
+        <name>EFS Metz-Tessy</name>
+        <address>Zone d'Activités des Croiselets, 2 chemin des Croiselets, 74370 Metz-Tessy</address>
+        <zipcode>74370</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-50-66-60-60</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-19h</monday>
+            <tuesday>8h-13h</tuesday>
+            <wenesday>8h-13h</wenesday>
+            <thursday>14h-19h</thursday>
+            <friday>8h-13h</friday>
+            <sathurday>8h-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>6.12032890</longitude>
+            <latitude>45.93818283</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>88</id>
+        <name>EFS Annonay</name>
+        <address>Centre Hospitalier, Rue Saint Prix Barou, 07100 Annonay</address>
+        <zipcode>07100</zipcode>
+        <contact>
+            <email />
+            <phone>04-75-33-29-99</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>11h-18h</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>11h-18h</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>9h-15h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.66612625</longitude>
+            <latitude>45.24272156</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>89</id>
+        <name>EFS Le Puy En Velay</name>
+        <address>12 Boulevard du Docteur André Chantemesse, 43012 Le Puy-En-Velay</address>
+        <zipcode>43012</zipcode>
+
+        <contact>
+            <email></email>
+            <phone>04-71-06-63-10</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-14h30</monday>
+            <tuesday>8h-14h30</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>8h-11h30</friday>
+            <sathurday>8h-11h30 (semaines impaires)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.87636065</longitude>
+            <latitude>45.05025482</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>90</id>
+        <name>EFS Lorient</name>
+        <address>Maison du Don Centre Hospitalier Bretagne Sud Site du Scorff, 5 avenue de Choiseul, 56322 Lorient</address>
+        <zipcode>56322</zipcode>
+
+        <contact>
+            <email>bretagne@efs.sante.fr</email>
+            <phone>02-97-06-92-93</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h30</monday>
+            <tuesday>12h-18h30</tuesday>
+            <wenesday>8h-13h30</wenesday>
+            <thursday>12h-18h30</thursday>
+            <friday>8h-12h40 et 14h30-15h30</friday>
+            <sathurday>8h-13h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-3.35798621</longitude>
+            <latitude>47.75250244</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>91</id>
+        <name>EFS Chambéry</name>
+        <address>502 Faubourg Maché, 73000 Chambéry</address>
+        <zipcode>73000</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-79-69-37-45</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-13h</monday>
+            <tuesday>8h30-13h</tuesday>
+            <wenesday>8h30-13h</wenesday>
+            <thursday>8h30-13h et 16h30-19h</thursday>
+            <friday>8h30-13h</friday>
+            <sathurday>8h30-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.91105175</longitude>
+            <latitude>45.56428146</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>92</id>
+        <name>EFS Valence</name>
+        <address>72 avenue du Docteur Santy, 26000 Valence</address>
+        <zipcode>26000</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-75-82-44-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-14h</monday>
+            <tuesday>12h-19h</tuesday>
+            <wenesday>8h-14h</wenesday>
+            <thursday>12h-19h</thursday>
+            <friday>8h-14h</friday>
+            <sathurday>8h-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.90812254</longitude>
+            <latitude>44.91631317</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>93</id>
+        <name>EFS La Tronche</name>
+        <address>29 avenue du Maquis du Grésivaudan, 38701 La Tronche</address>
+        <zipcode>38701</zipcode>
+        <contact>
+            <email />
+            <phone>04-76-42-43-44</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-13h30</monday>
+            <tuesday>9h-13h30 et 14h30-18h30</tuesday>
+            <wenesday>9h-13h30</wenesday>
+            <thursday>9h-13h30 et 14h30-18h30</thursday>
+            <friday>9h-13h30</friday>
+            <sathurday>8h-12h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.74248457</longitude>
+            <latitude>45.20162582</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>94</id>
+        <name>EFS Quimper</name>
+        <address>Maison du Don, 14 avenue Yves Thepot, 29000 Quimper</address>
+        <zipcode>29000</zipcode>
+
+        <contact>
+            <email>bretagne@efs.sante.fr</email>
+            <phone>02-98-65-66-25</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-12h40</monday>
+            <tuesday>12h-18h30</tuesday>
+            <wenesday>8h-12h40</wenesday>
+            <thursday>12h-18h30</thursday>
+            <friday>8h-12h40 et 14h30-15h30</friday>
+            <sathurday>8h-13h40</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-4.09548664</longitude>
+            <latitude>47.98771286</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>95</id>
+        <name>EFS Cahors</name>
+        <address>34 rue Charles Bourseul, 46000 Cahors</address>
+        <zipcode>46000</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>05-65-22-38-38</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>13h-18h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>10h-13h et 14h-18h</friday>
+            <sathurday>9h-13h (premier samedi des mois pairs : février, avril, juin, août, octobre, décembre)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.43757725</longitude>
+            <latitude>44.44540787</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>96</id>
+        <name>EFS Rodez</name>
+        <address>Centre Hospitalier Rodez Bourran, Avenue de l'Hopital, 12027 Rodez</address>
+        <zipcode>12027</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>05-65-75-29-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>11h30-13h30 et 14h30-19h</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>9h-13h30 et 14h30-17h00</friday>
+            <sathurday>9h-13h (premier samedi du mois seulement)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.54990101</longitude>
+            <latitude>44.36141586</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>97</id>
+        <name>EFS Bordeaux</name>
+        <address>Hôpital Pellegrin Place Amélie Raba Léon, 33035 Bordeaux</address>
+        <zipcode>33035</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-56-90-83-80</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>10h-18h30</monday>
+            <tuesday>10h-18h30</tuesday>
+            <wenesday>10h-18h30</wenesday>
+            <thursday>10h-18h30</thursday>
+            <friday>8h30-18h30</friday>
+            <sathurday>9h-13h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-0.60314697</longitude>
+            <latitude>44.83026123</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>98</id>
+        <name>EFS Brest</name>
+        <address>Maison du Don, 255 rue Jean Jaurès, 29000 Brest</address>
+        <zipcode>29000</zipcode>
+
+        <contact>
+            <email>bretagne@efs.sante.fr</email>
+            <phone>02-98-44-50-77</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h–18h</monday>
+            <tuesday>8h-16h30</tuesday>
+            <wenesday>8h-16h30</wenesday>
+            <thursday>8h-18h</thursday>
+            <friday>8h-16h30 (13h30-16h30 : dons du sang sans rendez-vous)</friday>
+            <sathurday>8h-12h15</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-4.46951675</longitude>
+            <latitude>48.40108871</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>99</id>
+        <name>EFS Agen</name>
+        <address>Rue Grande Muraille, 47000 Agen</address>
+        <zipcode>47000</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-53-77-03-40</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>15h-19h</tuesday>
+            <wenesday>8h30-12h30 (sur rendez-vous uniquement)</wenesday>
+            <thursday>8h30-12h30</thursday>
+            <friday>9h30-13h30 (sur rendez-vous uniquement)</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.63527584</longitude>
+            <latitude>44.21933746</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+    <!-- TODO : Téléphone -->
+    <establishment>
+        <id>100</id>
+        <name>EFS Montauban</name>
+        <address>10 rue du Docteur Alibert, 82000 Montauban</address>
+        <zipcode>82000</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>08-00-97-21-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>10h-13h et 14h-18h</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>11h-13h et 14h-19h</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>Fermé</friday>
+            <sathurday>9h-13h (mois impairs seulement : janvier, mars, mai, juillet, septembre, novembre)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.35023785</longitude>
+            <latitude>44.02207565</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>101</id>
+        <name>EFS Albi</name>
+        <address>8 avenue du Marechal de Lattre de Tassigny, 81000 Albi</address>
+        <zipcode>81000</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>08-00-97-21-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>11h-13h30 et 14h30-19h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>11h-13h30 et 14h30-19h</thursday>
+            <friday>9h-13h30</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.15325975</longitude>
+            <latitude>43.92980194</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>102</id>
+        <name>EFS Gap</name>
+        <address>Centre Hospitalier, 1 place Auguste Muret, 05007 Gap</address>
+        <zipcode>05007</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-92-40-61-82</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>9h-15h30</tuesday>
+            <wenesday>9h-15h30</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>Fermé</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>6.07317448</longitude>
+            <latitude>44.55734253</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>103</id>
+        <name>EFS Nîmes</name>
+        <address>Hôpital Universitaire Caremeau, Place du Professeur Robert Debré, 30942 Nîmes</address>
+        <zipcode>30942</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>04-66-04-77-66</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-12h30 et 13h30-16h</monday>
+            <tuesday>8h-12h30 et 13h30-15h</tuesday>
+            <wenesday>8h-12h30 et 13h30-16h</wenesday>
+            <thursday>10h30-13h30 et 14h30-18h</thursday>
+            <friday>8h-12h30 et 13h30-16h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.31880140</longitude>
+            <latitude>43.82242203</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>104</id>
+        <name>EFS Avignon</name>
+        <address>285 rue Raoul Follereau, 84084 Avignon</address>
+        <zipcode>84084</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-90-81-14-27</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-16h</monday>
+            <tuesday>8h30-16h</tuesday>
+            <wenesday>8h30-16h</wenesday>
+            <thursday>10h30-18h</thursday>
+            <friday>8h30-16h</friday>
+            <sathurday>8h30-14h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.80269909</longitude>
+            <latitude>43.92086411</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>105</id>
+        <name>EFS Toulouse Purpan</name>
+        <address>Hôpital Purpan, Avenue de Grande Bretagne, 31027 Toulouse</address>
+        <zipcode>31027</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>05-61-30-54-33</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-17h30</monday>
+            <tuesday>8h-17h30</tuesday>
+            <wenesday>8h-17h30</wenesday>
+            <thursday>8h-17h30</thursday>
+            <friday>8h-17h30</friday>
+            <sathurday>8h-12h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.40030658</longitude>
+            <latitude>43.61099243</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>106</id>
+        <name>EFS Toulouse Jean Jaurès</name>
+        <address>15 Allée Jean Jaurès, 31000 Toulouse</address>
+        <zipcode>31000</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>05-61-30-54-33</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>10h-19h</monday>
+            <tuesday>10h-19h</tuesday>
+            <wenesday>10h-19h</wenesday>
+            <thursday>10h-19h</thursday>
+            <friday>10h-19h</friday>
+            <sathurday>9h-13h (jusqu'à 17h pour douze samedis par an)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>1.44863570</longitude>
+            <latitude>43.60587692</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : téléphone -->
+    <establishment>
+        <id>107</id>
+        <name>EFS Montpellier</name>
+        <address>392 avenue du Professeur Jean-Louis Viala, 34184 Montpellier</address>
+        <zipcode>34184</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>08-00-97-21-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>11h-18h30</monday>
+            <tuesday>8h30-16h30</tuesday>
+            <wenesday>8h30-16h30</wenesday>
+            <thursday>11h-18h30</thursday>
+            <friday>8h30-16h30</friday>
+            <sathurday>8h30-16h30 (1er et 3ème samedi du mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.82504463</longitude>
+            <latitude>43.63641739</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : Pas de rendez-vous du tout ? -->
+    <establishment>
+        <id>108</id>
+        <name>EFS Mont De Marsan</name>
+        <address>691 avenue Cronstadt, 40000 Mont De Marsan</address>
+        <zipcode>40000</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-58-06-50-40</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="false" />
+            <platelet available="true" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-13h30</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>10h-13h</thursday>
+            <friday>8h-13h30</friday>
+            <sathurday>8h-12h (2ème et 4ème samedi du mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-0.48824531</longitude>
+            <latitude>43.89287186</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>109</id>
+        <name>EFS Auch</name>
+        <address>Centre Hospitalier, Allée Marie Clarac, 32000 Auch</address>
+        <zipcode>32000</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>05-61-31-20-96</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>10h-13h30 et 14h30-18h</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>10h-13h30 et 14h30-19h</thursday>
+            <friday>Fermé</friday>
+            <sathurday>9h - 17h (dix samedis par an)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.57759762</longitude>
+            <latitude>43.63073349</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : Vérifié interview -->
+    <establishment>
+        <id>110</id>
+        <name>EFS Arles</name>
+        <address>Centre Hospitalier Joseph Imbert, Quartier Fourchon, 13200 Arles</address>
+        <zipcode>13200</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-90-96-13-13</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-16h</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>9h-16h</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>9h-16h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>4.63341284</longitude>
+            <latitude>43.65768433</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>111</id>
+        <name>EFS Beziers</name>
+        <address>Centre Hospitalier, Rue du Lieutenant-Colonel Dimitri Amilakvari, 34525 Beziers</address>
+        <zipcode>34525</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-67-30-99-23</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>8h30-13h15 et 14h30-16h30</tuesday>
+            <wenesday>11h-13h15 et 14h30-19h</wenesday>
+            <thursday>11h-13h15 et 14h30-19h</thursday>
+            <friday>8h30-13h15 et 14h30-16h30</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>3.25587988</longitude>
+            <latitude>43.34148788</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>112</id>
+        <name>EFS Carcassonne</name>
+        <address>Centre Hospitalier, 1060 chemin de la Madeleine, 11000 Carcassonne</address>
+        <zipcode>11000</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>04-68-10-22-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-13h30 et 14h30-17h30</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>9h30-13h30 et 14h30-18h30</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>9h30-13h30 et 14h30-18h30</friday>
+            <sathurday>9h-17h (neufs samedis par an)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.38726115</longitude>
+            <latitude>43.22728348</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>113</id>
+        <name>EFS Dax</name>
+        <address>Hôpital Thermal, 1 rue Labadie, 40100 Dax</address>
+        <zipcode>40100</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-58-35-90-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>8h-15h</tuesday>
+            <wenesday>8h-15h</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>Fermé</friday>
+            <sathurday>8h-12h (1er et 3ème samedi du mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-1.05220914</longitude>
+            <latitude>43.70590210</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : vérifier les rendez-vous -->
+    <establishment>
+        <id>114</id>
+        <name>EFS Aix-En-Provence</name>
+        <address>Maison du Don Aix, 25 Boulevard Aristide Briand, 13100 Aix-En-Provence</address>
+        <zipcode>13100</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-42-12-61-90</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-16h</monday>
+            <tuesday>9h-17h</tuesday>
+            <wenesday>9h-17h</wenesday>
+            <thursday>12h-19h</thursday>
+            <friday>9h-17h</friday>
+            <sathurday>8h-14h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.44763088</longitude>
+            <latitude>43.53276443</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>115</id>
+        <name>EFS Pau</name>
+        <address>Centre Hospitalier, 145 avenue de Buros, 64046 Pau</address>
+        <zipcode>64046</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-59-92-49-04</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-16h</monday>
+            <tuesday>8h-15h</tuesday>
+            <wenesday>8h-13h30</wenesday>
+            <thursday>8h-15h</thursday>
+            <friday>8h-16h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-0.34655213</longitude>
+            <latitude>43.31946564</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>116</id>
+        <name>EFS Tarbes</name>
+        <address>Centre Hospitalier de Tarbes, Boulevard de Lattre de Tassigny, 65000 Tarbes</address>
+        <zipcode>65000</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>05-62-34-85-54</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h30-12h30</monday>
+            <tuesday>12h30-17h30</tuesday>
+            <wenesday>Fermé</wenesday>
+            <thursday>9h45-13h30 et 14h45-18h30</thursday>
+            <friday>8h45-11h30 et 12h30-17h00</friday>
+            <sathurday>8h45-13h00 (un samedi par mois)</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>0.05838633</longitude>
+            <latitude>43.22128296</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : Vérifier rendez-vous -->
+    <establishment>
+        <id>117</id>
+        <name>EFS Marseille République</name>
+        <address>28 rue de la République, 13001 Marseille</address>
+        <zipcode>13001</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-96-11-22-90</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-17h30</monday>
+            <tuesday>9h-17h30</tuesday>
+            <wenesday>12h30-19h</wenesday>
+            <thursday>9h-17h30</thursday>
+            <friday>9h-17h30</friday>
+            <sathurday>10h-17h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.37250519</longitude>
+            <latitude>43.29829788</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>118</id>
+        <name>EFS Marseille Baille</name>
+        <address>149 Boulevard Baille, 13005 Marseille</address>
+        <zipcode>13005</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-91-18-95-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Fermé</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>12h30-19h</wenesday>
+            <thursday>12h30-19h</thursday>
+            <friday>Fermé</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.39658308</longitude>
+            <latitude>43.28937531</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : Récupérer les horaires d'ouverture -->
+    <establishment>
+        <id>119</id>
+        <name>EFS Biarritz</name>
+        <address>10 rue Manuel Jaudel, 64200 Biarritz</address>
+        <zipcode>64200</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-59-24-14-68</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-14h</monday>
+            <tuesday>Se renseigner auprès de l'établissement</tuesday>
+            <wenesday>Se renseigner auprès de l'établissement</wenesday>
+            <thursday>Se renseigner auprès de l'établissement</thursday>
+            <friday>10h-16h</friday>
+            <sathurday>Se renseigner auprès de l'établissement</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-1.55101180</longitude>
+            <latitude>43.48173141</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>120</id>
+        <name>EFS Perpignan</name>
+        <address>55 avenue de la Salanque, 66000 Perpignan</address>
+        <zipcode>66000</zipcode>
+
+        <contact>
+            <email>dondusangpm@efs.sante.fr</email>
+            <phone>04-68-52-61-40</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h15-12h15 et 13h15-17h45</monday>
+            <tuesday>10h30-13h30 et 14h30-19h00</tuesday>
+            <wenesday>10h30-13h30 et 14h30-19h00</wenesday>
+            <thursday>10h30-13h30 et 14h30-19h00</thursday>
+            <friday>10h30-13h30 et 14h30-19h00</friday>
+            <sathurday>10h30-13h30 et 14h30-19h00</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>2.88747334</longitude>
+            <latitude>42.72202301</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>121</id>
+        <name>EFS Nice</name>
+        <address>45 rue Auguste Gal, 06300 Nice</address>
+        <zipcode>06300</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-92-00-10-69</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="false" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h30-16h30</monday>
+            <tuesday>9h30-16h30</tuesday>
+            <wenesday>9h30-16h30</wenesday>
+            <thursday>11h-18h</thursday>
+            <friday>9h30-16h30</friday>
+            <sathurday>9h30-16h30</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>7.28735828</longitude>
+            <latitude>43.70666122</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : Se renseigner type de don et rendez-vous nécessaires -->
+    <establishment>
+        <id>122</id>
+        <name>EFS Cannes</name>
+        <address>259 - 261 avenue de Grasse, 06400 Cannes</address>
+        <zipcode>06400</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-93-94-82-30</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-15h</monday>
+            <tuesday>8h-15h</tuesday>
+            <wenesday>8h-15h</wenesday>
+            <thursday>8h-15h</thursday>
+            <friday>8h-15h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>7.00340748</longitude>
+            <latitude>43.56354523</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : rendez-vous nécessaires -->
+    <establishment>
+        <id>123</id>
+        <name>EFS Toulon</name>
+        <address>Hôpital Sainte Musse, Rue Sainte Claire Deville, 83000 Toulon</address>
+        <zipcode>83000</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-98-08-08-50</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="true" appointement="true" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-15h</monday>
+            <tuesday>8h-15h</tuesday>
+            <wenesday>8h-15h</wenesday>
+            <thursday>10h-17h</thursday>
+            <friday>8h-15h</friday>
+            <sathurday>8h-15h</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>5.97512484</longitude>
+            <latitude>43.12526321</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : Se renseigner sur les horaires -->
+    <establishment>
+        <id>124</id>
+        <name>EFS Bastia</name>
+        <address>Centre Hospitalier de Falconaja, Rue François Barbisino, 20600 Bastia</address>
+        <zipcode>20600</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-95-59-11-73</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Sur rendez-vous uniquement</monday>
+            <tuesday>Sur rendez-vous uniquement</tuesday>
+            <wenesday>Sur rendez-vous uniquement</wenesday>
+            <thursday>Sur rendez-vous uniquement</thursday>
+            <friday>Sur rendez-vous uniquement</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>9.42768574</longitude>
+            <latitude>42.68000793</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : Se renseigner sur les horaires -->
+    <establishment>
+        <id>125</id>
+        <name>EFS Ajaccio</name>
+        <address>Centre Hospitalier la Misericorde, 27 avenue Impératrice Eugénie, 20303 Ajaccio</address>
+        <zipcode>20303</zipcode>
+
+        <contact>
+            <email />
+            <phone>04-95-29-90-47</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="true" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Sur rendez-vous uniquement</monday>
+            <tuesday>Sur rendez-vous uniquement</tuesday>
+            <wenesday>Sur rendez-vous uniquement</wenesday>
+            <thursday>Sur rendez-vous uniquement</thursday>
+            <friday>Sur rendez-vous uniquement</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>8.7321192</longitude>
+            <latitude>41.92300415</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>126</id>
+        <name>EFS Pointe à Pitre</name>
+        <address>Boulevard de l'Hôpital, 97171 Pointe à Pitre</address>
+        <zipcode>97171</zipcode>
+
+        <contact>
+            <email />
+            <phone>0590471820</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-14h</monday>
+            <tuesday>Fermé</tuesday>
+            <wenesday>8h-14h</wenesday>
+            <thursday>Fermé</thursday>
+            <friday>8h-14h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-61.52629471</longitude>
+            <latitude>16.23844528</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>127</id>
+        <name>EFS Fort-De-France</name>
+        <address>97 Avenue Maurice Bishop, 97200 Fort de France</address>
+        <zipcode>97200</zipcode>
+
+        <contact>
+            <email />
+            <phone>05-96-75-79-00</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="false" appointement="false" />
+            <platelet available="true" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>9h-16h</monday>
+            <tuesday>9h-16h</tuesday>
+            <wenesday>9h-16h</wenesday>
+            <thursday>9h-16h</thursday>
+            <friday>9h-16h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>-61.03903198</longitude>
+            <latitude>14.63412285</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <establishment>
+        <id>128</id>
+        <name>EFS Saint-Denis De La Réunion</name>
+        <address>CHU Félix Guyon, Route de Bellepierre, 97405 Saint-Denis De La Réunion</address>
+        <zipcode>97405</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-62-90-53-81</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="true" />
+            <platelet available="false" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>Don du sang : 8h-14h // Dons de plaquettes: 7h30-14h30</monday>
+            <tuesday>Don du sang : 8h-14h // Dons de plaquettes: 7h30-14h30</tuesday>
+            <wenesday>Don du sang : 8h-14h // Dons de plaquettes: 7h30-14h30</wenesday>
+            <thursday>Don du sang : 8h-14h // Dons de plaquettes: 7h30-14h30</thursday>
+            <friday>Don du sang : 8h-14h // Dons de plaquettes: 7h30-14h30</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>55.44404602</longitude>
+            <latitude>-20.89110565</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+    <!-- TODO : Se renseigner sur les rendez-vous -->
+    <establishment>
+        <id>129</id>
+        <name>EFS Saint-Pierre De La Réunion</name>
+        <address>58 rue Suffren, 97410 Saint-Pierre De La Réunion</address>
+        <zipcode>97410</zipcode>
+
+        <contact>
+            <email />
+            <phone>02-62-25-48-01</phone>
+        </contact>
+
+        <donations-available>
+            <blood available="true" appointement="false" />
+            <plasma available="true" appointement="false" />
+            <platelet available="true" appointement="false" />
+            <bone-marrow available="false" appointement="false" />
+        </donations-available>
+
+        <opening-hours>
+            <monday>8h-14h</monday>
+            <tuesday>8h-14h</tuesday>
+            <wenesday>8h-14h</wenesday>
+            <thursday>8h-14h</thursday>
+            <friday>8h-13h</friday>
+            <sathurday>Fermé</sathurday>
+        </opening-hours>
+
+        <coordinates>
+            <longitude>55.47203827</longitude>
+            <latitude>-21.33925438</latitude>
+        </coordinates>
+
+        <comment />
+    </establishment>
+
+
+</establishments>

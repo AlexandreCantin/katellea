@@ -1,0 +1,7 @@
+{
+  "name": "Katellea",
+  "testPathIgnorePatterns": ["/node_modules/", "/frontend", "/tests/e2e"],
+  "transform": {
+    "^.+\\.js?$": "babel-jest"
+  }
+}

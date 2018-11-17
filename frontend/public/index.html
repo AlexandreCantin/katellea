@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <meta name="theme-color" content="#000000">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="preconnect" href="https://connect.facebook.net/" crossorigin>
+
+  <!-- SEO values -->
+  <meta id="robots-meta" name="robots" content="index,follow">
+  <meta name="keywords" content="accompagnement don du sang plasma quantité">
+  <meta name="description" content="Parrainer et accompagner un proche pour son premier don du sang">
+
+  <!-- Open Graph - Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Katellea" />
+  <meta property="og:title" content="Accompagnement don du sang - Katellea">
+  <meta property="og:description" content="Parrainer et accompagner un proche pour son premier don du sang">
+  <meta property="og:image" content="https://katellea.fr/katellea-logo.png">
+  <meta property="og:url" content="https://katellea.fr/">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="Accompagnement don du sang - Katellea">
+  <meta name="twitter:site" content="@KatelleaWeb">
+  <meta name="twitter:image" content="https://katellea.fr/katellea-logo.png">
+  <meta name="twitter:title" content="Accompagnement don du sang - Katellea">
+  <meta name="twitter:description" content="Parrainer et accompagner un proche pour son premier don du sang">
+  <!-- Google+ -->
+  <meta itemProp="name" content="Accompagnement don du sang - Katellea">
+  <meta itemProp="description" content="Parrainer et accompagner un proche pour son premier don du sang">
+  <meta itemProp="image" content="https://katellea.fr/katellea-logo.png">
+
+  <!-- Google analytics -->
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  <!-- Lazysizes for lazyloading -->
+  <script async src="%PUBLIC_URL%/lazysizes.min.js"></script>
+
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>Parrainage pour le don du sang, plasma et plaquettes | Katellea</title>
+</head>
+
+<body>
+  <noscript>Vous devez activer le JavaScript pour pouvoir utiliser Katellea.</noscript>
+
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+  <script>
+    // Add polyfill for old browsers
+    if (!window.fetch || !window.Promise) {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js"><\/script>')
+      document.write('<script src="https://unpkg.com/unfetch/polyfill"><\/script>')
+    }
+  </script>
+</body>
+
+</html>

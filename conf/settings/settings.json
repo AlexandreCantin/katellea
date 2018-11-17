@@ -1,0 +1,53 @@
+{
+  "production": false,
+  "environment": "development",
+
+  "offlineMode": true,
+  "jwtSecret": "9uu+*3q$#8m-*eeoko)bc)=ped#et5%a#+njahro&e#=mb_kyt",
+  "baseUrl": "http://localhost:3000",
+  "frontUrl": "http://localhost:8080",
+
+  "database": {
+    "name": "katellea",
+    "username": "root",
+    "password": "root",
+    "port": "27017",
+    "host": "127.0.0.1"
+  },
+  "databaseTest": {
+    "name": "katellea-test",
+    "username": "root",
+    "password": "root",
+    "port": "27017",
+    "host": "127.0.0.1"
+  },
+
+  "facebook": {
+    "appId": "",
+    "secret": "",
+    "callbackURL": "/auth/facebook"
+  },
+
+  "cron": {
+    "isMainLeader": true,
+    "statCRON": "0 * * * *",
+    "globalStatCRON": "0 * * * *",
+    "donationDoneCRON": "0 * * * *",
+    "bloodDonationEligibleCron": "0 * * * *",
+    "firstDonationAdviceCron": "0 * * * *",
+    "mobileCollectDownloadCron": "0 10 * * *"
+  },
+  "daysBeforeStatisticsAnalytics": 5,
+  "weeksDelayBeforeEligibilty": 3,
+
+  "mail": {
+    "redirectAllMailTo": "",
+    "activateMail": false,
+
+    "fromEmail": "no-reply@katellea.fr",
+    "fromName": "Katellea",
+    "contactEmail": "<set-it>",
+    "apiKeyPublic": "<set it>",
+    "apiKeyPrivate": "<set it>"
+  }
+}

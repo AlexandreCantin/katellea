@@ -1,0 +1,69 @@
+@import './constants.scss';
+
+/* Buttons */
+.btn {
+  color: white;
+  border: none;
+
+  background: #4483eb;
+  background-image: linear-gradient(to right bottom, #1267eb, #2e75eb, #4483eb, #5990e9, #6e9de7);
+
+  padding: 5px 15px;
+  border-radius: 3px;
+  font-size: 1em;
+  font-weight: normal;
+
+  &.big {
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 5px;
+  }
+}
+
+.btn.facebook {
+  background-color: #3B5998 !important;
+  border: none;
+  background-image: none;
+}
+.btn.google {
+  background-color: #4d90fe !important;
+  border-color: #3079ed;
+  background-image: none;
+}
+.btn.twitter {
+  background-color: #00aef0 !important;
+  border-color: #00aef0;
+  background-image: none;
+}
+.btn.instagram {
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  border: none;
+}
+
+.btn.grey {
+  color: white;
+  background-color: #666;
+  border-color: #666;
+  background-image: none;
+}
+
+.btn.reset {
+  background: none;
+  border: none;
+  color: $text-color;
+}
+
+.btn:disabled {
+  color: white;
+  cursor: not-allowed;
+  background-color: lightgray;
+  background-image: none;
+  border: solid 1px lightgray;
+}
+
+.btn.danger {
+  background: #ed4642;
+  background-image: linear-gradient(to right bottom, #eb1212, #ed312c, #ed4642, #ec5856, #e96868);
+  color: white;
+  border: none;
+}

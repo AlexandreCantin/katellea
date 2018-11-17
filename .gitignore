@@ -1,0 +1,19 @@
+# Node-Server
+/node_modules/
+conf/settings/settings-local.json
+src/cron/mobile-collects/*.json
+docker/opt/mongodb/db/*
+
+
+# Preact-frontend
+frontend/**/*.css
+/npm-debug.log
+/build/
+frontend/node_modules
+frontend/src/environment-local.js
+
+# Nightwatch - Selenium
+tests/e2e/reports/
+tests/e2e/reports/*
+selenium-debug.log
+reports/*.png

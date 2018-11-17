@@ -1,0 +1,39 @@
+#not-found {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  main {
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+    display: flex;
+
+    > img, > div {
+      flex: 1;
+      max-width: 70%;
+      max-height: 70%;
+
+      align-self: center;
+      text-align: center;
+      font-size: 2em;
+
+      .logo {
+        font-weight: bold;
+        > img {
+          max-height: 100px;
+          position: relative;
+          top: 5px;
+        }
+        margin-bottom: 30px;
+      }
+
+      p {
+        display: block;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}

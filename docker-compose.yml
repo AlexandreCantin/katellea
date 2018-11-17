@@ -1,0 +1,30 @@
+# Remove all containers : docker rm $(docker ps -a -q)
+# Remove all images : docker rmi $(docker images -q)
+
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./docker/opt/mongodb/db:/data/db
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: katellea
+
+  mongo-test:
+    image: mongo:latest
+    restart: always
+    ports:
+      - '27018:27017'
+    environment:
+      MONGO_INITDB_DATABASE: katellea-test
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081

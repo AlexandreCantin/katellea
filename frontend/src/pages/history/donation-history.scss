@@ -1,0 +1,32 @@
+@import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+
+#donation-history {
+  .donation {
+    margin-bottom: 30px;
+    .date {
+      background-color: lightgray;
+      padding: 10px;
+      .bold { font-weight: bold; }
+    }
+
+    .type {
+      display: flex;
+      padding-top: 20px;
+      div:first-child {
+        flex: 1;
+        img {
+          display: block;
+          margin: 0 auto 15px auto;
+          max-width: 150px;
+        }
+      }
+    }
+
+    .info {
+      flex: 5;
+      align-self: center;
+      > div { margin-bottom: 20px; }
+    }
+  }
+}

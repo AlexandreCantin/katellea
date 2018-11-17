@@ -1,0 +1,60 @@
+[
+  {
+    "_id": 1,
+    "coordinates": [
+      2.38187099,
+      48.84635925
+    ],
+    "name": "EFS Paris 12ème",
+    "address": "Saint-Antoine Crozatier, 21 rue Crozatier, 75012 Paris 12ème",
+    "zipcode": "75012",
+    "phone": "01-53-02-92-00",
+    "email": "",
+    "bloodAvailable": true,
+    "bloodAppointement": false,
+    "plasmaAvailable": true,
+    "plasmaAppointement": true,
+    "plateletAvailable": true,
+    "plateletAppointement": true,
+    "boneMarrowAvailable": true,
+    "boneMarrowAppointement": true,
+    "mondayHours": "8h-16h",
+    "tuesdayHours": "8h-18h",
+    "wenesdayHours": "8h-18h",
+    "thursdayHours": "8h-18h",
+    "fridayHours": "8h-18h",
+    "sathurdayHours": "8h-15h30",
+    "longitude": 2.38187099,
+    "latitude": 48.84635925,
+    "efsComment": ""
+  },
+  {
+    "_id": 400,
+    "coordinates": [
+      -1.55047548,
+      47.20913696
+    ],
+    "name": "EFS Nantes",
+    "address": "34 Boulevard Jean Monnet, 44011 Nantes",
+    "zipcode": "44011",
+    "phone": "02-40-12-33-62",
+    "email": "",
+    "bloodAvailable": true,
+    "bloodAppointement": true,
+    "plasmaAvailable": true,
+    "plasmaAppointement": true,
+    "plateletAvailable": true,
+    "plateletAppointement": true,
+    "boneMarrowAvailable": false,
+    "boneMarrowAppointement": false,
+    "mondayHours": "8h-19h",
+    "tuesdayHours": "8h-19h",
+    "wenesdayHours": "8h-19h",
+    "thursdayHours": "8h-19h",
+    "fridayHours": "8h-18h",
+    "sathurdayHours": "8h-12h",
+    "longitude": -1.55047548,
+    "latitude": 47.20913696,
+    "efsComment": ""
+  }
+]

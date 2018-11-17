@@ -1,0 +1,263 @@
+@import '../../styles/mixins.scss';
+
+.katellea-header {
+  position: relative;
+  padding-top: 100px;
+
+  min-height: 100vh;
+  padding-bottom: 30px;
+
+  background: #fff url('/img/cover.jpg') no-repeat center;
+  background-size: cover;
+
+  .presentation-container {
+    background-color: rgba(255, 255, 255, .95);
+    width: 90%;
+    margin: auto;
+    padding: 50px;
+
+    h1 {
+      font-size: 3em;
+      margin: 0 0 20px 0;
+      img {
+        height: 60px;
+        position: relative;
+        top: 2px;
+        left: 6px;
+      }
+    }
+
+    @media (max-width: $min-width-mobile) {
+      padding: 20px;
+      h1 { text-align: center; }
+    }
+
+
+    display: flex;
+    @media (max-width: $min-width-tablet) {
+      flex-direction: column;
+      > div:first-child { margin-bottom: 30px; }
+    }
+
+    > div { flex: 1; }
+
+    ol.katellea-objectives {
+      margin-top: 10px;
+
+      li {
+        padding: 10px 5px;
+        display: inline-flex;
+        font-weight: bold;
+
+        > span {
+          display: inline-block;
+          margin-left: 15px;
+          align-self: center;
+        }
+        img {
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+
+    .gay-part {
+      display: table; display: grid; /* table for old browser compatibility */
+      margin: 20px auto 0 auto;
+      font-size: .9em;
+      grid-template-columns: 100px 1fr;
+      img { max-width: 150px;}
+      @media (max-width: $min-width-mobile) {
+        grid-template-columns: 1fr;
+        img { width: 100px; margin: 0 auto 10px auto; }
+      }
+      background-color: aliceblue;
+      padding: 10px 20px;
+      width: 100%;
+
+      div { text-align: center; }
+      ul { margin: 10px 0 15px 0;}
+      .flag { align-self: center; }
+    }
+  }
+
+
+  .login {
+    text-align: center;
+    align-self: center;
+
+    // #Beta
+    .alert { margin-top: 10px; }
+
+    @include mx-social-auth();
+  }
+}
+
+#modal .modal-body.gay-modal {
+  text-align: center;
+  h3 { margin: 5px; text-decoration: underline; }
+  h4 { margin: 15px auto 5px auto; }
+  .women, .men {
+    padding: 10px;
+    margin-top: 15px;
+  }
+}
+
+.katellea-main {
+  background-color: white;
+  h2 {
+      text-align: center;
+      font-size: 2.5em;
+      padding: 65px 0 25px 0;
+      margin: 0;
+  }
+
+  .katellea-statistics {
+    > .stats {
+      display: flex;
+      align-self: center;
+      > span {
+        flex: 1;
+        text-align: center;
+        min-height: 100px;
+        line-height: 100px;
+        border-right: solid 1px $border-color;
+        &:last-child { border-right: none; }
+        > .number {
+          font-size: 4em;
+          padding-right: 3px;
+          font-weight: bolder;
+          color: $gray-font;
+        }
+      }
+    }
+
+    .last-update {
+      font-size: .75em;
+    }
+  }
+
+    .katellea-donations > div {
+        display: table; display: grid; /* table for old browser compatibility */
+        grid-template-columns: 1fr 1fr;
+        @media (max-width: $min-width-mobile) { grid-template-columns: 1fr; }
+        grid-gap: 50px;
+
+        > div {
+            min-height: 300px;
+            background-size: cover;
+            font-style: italic;
+            h3 {
+                background-color: lightgray;
+                opacity: 0.8;
+            }
+            > p {
+                background: white;
+                opacity: 0.9;
+                padding: 30px;
+                margin-top: 50px;
+            }
+        }
+
+        > div:first-child {
+            h3 {
+                text-align: right;
+                padding-right: 25px;
+            }
+            background-image: url('/img/traitement.jpg');
+            > p {
+                float: right;
+                margin-right: 30px;
+            }
+        }
+
+        > div:last-child {
+            h3 {
+                text-align: left;
+                padding-left: 25px;
+            }
+            background-image: url('/img/search.jpg');
+            > p {
+                float: left;
+                margin-left: 30px;
+            }
+        }
+    }
+
+  .katellea-testimonials {
+    margin-bottom: 50px;
+
+    .katellea-testimonial {
+        display: flex;
+    }
+    .katellea-empty {
+        flex: 2;
+        @media (max-width: $min-width-mobile) { display: none; }
+    }
+    .katellea-text {
+        flex: 3;
+        background: lightblue;
+        display: flex;
+        p {
+            padding: 20px;
+            align-self: center;
+            &.katellea-right {
+                display: block;
+                width: 100%;
+                text-align: right;
+            }
+        }
+    }
+
+    img {
+        width: 300px;
+        height: 300px;
+    }
+  }
+}
+
+.katellea-footer {
+  padding: 30px;
+  background-color: lightgray;
+
+  display: flex;
+  > div {
+      flex: 1;
+  }
+
+  .katellea-links {
+    > ul {
+      column-count: 2;
+      column-gap: 20px;
+    }
+    li {
+      padding: 15px;
+    }
+    .katellea-donation {
+      > span {
+        border-radius: 25px;
+        background-color: yellow;
+        padding: 10px 20px;
+      }
+    }
+  }
+
+  .katellea-other {
+    text-align: center;
+    li {
+      display: inline-block;
+
+      img {
+        height: 40px;
+        line-height: 40px;
+        width: 40px;
+      }
+
+      margin-right: 20px;
+      &:last-child {
+          margin-right: 0;
+      }
+    }
+  }
+}

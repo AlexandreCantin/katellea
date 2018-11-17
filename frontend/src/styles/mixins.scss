@@ -1,0 +1,28 @@
+@import './constants.scss';
+
+@mixin mx-block-base($padding: $block-padding) {
+  border-radius: 5px;
+  background-color: $block-background-color;
+  padding: $padding;
+}
+@mixin mx-only-top-bottom-padding($padding: $block-padding) {
+  padding: $padding 0 !important;
+}
+@mixin mx-only-right-left-padding($padding: $block-padding) {
+  padding: 0 $padding !important;
+}
+
+@mixin mx-social-auth() {
+  .social-auth-buttons {
+    max-width: 300px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    > button {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 0;
+    }
+  }
+}
+

@@ -1,0 +1,95 @@
+@import '../styles/constants.scss';
+@import '../styles/mixins.scss';
+
+$padding-with-nav: 0 30px 30px $menu-width+30px;
+
+.page {
+  >.alert {
+    margin-top: 20px;
+  }
+  @media (max-width: $min-width-tablet) {
+    >.alert {
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+  }
+}
+
+// Dashboard, current donation...
+.page.default {
+  padding: $padding-with-nav;
+  .page-title {
+    margin-top: 30px;
+    .title {
+      h1 {
+        display: block;
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+      .subtitle {
+        color: #5f5f5f;
+      }
+    }
+  }
+  .main-content {
+    display: table; display: grid; /* table for old browser compatibility */
+    grid-gap: 25px;
+    margin-top: 50px;
+  }
+  @media (max-width: $min-width-tablet) {
+    padding: 0 0 30px 0;
+    .page-title,
+    .main-content {
+      padding: 0 20px;
+    }
+  }
+}
+
+// Our mission and team
+.page.text-only {
+
+  .breadcrumb-nav {
+    max-width: 1200px;
+    margin: 80px auto 20px auto;
+    &.has-user {
+      max-width: none;
+      margin: 20px auto;
+    }
+  }
+
+  &.has-menu {
+    padding: $padding-with-nav !important;
+    main { max-width: none !important; }
+  }
+
+  main {
+    @include mx-block-base(50px 70px);
+    margin: 20px auto 50px auto;
+    max-width: 1200px;
+
+
+    .big-title {
+      height: 90px;
+      font-size: 3.5em;
+      margin: 0 0 20px 0;
+      font-weight: bold;
+
+      img {
+        height: 80px;
+        position: relative;
+        top: 3px;
+      }
+    }
+
+    .block {
+      margin-bottom: 70px;
+
+      h1 { margin-top: 0; }
+      p {
+        margin-bottom: 20px;
+        a { color: darkblue; }
+      }
+    }
+  }
+
+}

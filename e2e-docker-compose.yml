@@ -1,0 +1,18 @@
+# Command ==> docker-compose -f e2e-docker-compose.yml up
+
+# Remove all containers : docker rm $(docker ps -a -q)
+# Remove all images : docker rmi $(docker images -q)
+
+version: '3.1'
+
+services:
+  nightwatch:
+    build:
+      context: .
+      dockerfile: e2e-dockerfile
+    command: bash -c "/katellea/tests/e2e/run.sh"
+    volumes:
+      - ./:/katellea/
+    environment:
+      NODE_PORT: 3000
+      MONGO_URL: mongodb://localhost:27030/katellea

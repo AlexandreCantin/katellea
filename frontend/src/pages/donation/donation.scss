@@ -1,0 +1,278 @@
+@import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+
+$event-bg-color: lightblue;
+
+#current-step {
+  display: flex;
+  margin-top: 25px;
+
+  @include mx-block-base(25px 10px);
+
+  > div {
+    width: 35px;
+    height: 35px;
+
+    margin: 0 20px;
+    padding-top: 7px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    border-radius: 50%;
+    background-color: $badge-grey;
+
+    &.done {
+      background-color: $badge-done;
+      color: white;
+    }
+
+    // Popover
+    position: relative;
+    &:hover .popover {
+      display: block;
+    }
+    .popover {
+      position: absolute;
+      z-index: 2;
+      color: black;
+      width: 150px;
+      background-color: lightblue;
+      display: none;
+      left: -58px;
+      border-radius: 3px;
+      padding: 5px 10px;
+    }
+  }
+
+  > hr {
+    flex: 1;
+    height: 3px;
+    margin-top: 12px;
+    background-color: $badge-grey;
+    border: solid 1px $badge-grey;
+
+    &.done {
+      background-color: $badge-done;
+      border: solid 1px $badge-done;
+    }
+  }
+}
+
+#donation-page {
+
+  .main-content {
+    grid-template-columns: 3fr 1fr;
+    @media (max-width: $min-width-tablet) {
+      grid-template-columns: 1fr;
+      .actions { grid-column: span 1; }
+    }
+  }
+
+  .actions {
+    grid-column: span 2;
+    .donation-actions { float: left; }
+    .share-actions {
+      float: right;
+      a, img { width: 30px; height: 30px; }
+    }
+  }
+
+  .donation-definitive-date {
+    .alert > h2 { margin: 5px 0; }
+    margin-bottom: 20px;
+
+    .phone-link { margin-top: 20px; }
+
+    .form-line.date {
+      .alert { display: inline-block; }
+      input {
+        padding: 10px;
+        text-align: center;
+      }
+    }
+  }
+
+  .donation-confirmed-date {
+    .date { font-size: 1.8em; }
+  }
+
+  .selfie {
+    display: flex;
+    margin-top: 30px;
+    padding: 15px;
+    img {
+      max-width: 400px; max-height: 300px; width: 100%; height: 100%; align-self: center; padding: 5px;
+      @media (max-width: $min-width-mobile) { max-width: 200px; max-height: 150px; }
+    }
+    div { flex: 1; align-self: center; font-weight: bold; }
+    .hashtags {
+      color: $hashtag-color;
+      li { margin-right: 20px; }
+    }
+  }
+
+
+  .events {
+    > .event {
+      border-bottom: solid 1px $border-color;
+      padding: 15px 10px;
+    }
+
+    .comment-input {
+      padding: 10px;
+      textarea { width: 100%; border: solid 1px lightgrey; }
+    }
+
+    .donation-comment {
+      position: relative;
+      em { font-size: .85em; margin-left: 5px; }
+      .edit { position: absolute; top: 2px; right: 2px; padding: 2px 5px; }
+      > .comment-date { font-style: italic; font-size: .95em; }
+      &.has-form textarea { width: 100%; border: solid 1px lightgrey; }
+    }
+
+    .donation-done {
+      font-size: .9em;
+      background: lightgreen;
+      p { margin-bottom: 5px; }
+    }
+  }
+
+  .poll {
+    .actions { display: block; text-align: right; margin-bottom: 20px; }
+
+    .poll-table {
+      display: table;
+      width: 100%;
+      > div, form {
+        display: table-row;
+        &.poll-header { display: table-header-group; }
+        > div {
+          display: table-cell;
+          vertical-align: middle;
+          padding: 10px;
+        }
+      }
+    }
+
+    .poll-header {
+      text-align: center; font-weight: bold;
+      > div {
+        padding: 5px 15px;
+        font-size: .95em;
+
+        &.date {
+          border-left: solid 1px $border-color;
+          border-top: solid 1px $border-color;
+          span { display: block; }
+          &.first { border-top-left-radius: 5px; }
+          &.last{
+            border-right: solid 1px $border-color;
+            border-top-right-radius: 5px;
+          }
+        }
+      }
+    }
+
+    .poll-answer {
+      &:last-child > div { border-bottom: solid 1px $border-color; }
+      > div {
+        border-top: solid 1px $border-color;
+        border-left: solid 1px $border-color;
+        padding: 10px 0;
+        &:last-child { border-right: solid 1px $border-color; }
+      }
+
+      &.poll-on-going {
+        > div:last-child {
+          border-top: none;
+          border-right: none;
+          border-left: none;
+        }
+        div:nth-last-child(2) { border-right: solid 1px $border-color; }
+      }
+    }
+  }
+
+  .poll-form {
+    > div {
+      border-top: solid 1px $border-color;
+      border-left: solid 1px $border-color;
+      border-bottom: solid 1px $border-color;
+
+      &:last-child {
+        border-left: none;
+        border-right: solid 1px $border-color;
+        padding: 0 0 0 10px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+
+    .poll-answer-choices {
+      padding: 12px 0;
+      label { padding-left: 2px; }
+      &.red { background-color: $error-bg; }
+      &.last { border-right: solid 1px $border-color; }
+    }
+  }
+
+}
+
+#modal .modal-body.quit-donation {
+  padding: 10px 50px 20px 50px;
+  textarea {
+    width: 100%;
+    min-height: 100px;
+  }
+}
+
+#modal .modal-body.donation-done {
+  .thank-you > h2 {
+    display: inline-block; margin: 0 30px;
+    font-size: 2em;
+  }
+  img { height: 50px; }
+  > div:first-child {
+    div {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+  .alert {
+    margin-top: 20px;
+    text-align: center;
+    button { margin-top: 10px; }
+  }
+  @media (max-width: $min-width-mobile) {
+    h2 { font-size: 1.5em; margin: 0 10px; }
+    img { height: 40px; }
+  }
+}
+
+#modal .modal-body.definitive-date-form {
+
+  .attendees {
+    display: table; display: grid; /* table for old browser compatibility */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 5px;
+    margin: 15px 0 30px 0;
+
+    .attendee {
+      border: solid 1px $border-color;
+      &.selected { background-color: $success-bg; }
+
+      label {
+        display: flex;
+        position: static;
+        padding: 10px;
+        margin: 0;
+        &:hover { cursor: pointer; }
+        span { font-size: 1em; }
+        .checkbox { width: 50px;}
+        > span, input { align-self: center; }
+      }
+    }
+  }
+}

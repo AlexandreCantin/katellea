@@ -1,0 +1,20 @@
+[
+  {
+    "_id": 1,
+    "department": 44,
+    "name": "La Montagne",
+    "slug": "la-montagne",
+    "zipcode": "44620",
+    "longitude": -1.6833,
+    "latitude": 47.1833
+  },
+  {
+    "_id": 2,
+    "department": 59,
+    "name": "Lille",
+    "slug": "lille",
+    "zipcode": "59777",
+    "longitude": 3.0633,
+    "latitude": 50.6372
+  }
+]
