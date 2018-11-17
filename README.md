@@ -13,7 +13,7 @@
 
 :fr: Katellea a pour objectif de favoriser l’accompagnement entre personnes pour réaliser des dons du sang. Deux profils principaux son visés : la personne réalisant déjà des dons du sang et souhaiterait accompagner des proches; et celle souhaitant en faire mais sans y aller seule (quelque soit la raison). L’objectif global est d’attirer les personnes hésitantes à faire des dons du sang grâce à davantage de convivialité.
 
-:gb: Katellea's goal is to help people in order to make blood donations together. Two main profiles exists: those who made donations already but want to help his friend to make donations too; and those who want to make donation but not alone (for many reasons). The main objective is to help hesistant people to make their first blood donation through conviviality.
+:gb: Katellea's goal is to help people making blood donations together. Two main profiles exists: those who made donations already but want to help his friend to make donations too; and those who want to make donation but not alone (for many reasons). The main objective is to help hesistant people to make their first blood donation through conviviality.
 
 
 ## Main librairies

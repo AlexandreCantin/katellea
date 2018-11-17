@@ -37,7 +37,7 @@ const app = express();
 
 // SENTRY
 const dsn = environment.sentry.dsn;
-if (dsn && dsn !== '') Sentry.init({ dsn, debug: true });
+if (dsn && dsn !== '') Sentry.init({ dsn });
 
 // Days locale
 dayjs.locale('fr');
