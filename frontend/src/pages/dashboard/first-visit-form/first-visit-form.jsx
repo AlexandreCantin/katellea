@@ -83,8 +83,6 @@ class FirstVisitForm extends Component {
   previousStep = () => this.setState({ currentStep: this.state.currentStep - 1 });
 
   nextStep = (values) => {
-    console.log(values, this.state.currentStep);
-
     if (this.state.currentStep === 2) this.setState({ step2Values: values })
     if (this.state.currentStep === 3) this.setState({ step3Values: values })
     this.setState({ currentStep: this.state.currentStep + 1 });
