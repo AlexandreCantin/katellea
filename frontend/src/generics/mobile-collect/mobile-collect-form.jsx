@@ -90,7 +90,7 @@ export default class MobileCollectSelectForm extends Component {
           <Form
             onSubmit={this.searchByZipcode}
             validate={values => validateForm(values, FORM_RULES)}
-            render={({ handleSubmit, invalid }) => (
+            render={({ handleSubmit, form, invalid }) => (
               <form className="form" onSubmit={handleSubmit}>
                 <Field name="zipcode">
                   {({ input }) => (
@@ -107,7 +107,7 @@ export default class MobileCollectSelectForm extends Component {
         </div>
 
         {/* #Beta */}
-        <div class="alert warning">Dans le cadre de la beta, les collectes mobiles sont restreints à la Loire-Atlantique</div>
+        <div className="alert warning">Dans le cadre de la beta, les collectes mobiles sont restreints à la Loire-Atlantique</div>
 
         <div className="suggestions">
           <FlashMessage scope="mobile-collect" />
@@ -115,7 +115,7 @@ export default class MobileCollectSelectForm extends Component {
           {requestOccuring ? <Loader /> : null}
           {mobileCollectsSuggestions.length > 0 ? <div className="alert info">Liste des collectes les plus proches dans les 7 prochains jours (10 maximum)</div> : null}
           {mobileCollectsSuggestions.map(mc => (
-            <div className="suggestion">
+            <div className="suggestion" key={mc.id}>
               <div><MobileCollectResult mobileCollect={mc} /></div>
               <button className="btn" key={mc.id} data-id={mc.id} onClick={this.emitMobileCollect}>Choisir</button>
             </div>
