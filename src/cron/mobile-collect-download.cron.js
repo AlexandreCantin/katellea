@@ -36,20 +36,20 @@ export default class MobileCollectDownloadCron {
 
       // The whole response has been received. Print out the result.
       resp.on('end', async () => {
-        fs.openSync(currentFilePath, 'w+');
-        fs.writeFileSync(currentFilePath, data);
-        console.log(`Fichier : ${currentFilePath} créé - ${dayjs().format('DD/MM/YYYY')}`);
-
-        // Collection of all new mobileCollect
-        let mobileCollectCollections = [];
-        mobileCollectCollections = computeCollection(currentFilePath, mobileCollectCollections);
-        console.log(`Nombre de collectes mobiles => ${mobileCollectCollections.length}`);
-
-        // Drop collection
-        await MobileCollect.deleteMany({});
-
-        // RecreateCollection
         try {
+          fs.openSync(currentFilePath, 'w+');
+          fs.writeFileSync(currentFilePath, data);
+          console.log(`Fichier : ${currentFilePath} créé - ${dayjs().format('DD/MM/YYYY')}`);
+
+          // Collection of all new mobileCollect
+          let mobileCollectCollections = [];
+          mobileCollectCollections = computeCollection(currentFilePath, mobileCollectCollections);
+          console.log(`Nombre de collectes mobiles => ${mobileCollectCollections.length}`);
+
+          // Drop collection
+          await MobileCollect.deleteMany({});
+
+          // RecreateCollection
           for(let i = 0; i < mobileCollectCollections.length; i++) await mobileCollectCollections[i].save();
         } catch(err) {
           console.log(err);
