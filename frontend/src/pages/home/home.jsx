@@ -66,7 +66,7 @@ export default class Home extends Component {
   render() {
     const { sponsorUser, donation, gayMoreDetailsModal } = this.state;
     return (
-      <div>
+      <div id="home-page">
         <Helmet>
           <title>Parrainage pour le don du sang, plasma et plaquettes | Katella</title>
           <meta name="robots" content="noindex,follow" />
@@ -80,10 +80,10 @@ export default class Home extends Component {
         ]} />
 
         <div className="katellea-header">
-          <div id="header-home">&nbsp;</div>
+          <div id="header-home" className="sr-only">&nbsp;</div>
           <HeaderHome />
 
-          <div id="main-content">&nbsp;</div>
+          <div id="main-content" className="sr-only">&nbsp;</div>
           <div className="presentation-container">
             <div>
               <h1>Bienvenue sur <span className="no-wrap"><img src="katellea-logo.png" alt="K" />atellea</span></h1>
@@ -146,12 +146,12 @@ export default class Home extends Component {
         </div>
 
 
-        <div id="secondary-content">&nbsp;</div>
+        <div id="secondary-content" className="sr-only">&nbsp;</div>
         <main className="katellea-main">
-          <div>
+          {/*<div>
             <h2>Depuis sa création, Katellea a permis le recueil de :</h2>
             <KatelleaStatistics />
-          </div>
+          </div>*/}
 
           <div className="katellea-donations">
             <h2>Les dons de sang, plasma et plaquettes permettent...</h2>
@@ -169,7 +169,7 @@ export default class Home extends Component {
             </div>
           </div>
 
-          <div className="katellea-testimonials">
+          {/*<div className="katellea-testimonials">
             <h2>Témoignages</h2>
 
             <div>
@@ -195,10 +195,10 @@ export default class Home extends Component {
                 <div className="katellea-empty">&nbsp;</div>
               </div>
             </div>
-          </div>
+          </div>*/}
         </main>
 
-        <div id="footer">&nbsp;</div>
+        <div id="footer" className="sr-only">&nbsp;</div>
         <KatelleaFooter />
 
         <RGPDBar />

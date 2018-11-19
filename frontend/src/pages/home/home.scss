@@ -1,5 +1,9 @@
 @import '../../styles/mixins.scss';
 
+#home-page {
+  background-color: white;
+}
+
 .katellea-header {
   position: relative;
   padding-top: 100px;
@@ -219,6 +223,7 @@
 
 .katellea-footer {
   padding: 30px;
+  margin-top: 30px;
   background-color: lightgray;
 
   display: flex;
