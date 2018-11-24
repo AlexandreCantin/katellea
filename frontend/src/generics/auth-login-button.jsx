@@ -53,7 +53,7 @@ export default class AuthLoginButtons extends Component {
 
   doAuthLogin = e => {
     e.preventDefault();
-    let origin = e.target.attributes['data-origin'].value;
+    let origin = e.target.getAttribute('data-origin');
     if (ORIGINS.includes(origin)) AuthService.doAuthLogin(origin);
   };
 

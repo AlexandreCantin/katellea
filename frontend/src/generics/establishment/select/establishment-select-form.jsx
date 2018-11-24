@@ -65,7 +65,7 @@ export default class EstablishmentSelectForm extends Component {
 
   emitEstablishment = (event) => {
     event.preventDefault();
-    const establishmentId = +event.target.attributes['data-id'].value;
+    const establishmentId = +event.target.getAttribute('data-id');
     const establishment = this.state.establishmentSuggestions.find(es => +es.id === +establishmentId);
     this.props.onSelect(establishment);
   }

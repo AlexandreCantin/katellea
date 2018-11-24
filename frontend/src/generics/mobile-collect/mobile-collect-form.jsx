@@ -65,7 +65,7 @@ export default class MobileCollectSelectForm extends Component {
 
   emitMobileCollect = (event) => {
     event.preventDefault();
-    const mobileCollectsId = +event.target.attributes['data-id'].value;
+    const mobileCollectsId = +event.target.getAttribute('data-id');
     const mobileCollect = this.state.mobileCollectsSuggestions.find(mc => +mc.id === +mobileCollectsId);
     this.props.onSelect(mobileCollect);
   }

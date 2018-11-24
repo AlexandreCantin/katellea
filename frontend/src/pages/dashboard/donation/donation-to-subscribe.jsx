@@ -14,7 +14,7 @@ export default class DonationToSubscribe extends Component {
   }
 
   subscribeToDonation = (e) => {
-    let donationId = +e.target.attributes['data-donation-id'].value;
+    let donationId = +e.target.getAttribute('data-donation-id');
     UserService.updateUser({ currentDonation: donationId });
   }
 
