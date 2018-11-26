@@ -2,6 +2,7 @@ import { DATE_HOUR_FORMAT } from '../helpers/date.helper';
 import dayjs from 'dayjs';
 import Statistics from '../models/stat';
 import User from '../models/user';
+import { SlackService } from '../services/slack.service';
 
 const DELTA_DAYS = 30;
 
@@ -13,7 +14,7 @@ export default class DonationGlobalStatCron {
 
   static async run() {
     const startDate = dayjs();
-    console.log(`Start DonationGlobalStatCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendMessage(`Start DonationGlobalStatCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // Compute days
     const maxDate = dayjs().subtract(DELTA_DAYS, 'day');
@@ -61,7 +62,7 @@ export default class DonationGlobalStatCron {
     });
 
     const endDate = dayjs();
-    console.log(`Ended DonationGlobalStatCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendMessage(`Ended DonationGlobalStatCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 }

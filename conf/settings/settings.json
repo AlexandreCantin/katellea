@@ -6,6 +6,7 @@
   "jwtSecret": "9uu+*3q$#8m-*eeoko)bc)=ped#et5%a#+njahro&e#=mb_kyt",
   "baseUrl": "http://localhost:3000",
   "frontUrl": "http://localhost:8080",
+  "cronWebhookUrl": "",
 
   "database": {
     "name": "katellea",

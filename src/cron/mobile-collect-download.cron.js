@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import http from 'http';
 import fs from 'fs';
 import MobileCollect from '../models/mobile-collect';
+import { SlackService } from '../services/slack.service';
 
 
 const JSON_FOLDER = './src/cron/mobile-collects/';
@@ -20,7 +21,7 @@ export default class MobileCollectDownloadCron {
 
   static run() {
     const startDate = dayjs();
-    console.log(`Start MobileCollectDownloadCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendMessage(`Start MobileCollectDownloadCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // 1 - Rename current json file
     if (fs.existsSync(currentFilePath)) fs.renameSync(currentFilePath, archivePath);
@@ -39,12 +40,12 @@ export default class MobileCollectDownloadCron {
         try {
           fs.openSync(currentFilePath, 'w+');
           fs.writeFileSync(currentFilePath, data);
-          console.log(`Fichier : ${currentFilePath} créé - ${dayjs().format('DD/MM/YYYY')}`);
+          SlackService.sendMessage(`Fichier : ${currentFilePath} créé - ${dayjs().format('DD/MM/YYYY')}`);
 
           // Collection of all new mobileCollect
           let mobileCollectCollections = [];
           mobileCollectCollections = computeCollection(currentFilePath, mobileCollectCollections);
-          console.log(`Nombre de collectes mobiles => ${mobileCollectCollections.length}`);
+          SlackService.sendMessage(`Nombre de collectes mobiles => ${mobileCollectCollections.length}`);
 
           // Drop collection
           await MobileCollect.deleteMany({});
@@ -52,12 +53,14 @@ export default class MobileCollectDownloadCron {
           // RecreateCollection
           for(let i = 0; i < mobileCollectCollections.length; i++) await mobileCollectCollections[i].save();
         } catch(err) {
+          SlackService.sendMessage(err);
           console.log(err);
         }
 
         writeEndDate(startDate);
       });
     }).on('error', err => {
+      SlackService.sendMessage(err);
       console.log(`Error: ${err.message}`);
       writeEndDate(startDate);
     });
@@ -67,7 +70,7 @@ export default class MobileCollectDownloadCron {
 
 const writeEndDate = startDate => {
   const endDate = dayjs();
-  console.log(`Ended MobileCollectDownloadCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+  SlackService.sendMessage(`Ended MobileCollectDownloadCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
 };
 
 const computeCollection = (currentFilePath, mobileCollectCollections) => {

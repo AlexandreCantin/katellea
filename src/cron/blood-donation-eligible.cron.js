@@ -5,6 +5,7 @@ import { DONATION_TYPE, NOTIFICATION_TYPES } from '../constants';
 import { createNotification } from '../helpers/notification.helper';
 import MailFactory from '../services/mail.service';
 import { environment } from '../../conf/environment';
+import { SlackService } from '../services/slack.service';
 
 const WEEKS_DELAY_BEFORE_ELIGIBILITY = environment.weeksDelayBeforeEligibilty;
 
@@ -16,7 +17,7 @@ export default class BloodDonationEligibleCron {
 
   static async run() {
     const startDate = dayjs();
-    console.log(`Start BloodDonationEligibleCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendMessage(`Start BloodDonationEligibleCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     const beginPeriodDate = dayjs().set('hour', 0).set('minute', 0).set('second', 0).add(WEEKS_DELAY_BEFORE_ELIGIBILITY, 'week');
     const endPeriodDate = dayjs().set('hour', 23).set('minute', 59).set('second', 59).add(WEEKS_DELAY_BEFORE_ELIGIBILITY, 'week');
@@ -31,6 +32,7 @@ export default class BloodDonationEligibleCron {
       try {
         MailFactory.bloodDonationEligibleMail(user);
       } catch (err) {
+        SlackService.sendMessage(err);
         return console.error(err);
       }
 
@@ -44,7 +46,7 @@ export default class BloodDonationEligibleCron {
     });
 
     const endDate = dayjs();
-    console.log(`Ended BloodDonationEligibleCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendMessage(`Ended BloodDonationEligibleCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 }

@@ -4,6 +4,7 @@ import { DONATION_STATUS, DONATION_EVENTS, NOTIFICATION_TYPES } from '../constan
 import Donation from '../models/donation';
 import { createNotification } from '../helpers/notification.helper';
 import { environment } from '../../conf/environment';
+import { SlackService } from '../services/slack.service';
 
 
 /**
@@ -14,7 +15,7 @@ export default class DonationDoneCron {
 
   static async run() {
     const startDate = dayjs();
-    console.log(`Start DonationDoneCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendMessage(`Start DonationDoneCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     const statisticsDate = dayjs().add(environment.daysBeforeStatisticsAnalytics, 'day');
     const donations = await Donation.find({ status: DONATION_STATUS.DATE_CONFIRMED, finalDate: { $lte: new Date() } });
@@ -35,7 +36,7 @@ export default class DonationDoneCron {
     });
 
     const endDate = dayjs();
-    console.log(`Ended DonationDoneCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendMessage(`Ended DonationDoneCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 }

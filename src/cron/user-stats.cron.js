@@ -6,6 +6,7 @@ import User from '../models/user';
 import { DONATION_TYPE, DONATION_STATUS, DONATION_REST_WEEKS, NOTIFICATION_TYPES } from '../constants';
 import Donation from '../models/donation';
 import { createNotification } from '../helpers/notification.helper';
+import { SlackService } from '../services/slack.service';
 
 /**
  * Compute all users account's statistics
@@ -14,14 +15,14 @@ export default class UserStatisticsCron {
 
   static async run() {
     const startDate = dayjs();
-    console.log(`Start UserStatisticsCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendMessage(`Start UserStatisticsCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // Avoid too much request to database by caching objects
     const statObjectCache = {};
 
     // Get all donations DONE and with statisticsDate in the past
     const donations = await Donation.find({ status: DONATION_STATUS.DONE, statisticsDate: { $lte: new Date() } });
-    console.log(`UserStatisticsCron : ${donations.length} donations found`);
+    SlackService.sendMessage(`UserStatisticsCron : ${donations.length} donations found`);
 
     donations.forEach(donation => {
       // Get the day or create it
@@ -102,7 +103,7 @@ export default class UserStatisticsCron {
     Object.keys(statObjectCache).forEach(key => statObjectCache[key].save());
 
     const endDate = dayjs();
-    console.log(`Ended UserStatisticsCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendMessage(`Ended UserStatisticsCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 }

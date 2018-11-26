@@ -4,6 +4,7 @@ import User from '../models/user';
 import { createNotification } from '../helpers/notification.helper';
 import { NOTIFICATION_TYPES } from '../constants';
 import MailFactory from '../services/mail.service';
+import { SlackService } from '../services/slack.service';
 
 const DELAY_BEFORE_DONATION_IN_DAYS = 2;
 
@@ -14,7 +15,7 @@ export default class FirstDonationAdviceCron {
 
   static async run() {
     const startDate = dayjs();
-    console.log(`Start FirstDonatioAdviceCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendMessage(`Start FirstDonatioAdviceCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // In xx days
     const beginPeriodDate = dayjs().set('hour', 0).set('minute', 0).set('second', 0).add(DELAY_BEFORE_DONATION_IN_DAYS, 'day');
@@ -32,7 +33,7 @@ export default class FirstDonationAdviceCron {
     });
 
     const endDate = dayjs();
-    console.log(`Ended FirstDonatioAdviceCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendMessage(`Ended FirstDonatioAdviceCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 }

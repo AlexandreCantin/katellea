@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@sentry/node": "^4.3.2",
+    "@slack/client": "^4.8.0",
     "dayjs": "^1.6.5",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
