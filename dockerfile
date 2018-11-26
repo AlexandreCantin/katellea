@@ -17,9 +17,9 @@ ADD package.json /usr/local/node_temp/
 WORKDIR /usr/local/node_temp/
 RUN npm install
 
-# Install Preact project
-ADD frontend/package.json /usr/local/preact_temp/
-WORKDIR /usr/local/preact_temp/
+# Install React project
+ADD frontend/package.json /usr/local/react_temp/
+WORKDIR /usr/local/react_temp/
 RUN npm install
 
 # Copy all the folder
@@ -29,9 +29,9 @@ ADD . /code/
 # Link node_modules folders for Node
 RUN ln -s /usr/local/node_temp/node_modules node_modules
 
-# Link node_modules folders for Preact and build project
+# Link node_modules folders for React and build project
 WORKDIR /code/frontend/
-RUN ln -s /usr/local/preact_temp/node_modules node_modules
+RUN ln -s /usr/local/react_temp/node_modules node_modules
 RUN npm run build
 
 # Start application
