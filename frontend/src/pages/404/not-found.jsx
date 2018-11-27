@@ -31,7 +31,7 @@ class NotFound extends Component {
         </Helmet>
 
         <main>
-          <img src="/icons/404.svg" alt="" />
+          <img src="/icons/404.svg" alt="" className="not-found" />
           <div>
 
             <div className="no-wrap logo">
