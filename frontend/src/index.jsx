@@ -43,6 +43,10 @@ if (environment.SENTRY_CODE && environment.SENTRY_CODE !== '') {
 
 class App extends Component {
 
+
+  /** IMPORTANT
+   * => DO NOT FORGET TO UPDATE react-proxy-routes.js <=
+   */
   render() {
     return (
       <Provider store={store}>

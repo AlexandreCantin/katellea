@@ -22,7 +22,7 @@ import statisticsRoutes from './src/routes/stats-routes';
 import contactRoutes from './src/routes/contact-routes';
 import notificationsRoutes from './src/routes/notifications-route';
 import mobileCollectsRoutes from './src/routes/mobile-collects-routes';
-import rootRoutes from './src/routes/preact-proxy-routes';
+import rootRoutes from './src/routes/react-proxy-routes';
 
 import UserStatisticsCron from './src/cron/user-stats.cron';
 import DonationDoneCron from './src/cron/donation-done.cron';
@@ -81,7 +81,7 @@ app.use('/statistics', statisticsRoutes);
 app.use('/notifications', notificationsRoutes);
 app.use(contactRoutes);
 
-// Serve preact build : Need to be last !
+// Serve React build : Need to be last !
 app.use(express.static('frontend/build'));
 app.use(rootRoutes);
 
