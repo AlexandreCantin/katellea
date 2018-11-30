@@ -11,16 +11,17 @@ import { importJsonToDatabase } from '../../testing-helper';
 
 import { canEditAsCreator } from '../../../../src/middlewares/can-access-donation';
 import { JWTService } from '../../../../src/services/jwt.service';
+import logger from '../../../../src/services/logger.service';
 
 
-let server = request(app);
-let mongoServer = new MongodbMemoryServer();
+const server = request(app);
+const mongoServer = new MongodbMemoryServer();
 
 
 beforeAll(async () => {
   const mongoUri = await mongoServer.getConnectionString();
-  await mongoose.connect(mongoUri, { useNewUrlParser: true }, (err) => {
-    if (err) console.error(err);
+  await mongoose.connect(mongoUri, { useNewUrlParser: true }, err => {
+    if (err) logger.error(err.message);
   });
   await mongoose.connection.db.dropDatabase();
 
@@ -40,30 +41,30 @@ afterAll(async () => {
 
 
 // Array : user id => user JWT token
-let userTokens = new Map();
+const userTokens = new Map();
 for (let i = 1; i <= 3; i++) userTokens.set(i, JWTService.encode({ _id: i }));
 
 
 describe('Tests donation restriction policy', async () => {
 
-  it("should not be allowed - because Kattelea token is not sent", async () => {
-    let resp = await request(app).get('/donation/1');
+  it('should not be allowed - because Kattelea token is not sent', async () => {
+    const resp = await request(app).get('/donation/1');
     expect(resp.status).toBe(401);
   });
 
   // Check donation access
-  it("should NOT be allowed - because user is not in user 1 network", async () => {
-    let resp = await request(app).get('/donation/1').set({ "Katellea-Token": userTokens.get(3) });
+  it('should NOT be allowed - because user is not in user 1 network', async () => {
+    const resp = await request(app).get('/donation/1').set({ 'Katellea-Token': userTokens.get(3) });
     expect(resp.status).toBe(404);
   });
 
-  it("should be allowed - because user is in user 1 network", async () => {
-    let resp = await request(app).get('/donation/1').set({ "Katellea-Token": userTokens.get(2) });
+  it('should be allowed - because user is in user 1 network', async () => {
+    const resp = await request(app).get('/donation/1').set({ 'Katellea-Token': userTokens.get(2) });
     expect(resp.status).toBe(200);
   });
 
-  it("should be allowed - because user is creator", async () => {
-    let resp = await request(app).get('/donation/1').set({ "Katellea-Token": userTokens.get(1) });
+  it('should be allowed - because user is creator', async () => {
+    const resp = await request(app).get('/donation/1').set({ 'Katellea-Token': userTokens.get(1) });
     expect(resp.status).toBe(200);
   });
 

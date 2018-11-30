@@ -8,17 +8,18 @@ import { importJsonToDatabase } from '../testing-helper';
 import Establishment from '../../../src/models/establishment';
 import Donation from '../../../src/models/donation';
 import User from '../../../src/models/user';
-import { JWTService } from '../../../src/services/jwt.service';
+import { JWTService } from '../../../src/services/jwt.service';
+import logger from '../../../src/services/logger.service';
 
 
-let server = request(app)
-let mongoServer = new MongodbMemoryServer();
+const server = request(app);
+const mongoServer = new MongodbMemoryServer();
 
 beforeAll(async () => {
 
   const mongoUri = await mongoServer.getConnectionString();
-  await mongoose.connect(mongoUri, { useNewUrlParser: true }, (err) => {
-    if (err) console.error(err);
+  await mongoose.connect(mongoUri, { useNewUrlParser: true }, err => {
+    if (err) logger.error(err.message);
   });
   await mongoose.connection.db.dropDatabase();
 
@@ -38,33 +39,33 @@ afterAll(async() => {
 
 
 const user1SponsorToken = '275b9996a8';
-const user1JWT = JWTService.encode({ _id : 1 });
+const user1JWT = JWTService.encode({ _id: 1 });
 
 describe('Tests donation restriction policy', async () => {
 
-  it("Get sponsor by token", async () => {
-    let resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
+  it('Get sponsor by token', async () => {
+    const resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
     expect(resp.status).toBe(200);
   });
 
 
-  it("Create user", async () => {
-    let resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
+  it('Create user', async () => {
+    const resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
     expect(resp.status).toBe(200);
   });
 
-  it("Create user with sponsor and donation tokens", async () => {
-    let resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
+  it('Create user with sponsor and donation tokens', async () => {
+    const resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
     expect(resp.status).toBe(200);
   });
 
-  it("Update user", async () => {
-    let resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
+  it('Update user', async () => {
+    const resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
     expect(resp.status).toBe(200);
   });
 
-  it("Delete user", async () => {
-    let resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
+  it('Delete user', async () => {
+    const resp = await request(app).get(`/user/sponsor/${user1SponsorToken}`);
     expect(resp.status).toBe(200);
   });
 

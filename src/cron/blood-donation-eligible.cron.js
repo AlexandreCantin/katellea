@@ -6,6 +6,7 @@ import { createNotification } from '../helpers/notification.helper';
 import MailFactory from '../services/mail.service';
 import { environment } from '../../conf/environment';
 import { SlackService } from '../services/slack.service';
+import logger from '../services/logger.service';
 
 const WEEKS_DELAY_BEFORE_ELIGIBILITY = environment.weeksDelayBeforeEligibilty;
 
@@ -33,7 +34,7 @@ export default class BloodDonationEligibleCron {
         MailFactory.bloodDonationEligibleMail(user);
       } catch (err) {
         SlackService.sendMessage(err);
-        return console.error(err);
+        return logger.error(err.message);
       }
 
       // Create notification

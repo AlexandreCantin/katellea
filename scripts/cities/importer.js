@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 
 import { environment } from '../../conf/environment';
 import City from '../../src/models/city';
+import logger from '../../src/services/logger.service';
 
 // Database connection
 const database = environment.database;
@@ -49,7 +50,7 @@ stream
     insertOrUpdate++;
     if (insertOrUpdate === count) stream.resume();
 
-    console.log(`Create or update : ${csvId} => ${city.name}`);
+    logger.info(`Create or update : ${csvId} => ${city.name}`);
     city.save();
   })
   .on('end', () => {
