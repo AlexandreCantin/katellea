@@ -125,10 +125,9 @@ export default class EstablishmentCard extends Component {
 
     return (
       <div className="establishment-card">
-        <div className="map">&nbsp;</div>
         <div className="text">
           <div className="title">
-            <h4>{establishment.name}</h4>
+            <h3>{establishment.name}</h3>
           </div>
           <div>
 

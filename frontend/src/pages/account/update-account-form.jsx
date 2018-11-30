@@ -42,15 +42,15 @@ export default class UpdateAccountForm extends Component {
   render() {
     return (
       <div className="form update-account block-base">
-        <fieldset>
-          <legend>Modifier vos informations</legend>
 
-          <Form
-            onSubmit={this.updateUser}
-            validate={values => validateForm(values, rules)}
-            initialValues={this.formData}
-            render={({ handleSubmit, reset, submitting, pristine, values, invalid }) => (
-              <form onSubmit={handleSubmit}>
+        <Form
+          onSubmit={this.updateUser}
+          validate={values => validateForm(values, rules)}
+          initialValues={this.formData}
+          render={({ handleSubmit, reset, submitting, pristine, values, invalid }) => (
+            <form onSubmit={handleSubmit}>
+              <fieldset>
+                <legend>Modifier vos informations</legend>
                 <Field name="firstName">
                   {({ input, meta }) => (
                     <div className="form-line clearfix">
@@ -131,46 +131,9 @@ export default class UpdateAccountForm extends Component {
                 <div className="text-center">
                   <input className="btn big" type="submit" value="Modifier mes informations" disabled={invalid} />
                 </div>
-
-              </form>
-            )} />
-
-          {/*
-
-            <div className="form-line clearfix">
-              <label htmlFor="donation-preference">Préférence du don <span>*</span></label>
-
-              <select id="donation-preference" name="donationPreference" onChange={validateField(this, updateForm)}>
-                <option value="NONE">Pas de préférence</option>
-                <option value="BLOOD">Don de sang</option>
-                <option value="PLASMA">Don de plasma</option>
-                {this.user.plateletActive ? <option value="PLATELET">Don de Plaquettes</option> : null}
-              </select>
-            </div>
-
-            <div className="form-line clearfix">
-              <label htmlFor="blood-type">Votre groupe sanguin <span>*</span></label>
-              <select id="blood-type" name="bloodType" onChange={validateField(this, updateForm)} >
-                <option value="UNKNOWN">Inconnu</option>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-              </select>
-            </div>
-
-            <div className="text-center">
-              <input className="btn big" type="submit" value="Modifier mes informations" disabled={!updateForm.isValid()} />
-            </div>
-            </form>*/}
-
-
-
-        </fieldset>
+              </fieldset>
+            </form>
+          )} />
       </div>
     );
   }

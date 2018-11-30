@@ -39,7 +39,7 @@
 // Establishment item
 #etablishment-item {
   @include mx-only-top-bottom-padding();
-  h2, h4 { @include mx-only-right-left-padding(); }
+  h2, h3 { @include mx-only-right-left-padding(); }
 
   .no-establishment {
     text-align: center;

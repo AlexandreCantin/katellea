@@ -11,8 +11,9 @@ function DonationCard({ donation }) {
 
   return (
     <div className="donation-card">
+      <h2 className="sr-only">Votre proposition de don actuelle</h2>
       <div>
-        <h4>Proposition de don</h4>
+        <h3>Proposition de don</h3>
         <ul>
           <li>Créé le : {dateFormatShortDayDayMonthYear(donation.createdAT)}</li>
           {establishment ? <li>{DONATION_TYPE_LABELS[donation.donationType]}</li> : null}
@@ -20,7 +21,7 @@ function DonationCard({ donation }) {
       </div>
       {establishment ?
         <div>
-          <h4>Etablissement</h4>
+          <h3>Etablissement</h3>
           <div>
             <ul>
               <li>{establishment.name}</li>

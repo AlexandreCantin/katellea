@@ -27,19 +27,22 @@ class ActivePlateletForm extends Component {
 
     return (
       <div className="form block-base">
-        <fieldset>
-          <legend>Activer les dons de plaquettes</legend>
-          <div className="alert info text-center">Dépendant de votre taux de plaquettes, il est possible que vous ne y soyez pas éligible.</div>
+        <form onSubmit={e => e.preventDefault()}>
 
-          <div className="text-center">
-            {
-              plateletActive ?
-                <button className="btn" onClick={this.disablePlatelet}>Désactiver le don de plaquettes</button> :
-                <button className="btn" onClick={this.enablePlatelet}>Activer le don de plaquettes sur mon profil</button>
-            }
-          </div>
+          <fieldset>
+            <legend>Activer les dons de plaquettes</legend>
+            <div className="alert info text-center">Dépendant de votre taux de plaquettes, il est possible que vous ne y soyez pas éligible.</div>
 
-        </fieldset>
+            <div className="text-center">
+              {
+                plateletActive ?
+                  <button className="btn" type="submit" onClick={this.disablePlatelet}>Désactiver le don de plaquettes</button> :
+                  <button className="btn" type="submit" onClick={this.enablePlatelet}>Activer le don de plaquettes sur mon profil</button>
+              }
+            </div>
+
+          </fieldset>
+        </form>
       </div>
     );
   }

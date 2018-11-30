@@ -54,20 +54,22 @@ export default class DeleteAccountForm extends Component {
 
     return (
       <div className="form block-base">
-        <fieldset>
-          <legend>Supprimer mon compte</legend>
-          <div className="alert danger text-center">
-            Attention ! Cette action est <strong>irréversible</strong>
-          </div>
+        <form onSubmit={e => e.preventDefault()}>
+          <fieldset>
+            <legend>Supprimer mon compte</legend>
+            <div className="alert danger text-center">
+              Attention ! Cette action est <strong>irréversible</strong>
+            </div>
 
-          <div className="text-center">
-            <button className="btn danger" onClick={this.askDeleteConfirm}>
-              Supprimer mon compte
-            </button>
-          </div>
+            <div className="text-center">
+              <button className="btn danger" onClick={this.askDeleteConfirm}>
+                Supprimer mon compte
+              </button>
+            </div>
 
-          {showConfirmModal ? this.renderConfirmModal() : null}
-        </fieldset>
+            {showConfirmModal ? this.renderConfirmModal() : null}
+          </fieldset>
+        </form>
       </div>
     );
   }
