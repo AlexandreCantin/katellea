@@ -4,6 +4,7 @@ import http from 'http';
 import fs from 'fs';
 import MobileCollect from '../models/mobile-collect';
 import { SlackService } from '../services/slack.service';
+import logger from '../services/logger.service';
 
 
 const JSON_FOLDER = './src/cron/mobile-collects/';
@@ -54,14 +55,14 @@ export default class MobileCollectDownloadCron {
           for(let i = 0; i < mobileCollectCollections.length; i++) await mobileCollectCollections[i].save();
         } catch(err) {
           SlackService.sendMessage(err);
-          console.log(err);
+          logger.error(err.message);
         }
 
         writeEndDate(startDate);
       });
     }).on('error', err => {
       SlackService.sendMessage(err);
-      console.log(`Error: ${err.message}`);
+      logger.error(`Error: ${err.message}`);
       writeEndDate(startDate);
     });
   }

@@ -3,6 +3,7 @@
 conf/settings/settings-local.json
 src/cron/mobile-collects/*.json
 docker/opt/mongodb/db/*
+logs/*.log
 
 
 # Preact-frontend

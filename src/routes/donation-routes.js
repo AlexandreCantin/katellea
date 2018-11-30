@@ -15,6 +15,7 @@ import { getSmallNetworkIds, getCloseNetworkIds } from '../helpers/user.helper';
 import MailFactory from '../services/mail.service';
 import { createNotification } from '../helpers/notification.helper';
 import sanitize from 'sanitize-html';
+import logger from '../services/logger.service';
 
 
 const donationRoutes = express.Router();
@@ -127,7 +128,7 @@ const createDonation = async (req, res) => {
 
     return res.json(donationCreated);
   } catch (err) {
-    console.log(err);
+    logger.error(err.message);
     res.status(INTERNAL_SERVER_ERROR).send();
   }
 
@@ -188,7 +189,7 @@ const updateDonation = async (req, res) => {
 
     return res.json(donationUpdated);
   } catch (err) {
-    console.log(err);
+    logger.error(err.message);
     res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
@@ -215,7 +216,7 @@ const addQuitUserEvent = async (req, res) => {
 
     return res.json(donationUpdated);
   } catch (err) {
-    console.log(err);
+    logger.error(err.message);
     res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
@@ -252,7 +253,7 @@ const createPollAnswer = async (req, res) => {
     const donationUpdated = await getDonationById(req.params.donationId);
     return res.json(donationUpdated);
   } catch (err) {
-    console.log(err);
+    logger.error(err.message);
     res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
@@ -296,7 +297,7 @@ const updatePollAnswer = async (req, res) => {
 
     return res.json(donationUpdated);
   } catch (err) {
-    console.log(err);
+    logger.error(err.message);
     res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
@@ -321,7 +322,7 @@ const addComment = async (req, res) => {
     const donationUpdated = await getDonationById(req.params.donationId);
     return res.json(donationUpdated);
   } catch (err) {
-    console.log(err);
+    logger.error(err.message);
     res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
@@ -352,7 +353,7 @@ const updateComment = async (req, res) => {
     const donationUpdated = await getDonationById(req.params.donationId);
     return res.json(donationUpdated);
   } catch (err) {
-    console.log(err);
+    logger.error(err.message);
     res.status(INTERNAL_SERVER_ERROR).send();
   }
 };

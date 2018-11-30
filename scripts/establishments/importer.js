@@ -4,6 +4,7 @@ import { Parser } from 'xml2js';
 
 import { environment } from '../../conf/environment';
 import Establishment from '../../src/models/establishment';
+import logger from '../../src/services/logger.service';
 
 // Database connection
 const database = environment.database;
@@ -53,7 +54,7 @@ fs.readFile('./scripts/establishments/efs_establishments.xml', async (err, data)
 
       establishment.efsComment = es.comment ? es.comment[0] : '';
 
-      console.log(`Create or update : ${establishment.name}`);
+      logger.info(`Create or update : ${establishment.name}`);
       establishment.save();
 
       // Force exit on finish

@@ -1,10 +1,12 @@
-export const importJsonToDatabase = (jsonDataArray) => {
+import logger from '../../src/services/logger.service';
+
+export const importJsonToDatabase = jsonDataArray => {
 
   jsonDataArray.forEach(json => {
-    let model = json.model;
-    let fileContent = require(json.filePath);
+    const model = json.model;
+    const fileContent = require(json.filePath);
 
-    model.insertMany(fileContent, (err) => err ? console.log(err) : null)
+    model.insertMany(fileContent, err => err ? logger.error(err.message) : null);
 
     if(json.createIndex) model.createIndexes();
   });

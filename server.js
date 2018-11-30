@@ -10,9 +10,10 @@ import 'dayjs/locale/fr';
 
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
-import loggingMiddleware from './src/middlewares/logging';
 import errorHandler from './src/middlewares/errorHandler';
 import passport from 'passport';
+
+import logger from './src/services/logger.service';
 
 import userRoutes from './src/routes/user-routes';
 import authRoutes from './src/routes/auth-routes';
@@ -64,8 +65,6 @@ app.use(passport.initialize());
 if (process.env.NODE_ENV === 'production') app.use(helmet())
 if (process.env.NODE_ENV !== 'production') app.use(cors())
 
-
-
 // EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/src/templates'));
@@ -85,8 +84,6 @@ app.use(contactRoutes);
 app.use(express.static('frontend/build'));
 app.use(rootRoutes);
 
-
-
 // By using (!module.parent) condition, we avoid EADDRINUSE when testing because app will start once
 let startApp = process.env.NODE_ENV != 'test';
 if (process.env.NODE_ENV == 'test' && !module.parent) startApp = true;
@@ -95,13 +92,13 @@ if (startApp) {
 
   app.listen(3000, () => {
     if (!process.env.NODE_ENV) {
-      console.log(`No environment !! Server will not start`);
+      logger.error(`> No environment !! Server will not start`);
       process.exit(0);
       return;
     }
 
-    console.log('Listening on port 3000...');
-    console.log(`Current environment is => ${process.env.NODE_ENV}`);
+    logger.info('> Listening on port 3000...');
+    logger.info(`> Current environment is => ${process.env.NODE_ENV}`);
   });
 }
 

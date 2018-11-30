@@ -21,7 +21,7 @@ class MailjetServiceFactory {
 
   sendMail({ subject, htmlContent, to }) {
     if (!this.activateMail) {
-      console.error(`Mail was not send because 'activateMail' is false`);
+      logger.error(`Mail was not send because 'activateMail' is false`);
       return;
     }
 
@@ -31,7 +31,7 @@ class MailjetServiceFactory {
 
     if (this.redirectAllMailTo) to = [{ 'Email': this.redirectAllMailTo }];
 
-    console.error(`Sending email => ${subject} -- To : ${to.map(email => email.Email).join(', ')}`);
+    logger.error(`Sending email => ${subject} -- To : ${to.map(email => email.Email).join(', ')}`);
     try {
       this.mailjetInstance
         .post('send')
@@ -43,7 +43,7 @@ class MailjetServiceFactory {
           'Recipients': to
         });
     } catch (err) {
-      console.error(`Error while sending email => ${err.statusCode} -- Error : ${err.ErrorMessage} -- Message : ${err.response.res.statusMessage}`);
+      logger.error(`Error while sending email => ${err.statusCode} -- Error : ${err.ErrorMessage} -- Message : ${err.response.res.statusMessage}`);
       throw err;
     }
   }

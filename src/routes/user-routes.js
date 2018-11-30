@@ -88,7 +88,7 @@ const createUser = async (req, res) => {
 
     return res.json(userCreated);
   } catch (err) {
-    console.log(err);
+    logger.error(err.message);
     res.status(UNAUTHORIZED).send();
   }
 };
@@ -102,7 +102,7 @@ const updateNotificationReadDate = async (req, res) => {
 
     return res.status(OK).send();
   } catch (err) {
-    console.log(err);
+    logger.error(err.message);
     res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
