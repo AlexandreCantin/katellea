@@ -165,8 +165,11 @@ export default class MinimumDateItem extends Component {
 
 
   renderMinimumDateDropdown() {
+    let cssClasses =  'dropdown list-unstyled';
+    if(!this.state.hover) cssClasses +=' sr-only';
+
     return (
-      <ul id="minimum-date-dropdown" className="dropdown list-unstyled" aria-label="submenu">
+      <ul id="minimum-date-dropdown" className={cssClasses} aria-label="submenu">
         <li>
           <button className="btn reset" onClick={this.showMinimumDateModal}>{this.createLinkTitle()}</button>
         </li>
@@ -190,7 +193,7 @@ export default class MinimumDateItem extends Component {
               <span>Pas disponible avant le : <em>{minimumDate}</em></span>}
           </span>
         </button>
-        {hover ? this.renderMinimumDateDropdown() : null}
+        {this.renderMinimumDateDropdown()}
         {minimumDateModal ? this.renderMinimumDateModal() : null}
       </div>
     );

@@ -138,8 +138,11 @@ class NotificationItem extends Component {
   renderNotificationDropdown() {
     if (isEmpty(this.props.notifications)) return;
 
+    let cssClasses =  'dropdown list-unstyled';
+    if(!this.state.hover) cssClasses +=' sr-only';
+
     return (
-      <ul id="notification-item-dropdown" className="dropdown list-unstyled" aria-label="submenu">
+      <ul id="notification-item-dropdown" className={cssClasses} aria-label="submenu">
         <li className="mark-as-read text-right"><button onClick={this.markNotificationsAsReadClick}>Marquer tout comme lu</button></li>
         {
           this.props.notifications.map(notification => {
@@ -174,7 +177,7 @@ class NotificationItem extends Component {
           </span>
           <img className={notReadNotificationNumber.length ? 'ringing' : ''} src="/icons/header/bell.svg" alt="" />
         </button>
-        {hover ? this.renderNotificationDropdown() : null}
+        {this.renderNotificationDropdown()}
         {showAdviceModal ? this.renderFirstDonationAdviceModal() : null}
       </div>
     );

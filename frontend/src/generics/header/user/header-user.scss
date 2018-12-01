@@ -34,6 +34,7 @@ nav.katellea {
     .dropdown {
       background-color: white;
       z-index: 2;
+      position: relative;
       li { text-align: center; height: 40px; line-height: 40px; }
     }
   }
@@ -216,7 +217,6 @@ nav.katellea {
 }
 
 .dropdown-container {
-
   .has-dropdown {
     position: relative;
   }

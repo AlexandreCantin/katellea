@@ -12,8 +12,11 @@ function HeaderAccountItem({ user }) {
   const toggleHover = () => setHover(!hover);
 
   const renderAccountDropdown = () => {
+    let cssClasses =  'dropdown list-unstyled';
+    if(!hover) cssClasses +=' sr-only';
+
     return (
-      <ul id="account-dropdown" className="dropdown list-unstyled" aria-label="submenu">
+      <ul id="account-dropdown" className={cssClasses} aria-label="submenu">
         <li><Link to="/mon-compte">Mon compte</Link></li>
         <li><LogoutButton /></li>
       </ul>
@@ -25,7 +28,7 @@ function HeaderAccountItem({ user }) {
       <button className="btn reset has-dropdown" aria-haspopup="true" aria-expanded={hover ? 'true' : 'false'} aria-controls="#account-dropdown" onClick={toggleHover}>
         {user.firstName + ' ' + user.lastName}
       </button>
-      {hover ? renderAccountDropdown() : null}
+      {renderAccountDropdown()}
     </div>
   );
 }
