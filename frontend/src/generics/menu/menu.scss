@@ -29,8 +29,8 @@ nav.menu {
 
   button.menu {
     position: absolute;
-    left: 0;
-    bottom: -60px;
+    top: 0;
+    right: -70px;
     height: 60px;
     width: 70px;
 
@@ -90,12 +90,12 @@ nav.menu {
   }
 
   @media (max-width: $min-width-tablet) {
-    top: -100%;
+    left: -100%;
     width: 100%;
     position: absolute;
 
     // Menu animation on mobile
-    transition: top .5s ease-in-out, bottom .5s ease-in-out;
+    transition: left .3s ease-in-out;
 
     .katellea-logo {
       padding: 7px 0;
@@ -107,15 +107,14 @@ nav.menu {
 
     &.menu-open {
       position: fixed;
-      right: 0;
+      left: 0;
       width: 95%;
-      top: 0;
       border-right: solid 1px black;
 
       button.menu {
-        transition: top .5s ease-in-out, bottom .5s ease-in-out, background-color .5s ease-in-out;
+        transition: right .3s ease-in-out, background-color .3s ease-in-out;
 
-        top: 0;
+        right: 0;
         background-color: black;
         color: white;
         font-size: 1.5em;

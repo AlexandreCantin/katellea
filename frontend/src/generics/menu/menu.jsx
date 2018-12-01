@@ -5,12 +5,12 @@ import { BetaBadge } from '../beta-badge/beta-badge';
 
 require('./menu.scss');
 
-const Menu = function () {
+function Menu() {
   const [open, setOpen] = useState(false);
 
   return (
     <nav className={open ? 'menu menu-open' : 'menu'}>
-      <button onClick={open => setOpen(!open)} className="menu hide-desktop">
+      <button onClick={() => setOpen(!open)} className="menu hide-desktop">
         {open ? 'X' : 'MENU'}
       </button>
 
