@@ -186,7 +186,7 @@ export default class MinimumDateItem extends Component {
     return (
       <div role="menuitem" className="minimum-date dropdown-container" onMouseEnter={this.expandMenu} onMouseLeave={this.hideMenu}>
         <button className="btn reset has-dropdown" aria-haspopup="true" aria-expanded={hover ? 'true' : 'false'} aria-controls="#minimum-date-dropdown" onClick={this.toggleHover}>
-          <span className="block"><img src={userCanMakeDonation ? 'public/icons/header/available.svg' : 'public/icons/header/unavailable.svg'} alt="" /></span>
+          <span className="block"><img src={userCanMakeDonation ? 'icons/header/available.svg' : 'icons/header/unavailable.svg'} alt="" /></span>
           <span>
             {userCanMakeDonation ?
               <span>Disponible pour un nouveau don</span> :
