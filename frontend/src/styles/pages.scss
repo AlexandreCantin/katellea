@@ -60,12 +60,18 @@ $padding-with-nav: 0 30px 30px $menu-width+30px;
   &.has-menu {
     padding: $padding-with-nav !important;
     main { max-width: none !important; }
+    @media (max-width: $min-width-tablet) {
+      padding: 0 !important;
+    }
   }
 
   main {
     @include mx-block-base(50px 70px);
     margin: 20px auto 50px auto;
     max-width: 1200px;
+    @media (max-width: $min-width-tablet) {
+      padding: 20px 30px;
+    }
 
 
     .big-title {

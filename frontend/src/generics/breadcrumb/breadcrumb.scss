@@ -1,6 +1,13 @@
+@import '../../styles/mixins.scss';
+
 .breadcrumb-nav {
   padding-top: 3px;
   font-size: .8em;
+
+  @media (max-width: $min-width-tablet) {
+    font-size: 1em;
+    padding-left: 10px;
+  }
 
   li {
     img {
