@@ -92,7 +92,6 @@ nav.menu {
   @media (max-width: $min-width-tablet) {
     left: -100%;
     width: 100%;
-    position: absolute;
 
     // Menu animation on mobile
     transition: left .3s ease-in-out;
@@ -146,8 +145,8 @@ nav.menu {
             margin-top: 0;
 
             @media (max-width: $min-width-mobile) {
-            grid-column: span 3;
-          }
+              grid-column: span 3;
+            }
           }
 
         }
