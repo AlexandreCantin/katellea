@@ -91,7 +91,9 @@ export default class LegalTerms extends Component {
 
             <h3>4.1 Supprimer mes cookies</h3>
             <p>Comment supprimer mes cookies ?</p>
-            <iframe title="Vidéo de la CNIL intitulé : Comment supprimer mes cookies" width="800" height="450" src="https://www.youtube.com/embed/Ij9EkAQzVvM?feature=oembed" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen>&nbsp;</iframe>
+            <div className="youtube-video">
+              <iframe title="Vidéo de la CNIL intitulé : Comment supprimer mes cookies" width="800" height="450" src="https://www.youtube.com/embed/Ij9EkAQzVvM?feature=oembed" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen>&nbsp;</iframe>
+            </div>
 
             <h2>5. Sites tiers</h2>
             <p>Des appels vers des services tiers sont effectués. Ils concernent le bon fonctionnement du site (authentification, mailing, analyse d'usage...) par exemple.</p>
