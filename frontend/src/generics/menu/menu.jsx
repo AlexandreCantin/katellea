@@ -5,6 +5,10 @@ import { BetaBadge } from '../beta-badge/beta-badge';
 
 require('./menu.scss');
 
+const isActive = ({ isCurrent }) => {
+  return isCurrent ? { className: "active" } : null
+}
+
 function Menu() {
   const [open, setOpen] = useState(false);
 
@@ -16,7 +20,7 @@ function Menu() {
 
       <div className="katellea-logo text-center">
         <span className="hide-mobile no-wrap">
-          <Link to="/tableau-de-bord" title="Retour à l'accueil du site">
+          <Link to="/tableau-de-bord" title="Retour à l'accueil du site" getProps={isActive}>
             <img src="katellea-logo.png" alt="K" />atellea <BetaBadge />
           </Link>
         </span>
@@ -25,19 +29,19 @@ function Menu() {
 
       <ul className="menu-content list-unstyled">
         <li>
-          <Link to="/tableau-de-bord">
+          <Link to="/tableau-de-bord" getProps={isActive}>
             <img src="/icons/menu/dashboard.svg" alt="" />
             Tableau de bord
             </Link>
         </li>
         <li>
-          <Link to="/don-courant">
+          <Link to="/don-courant" getProps={isActive}>
             <img src="/icons/menu/calendar.svg" alt="" />
             Proposition de don en cours
             </Link>
         </li>
         <li>
-          <Link to="/historique-des-dons">
+          <Link to="/historique-des-dons" getProps={isActive}>
             <img src="/icons/menu/history.svg" alt="" />
             Historique des dons
             </Link>
@@ -54,10 +58,10 @@ function Menu() {
 
       <ul className="list-unstyled nav-footer">
         {/*<li><Link>Aider Katellea</Link></li>*/}
-        <li><Link to="/notre-mission-et-notre-equipe">Notre mission et équipe</Link></li>
-        <li><Link to="/mentions-legales">Mentions légales</Link></li>
+        <li><Link to="/notre-mission-et-notre-equipe" getProps={isActive}>Notre mission et équipe</Link></li>
+        <li><Link to="/mentions-legales" getProps={isActive}>Mentions légales</Link></li>
         {/*<li><li><Link>Presse</Link></li>*/}
-        <li><Link to="/nous-contacter">Contact</Link></li>
+        <li><Link to="/nous-contacter" getProps={isActive}>Contact</Link></li>
         <li className="social-networks">
           <FacebookKatelleaLink />
           <TwitterKatelleaLink />
