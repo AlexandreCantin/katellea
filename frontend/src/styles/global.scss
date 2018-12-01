@@ -98,21 +98,21 @@ p {
 }
 
 // Hide
-@media (max-width: $min-width-mobile) {
-  .hide-mobile {
-    display: none;
+.hide-mobile {
+  @media (max-width: $min-width-mobile) {
+    display: none !important;
   }
 }
 
-@media (min-width: $min-width-mobile) {
-  .hide-tablet {
-    display: none;
+.hide-tablet {
+  @media (max-width: $min-width-tablet) {
+    display: none !important;
   }
 }
 
-@media (min-width: $min-width-tablet) {
-  .hide-desktop {
-    display: none;
+.hide-desktop {
+  @media (min-width: $min-width-tablet) {
+    display: none !important;
   }
 }
 

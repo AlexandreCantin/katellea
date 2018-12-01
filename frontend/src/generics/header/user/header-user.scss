@@ -43,12 +43,29 @@ nav.katellea {
     > button.btn {
       padding-left: 35px;
       padding-right: 35px;
+
+      @media (max-width: $min-width-tablet) {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      @media (max-width: $min-width-mobile) {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
     }
   }
 
   /* AVAILABLE DATE */
   .minimum-date {
     max-width: 230px;
+    @media (max-width: $min-width-tablet) {
+      max-width: 200px;
+      ul { margin: 0 -20px; }
+    }
+    @media (max-width: $min-width-mobile) {
+      max-width: 180px;
+      ul { margin: 0 -20px; }
+    }
     > button { display: flex; }
 
     .block {
@@ -110,14 +127,13 @@ nav.katellea {
 
     .mark-as-read {
       border-bottom: solid 1px lightgray;
-      height: 20px !important;
+      height: 30px !important;
       background: lightgray;
+      line-height: 10px !important;
       button {
         display: inline;
-        width: auto;
-        height: auto;
-        float: right;
         border: none;
+        text-align: right;
         background: transparent;
         text-decoration: underline;
       }
@@ -138,6 +154,14 @@ nav.katellea {
         span { font-style: italic; }
 
         &.not-read { background-color: $not-read-notification; }
+      }
+
+      @media (max-width: $min-width-tablet) {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        top: 60px;
       }
     }
 
