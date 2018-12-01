@@ -43,7 +43,6 @@ export default class LegalTerms extends Component {
           {hasUser ? <div id="menu" className="sr-only">&nbsp;</div> : null}
           {hasUser ? <Menu /> : null}
 
-          <div>&nbsp;</div>
           <main id="main-content">
             <h1>Mentions légales</h1>
 
