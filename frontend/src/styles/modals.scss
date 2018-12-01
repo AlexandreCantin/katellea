@@ -38,9 +38,9 @@ $animation-duration: 1s;
     //top: 50px;
     overflow-y: auto;
 
-    width: 50%;
-    left: 50%;
-    margin-left: -25%;
+    width: 70%;
+    left: 30%;
+    margin-left: -15%;
 
     max-width: 1000px;
     border-radius: 10px;
@@ -81,7 +81,14 @@ $animation-duration: 1s;
       max-height: 90%;
       padding: 15px;
     }
+  }
 
+  @media (max-width: $min-width-tablet) {
+    .modal-content {
+      width: 95%;
+      left: 12%;
+      margin-left: -10%;
+    }
   }
 }
 
