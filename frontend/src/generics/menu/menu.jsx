@@ -16,7 +16,9 @@ function Menu() {
 
       <div className="katellea-logo text-center">
         <span className="hide-mobile no-wrap">
-          <img src="katellea-logo.png" alt="K" />atellea <BetaBadge />
+          <Link to="/tableau-de-bord" title="Retour à l'accueil du site">
+            <img src="katellea-logo.png" alt="K" />atellea <BetaBadge />
+          </Link>
         </span>
         <span className="hide-tablet hide-desktop">Menu</span>
       </div>

@@ -100,7 +100,7 @@ nav.menu {
     .katellea-logo {
       padding: 7px 0;
       height: $menu-height;
-      line-height: $menu-height;
+      line-height: $menu-height - 15px;
       background-color: black;
       color: white;
     }
