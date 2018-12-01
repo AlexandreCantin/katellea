@@ -1,3 +1,5 @@
+@import '../../../styles/mixins.scss';
+
 form#create-form-modal {
   > fieldset {
     border: none;
@@ -45,11 +47,18 @@ form#create-form-modal {
       button.danger { border-radius:  0 5px 5px 0; font-weight: bold; }
       flex: 1; text-align: right;
     }
-
+    @media (max-width: $min-width-tablet) {
+      flex-direction: column;
+      div.establishment-actions {
+        text-align: center;
+        margin-top: 15px;
+      }
+    }
   }
   #location-select-form {
     padding-top: 15px;
     margin-top: 15px;
+    position: relative;
     border-top: solid 1px lightblue;
     button.close { border: none; }
   }

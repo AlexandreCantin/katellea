@@ -73,14 +73,27 @@
     }
   }
 
+  .warning { margin-top: 10px; }
+
   .search-form-container {
     display: inline-block;
 
-    > div, span, form { display: inline-block; }
+    > div, span, .form { display: inline-block; }
     > span { width: 30px; text-align: center; line-height: 33px; }
 
     input {
       padding: 7px 10px;
+      width: auto;
+      &[type=text] { border-radius: 20px 0 0 20px; padding: 9px 10px 8px 10px; }
+      &[type=submit] { border-radius: 0 20px 20px 0; }
+    }
+
+    @media (max-width: $min-width-tablet) {
+      span {
+        display: block;
+        width: auto;
+        text-align: center;
+      }
     }
   }
 
