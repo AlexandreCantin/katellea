@@ -1,6 +1,7 @@
 import mailjet from 'node-mailjet';
 import { isArray } from 'util';
 import { environment } from '../../conf/environment';
+import logger from './logger.service';
 
 /**
  * Service for sending email with MailJet

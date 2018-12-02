@@ -10,6 +10,7 @@ import Donation from '../models/donation';
 import { canAccessDonation } from '../middlewares/can-access-donation';
 import { addWeeksToDate } from '../helpers/date.helper';
 import sanitize from 'sanitize-html';
+import logger from '../services/logger.service';
 
 
 const userRoutes = express.Router();
