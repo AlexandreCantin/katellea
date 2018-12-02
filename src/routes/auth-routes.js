@@ -6,6 +6,7 @@ import passport from 'passport';
 import FacebookStrategy from 'passport-facebook';
 import { AuthService } from '../services/auth.service';
 import { JWTService } from '../services/jwt.service';
+import logger from '../services/logger.service';
 import User from '../models/user';
 import { environment } from '../../conf/environment';
 

@@ -124,7 +124,7 @@ class UserServiceFactory {
 
         if (userData) {
           let user = new User({
-            id: null,
+            id: userData.id,
             firstName: userData.firstName,
             lastName: userData.lastName,
             email: null,
@@ -181,7 +181,7 @@ class UserServiceFactory {
   }
 
 
-  updateUser(data) {
+  updateUser(data, sponsoredByToken = '') {
     let user = store.getState().user.copy();
 
     Object.keys(data).map(key => {
@@ -189,7 +189,7 @@ class UserServiceFactory {
       return user[key] = data[key];
     });
 
-    return this.saveKatelleaUser(user);
+    return this.saveKatelleaUser(user, false, sponsoredByToken);
   }
 
 

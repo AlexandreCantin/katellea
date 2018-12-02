@@ -70,7 +70,7 @@ class TokenRoute extends Component {
         // No sponsor => add sponsor
         if (user.sponsor === undefined) {
           // Note: then we return to componentWillReceiveProps() method
-          UserService.updateUser({ sponsor: this.state.sponsor.id });
+          UserService.updateUser({}, this.state.sponsor.sponsorToken);
         } else {
           // Already sponsored...
           // TODO: One day ? Allow after all ?
@@ -95,9 +95,16 @@ class TokenRoute extends Component {
       return;
     }
 
+    // User can't be his own sponsor...
+    if (this.state.sponsor.id && user.id) {
+      FlashMessageService.createError('Vous ne pouvez pas devenir votre propre parrain !', 'dashboard');
+      navigate('/tableau-de-bord');
+      return;
+    }
+
     // User don't have a sponsor => add it
     if (this.state.sponsor && !user.sponsor) {
-      UserService.updateUser({ sponsor: this.state.sponsor.id });
+      UserService.updateUser({}, this.state.sponsor.sponsorToken);
       FlashMessageService.createSuccess(`Félicitations, ${this.state.sponsor.firstName} ${this.state.sponsor.lastName} est devenu votre parrain !`, 'dashboard');
       navigate('/tableau-de-bord');
       return;

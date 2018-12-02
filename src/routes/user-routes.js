@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
 import User from '../models/user';
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, FORBIDDEN } from 'http-status-codes';
+import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from 'http-status-codes';
 import { DONATION_TYPE, DONATION_REST_WEEKS } from '../constants';
 import { generateRandomString } from '../helpers/string.helper';
 import Donation from '../models/donation';
@@ -120,6 +120,16 @@ const updateUser = async (req, res, next) => {
   user.donationPreference = req.body.donationPreference || user.donationPreference;
   user.plateletActive = req.body.plateletActive || user.plateletActive;
   user.lastNotificationReadDate = req.body.lastNotificationReadDate || user.lastNotificationReadDate;
+
+  // Get sponsor
+  let sponsorId = undefined;
+  if (req.body.sponsoredByToken) {
+    const sponsorUser = await User.findOne({ sponsorToken: req.body.sponsoredByToken });
+
+    // Note: you can't be your own sponsor
+    if (sponsorUser && sponsorUser.id !== req.userId) sponsorId = sponsorUser.id;
+  }
+  user.sponsor = sponsorId ? sponsorId : undefined;
 
   // If a user add a new unavailability, make sure to respect the minimum date related to the last donation
   if (req.body.minimumDate) {
