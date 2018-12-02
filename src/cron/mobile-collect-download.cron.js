@@ -13,6 +13,7 @@ const API_URL = 'http://api.openeventdatabase.org/event/?what=health.blood.colle
 const currentFilePath = `${JSON_FOLDER}${JSON_NAME}`;
 const archivePath = `${JSON_FOLDER}${dayjs().format('YYYY_MM_DD')}.json`;
 
+const dirname = './src/cron/mobile-collects';
 
 /**
 In this script, we take download - each day - datas from : api.openeventdatabase.org/event/?what=health.blood.collect&when=nextweek&limit=1000
@@ -23,6 +24,12 @@ export default class MobileCollectDownloadCron {
   static run() {
     const startDate = dayjs();
     SlackService.sendMessage(`Start MobileCollectDownloadCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+
+
+    // Create the log directory if it does not exist
+    if (!fs.existsSync(dirname)) {
+      fs.mkdirSync(dirname);
+    }
 
     // 1 - Rename current json file
     if (fs.existsSync(currentFilePath)) fs.renameSync(currentFilePath, archivePath);
