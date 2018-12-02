@@ -111,52 +111,52 @@ const updateNotificationReadDate = async (req, res) => {
 
 const updateUser = async (req, res, next) => {
 
+  const user = new User();
+  user.firstName = req.body.firstName || user.firstName;
+  user.lastName = req.body.lastName || user.lastName;
+  user.email = req.body.email || user.email;
+  user.lastDonationDate = req.body.lastDonationDate || user.lastDonationDate;
+  user.lastDonationType = req.body.lastDonationType || user.lastDonationType;
+  user.donationPreference = req.body.donationPreference || user.donationPreference;
+  user.plateletActive = req.body.plateletActive || user.plateletActive;
+  user.lastNotificationReadDate = req.body.lastNotificationReadDate || user.lastNotificationReadDate;
+
+  // If a user add a new unavailability, make sure to respect the minimum date related to the last donation
+  if (req.body.minimumDate) {
+    if (user.lastDonationType && user.lastDonationDate) {
+      const newMinimumDate = dayjs(req.body.minimumDate);
+      const minimumDateDueToDonation = addWeeksToDate(user.lastDonationDate, DONATION_REST_WEEKS[user.lastDonationType]);
+
+      if (newMinimumDate.isAfter(minimumDateDueToDonation)) user.minimumDate = req.body.minimumDate;
+    } else {
+      // Default case
+      user.minimumDate = req.body.minimumDate;
+    }
+  }
+
+  if (!user.plateletActive && user.lastDonationType == DONATION_TYPE.PLATELET) user.plateletActive = true;
+
+  user.bloodType = req.body.bloodType || user.bloodType;
+  user.establishment = req.body.hasOwnProperty('establishmentId') ? req.body.establishmentId : user.establishment;
+  user.firstVisit = false;
+
+  // If we get null has currentDonation, we delete the current donation
+  if (req.body.hasOwnProperty('currentDonation') && req.body.currentDonation == null) user.currentDonation = null;
+  else if (req.body.currentDonation && user.currentDonation == undefined) {
+    // Add new currentDonation => Check access
+    const donation = await Donation.findById(req.body.currentDonation);
+    const canAccess = await canAccessDonation(donation, req.user);
+    if (!canAccess) return res.status(UNAUTHORIZED).send();
+    user.currentDonation = req.body.currentDonation;
+  } else if (req.body.currentDonation != user.currentDonation) {
+    // Change current donation => Check access
+    const donation = await Donation.findById(req.body.currentDonation);
+    const canAccess = await canAccessDonation(donation, req.user);
+    if (!canAccess) return res.status(UNAUTHORIZED).send();
+    user.currentDonation = req.body.currentDonation;
+  }
+
   try {
-    const user = new User();
-    user.firstName = req.body.firstName || user.firstName;
-    user.lastName = req.body.lastName || user.lastName;
-    user.email = req.body.email || user.email;
-    user.lastDonationDate = req.body.lastDonationDate || user.lastDonationDate;
-    user.lastDonationType = req.body.lastDonationType || user.lastDonationType;
-    user.donationPreference = req.body.donationPreference || user.donationPreference;
-    user.plateletActive = req.body.plateletActive || user.plateletActive;
-    user.lastNotificationReadDate = req.body.lastNotificationReadDate || user.lastNotificationReadDate;
-
-    // If a user add a new unavailability, make sure to respect the minimum date related to the last donation
-    if (req.body.minimumDate) {
-      if (user.lastDonationType && user.lastDonationDate) {
-        const newMinimumDate = dayjs(req.body.minimumDate);
-        const minimumDateDueToDonation = addWeeksToDate(user.lastDonationDate, DONATION_REST_WEEKS[user.lastDonationType]);
-
-        if (newMinimumDate.isAfter(minimumDateDueToDonation)) user.minimumDate = req.body.minimumDate;
-      } else {
-        // Default case
-        user.minimumDate = req.body.minimumDate;
-      }
-    }
-
-    if (!user.plateletActive && user.lastDonationType == DONATION_TYPE.PLATELET) user.plateletActive = true;
-
-    user.bloodType = req.body.bloodType || user.bloodType;
-    user.establishment = req.body.hasOwnProperty('establishmentId') ? req.body.establishmentId : user.establishment;
-    user.firstVisit = false;
-
-    // If we get null has currentDonation, we delete the current donation
-    if (req.body.hasOwnProperty('currentDonation') && req.body.currentDonation == null) user.currentDonation = null;
-    else if (req.body.currentDonation && user.currentDonation == undefined) {
-      // Add new currentDonation => Check access
-      const donation = await Donation.findById(req.body.currentDonation);
-      const canAccess = await canAccessDonation(donation, req.user);
-      if (!canAccess) return res.status(UNAUTHORIZED).send();
-      user.currentDonation = req.body.currentDonation;
-    } else if (req.body.currentDonation != user.currentDonation) {
-      // Change current donation => Check access
-      const donation = await Donation.findById(req.body.currentDonation);
-      const canAccess = await canAccessDonation(donation, req.user);
-      if (!canAccess) return res.status(UNAUTHORIZED).send();
-      user.currentDonation = req.body.currentDonation;
-    }
-
     await User.findOneAndUpdate({ _id: req.userId }, user);
 
     const userUpdated = await User.findById(req.userId)
@@ -166,7 +166,6 @@ const updateUser = async (req, res, next) => {
     userUpdated.addKatelleaToken();
 
     return res.json(userUpdated);
-
   } catch (err) {
     res.status(UNAUTHORIZED).send();
     next(new Error(`Error when updating user : ${err}`));
@@ -175,13 +174,30 @@ const updateUser = async (req, res, next) => {
 
 
 const deleteUser = async (req, res, next) => {
-  // User exists ?
-  // TODO : remove sponsor to godChilds / donation / pollAnswers / pollSuggestions etc.
+  const user = new User();
+  user.firstName = 'Utilisateur';
+  user.lastName = 'supprimé';
+  user.email = '';
+  user.lastDonationDate = null;
+  user.lastDonationType = null;
+  user.donationPreference = null;
+  user.plateletActive = null;
+  user.lastNotificationReadDate = null;
+  user.minimumDate = null;
+  user.bloodType = null;
+  user.firstVisit = null;
+  user.minimumDate = null;
+  user.sponsorToken = null;
+  user.katelleaToken = null;
+  user.gender = null;
 
-  const user = await User.findOneAndRemove({ _id: req.userId });
-
-  if (!user) return res.status(NOT_FOUND).send();
-  res.send('User deleted');
+  try {
+    await User.findOneAndUpdate({ _id: req.userId }, user);
+    res.send('User deleted');
+  } catch (err) {
+    res.status(UNAUTHORIZED).send();
+    next(new Error(`Error when deleting user : ${err}`));
+  }
 };
 
 
