@@ -42,10 +42,10 @@ const getSponsorUser = async (req, res) => {
 const createUser = async (req, res) => {
 
   // #Beta => Sponsor only
-  if (!req.body.sponsoredByToken) {
-    res.status(FORBIDDEN).send();
-    return;
-  }
+  //if (!req.body.sponsoredByToken) {
+  //  res.status(FORBIDDEN).send();
+  //  return;
+  //}
 
   // Get sponsor
   let sponsorId = undefined;

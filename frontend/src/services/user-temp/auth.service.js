@@ -22,13 +22,13 @@ class AuthServiceFactory {
     let url = this.computeConnectURL(origin);
     window.open(url, this.computePopupTitle(origin), 'scrollbars=yes, width=640, height=640');
     window.addEventListener('message', (event) => {
-      if(!event.origin === environment.SERVER_URL) return;
+      if(event.origin !== environment.SERVER_URL) return;
 
       let profile = JSON.parse(event.data);
       store.dispatch({
         type: USER_TEMP_ACTIONS.SET_PROFILE,
         data: {
-          userID: profile.userID,
+          userID: profile.id,
           origin: profile.origin,
           accessToken: profile.accessToken,
           firstName: profile.first_name,
