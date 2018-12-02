@@ -26,6 +26,7 @@ passport.use(new FacebookStrategy({
 const facebookLoginResponse = (req, res) => {
   const cleanProfile = {};
   cleanProfile.accessToken = req.user.accessToken;
+  cleanProfile.origin = 'facebook';
   Object.keys(req.user.profile).map(key => cleanProfile[key] = sanitize(req.user.profile[key]));
 
   return res.render('auth-response', { profile: JSON.stringify(cleanProfile), domain: environment.frontUrl });
