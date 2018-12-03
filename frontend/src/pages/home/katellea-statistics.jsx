@@ -12,7 +12,7 @@ export default class KatelleaStatistics extends Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     let data = await StatisticsService.getLastStatistics();
     if (data) this.setState({ statistics: data });
   }

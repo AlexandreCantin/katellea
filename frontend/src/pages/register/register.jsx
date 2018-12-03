@@ -45,7 +45,7 @@ export default class Register extends Component {
   }
 
 
-  async componentWillMount() {
+  async componentDidMount() {
     // When login with facebook directly on the page
     this.facebookStoreSubscribeFn = store.subscribe(() => {
       let userTempProfile = store.getState().userTempProfile;

@@ -30,7 +30,7 @@ export default class Home extends Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     let data = await getSponsorAndDonationFromUrl();
     if (data.sponsorUser) this.setState({ sponsorUser: data.sponsorUser });
     if (data.donation) this.setState({ donation: data.donation });

@@ -9,7 +9,11 @@ class FlashMessage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      scope: this.props.scope
+    };
+
+    this.flashMessageElementRef = React.createRef();
 
     // FlashMessage type to css class
     this.typeToCss = new Map();
@@ -20,28 +24,36 @@ class FlashMessage extends Component {
   }
 
 
-  componentWillMount() {
+  componentDidMount() {
     // Check if a flashMessage exists
     let flashMessage = store.getState().flashMessage;
 
-    if (!isEmpty(flashMessage) && !flashMessage.display && this.isCurrentScope(flashMessage)) {
+    if (!isEmpty(flashMessage) && !flashMessage.display && FlashMessage.isCurrentScope(flashMessage, this.state.scope)) {
       this.setState({ flashMessage });
     }
   }
 
-  componentWillReceiveProps() {
+  componentDidUpdate() {
+    // Scroll to notification
+    if(this.state.flashMessage && this.flashMessageElementRef.current) {
+      this.flashMessageElementRef.current.scrollIntoView();
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, currentState) {
     let flashMessage = store.getState().flashMessage;
 
     if (isEmpty(flashMessage)) {
-      this.setState({ flashMessage: undefined });
-    } else if (this.isCurrentScope(flashMessage)) {
-      this.setState({ flashMessage });
+      currentState.flashMessage = undefined;
+    } else if (FlashMessage.isCurrentScope(flashMessage, currentState.scope)) {
+      currentState.flashMessage = flashMessage;
     }
+    return currentState;
   }
 
 
-  isCurrentScope(flashMessage) {
-    return this.props.scope === flashMessage.scope;
+  static isCurrentScope(flashMessage, scope) {
+    return scope === flashMessage.scope;
   }
 
   getFlashMessageClass = () => this.typeToCss.get(this.state.flashMessage.type);
@@ -55,7 +67,7 @@ class FlashMessage extends Component {
     flashMessage.display = true;
 
     return (
-      <div className={'alert ' + this.getFlashMessageClass()}>
+      <div className={'alert ' + this.getFlashMessageClass()} ref={this.flashMessageElementRef}>
         <ul className="list-no-margin-padding">{flashMessage.messages.map((message) => <li key={message.substr(0, 10)}>{message}</li>)}</ul>
       </div>
     );

@@ -16,21 +16,24 @@ export default class EstablishmentCard extends Component {
   constructor(props) {
     super(props);
 
+    const establishment = this.props.establishment;
+
     this.state = {
       selectTab: 'presentation',
-      openStreetMapIframeUrl: this.generateOpenStreetMapIframeUrl()
+      establishment: establishment,
+      openStreetMapIframeUrl: EstablishmentCard.generateOpenStreetMapIframeUrl(establishment)
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.establishment.id !== nextProps.establishment.id) {
-      this.setState({ openStreetMapIframeUrl: this.generateOpenStreetMapIframeUrl(nextProps.establishment) });
+  static getDerivedStateFromProps(nextProps, currentState) {
+    if (currentState.establishment.id !== nextProps.establishment.id) {
+      currentState.establishment = nextProps.establishment;
+      currentState.openStreetMapIframeUrl = EstablishmentCard.generateOpenStreetMapIframeUrl(nextProps.establishment);
     }
+    return currentState;
   }
 
-  generateOpenStreetMapIframeUrl(establishmentOverride) {
-    const establishment = establishmentOverride || this.props.establishment;
-
+  static generateOpenStreetMapIframeUrl(establishment) {
     const longitude = establishment.coordinates[0];
     const latitude = establishment.coordinates[1];
     return `http://www.openstreetmap.org/export/embed.html?bbox=${longitude + BBOX_DELTA},${latitude + BBOX_DELTA},${longitude - BBOX_DELTA},${latitude - BBOX_DELTA}&layer=mapnik&marker=${latitude},${longitude}`;
@@ -108,7 +111,7 @@ export default class EstablishmentCard extends Component {
       <div {...this.computeTabPanelAttributes(CONTACT_TAB)}>
         <ul>
           <li>Téléphone : <PhoneLink establishment={establishment} /></li>
-          {establishment.email ? <li>E-mail</li> : null}
+          {establishment.email ? <li>E-mail: {establishment.email}</li> : null}
         </ul>
       </div>);
   }
@@ -120,8 +123,7 @@ export default class EstablishmentCard extends Component {
     );
   }
   render() {
-    const { establishment } = this.props;
-    const { selectTab } = this.state;
+    const { selectTab, establishment } = this.state;
 
     return (
       <div className="establishment-card">

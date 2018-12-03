@@ -20,7 +20,7 @@ export default class PromotionContainer extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let user = store.getState().user;
     this.setState({ user });
   }

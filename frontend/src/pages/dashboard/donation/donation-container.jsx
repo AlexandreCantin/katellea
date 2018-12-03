@@ -47,8 +47,11 @@ class DonationContainer extends Component {
     this.storeUnsubscribeFn();
   }
 
-  componentWillReceiveProps() {
-    if (this.props.currentDonation) this.setState({ loading: false });
+  static getDerivedStateFromProps(nextProps, currentState) {
+    if (nextProps.currentDonation) {
+      currentState.loading = false;
+    }
+    return currentState;
   }
 
   updateUserDonationStatus(user) {

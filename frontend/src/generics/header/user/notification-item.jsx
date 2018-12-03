@@ -37,25 +37,25 @@ class NotificationItem extends Component {
 
       lastNotificationReadDate,
       showAdviceModal: false,
-      notReadNotificationNumber: this.computeNotReadNotification(this.props.notifications, lastNotificationReadDate).length
+      notReadNotificationNumber: NotificationItem.computeNotReadNotification(this.props.notifications, lastNotificationReadDate).length
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     NotificationService.getLastNotifications();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (isEmpty(nextProps.notifications)) return;
+  static getDerivedStateFromProps(nextProps, currentState) {
+    if (isEmpty(nextProps.notifications)) return currentState;
 
     let newLastNotificationReadDate = dayjs(nextProps.user.lastNotificationReadDate);
-    this.setState({
-      lastNotificationReadDate: newLastNotificationReadDate,
-      notReadNotificationNumber: this.computeNotReadNotification(nextProps.notifications, newLastNotificationReadDate).length
-    });
+    currentState.lastNotificationReadDate = newLastNotificationReadDate;
+    currentState.notReadNotificationNumber = NotificationItem.computeNotReadNotification(nextProps.notifications, newLastNotificationReadDate).length;
+
+    return currentState;
   }
 
-  computeNotReadNotification(notifications, date) {
+  static computeNotReadNotification(notifications, date) {
     if (isEmpty(notifications)) return [];
     return notifications.filter(notification => dayjs(notification.date).isAfter(date));
   }

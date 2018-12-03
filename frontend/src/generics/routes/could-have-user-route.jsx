@@ -13,7 +13,7 @@ class CouldHaveUserRouteComponent extends Component {
   }
 
 
-  componentWillMount() {
+  componentDidMount() {
     if (localStorage.getItem('USER_TOKEN')) {
       let token = localStorage.getItem('USER_TOKEN');
       UserService.getKatelleaUserWithReminder(token)

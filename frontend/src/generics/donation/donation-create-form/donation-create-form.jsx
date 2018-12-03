@@ -59,7 +59,7 @@ export default class DonationCreateForm extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // When donation created, set it as current for the user
     this.storeUnsubscribeFn = store.subscribe(() => {
       if (!isEmpty(store.getState().donation)) UserService.updateUser({ currentDonation: store.getState().donation.id });

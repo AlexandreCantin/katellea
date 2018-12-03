@@ -93,7 +93,7 @@ export default class Donation {
     return +this.createdBy.id === +userId;
   }
   hasEstablishment() {
-    return this.establishment !== undefined;
+    return this.establishment !== undefined && this.establishment !== null;
   }
   isUserFinalAttendee(userId) {
     return this.finalAttendees.indexOf(+userId) !== -1;
@@ -103,6 +103,6 @@ export default class Donation {
     return this.establishment !== undefined && this.establishment !== null;
   }
   isMobileCollect() {
-    return this.mobileCollect !== undefined;
+    return this.mobileCollect !== undefined && this.mobileCollect !== null;
   }
 }

@@ -25,7 +25,7 @@ export default class DonationHistory extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     DonationService.getHistory()
       .then((donations) => this.setState({ loading: false, donations }))
       .catch(() => this.setState({ loading: false }));

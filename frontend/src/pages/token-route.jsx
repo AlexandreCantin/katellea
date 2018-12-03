@@ -18,7 +18,7 @@ class TokenRoute extends Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     let data = await getSponsorAndDonationFromUrl();
 
     // No data => redirect to home
@@ -52,7 +52,7 @@ class TokenRoute extends Component {
     navigate(url);
   }
 
-  async componentWillReceiveProps() {
+  async getDerivedStateFromProps() {
     // We get user from getKatelleaUserWithReminder()
     let user = store.getState().user;
 

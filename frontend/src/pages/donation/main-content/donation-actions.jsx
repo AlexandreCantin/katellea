@@ -15,21 +15,22 @@ export default class DonationActions extends Component {
   constructor(props) {
     super(props);
 
-    this.user = store.getState().user;
-    this.userHasCurrentDonation = this.user.hasCurrentDonation();
+    const user = store.getState().user;
+    this.userHasCurrentDonation = user.hasCurrentDonation();
 
     this.state = {
       showQuitDonationModal: false,
       quitComment: '',
-      userHasAnswerPoll: this.isUserAnsweredPoll(),
-      userIsAFinalAttendee: this.props.donation.isUserFinalAttendee(this.user.id),
+      userHasAnswerPoll: DonationActions.isUserAnsweredPoll(this.props.donation.pollAnswers, user),
+      userIsAFinalAttendee: this.props.donation.isUserFinalAttendee(user.id),
 
       donationPollOnGoing: this.props.donation.isPollOnGoing(),
-      isCreator: this.props.donation.isCreator(this.user.id),
+      isCreator: this.props.donation.isCreator(user.id),
+      user: user,
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.userStoreUnsubscribeFn = store.subscribe(() => {
       let user = store.getState().user;
 
@@ -46,15 +47,14 @@ export default class DonationActions extends Component {
     this.userStoreUnsubscribeFn();
   }
 
-  componentWillReceiveProps() {
-    this.setState({
-      userHasAnswerPoll: this.isUserAnsweredPoll(),
-      donationPollOnGoing: this.props.donation.isPollOnGoing(),
-      userIsAFinalAttendee: this.props.donation.isUserFinalAttendee(this.user.id),
-    });
+  static getDerivedStateFromProps(nextProps, currentState) {
+    currentState.userHasAnswerPoll = DonationActions.isUserAnsweredPoll(nextProps.donation.pollAnswers, currentState.user);
+    currentState.donationPollOnGoing = nextProps.donation.isPollOnGoing();
+    currentState.userIsAFinalAttendee = nextProps.donation.isUserFinalAttendee(currentState.user.id);
+    return currentState;
   }
 
-  isUserAnsweredPoll = () => this.props.donation.pollAnswers.filter(pa => pa.author.id === this.user.id).length > 0
+  static isUserAnsweredPoll = (pollAnswers, user) => pollAnswers.filter(pa => pa.author.id === user.id).length > 0
 
   closePoll = (e) => {
     let donation = this.props.donation;

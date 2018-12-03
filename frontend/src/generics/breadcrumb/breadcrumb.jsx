@@ -20,13 +20,21 @@ export default class Breadcrumb extends Component {
     const hasUser = !isEmpty(store.getState().user);
 
     let links = this.props.links || [];
+
+    if(links.length === 0) {
+      links = this.addFirstBreadcumbLink(links, hasUser);
+    } else if(links[0] && links[0].href !== '/tableau-de-bord' && links[0].href !== '/') {
+      links = this.addFirstBreadcumbLink(links, hasUser);
+    }
+
+    this.state = { links, hasUser };
+  }
+
+  addFirstBreadcumbLink(links, hasUser) {
     if (hasUser) links.unshift({ href: '/tableau-de-bord', text: 'Tableau de bord' });
     else links.unshift({ href: '/', text: 'Accueil du site' });
 
-    this.state = {
-      links,
-      hasUser
-    };
+    return links;
   }
 
   render() {

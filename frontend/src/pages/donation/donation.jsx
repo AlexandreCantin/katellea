@@ -37,7 +37,7 @@ class CurrentDonation extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // Get current donation
     if (this.user.hasCurrentDonation()) {
       DonationService.getCurrentDonation(this.user.currentDonation)
@@ -58,7 +58,7 @@ class CurrentDonation extends Component {
 
         <div className="main-content">
           <div className="actions">
-            {donation.hasEstablishment() && donation.isPollEnded() ? <DonationDefinitiveDateForm donation={donation} /> : null}
+            {donation.isPollEnded() ? <DonationDefinitiveDateForm donation={donation} /> : null}
             {donation.isScheduled() ? <DonationDateConfirmed donation={donation} /> : null}
             {donation.isDone() ? <DonationDone donation={donation} /> : null}
             {donation.isCancelled() ? <div className="alert danger">Ce don a été annulé.</div> : null}
@@ -99,8 +99,7 @@ class CurrentDonation extends Component {
           <FlashMessage scope="current-donation" />
 
           {loading ? <Loader /> : null}
-          {!loading && !donation ? <DonationCreateFormModal /> : null}
-          {showDonation ? this.renderDonation() : null}
+          {showDonation ? this.renderDonation() : <DonationCreateFormModal /> }
         </main>
       </div>
     );

@@ -16,9 +16,9 @@ export default class PollForm extends Component {
   constructor(props) {
     super(props);
 
-    this.user = store.getState().user;
+    const user = store.getState().user;
 
-    let userAnswers = this.props.donation.pollAnswers.filter(pollAnswer => +pollAnswer.author.id === +this.user.id);
+    let userAnswers = this.props.donation.pollAnswers.filter(pollAnswer => +pollAnswer.author.id === +user.id);
     if (userAnswers.length) userAnswers = userAnswers[0].answers;
 
     // Will be initi
@@ -27,14 +27,16 @@ export default class PollForm extends Component {
     this.generateFormDatas(userAnswers);
 
     this.state = {
-      userHasAnswerPoll: userAnswers.length !== 0
+      userHasAnswerPoll: userAnswers.length !== 0,
+      user: user
     };
   }
 
 
-  componentWillReceiveProps(nextProps) {
-    let userAnswers = nextProps.donation.pollAnswers.filter(pollAnswer => +pollAnswer.author.id === +this.user.id);
-    this.setState({ userHasAnswerPoll: userAnswers.length !== 0 });
+  static getDerivedStateFromProps(nextProps, currentState) {
+    let userAnswers = nextProps.donation.pollAnswers.filter(pollAnswer => +pollAnswer.author.id === +currentState.user.id);
+    currentState.userHasAnswerPoll= (userAnswers.length !== 0);
+    return currentState;
   }
 
   /**
@@ -78,7 +80,7 @@ export default class PollForm extends Component {
 
   render() {
     const { donation } = this.props;
-    const { userHasAnswerPoll } = this.state;
+    const { userHasAnswerPoll, user } = this.state;
 
     return (
       <Form
@@ -86,8 +88,8 @@ export default class PollForm extends Component {
         initialValues={this.localUserAnswers}
         validate={values => validateForm(values, this.formRules)}
         render={({ handleSubmit, invalid }) => (
-          <form onSubmit={this.savePollAnswer} className="poll-form text-center">
-            <div>{UserService.getFullName(this.user)}</div>
+          <form onSubmit={handleSubmit} className="poll-form text-center">
+            <div>{UserService.getFullName(user)}</div>
 
             {
               donation.pollSuggestions.map((ps, index) => {

@@ -29,9 +29,10 @@ class PrivateRouteComponent extends Component {
     }
   }
 
-  componentWillReceiveProps() {
+  static getDerivedStateFromProps(props, currentState) {
     let user = store.getState().user;
-    this.setState({ hasUser: !isEmpty(user) });
+    currentState.hasUser = !isEmpty(user);
+    return currentState;
   }
 
 

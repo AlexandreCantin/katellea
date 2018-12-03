@@ -43,20 +43,21 @@ export default class MinimumDateItem extends Component {
     this.state = {
       hover: false,
 
-      userCanMakeDonation: this.userCanMakeDonation(),
+      userCanMakeDonation: MinimumDateItem.userCanMakeDonation(this.props),
       minimumDateModal: false
     };
   }
 
-  componentWillReceiveProps() {
-    this.setState({ userCanMakeDonation: this.userCanMakeDonation() });
+  static getDerivedStateFromProps(nextProps, currentState) {
+    currentState.userCanMakeDonation = MinimumDateItem.userCanMakeDonation(nextProps);
+    return currentState;
   }
 
 
-  userCanMakeDonation() {
+  static userCanMakeDonation(props) {
     // False is minimumDate is in the future
     let today = dayjs();
-    return dayjs(this.props.user.minimumDate).isBefore(today);
+    return dayjs(props.user.minimumDate).isBefore(today);
   }
 
   createLinkTitle() {
