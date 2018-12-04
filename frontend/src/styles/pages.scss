@@ -48,6 +48,10 @@ $padding-with-nav: 0 30px 30px $menu-width+30px;
 // Our mission and team
 .page.text-only {
 
+  header {
+    position: static;
+  }
+
   .breadcrumb-nav {
     max-width: 1200px;
     margin: 80px auto 20px auto;
