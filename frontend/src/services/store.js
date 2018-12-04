@@ -5,6 +5,7 @@ import { DONATION_REDUCERS } from './donation/donation.reducers';
 import { FLASH_MESSAGE_REDUCERS } from './flash-message/flash-message.reducers';
 import { NOTIFICATION_REDUCERS } from './notifications/notification.reducers';
 import { USER_TEMP_REDUCERS } from './user-temp/user-temp.reducers';
+import { MENU_REDUCERS } from './menu/menu.reducer';
 
 let store = createStore(
   combineReducers({
@@ -13,6 +14,7 @@ let store = createStore(
     flashMessage: FLASH_MESSAGE_REDUCERS,
     userTempProfile: USER_TEMP_REDUCERS,
     notifications: NOTIFICATION_REDUCERS,
+    menuOpen: MENU_REDUCERS,
   })
 );
 

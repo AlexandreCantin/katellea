@@ -1,10 +1,12 @@
 @import '../../../styles/mixins.scss';
 
 nav.katellea {
+  position: relative;
   width: 100%;
   height: $menu-height;
   line-height: $menu-height;
   margin-top: 25px;
+
   @include mx-block-base(0 0 0 25px);
   @media (max-width: $min-width-tablet) {
     margin-top: 0;
@@ -38,11 +40,26 @@ nav.katellea {
     }
   }
 
+  /* MENU BUTTON */
+  button.menu-button {
+    position: absolute;
+    left: 0;
+    height: 60px;
+    width: 80px;
+    border: none;
+    border-right: solid 1px $border-color;
+    background-color: white;
+  }
+
   /* ACCOUNT */
   .my-account {
     > button.btn {
       padding-left: 35px;
       padding-right: 35px;
+      max-width: 150px;
+      width: 100%;
+      text-align: center;
+      word-wrap: break-word;
 
       @media (max-width: $min-width-tablet) {
         padding-left: 20px;
@@ -53,6 +70,8 @@ nav.katellea {
         padding-right: 10px;
       }
     }
+
+    #account-dropdown a { padding: 0 10px; }
   }
 
   /* AVAILABLE DATE */
