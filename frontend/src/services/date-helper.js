@@ -6,7 +6,7 @@ export const simpleDateFormat = 'DD/MM/YYYY';
 export const prettydateFormat = 'ddd. DD/MM/YYYY';
 export const prettyLongDateFormat = 'dddd DD/MM/YYYY';
 export const prettyFullDateFormat = 'DD/MM/YYYY à HH:mm:ss';
-export const prettyVeryFullDateFormat = 'dddd DD/MM/YYYY à HH:mm:ss';
+export const prettyVeryFullDateFormat = 'dddd DD/MM/YYYY à HH[h]mm';
 export const prettyHourFormat = 'HH:mm';
 
 
@@ -30,7 +30,7 @@ export function dateFormatDayMonthYearHourMinutSecond(date) {
   return dayjs(date).format(prettyFullDateFormat);
 }
 
-export function dateFormatLongDayDayMonthYearHourMinutSecond(date) {
+export function dateFormatLongDayDayMonthYearHourMinut(date) {
   return dayjs(date).format(prettyVeryFullDateFormat);
 }
 
