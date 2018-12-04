@@ -33,7 +33,9 @@ export default class FirstDonationAdviceCron {
     });
 
     const endDate = dayjs();
-    SlackService.sendMessage(`Ended FirstDonatioAdviceCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendMessage(
+      `Ended FirstDonatioAdviceCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`
+    );
   }
 
 }

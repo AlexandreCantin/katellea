@@ -16,6 +16,6 @@ const initMongoDB = () => {
       process.exit(1);
     }
   });
-}
+};
 
 export default initMongoDB;

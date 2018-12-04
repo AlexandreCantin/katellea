@@ -42,7 +42,7 @@ rootRoutes.get('/', (req, res) => res.render('index', getRouteData('root', '/'))
 rootRoutes.get('/creer-votre-compte', (req, res) => res.render('index', getRouteData('create-account', '/creer-votre-compte')));
 rootRoutes.get('/token', (req, res) => res.render('index', getRouteData('token', '/token'))); // TODO: handle social network metas
 rootRoutes.get('/mentions-legales', (req, res) => res.render('index', getRouteData('legal-terms', '/mentions-legales')));
-rootRoutes.get('/notre-mission-et-notre-equipe', (req, res) => res.render('index', getRouteData('mission-team',' /notre-mission-et-notre-equipe')));
+rootRoutes.get('/notre-mission-et-notre-equipe', (req, res) => res.render('index', getRouteData('mission-team', ' /notre-mission-et-notre-equipe')));
 rootRoutes.get('/nous-contacter', (req, res) => res.render('index', getRouteData('contact', '/nous-contacter')));
 
 // Connected routes : no need to specific SEO values

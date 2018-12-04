@@ -62,13 +62,13 @@ const rememberMe = async (req, res, next) => {
       const user = await User.findById(payload.id)
         .populate({ path: 'establishment', model: 'Establishment' })
         .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
-      if (user === null) return res.status(NOT_FOUND).send();
+
+      if (user === null) throw new Error('No user');
+
       user.addKatelleaToken();
       return res.json(user);
-
     } catch (err) {
-      // Why ? Create a comment
-      // next(err);
+      return res.status(NOT_FOUND).send();
     }
   } else {
     res.status(NOT_FOUND).send();

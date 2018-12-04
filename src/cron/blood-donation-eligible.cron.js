@@ -47,7 +47,9 @@ export default class BloodDonationEligibleCron {
     });
 
     const endDate = dayjs();
-    SlackService.sendMessage(`Ended BloodDonationEligibleCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendMessage(
+      `Ended BloodDonationEligibleCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`
+    );
   }
 
 }
