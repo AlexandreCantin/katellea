@@ -13,4 +13,4 @@ export const validateForm = (values, rules) => {
   });
 
   return errors;
-}
+};

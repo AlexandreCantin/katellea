@@ -7,6 +7,6 @@ export default class ValidatorRequired {
     if(typeof value === 'number') return value !== '';
 
     if(Array.isArray(value) && value) return value.length > 0;
-    return value ? true : false;
+    return Boolean(value);
   }
 }

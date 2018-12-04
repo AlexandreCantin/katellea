@@ -1,0 +1,30 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "overrides": [
+    {
+      "files": [ "*.js", "**/*.js" ],
+      "excludedFiles": "*.min.js"
+    }
+  ],
+  "extends": ["eslint-config-synacor"],
+  "rules": {
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+    "comma-dangle": ["error", "only-multiline"],
+    "keyword-spacing": 0,
+
+    "react/prefer-stateless-function": 0,
+    "react/sort-comp": 0,
+    "react/jsx-closing-bracket-location": [1, 'after-props'],
+    "react/jsx-max-props-per-line": false
+  }
+}

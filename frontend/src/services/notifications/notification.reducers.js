@@ -16,7 +16,7 @@ export const NOTIFICATION_REDUCERS = (state = {}, action) => {
       return newState;
     */
 
-    case NOTIFICATIONS_ACTIONS.ADD_NOTIFICATIONS:
+    case NOTIFICATIONS_ACTIONS.ADD_NOTIFICATIONS: {
       let notifications = [];
 
       action.data.forEach(notification => {
@@ -29,6 +29,7 @@ export const NOTIFICATION_REDUCERS = (state = {}, action) => {
         }));
       });
       return notifications;
+    }
 
     case NOTIFICATIONS_ACTIONS.DELETE_NOTIFICATIONS:
       return {};

@@ -36,10 +36,11 @@ export const USER_REDUCERS = (state = {}, action) => {
         updatedAt: action.data.updatedAt
       });
 
-    case USER_ACTIONS.USER_UPDATE_LAST_NOTIFICATION_READ_DATE:
+    case USER_ACTIONS.USER_UPDATE_LAST_NOTIFICATION_READ_DATE: {
       let user = state.copy();
       user.lastNotificationReadDate = action.data.lastNotificationReadDate;
       return user;
+    }
 
     default:
       return state;
