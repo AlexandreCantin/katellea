@@ -60,8 +60,8 @@ export default class Register extends Component {
 
     // Get sponsor/donation datas
     let data = await getSponsorAndDonationFromUrl();
-    if (data.sponsorUser) this.setState({ sponsorUser: data.sponsorUser });
-    if (data.donation) this.setState({ donation: data.donation });
+    if (data.sponsorUser) this.state.sponsorUser = data.sponsorUser;
+    if (data.donation) this.state.donation = data.donation;
 
     // Try to init the register form
     this.initForm();
@@ -86,7 +86,7 @@ export default class Register extends Component {
         showForm: true,
         initValues: {
           sponsoredByToken: sponsorToken,
-          donationToken: donationToken,
+          donationToken,
           gender: userTempProfile.gender,
           firstName: userTempProfile.firstName,
           lastName: userTempProfile.lastName,
@@ -188,10 +188,13 @@ export default class Register extends Component {
                 </div>
               )}
             </Field>
-            <div className="submit-zone text-center">
-              <label htmlFor="submit" className="sr-only">Créer mon profil</label>
-              <input id="submit" type="submit" className="btn big" value="Créer mon profil" disabled={invalid} />
-            </div>
+
+            {this.state.sponsorUser ?
+              <div className="submit-zone text-center">
+                <label htmlFor="submit" className="sr-only">Créer mon profil</label>
+                <input id="submit" type="submit" className="btn big" value="Créer mon profil" disabled={invalid} />
+              </div> : <div className="alert warning text-center">Vous ne pouvez créer de compte sans avoir de parrain</div>
+            }
           </form>
         )} />
     );
@@ -216,9 +219,9 @@ export default class Register extends Component {
           {donation ? <DonationCard donation={donation} /> : null}
           {sponsorUser ? <SponsorCard user={sponsorUser} /> : null}
 
-          {/* #Beta => error message + limiting form display*/ }
-          {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain pour créer un nouveau compte</div> : showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div> }
-          { showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
+          {/* #Beta => error message + limiting form display*/}
+          {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain pour créer un nouveau compte</div> : showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
+          {showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
         </div>
       </main>
     );

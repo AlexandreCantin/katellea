@@ -136,7 +136,7 @@ export default class Home extends Component {
 
                 {/* #Beta => error message + hide buttons */}
                 {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain pour créer un nouveau compte</div> : null }
-                { <AuthLoginButtons disabled={!sponsorUser}/>}
+                {<AuthLoginButtons />}
 
                 {!environment.production ? <FakeUserLogin /> : null}
               </div>

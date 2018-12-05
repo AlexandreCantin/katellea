@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
 import User from '../models/user';
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from 'http-status-codes';
+import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, FORBIDDEN, BAD_REQUEST } from 'http-status-codes';
 import { DONATION_TYPE, DONATION_REST_WEEKS } from '../constants';
 import { generateRandomString } from '../helpers/string.helper';
 import Donation from '../models/donation';
@@ -41,17 +41,18 @@ const getSponsorUser = async (req, res) => {
 
 const createUser = async (req, res) => {
 
-  // #Beta => Sponsor only
-  //if (!req.body.sponsoredByToken) {
-  //  res.status(FORBIDDEN).send();
-  //  return;
-  //}
+  if (!req.body.sponsoredByToken) {
+    res.status(FORBIDDEN).send();
+    return;
+  }
 
   // Get sponsor
   let sponsorId = undefined;
   if (req.body.sponsoredByToken) {
     const sponsorUser = await User.findOne({ sponsorToken: req.body.sponsoredByToken });
     if (sponsorUser) sponsorId = sponsorUser.id;
+    // #Beta only ?
+    else res.status(BAD_REQUEST).send();
   }
 
   // Get current donation token

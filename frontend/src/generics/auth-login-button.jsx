@@ -59,9 +59,6 @@ export default class AuthLoginButtons extends Component {
 
 
   render() {
-    // #Beta disable button
-    // if(this.props.disabled) return null;
-
     return (
       <div className="social-auth-buttons">
         <button data-origin="facebook" className="btn big facebook" onClick={this.doAuthLogin}>Se connecter avec Facebook</button>
