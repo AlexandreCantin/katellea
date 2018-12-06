@@ -3,9 +3,10 @@
 import express from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
 import { hasOwnProperties } from '../helper';
-import { MailjetService } from '../services/mailjet.service';
+import { SendgridService } from '../services/sendgrid.service';
 import sanitize from 'sanitize-html';
 import { environment } from '../../conf/environment';
+import logger from '../services/logger.service';
 
 const contactRoutes = express.Router();
 
@@ -22,6 +23,7 @@ const sendContactForm = async (req, res) => {
   const subject = req.body.subject.substring(0, 150);
   const message = req.body.message.substring(0, 3000);
 
+
   const htmlContent = `
     Date: ${new Date()}<hr/>
     Nom & prénom : ${sanitize(fullName)}<br/>
@@ -30,14 +32,14 @@ const sendContactForm = async (req, res) => {
     Message :<br/><pre>${sanitize(message)}</pre><br/>
   `;
 
-
   try {
-    await MailjetService.sendMail({
+    await SendgridService.sendMail({
       subject: MESSAGE_SUBJECT,
       htmlContent,
       to: environment.mail.contactEmail,
     });
   } catch (err) {
+    logger.error(err);
     return res.status(501).send();
   }
   return res.status(200).send();

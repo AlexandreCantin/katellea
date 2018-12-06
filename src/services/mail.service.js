@@ -1,4 +1,4 @@
-import { MailjetService } from './mailjet.service';
+import { SendgridService } from './sendgrid.service';
 import User from '../models/user';
 import { DONATION_TYPE_LABEL } from '../constants';
 import dayjs from 'dayjs';
@@ -33,7 +33,7 @@ export default class MailFactory {
       const htmlContent = `${user.firstName},<br/><br/>${firstSentence}<br/><br/>${DISCLAIMER}<br/><br/>${FOOTER}`;
 
       try {
-        MailjetService.sendMail({ subject, htmlContent, to: user.email });
+        SendgridService.sendMail({ subject, htmlContent, to: user.email });
       } catch(err) {/* Nothing to do */}
     });
   }
@@ -46,7 +46,7 @@ export default class MailFactory {
     const thirdSentence = `En effet, dans environ 3 semaines, votre délai d'attente sera terminé et nous vous invitons dès à présent à planifier votre prochain rendez-vous sur <a href=${environment.frontUrl}>Katellea</a>`;
     const htmlContent = `${user.firstName},<br/><br/>${firstSentence}<br/><br/>${secondSentence}<br/><br/>${thirdSentence}<br/><br/>${FOOTER_TEAM}`;
     try {
-      MailjetService.sendMail({ subject, htmlContent, to: user.email });
+      SendgridService.sendMail({ subject, htmlContent, to: user.email });
     } catch(err) {/* Nothing to do */}
   }
 
@@ -62,7 +62,7 @@ export default class MailFactory {
     const fourSentence = `<em style="font-size:.9em">Si cela n'est pas votre premier don, nous vous prions d'ignorer ce message.</em>`;
     const htmlContent = `${user.firstName},<br/><br/>${firstSentence}<br/><br/>${secondSentence}<br/><br/>${thirdSentence}<br/><br/>${fourSentence}<br/><br/>${FOOTER_TEAM}`;
     try {
-      MailjetService.sendMail({ subject, htmlContent, to: user.email });
+      SendgridService.sendMail({ subject, htmlContent, to: user.email });
     } catch(err) {/* Nothing to do */}
   }
 
@@ -82,7 +82,7 @@ export default class MailFactory {
     const htmlContent = `${user.firstName},<br/><br/>${firstSentence}<br/><br/>${secondSentence}<br/><br/>${FOOTER}`;
 
     try {
-      MailjetService.sendMail({ subject, htmlContent, to: user.email });
+      SendgridService.sendMail({ subject, htmlContent, to: user.email });
     } catch(err) {/* Nothing to do */}
   }
 

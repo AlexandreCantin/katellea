@@ -44,12 +44,10 @@
   "mail": {
     "redirectAllMailTo": "",
     "activateMail": false,
-
     "fromEmail": "no-reply@katellea.fr",
     "fromName": "Katellea",
     "contactEmail": "<set-it>",
-    "apiKeyPublic": "<set it>",
-    "apiKeyPrivate": "<set it>"
+    "apiKey": "<set it>"
   },
 
   "sentry": {
