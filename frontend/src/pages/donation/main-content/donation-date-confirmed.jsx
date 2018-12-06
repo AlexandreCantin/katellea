@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserService } from '../../../services/user/user.service';
-import { dateFormatLongDayDayMonthYearHourMinutSecond } from '../../../services/date-helper';
+import { dateFormatLongDayDayMonthYearHourMinut } from '../../../services/date-helper';
 
 const DonationDateConfirmed = (props) => {
   const { donation } = props;
@@ -10,12 +10,12 @@ const DonationDateConfirmed = (props) => {
       <h2>Le rendez-vous a été pris !</h2>
 
       <div className="date alert warning text-center">
-        <strong>{dateFormatLongDayDayMonthYearHourMinutSecond(donation.finalDate)}</strong>
+        <strong>{dateFormatLongDayDayMonthYearHourMinut(donation.finalDate)}</strong>
       </div>
 
       <div className="attendees">
         <h3>Personnes inscrites</h3>
-        <ul>{donation.finalAttendees.map(attendee => (<li>{UserService.getFullName(attendee)}</li>))}</ul>
+        <ul>{donation.finalAttendees.map(attendee => (<li key={attendee.id}>{UserService.getFullName(attendee)}</li>))}</ul>
       </div>
 
       <div className="selfie alert info">
