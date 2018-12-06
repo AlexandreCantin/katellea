@@ -161,7 +161,7 @@ const updateDonation = async (req, res) => {
 
     donation.status = req.body.status || donation.status;
     donation.mobileCollect = req.body.mobileCollect || donation.mobileCollect;
-    donation.finalDate = req.body.finalDate || donation.finalDate;
+    donation.finalDate = new Date(req.body.finalDate) || donation.finalDate;
     donation.finalAttendees = req.body.finalAttendees || donation.finalAttendees;
   }
 

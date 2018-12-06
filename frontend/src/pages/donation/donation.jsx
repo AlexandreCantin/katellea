@@ -94,7 +94,7 @@ class CurrentDonation extends Component {
             </div>
           </div>
 
-          <FlashMessage scope="current-donation" />
+          <FlashMessage scope="current-donation" doScroll />
 
           {loading ? <Loader /> : null}
           {showDonation ? this.renderDonation() : <DonationCreateFormModal /> }

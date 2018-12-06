@@ -35,8 +35,10 @@ class FlashMessage extends Component {
 
   componentDidUpdate() {
     // Scroll to notification
-    if(this.state.flashMessage && this.flashMessageElementRef.current) {
-      this.flashMessageElementRef.current.scrollIntoView();
+    if(this.state.flashMessage && this.flashMessageElementRef.current && this.props.doScroll) {
+      // FIXME: for weird reasons, scrollIntoView make Header/Title disappears !
+      const flashMessageTop = this.flashMessageElementRef.current.offsetTop;
+      window.scrollTo(0, flashMessageTop);
     }
   }
 
