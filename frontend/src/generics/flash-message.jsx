@@ -70,7 +70,7 @@ class FlashMessage extends Component {
 
     return (
       <div className={'alert ' + this.getFlashMessageClass()} ref={this.flashMessageElementRef}>
-        <ul className="list-no-margin-padding">{flashMessage.messages.map((message) => <li key={message.substr(0, 10)}>{message}</li>)}</ul>
+        <ul className="list-unstyled list-no-margin-padding">{flashMessage.messages.map((message) => <li key={message.substr(0, 10)}>{message}</li>)}</ul>
       </div>
     );
   }
