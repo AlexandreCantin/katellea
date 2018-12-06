@@ -7,6 +7,7 @@ import { SendgridService } from '../services/sendgrid.service';
 import sanitize from 'sanitize-html';
 import { environment } from '../../conf/environment';
 import logger from '../services/logger.service';
+import { SlackService } from '../services/slack.service';
 
 const contactRoutes = express.Router();
 
@@ -31,6 +32,8 @@ const sendContactForm = async (req, res) => {
     Subject : ${subject}<br/>
     Message :<br/><pre>${sanitize(message)}</pre><br/>
   `;
+
+  SlackService.sendContactFormMessage(htmlContent);
 
   try {
     await SendgridService.sendMail({

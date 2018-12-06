@@ -15,7 +15,7 @@ export default class DonationDoneCron {
 
   static async run() {
     const startDate = dayjs();
-    SlackService.sendMessage(`Start DonationDoneCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendCronMessage(`Start DonationDoneCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     const statisticsDate = dayjs().add(environment.daysBeforeStatisticsAnalytics, 'day');
     const donations = await Donation.find({ status: DONATION_STATUS.DATE_CONFIRMED, finalDate: { $lte: new Date() } });
@@ -36,7 +36,7 @@ export default class DonationDoneCron {
     });
 
     const endDate = dayjs();
-    SlackService.sendMessage(`Ended DonationDoneCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendCronMessage(`Ended DonationDoneCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 }

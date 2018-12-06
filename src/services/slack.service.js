@@ -8,15 +8,26 @@ import * as Sentry from '@sentry/node';
 class SlackServiceFactory {
 
   constructor() {
-    const url = environment.cronWebhookUrl;
-    this.webhook = new IncomingWebhook(url);
+    if(environment.cronWebhookUrl) this.cronWebhook = new IncomingWebhook(environment.cronWebhookUrl);
+    if(environment.contactFormWebhookUrl) this.contactFormWebhook = new IncomingWebhook(environment.contactFormWebhookUrl);
   }
 
-  sendMessage(message) {
-    this.webhook.send(message, function(err, res) {
+  sendCronMessage(message) {
+    if(!environment.cronWebhookUrl) return;
+
+    this.cronWebhook.send(message, function(err, res) {
       if (err) Sentry.captureException(err);
     });
   }
+
+  sendContactFormMessage(htmlBody) {
+    if(!environment.contactFormWebhookUrl) return;
+
+    this.contactFormWebhook.send(htmlBody, function(err, res) {
+      if (err) Sentry.captureException(err);
+    });
+  }
+
 }
 
 // Export as singleton

@@ -14,7 +14,7 @@ export default class DonationGlobalStatCron {
 
   static async run() {
     const startDate = dayjs();
-    SlackService.sendMessage(`Start DonationGlobalStatCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendCronMessage(`Start DonationGlobalStatCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // Compute days
     const maxDate = dayjs().subtract(DELTA_DAYS, 'day');
@@ -62,7 +62,7 @@ export default class DonationGlobalStatCron {
     });
 
     const endDate = dayjs();
-    SlackService.sendMessage(`Ended DonationGlobalStatCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendCronMessage(`Ended DonationGlobalStatCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 }

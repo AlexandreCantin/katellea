@@ -23,7 +23,7 @@ export default class MobileCollectDownloadCron {
 
   static run() {
     const startDate = dayjs();
-    SlackService.sendMessage(`Start MobileCollectDownloadCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendCronMessage(`Start MobileCollectDownloadCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
 
     // Create the log directory if it does not exist
@@ -48,12 +48,12 @@ export default class MobileCollectDownloadCron {
         try {
           fs.openSync(currentFilePath, 'w+');
           fs.writeFileSync(currentFilePath, data);
-          SlackService.sendMessage(`Fichier : ${currentFilePath} créé - ${dayjs().format('DD/MM/YYYY')}`);
+          SlackService.sendCronMessage(`Fichier : ${currentFilePath} créé - ${dayjs().format('DD/MM/YYYY')}`);
 
           // Collection of all new mobileCollect
           let mobileCollectCollections = [];
           mobileCollectCollections = computeCollection(currentFilePath, mobileCollectCollections);
-          SlackService.sendMessage(`Nombre de collectes mobiles => ${mobileCollectCollections.length}`);
+          SlackService.sendCronMessage(`Nombre de collectes mobiles => ${mobileCollectCollections.length}`);
 
           // Drop collection
           await MobileCollect.deleteMany({});
@@ -61,14 +61,14 @@ export default class MobileCollectDownloadCron {
           // RecreateCollection
           for(let i = 0; i < mobileCollectCollections.length; i++) await mobileCollectCollections[i].save();
         } catch(err) {
-          SlackService.sendMessage(err);
+          SlackService.sendCronMessage(err);
           logger.error(err.message);
         }
 
         writeEndDate(startDate);
       });
     }).on('error', err => {
-      SlackService.sendMessage(err);
+      SlackService.sendCronMessage(err);
       logger.error(`Error: ${err.message}`);
       writeEndDate(startDate);
     });
@@ -78,7 +78,7 @@ export default class MobileCollectDownloadCron {
 
 const writeEndDate = startDate => {
   const endDate = dayjs();
-  SlackService.sendMessage(`Ended MobileCollectDownloadCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+  SlackService.sendCronMessage(`Ended MobileCollectDownloadCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
 };
 
 const computeCollection = (currentFilePath, mobileCollectCollections) => {
