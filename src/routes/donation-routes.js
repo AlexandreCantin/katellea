@@ -103,7 +103,7 @@ const createDonation = async (req, res) => {
   const donation = new Donation();
   donation.status = DONATION_STATUS.POLL_ON_GOING;
   donation.visibility = DONATION_VISIBILITY.SMALL_NETWORK; // Force value ...for now
-  donation.mobileCollect = sanitize(req.body.mobileCollect);
+  donation.mobileCollect = req.body.mobileCollect ? sanitize(req.body.mobileCollect) : null;
   donation.establishment = req.body.establishmentId;
   donation.donationType = req.body.donationType;
   donation.pollSuggestions = req.body.pollSuggestions;

@@ -100,9 +100,14 @@ export default class Donation {
   }
 
   isEstablishmentDonation() {
-    return this.establishment !== undefined && this.establishment !== null;
+    if(this.establishment === undefined) return false;
+    if(this.establishment === null) return false;
+    return true;
   }
+
   isMobileCollect() {
-    return this.mobileCollect !== undefined && this.mobileCollect !== null;
+    if(this.mobileCollect === null) return false;
+    if(this.mobileCollect === undefined) return false;
+    return true;
   }
 }
