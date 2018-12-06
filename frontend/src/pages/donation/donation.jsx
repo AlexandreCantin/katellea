@@ -33,7 +33,7 @@ class CurrentDonation extends Component {
     this.user = store.getState().user;
 
     this.state = {
-      loading: true,
+      loading: this.user.hasCurrentDonation(),
     };
   }
 
@@ -43,8 +43,6 @@ class CurrentDonation extends Component {
       DonationService.getCurrentDonation(this.user.currentDonation)
         .then(() => this.setState({ loading: false }))
         .catch(() => this.setState({ loading: false }));
-    } else {
-      this.setState({ loading: false });
     }
   }
 
@@ -54,7 +52,7 @@ class CurrentDonation extends Component {
 
     return (
       <div>
-        <CurrentStep donation={donation} />
+        <CurrentStep donation={donation} isMobile={donation.isMobileCollect()} />
 
         <div className="main-content">
           <div className="actions">
