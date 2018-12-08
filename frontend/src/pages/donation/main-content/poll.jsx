@@ -16,24 +16,25 @@ class Poll extends Component {
 
     this.state = {
       donationPollOnGoing: this.props.donation.status === DONATION_STATUS.POLL_ON_GOING,
-      unavailablePollSuggestions: this.determineUnavaiblePollSuggestions()
+      unavailablePollSuggestions: Poll.determineUnavaiblePollSuggestions(this.props.user, this.props.donation.pollSuggestions)
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ unavailablePollSuggestions: this.determineUnavaiblePollSuggestions() });
+  static getDerivedStateFromProps(nextProps, currentState) {
+    currentState.unavailablePollSuggestions = Poll.determineUnavaiblePollSuggestions(nextProps.user, nextProps.donation.pollSuggestions);
 
-    if (this.state.donationPollOnGoing && nextProps.donation.isPollEnded()) {
-      this.setState({
-        donationPollOnGoing: false,
-        userPoll: undefined,
-      });
+    if (currentState.donationPollOnGoing && nextProps.donation.isPollEnded()) {
+      currentState.donationPollOnGoing = false;
+      currentState.userPoll = undefined;
     }
+
+    return currentState;
   }
 
-  determineUnavaiblePollSuggestions() {
-    let minimumDate = dayjs(this.props.user.minimumDate);
-    return this.props.donation.pollSuggestions.filter(pollSuggestion => dayjs(pollSuggestion.date).isBefore(minimumDate));
+
+  static determineUnavaiblePollSuggestions(user, pollSuggestions) {
+    let minimumDate = dayjs(user.minimumDate);
+    return pollSuggestions.filter(pollSuggestion => dayjs(pollSuggestion.date).isBefore(minimumDate));
   }
 
 
