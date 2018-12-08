@@ -96,7 +96,7 @@ class NotificationItem extends Component {
   // RENDER
   renderFirstDonationAdviceModal() {
     return (
-      <Modal cssclassName="advice-modal" title="Votre premier don" onClose={this.closeAdviceModal}>
+      <Modal cssclassName="advice-modal" title="Votre premier don" onClose={this.closeAdviceModal} modalUrl="/votre-premier-don-conseils">
         <p>Dans deux jours, vous allez effectuer votre premier don du sang et pour cela nous vous remercions par avance !</p>
         <p className="img">
           <img src="/icons/header/identity-card.svg" alt="" />

@@ -22,6 +22,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import Loader from './generics/loader/loader';
 import ErrorBoundary from './generics/error-boundary';
 import { environment } from './environment';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 dayjs.locale('fr');
 dayjs.extend(relativeTime);
 
@@ -77,10 +78,10 @@ class App extends Component {
   }
 }
 
+
+// Start the application
+GoogleAnalyticsService.initGoogleAnalytics();
 ReactDOM.render(<App />, document.getElementById('root'));
-
-
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

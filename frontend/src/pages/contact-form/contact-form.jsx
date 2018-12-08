@@ -8,8 +8,11 @@ import Menu from '../../generics/menu/menu';
 import Validators from '../../services/forms/validators';
 import { isEmpty } from '../../services/helper';
 import store from '../../services/store';
+
 import { ContactService } from '../../services/contact.service';
 import { FlashMessageService } from '../../services/flash-message/flash-message.service';
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+
 import FlashMessage from '../../generics/flash-message';
 import Breadcrumb from '../../generics/breadcrumb/breadcrumb';
 import EscapeLinks from '../../generics/escape-links/escape-links';
@@ -35,6 +38,7 @@ export default class ContactForm extends Component {
     };
   }
 
+  componentDidMount() { GoogleAnalyticsService.sendPageView(); }
 
   sendForm = (values) => {
     ContactService.send(values)

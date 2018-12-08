@@ -40,7 +40,7 @@ export default class ShareDonation extends Component {
 
 
   renderPromoteDonationModal = () => (
-    <Modal title="Invitez des personnes à rejoindre votre don !" onClose={this.closePromoteDonationModal}>
+    <Modal title="Invitez des personnes à rejoindre votre don !" onClose={this.closePromoteDonationModal} modalUrl="/don-courant/partage-du-don">
       <div className="copy-link-container">
         En diffusant le lien suivant :
         <div className="button-container">

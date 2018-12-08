@@ -46,7 +46,7 @@ class EstablishmentContainer extends Component {
   // RENDER
   renderFindEstablishmentModal() {
     return (
-      <Modal cssclassName="confirm-delete-modal" title="Trouver votre établissement le plus proche" onClose={this.closeEstablishmentModal}>
+      <Modal cssclassName="confirm-delete-modal" title="Trouver votre établissement le plus proche" onClose={this.closeEstablishmentModal}  modalUrl="/don-homosexuel">
         <EstablishmentSelectForm onSelect={this.addEstablishment} />
       </Modal>
     );

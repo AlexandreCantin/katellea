@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+
 import Menu from '../../generics/menu/menu';
 import FlashMessage from '../../generics/flash-message';
 
@@ -14,6 +16,9 @@ import EscapeLinks from '../../generics/escape-links/escape-links';
 require('./account.scss');
 
 export default class Account extends Component {
+
+  componentDidMount() { GoogleAnalyticsService.sendPageView(); }
+
   render() {
     return (
       <div id="account-page" className="page default">

@@ -15,9 +15,13 @@ import StatisticsContainer from './statistics/statistics-container';
 import Breadcrumb from '../../generics/breadcrumb/breadcrumb';
 import EscapeLinks from '../../generics/escape-links/escape-links';
 
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+
 require('./dashboard.scss');
 
 export default class Dashboard extends Component {
+
+  componentDidMount() { GoogleAnalyticsService.sendPageView(); }
 
   render() {
     return (

@@ -58,7 +58,7 @@ export default class DonationDefinitiveDateForm extends Component {
 
   renderDefinitiveDateModal() {
     return (
-      <Modal cssClass="definitive-date-form" title="Indiquer la date définitive du don" onClose={this.closeDefinitiveDateModal}>
+      <Modal cssClass="definitive-date-form" title="Indiquer la date définitive du don" onClose={this.closeDefinitiveDateModal} modalUrl="/don-courant/date-definitive">
         <FlashMessage scope="definitive-date" />
 
         <>

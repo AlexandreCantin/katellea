@@ -3,6 +3,7 @@ import { environment } from '../../environment';
 import store from '../store';
 import { GENDER } from '../../enum';
 import { USER_TEMP_ACTIONS } from './user-temp.reducers';
+import { GoogleAnalyticsService, GA_DIMENSIONS } from '../google-analytics.service';
 
 class AuthServiceFactory {
 
@@ -37,6 +38,10 @@ class AuthServiceFactory {
           gender: profile.gender || GENDER.UNKNOWN
         }
       });
+
+      // Set dimension in Google Analytics
+      GoogleAnalyticsService.setDimension(GA_DIMENSIONS.REGISTER_ORIGIN, origin);
+
     }, false);
   }
 

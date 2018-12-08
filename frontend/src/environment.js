@@ -9,6 +9,7 @@ export const environmentValues = {
 
   // GOOGLE ANALYTICS
   GA_ID: '',
+
   // HOTJAR
   HOTJAR_CODE: '',
   // SENTRY
