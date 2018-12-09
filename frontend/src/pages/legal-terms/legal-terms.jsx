@@ -4,6 +4,8 @@ import Helmet from 'react-helmet';
 import HeaderHome from '../../generics/header/home/header-home';
 import HeaderUser from '../../generics/header/user/header-user';
 
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+
 import Menu from '../../generics/menu/menu';
 import { isEmpty } from '../../services/helper';
 import store from '../../services/store';
@@ -19,6 +21,8 @@ export default class LegalTerms extends Component {
       hasUser: !isEmpty(store.getState().user)
     };
   }
+
+  componentDidMount() { GoogleAnalyticsService.sendPageView(); }
 
   render() {
     const { hasUser } = this.state;

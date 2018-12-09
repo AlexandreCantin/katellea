@@ -6,6 +6,8 @@ import HeaderUser from '../../generics/header/user/header-user';
 import Menu from '../../generics/menu/menu';
 import Loader from '../../generics/loader/loader';
 
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+
 import { DonationService } from '../../services/donation/donation.service';
 import { UserService } from '../../services/user/user.service';
 import { DONATION_IMAGES } from '../../enum';
@@ -26,6 +28,8 @@ export default class DonationHistory extends Component {
   }
 
   componentDidMount() {
+    GoogleAnalyticsService.sendPageView(); // Google analytics
+
     DonationService.getHistory()
       .then((donations) => this.setState({ loading: false, donations }))
       .catch(() => this.setState({ loading: false }));

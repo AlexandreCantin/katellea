@@ -80,7 +80,9 @@ class DonationContainer extends Component {
         {eligibleDonations.length === 0 ? <p>Nous n'avons trouvé aucun don à rejoindre :-(</p> : null}
         {eligibleDonations.map(donation => <DonationToSubscribe key={donation._id} donation={donation} />)}
 
-        <div className="new-donation-container text-center"><DonationCreateFormModal /></div>
+        <div className="new-donation-container text-center">
+          <DonationCreateFormModal modalUrl="/tableau-de-bord/creer-un-nouveau-don" />
+        </div>
       </div>
     );
   }

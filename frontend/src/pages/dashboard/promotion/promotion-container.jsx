@@ -47,7 +47,7 @@ export default class PromotionContainer extends Component {
 
 
   renderPromoteModal = () => (
-    <Modal title="Parrainez un ami !" onClose={this.closePromoteModal}>
+    <Modal title="Parrainez un ami !" onClose={this.closePromoteModal} modalUrl="/tableau-de-bord/parrainez-un-ami">
       <div>Diffusez un message sur les réseaux sociaux :</div>
 
       <ul className="social-networks list-unstyled inline-list">

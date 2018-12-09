@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
 
 /**
  *
@@ -52,6 +53,10 @@ export default class Modal extends Component {
   }
 
   componentDidMount() {
+    // Google Analytics
+    if(!this.props.modalUrl) throw new Error("No modal url defined");
+    GoogleAnalyticsService.sendModalView(this.props.modalUrl);
+
     // Register last focus element
     this.activeElement = document.activeElement;
 

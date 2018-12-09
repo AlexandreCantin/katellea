@@ -24,7 +24,7 @@ export default class RGPDModal extends Component {
     if (showButtons === undefined) showButtons = true;
 
     return (
-      <Modal title="Politique de confidentialité et utilisation de vos données personnelles" onClose={this.closeModal}>
+      <Modal title="Politique de confidentialité et utilisation de vos données personnelles" onClose={this.closeModal} modalUrl="/rgpd">
         <p>Pour utiliser Katellea, vous devez accepter sa Politique de confidentialité.</p>
 
         <p>

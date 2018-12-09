@@ -102,7 +102,7 @@ export default class MinimumDateItem extends Component {
 
   renderMinimumDateModal() {
     return (
-      <Modal title={this.createLinkTitle()} onClose={this.closeMinimumDateModal}>
+      <Modal title={this.createLinkTitle()} onClose={this.closeMinimumDateModal} modalUrl="/indiquer-une-indisponibilite">
         <div className="alert danger text-center">
           Seule la date de fin d'indisponibilité est conservée.<br />
           L'évènement ainsi que sa date n'étant pas conservés, <strong>nous ne pouvons pas les déduire.</strong>

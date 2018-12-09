@@ -3,19 +3,19 @@ import { YoutubeModalLink } from './youtube-modal-link';
 import PDFLink from './pdf-link';
 
 const IMPORTANCE_VIDEOS = [
-  { title: 'A quoi sert le don de sang ?', url: 'https://www.youtube.com/embed/wItcrXinbqc' },
-  { title: 'Pourquoi donner son sang ?', url: 'https://www.youtube.com/embed/x68KPoa6dtw' },
-  { title: 'Les besoins en produits sanguins', url: 'https://www.youtube.com/embed/Iag8xEjd5LM' },
-  { title: 'Le don de sang en chiffres', url: 'https://www.youtube.com/embed/ez9woyulyUA' }
+  { title: 'A quoi sert le don de sang ?', url: 'https://www.youtube.com/embed/wItcrXinbqc', modalUrl: '/tableau-de-bord/videos/a-quoi-sert-le-don-du-sang' },
+  { title: 'Pourquoi donner son sang ?', url: 'https://www.youtube.com/embed/x68KPoa6dtw', modalUrl: '/tableau-de-bord/videos/pourquoi-donner-son-sang' },
+  { title: 'Les besoins en produits sanguins', url: 'https://www.youtube.com/embed/Iag8xEjd5LM', modalUrl: '/tableau-de-bord/videos/besoin-produits-sanguins' },
+  { title: 'Le don de sang en chiffres', url: 'https://www.youtube.com/embed/ez9woyulyUA', modalUrl: '/tableau-de-bord/videos/don-du-sang-en-chiffre' }
 ];
 
 const DONATION_VIDEOS = [
-  { title: 'Les étapes du don', url: 'https://www.youtube.com/embed/_ai4sRE5PqU' },
-  { title: 'Le parcours de la poche de sang', url: 'https://www.youtube.com/embed/HBaWyvQs870' },
+  { title: 'Les étapes du don', url: 'https://www.youtube.com/embed/_ai4sRE5PqU', modalUrl: '/tableau-de-bord/videos/etapes-du-don' },
+  { title: 'Le parcours de la poche de sang', url: 'https://www.youtube.com/embed/HBaWyvQs870', modalUrl: '/tableau-de-bord/videos/parcours-poche-de-sang' },
 ];
 
 const MORE_VIDEOS = [
-  { title: 'Les étapes du don', url: 'https://www.youtube.com/embed/_ai4sRE5PqU' }
+  { title: 'Les étapes du don', url: 'https://www.youtube.com/embed/_ai4sRE5PqU', modalUrl: '/tableau-de-bord/videos/etapes-du-don' }
 ];
 
 const AboutContainer = () => {

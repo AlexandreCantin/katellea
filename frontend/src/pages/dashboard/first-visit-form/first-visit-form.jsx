@@ -400,7 +400,7 @@ class FirstVisitForm extends Component {
     if (!user.firstVisit) return null;
 
     return (
-      <Modal {...this.metaStep(currentStep)}>
+      <Modal {...this.metaStep(currentStep)} modalUrl="/tableau-de-bord/premiere-visite">
         {currentStep === 0 ? this.renderStep0() : null}
         {currentStep === 1 ? this.renderStep1() : null}
         {currentStep === 2 ? this.renderStep2() : null}

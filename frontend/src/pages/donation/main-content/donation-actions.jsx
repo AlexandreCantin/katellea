@@ -81,7 +81,7 @@ export default class DonationActions extends Component {
 
   renderQuitDonationModal() {
     return (
-      <Modal cssclassName="quit-donation" title="Se retirer de ce don" onClose={this.closeQuitDonationModal}>
+      <Modal cssclassName="quit-donation" title="Se retirer de ce don" onClose={this.closeQuitDonationModal} modalUrl="/don-courant/quitter-le-don">
         <form className="form" onSubmit={this.quitDonation}>
           <div className="form-line">
             <label htmlFor="quit-comment">Ajouter un message (optionnel)</label>

@@ -37,7 +37,7 @@ export default class DeleteAccountForm extends Component {
 
   renderConfirmModal() {
     return (
-      <Modal cssclassName="confirm-delete-modal" role="alertdialog" title="Supprimer de votre compte ?" onClose={this.closeDeleteConfirm}>
+      <Modal cssclassName="confirm-delete-modal" role="alertdialog" title="Supprimer de votre compte ?" onClose={this.closeDeleteConfirm} modalUrl="/mon-compte/supprimer-votre-compte">
         <p>
           Confirmez-vous la suppression de votre compte ?<br />
           Cela entraînera la suppression de votre compte et l'anonymisation de vos dons.

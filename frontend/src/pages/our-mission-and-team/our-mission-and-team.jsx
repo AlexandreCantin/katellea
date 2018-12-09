@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+
 import HeaderHome from '../../generics/header/home/header-home';
 import HeaderUser from '../../generics/header/user/header-user';
 
@@ -20,6 +22,8 @@ export default class OurMissionAndTeam extends Component {
   }
 
   componentDidMount() {
+    GoogleAnalyticsService.sendPageView();
+
     // FIXME: Remove manual scroll ?
     scrollToHash();
   }

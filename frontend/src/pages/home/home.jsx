@@ -15,6 +15,7 @@ import FakeUserLogin from '../../generics/fake-user-login';
 import Modal from '../../generics/modal';
 import EscapeLinks from '../../generics/escape-links/escape-links';
 import AuthLoginButtons from '../../generics/auth-login-button';
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 
 require('./home.scss');
 
@@ -31,6 +32,8 @@ export default class Home extends Component {
   }
 
   async componentDidMount() {
+    GoogleAnalyticsService.sendPageView(); // Google-analytics
+
     let data = await getSponsorAndDonationFromUrl();
     if (data.sponsorUser) this.setState({ sponsorUser: data.sponsorUser });
     if (data.donation) this.setState({ donation: data.donation });
@@ -42,7 +45,7 @@ export default class Home extends Component {
 
   renderGayDetailsModal() {
     return (
-      <Modal cssclassName="gay-modal" title="Don pour les homosexuelles" onClose={this.closeGayDetailsModal}>
+      <Modal cssclassName="gay-modal" title="Don pour les homosexuelles" onClose={this.closeGayDetailsModal} modalUrl="/don-homosexuel">
         <p>Depuis le 10 juillet 2016, de nouveaux droits s'appliquent pour les personnes homosexuelles.</p>
 
         <div className="women">

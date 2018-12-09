@@ -12,6 +12,8 @@ import CurrentStep from './current-step';
 import Breadcrumb from '../../generics/breadcrumb/breadcrumb';
 import { extractKey, isEmpty } from '../../services/helper';
 
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+
 import { DonationService } from '../../services/donation/donation.service';
 import DonationEvents from './donation-events';
 import Poll from './main-content/poll';
@@ -38,6 +40,8 @@ class CurrentDonation extends Component {
   }
 
   componentDidMount() {
+    GoogleAnalyticsService.sendPageView(); // Google Analytics
+
     // Get current donation
     if (this.user.hasCurrentDonation()) {
       DonationService.getCurrentDonation(this.user.currentDonation)
@@ -97,7 +101,7 @@ class CurrentDonation extends Component {
           <FlashMessage scope="current-donation" doScroll />
 
           {loading ? <Loader /> : null}
-          {showDonation ? this.renderDonation() : <DonationCreateFormModal /> }
+          {showDonation ? this.renderDonation() : <DonationCreateFormModal modalUrl="/don-courant/creer-un-nouveau-don" /> }
         </main>
       </div>
     );

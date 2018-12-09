@@ -18,6 +18,7 @@ import AuthLoginButtons from '../../generics/auth-login-button';
 import { validateForm } from '../../services/forms/validate';
 import { Form, Field } from 'react-final-form';
 import Validators from '../../services/forms/validators';
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 
 require('./register.scss');
 
@@ -46,6 +47,8 @@ export default class Register extends Component {
 
 
   async componentDidMount() {
+    GoogleAnalyticsService.sendPageView(); // Google-analytics
+
     // When login with facebook directly on the page
     this.facebookStoreSubscribeFn = store.subscribe(() => {
       let userTempProfile = store.getState().userTempProfile;

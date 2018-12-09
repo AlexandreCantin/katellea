@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PhoneLink from '../../phone-link';
+import { GoogleAnalyticsService } from '../../../services/google-analytics.service';
 
 require('./establishment-card.scss');
 
@@ -20,7 +21,7 @@ export default class EstablishmentCard extends Component {
 
     this.state = {
       selectTab: 'presentation',
-      establishment: establishment,
+      establishment,
       openStreetMapIframeUrl: EstablishmentCard.generateOpenStreetMapIframeUrl(establishment)
     };
   }
@@ -46,7 +47,9 @@ export default class EstablishmentCard extends Component {
   }
 
   selectTab = (e) => {
-    this.setState({ selectTab: e.target.id });
+    const target = e.target.id;
+    GoogleAnalyticsService.sendEvent('dashboard-establishment-tab', target, 'Select ' + target);
+    this.setState({ selectTab: target });
   }
 
   computeTabAttributes(tabId, selectTab) {
