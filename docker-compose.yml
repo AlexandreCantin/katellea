@@ -5,23 +5,25 @@ version: '3.1'
 
 services:
 
+  # https://github.com/bitnami/bitnami-docker-mongodb
   mongo:
-    image: mongo:latest
+    image: bitnami/mongodb:latest
     restart: always
     volumes:
-      - ./docker/opt/mongodb/db:/data/db
+      - ./docker/mongodb:/bitnami/mongodb
     ports:
       - '27017:27017'
+    user: 'root'
     environment:
-      MONGO_INITDB_DATABASE: katellea
+      MONGODB_DATABASE: katellea
 
   mongo-test:
-    image: mongo:latest
+    image: bitnami/mongodb:latest
     restart: always
     ports:
       - '27018:27017'
     environment:
-      MONGO_INITDB_DATABASE: katellea-test
+      MONGODB_DATABASE: katellea-test
 
   mongo-express:
     image: mongo-express

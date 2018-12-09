@@ -2,7 +2,7 @@
 /node_modules/
 conf/settings/settings-local.json
 src/cron/mobile-collects/*.json
-docker/opt/mongodb/db/*
+docker/*
 logs/*.log
 
 
