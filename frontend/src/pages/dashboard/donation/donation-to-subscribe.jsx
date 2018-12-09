@@ -21,7 +21,7 @@ export default class DonationToSubscribe extends Component {
   render() {
     const { donation } = this.props;
     const nbPollSuggestions = donation.pollSuggestions.length;
-    const isEstablishmentDonation = donation.isEstablishmentDonation();
+    const isEstablishmentDonation = donation.establishment !== undefined;
 
     return (
       <div className="donation-to-subscribe">
