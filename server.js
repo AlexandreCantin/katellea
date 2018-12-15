@@ -24,6 +24,7 @@ import contactRoutes from './src/routes/contact-routes';
 import notificationsRoutes from './src/routes/notifications-route';
 import mobileCollectsRoutes from './src/routes/mobile-collects-routes';
 import rootRoutes from './src/routes/react-proxy-routes';
+import grpdRoutes from './src/routes/grpd-routes';
 
 import UserStatisticsCron from './src/cron/user-stats.cron';
 import DonationDoneCron from './src/cron/donation-done.cron';
@@ -32,6 +33,7 @@ import BloodDonationEligibleCron from './src/cron/blood-donation-eligible.cron';
 import MobileCollectDownloadCron from './src/cron/mobile-collect-download.cron';
 import FirstDonationAdviceCron from './src/cron/first-donation-advice.cron';
 import { environment } from './conf/environment';
+import GRPDExportCron from './src/cron/grpd-export.cron';
 
 // INIT APP
 const app = express();
@@ -55,6 +57,7 @@ if (CRON.isMainLeader) {
   cron.schedule(CRON.bloodDonationEligibleCron, () => BloodDonationEligibleCron.run());
   cron.schedule(CRON.mobileCollectDownloadCron, () => MobileCollectDownloadCron.run());
   cron.schedule(CRON.firstDonationAdviceCron, () => FirstDonationAdviceCron.run());
+  cron.schedule(CRON.grpdExportCron, () => GRPDExportCron.run());
 }
 
 // MIDDLEWARES
@@ -78,6 +81,7 @@ app.use('/mobile-collect', mobileCollectsRoutes);
 app.use('/donation', donationRoutes);
 app.use('/statistics', statisticsRoutes);
 app.use('/notifications', notificationsRoutes);
+app.use('/grpd', grpdRoutes);
 app.use(contactRoutes);
 
 // Serve React build : Need to be last !

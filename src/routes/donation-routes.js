@@ -176,7 +176,7 @@ const updateDonation = async (req, res) => {
       // Warn attendees that the poll is closed
       const attendees = donation.pollAnswers.map(pa => pa.author).filter(id => id !== donation.createdBy);
       attendees.forEach(attendee => createNotification({
-        name: NOTIFICATION_TYPES.CLOSE_POLL_TO_YOUR_CURRENT_DONATION, forUser: attendee, date: new Date(), donationId: donation.id
+        name: NOTIFICATION_TYPES.CLOSE_POLL_TO_YOUR_CURRENT_DONATION, author: req.userId, forUser: attendee, date: new Date(), donationId: donation.id
       }));
     }
 
@@ -187,7 +187,7 @@ const updateDonation = async (req, res) => {
       // Warn attendees that the donation is scheduled
       const attendees = donation.pollAnswers.map(pa => pa.author).filter(id => id !== donation.createdBy);
       attendees.forEach(attendee => createNotification({
-        name: NOTIFICATION_TYPES.FINAL_DATE_TO_YOUR_CURRENT_DONATION, forUser: attendee, date: new Date(), donationId: donation.id
+        name: NOTIFICATION_TYPES.FINAL_DATE_TO_YOUR_CURRENT_DONATION, author: req.userId, forUser: attendee, date: new Date(), donationId: donation.id
       }));
     }
 

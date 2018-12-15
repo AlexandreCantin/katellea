@@ -42,6 +42,25 @@ class UserServiceFactory {
     store.dispatch({ type: FLASH_MESSAGE_ACTIONS.DELETE });
   }
 
+  // EXPORT DATA
+  callExportData(method) {
+    let url = `${environment.SERVER_URL}${environment.USER_ENDPOINT_GRPD_EXPORT}`;
+    let headers = getKatelleaTokenHeaders();
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url, { headers, method });
+      if (response.status === 200) {
+        resolve();
+        return;
+      }
+      reject();
+    });
+  }
+  isExportDataOnGoing() { return this.callExportData('GET'); }
+  askExportData() { return this.callExportData('POST'); }
+  cancelExportData() { return this.callExportData('DELETE'); }
+
+
   // ESTABLISHMENT
   addEstablishment(establishment) {
     let user = store.getState().user;

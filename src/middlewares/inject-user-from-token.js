@@ -7,7 +7,8 @@ export const injectUserFromToken = async (req, res, next) => {
   let methods = ['GET', 'POST', 'PUT', 'DELETE'];
 
   if(req.originalUrl === '/user') methods = ['PUT', 'DELETE'];
-  if(req.originalUrl.startsWith('/donation/token/')) methods = [];
+  else if(req.originalUrl.startsWith('/grpd/pdf/')) methods = [];
+  else if(req.originalUrl.startsWith('/donation/token/')) methods = [];
 
   if (methods.includes(req.method)) {
     let canContinue = false;

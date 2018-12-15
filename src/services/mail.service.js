@@ -98,4 +98,19 @@ export default class MailFactory {
     } catch(err) {/* Nothing to do */}
   }
 
+
+  static async sendGRPDMail(user, url) {
+    const subject = `Export de vos données personnelles`;
+
+    const htmlContent = await ejs.renderFile('./src/templates/emails/grpd-export-mail.ejs', {
+      user,
+      url,
+      FOOTER_TEAM
+    });
+
+    try {
+      SendgridService.sendMail({ subject, htmlContent, to: user.email });
+    } catch(err) {/* Nothing to do */}
+  }
+
 }

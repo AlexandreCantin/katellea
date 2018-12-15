@@ -38,7 +38,8 @@
     "donationDoneCRON": "0 * * * *",
     "bloodDonationEligibleCron": "0 * * * *",
     "firstDonationAdviceCron": "0 * * * *",
-    "mobileCollectDownloadCron": "0 10 * * *"
+    "mobileCollectDownloadCron": "0 10 * * *",
+    "grpdExportCron": "0 15 * * *"
   },
   "daysBeforeStatisticsAnalytics": 5,
   "weeksDelayBeforeEligibilty": 3,

@@ -50,4 +50,10 @@ export const NOTIFICATION_TYPES = {
   FIRST_DONATION_REMINDER: 'FIRST_DONATION_REMINDER',
 };
 
+export const GRPD_EXPORT_STATUS = {
+  ASKED: 'ASKED',
+  DONE: 'DONE',
+  CANCELED: 'CANCELED',
+};
+
 export const extractEnumValues = enumerate => Object.keys(enumerate).map(k => enumerate[k]);
