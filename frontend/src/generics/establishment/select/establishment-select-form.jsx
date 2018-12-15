@@ -8,6 +8,7 @@ import { EstablishmentService } from '../../../services/establishment/establishm
 import { Form, Field } from 'react-final-form';
 import Validators from '../../../services/forms/validators';
 import { validateForm } from '../../../services/forms/validate';
+import EstablishmentResult from './establishment-result';
 
 const FORM_RULES = {
   zipcode: [Validators.required(5), Validators.numeric(), Validators.minLength(5), Validators.maxLength(5)]
@@ -117,7 +118,7 @@ export default class EstablishmentSelectForm extends Component {
           {requestOccuring ? <Loader /> : null}
           {establishmentSuggestions.map(esta => (
             <div key={esta.id} className="suggestion">
-              <div>{esta.name} -- À environ {esta.distance} Km</div>
+              <div><EstablishmentResult establishment={esta} /></div>
               <button className="btn" key={esta.id} data-id={esta.id} onClick={this.emitEstablishment}>Sélectionner</button>
             </div>
           ))}
