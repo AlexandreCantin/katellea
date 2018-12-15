@@ -1,16 +1,20 @@
 import express from 'express';
 import dayjs from 'dayjs';
+import sanitize from 'sanitize-html';
+import * as Sentry from '@sentry/node';
 
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
-import User from '../models/user';
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, FORBIDDEN, BAD_REQUEST } from 'http-status-codes';
+
 import { DONATION_TYPE, DONATION_REST_WEEKS } from '../constants';
-import { generateRandomString } from '../helpers/string.helper';
+import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, FORBIDDEN, BAD_REQUEST } from 'http-status-codes';
+
+import User from '../models/user';
 import Donation from '../models/donation';
 import { canAccessDonation } from '../middlewares/can-access-donation';
-import { addWeeksToDate } from '../helpers/date.helper';
-import sanitize from 'sanitize-html';
 import logger from '../services/logger.service';
+
+import { generateRandomString } from '../helpers/string.helper';
+import { addWeeksToDate } from '../helpers/date.helper';
 
 
 const userRoutes = express.Router();
@@ -90,8 +94,9 @@ const createUser = async (req, res) => {
 
     return res.json(userCreated);
   } catch (err) {
-    logger.error(err.message);
-    res.status(UNAUTHORIZED).send();
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 
@@ -104,13 +109,14 @@ const updateNotificationReadDate = async (req, res) => {
 
     return res.status(OK).send();
   } catch (err) {
-    logger.error(err.message);
-    res.status(INTERNAL_SERVER_ERROR).send();
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 
 
-const updateUser = async (req, res, next) => {
+const updateUser = async (req, res) => {
 
   const user = new User();
   user.firstName = req.body.firstName || user.firstName;
@@ -178,8 +184,9 @@ const updateUser = async (req, res, next) => {
 
     return res.json(userUpdated);
   } catch (err) {
-    res.status(UNAUTHORIZED).send();
-    next(new Error(`Error when updating user : ${err}`));
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 
@@ -206,8 +213,9 @@ const deleteUser = async (req, res, next) => {
     await User.findOneAndUpdate({ _id: req.userId }, user);
     res.send('User deleted');
   } catch (err) {
-    res.status(UNAUTHORIZED).send();
-    next(new Error(`Error when deleting user : ${err}`));
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 

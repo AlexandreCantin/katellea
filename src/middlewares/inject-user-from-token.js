@@ -5,7 +5,8 @@ import User from '../models/user';
 export const injectUserFromToken = async (req, res, next) => {
 
   let methods = ['GET', 'POST', 'PUT', 'DELETE'];
-  if(req.baseUrl === '/user') methods = ['PUT', 'DELETE'];
+
+  if(req.originalUrl === '/user') methods = ['PUT', 'DELETE'];
   if(req.originalUrl.startsWith('/donation/token/')) methods = [];
 
   if (methods.includes(req.method)) {
