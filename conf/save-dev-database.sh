@@ -10,12 +10,24 @@ then
   DB='katellea'
 fi
 
+PORT=$2
+if [ -z $PORT ]
+then
+  PORT='27017'
+fi
+
+HOST=$3
+if [ -z $HOST ]
+then
+  HOST='127.0.0.1'
+fi
+
 SAVE_DIR=$DB-save
 
-COLLECTIONS=$(mongo localhost:27017/$DB --quiet --eval "db.getCollectionNames()" | sed 's/,/ /g')
+COLLECTIONS=$(mongo $HOST:$PORT/$DB --quiet --eval "db.getCollectionNames()" | sed 's/\[/ /g' | sed 's/\]/ /g' | sed 's/,/ /g' | sed 's/"/ /g')
 mkdir $SAVE_DIR
 
 for collection in $COLLECTIONS; do
     echo "Exporting $DB/$collection ..."
-    mongoexport -d $DB -c $collection -o $SAVE_DIR/$collection.json
+    mongoexport --forceTableScan -d $DB -c $collection -o $SAVE_DIR/$collection.json
 done
