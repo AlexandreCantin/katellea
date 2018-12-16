@@ -125,10 +125,10 @@ export default class PollForm extends Component {
                       )}
                     </Field>
 
-                    <Field name={name} type="radio" value={POLL_ANSWERS.NO}>
+                    <Field name={name} type="radio" value={POLL_ANSWERS.MAYBE}>
                       {({ input }) => (
                         <div>
-                          <input id={maybeLabel} name={name} type="radio" value={POLL_ANSWERS.MAYBE} />
+                          <input {...input} id={maybeLabel} name={name} type="radio" value={POLL_ANSWERS.MAYBE} />
                           <label htmlFor={maybeLabel}>Peut-être</label>
                         </div>
                       )}
