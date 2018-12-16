@@ -167,14 +167,17 @@ const updateDonation = async (req, res) => {
     donation.finalAttendees = req.body.finalAttendees || donation.finalAttendees;
   }
 
+  if (isPollClosing) donation.events.push({ name: DONATION_EVENTS.CLOSE_POLL, author: req.userId, date: new Date() });
+  if (isAddingDefinitiveDate) {
+    donation.events.push({ name: DONATION_EVENTS.SCHEDULE_DONATION, author: req.userId, date: new Date(), data: { date: donation.finalDate } });
+  }
+
   try {
     await donation.save();
     const donationUpdated = await getDonationById(req.params.donationId);
 
-    // Handle notification, emails and events
+    // Handle notification and emails
     if (isPollClosing) {
-      donation.events.push({ name: DONATION_EVENTS.CLOSE_POLL, author: req.userId, date: new Date() });
-
       // Warn attendees that the poll is closed
       const attendees = donation.pollAnswers.map(pa => pa.author).filter(id => id !== donation.createdBy);
       attendees.forEach(attendee => createNotification({
@@ -183,7 +186,6 @@ const updateDonation = async (req, res) => {
     }
 
     if (isAddingDefinitiveDate) {
-      donation.events.push({ name: DONATION_EVENTS.SCHEDULE_DONATION, author: req.userId, date: new Date() });
       MailFactory.sendAttendeeMail(donationUpdated);
 
       // Warn attendees that the donation is scheduled
