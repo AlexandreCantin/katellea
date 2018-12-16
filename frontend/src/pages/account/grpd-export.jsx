@@ -85,7 +85,7 @@ export default class GRPDExport extends Component {
     const { loading, exportOnGoing } = this.state;
 
     return (
-      <div id="rgpd-export" className="form block-base">
+      <div id="grpd-export" className="form block-base">
         <div className="fieldset">
           <div className="legend">Export de vos données</div>
 
