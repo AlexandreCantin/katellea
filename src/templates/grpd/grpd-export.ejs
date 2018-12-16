@@ -1,0 +1,298 @@
+<div style="font-size: 16px">
+  <div style="text-align:center">
+    <h1>Export des données de l'utilisateur : <%= user.firstName %><%= user.lastName %></h1>
+  </div>
+
+  <h2>Votre compte</h2>
+  <ul>
+    <li><strong>Prenom: </strong><%= user.firstName %></li>
+    <li><strong>Nom: </strong><%= user.lastName %></li>
+    <li><strong>Date de création du compte: </strong><%= dateFormatDayMonthYearHourMinutSecond(user.createdAt) %></li>
+    <li><strong>Date de dernière modification du compte: </strong><%= dateFormatDayMonthYearHourMinutSecond(user.updatedAt) %></li>
+    <li>
+      <strong>Sexe: </strong>
+      <% if(user.gender == 'FEMALE') { %>Femme<% } %>
+      <% if(user.gender == 'MALE') { %>Homme<% } %>
+      <% if(user.gender == 'UNKNOWN') { %>Inconnu<% } %>
+    </li>
+
+    <% if(user.lastDonationDate) { %><li><strong>Date du dernier don: </strong><%= user.lastDonationDate %></li><% } %>
+    <% if(user.minimumDate) { %><li><strong>Date avant le prochain don: </strong><%= user.minimumDate %></li><% } %>
+
+    <% if(user.lastDonationType) { %>
+      <li>
+        <strong>Type du dernier don: </strong>
+        <% if(user.lastDonationType == 'BLOOD') { %>Sang<% } %>
+        <% if(user.lastDonationType == 'PLASMA') { %>Plasma<% } %>
+        <% if(user.lastDonationType == 'PLATELET') { %>Plaquettes<% } %>
+        <% if(user.lastDonationType == 'NONE') { %>Pas de préférence<% } %>
+      </li>
+    <% } %>
+
+    <% if(user.donationPreference) { %>
+      <li>
+        <strong>Préférence en terme de don: </strong>
+        <% if(user.lastDonationType == 'BLOOD') { %>Sang<% } %>
+        <% if(user.lastDonationType == 'PLASMA') { %>Plasma<% } %>
+        <% if(user.lastDonationType == 'PLATELET') { %>Plaquettes<% } %>
+        <% if(user.lastDonationType == 'NONE') { %>Pas de préférence<% } %>
+      </li>
+    <% } %>
+
+    <% if(user.bloodType) { %>
+      <li>
+        <strong>Groupe sanguin: </strong>
+        <% if(user.bloodType == 'UNKNOWN') { %>Inconnu<% } %>
+        <% if(user.bloodType == 'A+') { %>A+<% } %>
+        <% if(user.bloodType == 'A-') { %>A-<% } %>
+        <% if(user.bloodType == 'B+') { %>B+<% } %>
+        <% if(user.bloodType == 'B-') { %>B-<% } %>
+        <% if(user.bloodType == 'AB+') { %>AB+<% } %>
+        <% if(user.bloodType == 'AB-') { %>AB-<% } %>
+        <% if(user.bloodType == 'O+') { %>O+<% } %>
+        <% if(user.bloodType == 'O-') { %>O-<% } %>
+      </li>
+    <% } %>
+
+    <% if(user.sponsorToken) { %>
+      <li>
+        <strong>Jeton de parrainage: <%= user.sponsorToken %></strong>
+      </li>
+    <% } %>
+
+    <% if(user.plateletActive) { %><li><strong>Don de plaquettes activé</strong></li><% } %>
+    <% if(!user.plateletActive) { %><li><strong>Don de plaquettes non activé</strong></li><% } %>
+
+
+    <li><strong>Nombre de dons du sang: <%= user.bloodDonationDone %></strong></li>
+    <li><strong>Nombre de dons de plasma: <%= user.plasmaDonationDone %></strong></li>
+    <li><strong>Nombre de dons de plaquettes: <%= user.plateletDonationDone %></strong></li>
+
+    <li><strong>Date de la dernière lecture des notifications : <%= dateFormatDayMonthYearHourMinutSecond(user.lastNotificationReadDate) %></strong></li>
+  </ul>
+
+  <h3>Votre établissement EFS de rattachement</h3>
+  <% if (!user.establishment) { %>Pas d'établissement de rattachement<% } %>
+
+  <% if (user.establishment) { %>
+    <ul>
+      <li><strong>Nom: </strong><%= user.establishment.name %></li>
+      <li><strong>Adresse: </strong><%= user.establishment.address %></li>
+    </ul>
+  <% } %>
+
+
+  <h3>Votre parrain</h3>
+  <% if (!user.sponsor) { %>Pas de parrain<% } %>
+
+  <% if (user.sponsor) { %>
+    <ul>
+      <li><strong>Prénom: </strong><%= user.sponsor.firstName %></li>
+      <li><strong>Nom: </strong><%= user.sponsor.lastName %></li>
+    </ul>
+  <% } %>
+
+
+  <h3>Proposition de don en cours</h3>
+  <% if (!user.currentDonation) { %>Pas d'établissement de rattachement<% } %>
+
+  <% if(user.currentDonation) { %>
+    <h4>Description du don</h4>
+    <ul>
+      <li>
+        <strong>Créé le</strong> <%= dateFormatDayMonthYearHourMinutSecond(user.currentDonation.createdAt) %> <strong>par</strong> <%= user.currentDonation.createdBy.firstName %> <%= user.currentDonation.createdBy.lastName %>
+      </li>
+      <li>
+        <strong>À : </strong>
+        <% if (user.currentDonation.mobileCollect) { %><%= user.currentDonation.mobileCollect %><% } %>
+        <% if (user.currentDonation.establishment) { %>
+          <ul>
+            <li><strong>Nom: </strong><%= user.currentDonation.establishment.name %></li>
+            <li><strong>Adresse: </strong><%= user.currentDonation.establishment.address %></li>
+          </ul>
+        <% } %>
+      </li>
+
+      <li>
+        <strong>Date finale:</strong>
+        <% if (!user.currentDonation.finalDate) { %>Pas encore décidée<% } %>
+        <% if (user.currentDonation.finalDate) { %><%= dateFormatDayMonthYearHourMinutSecond(user.currentDonation.finalDate) %><% } %>
+      </li>
+    </ul>
+
+    <h4>Vos réponses au sondage</h4>
+    <% if (!user.currentDonation.pollAnswers.length == 0) { %>Vous n'avez pas encore répondu à ce sondage<% } %>
+
+    <% if (user.currentDonation.pollAnswers != 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Proposition</th>
+            <th>Votre réponse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < user.currentDonation.pollSuggestions.length; i++) { %>
+            <tr>
+              <% if(user.currentDonation.establishment != null) { %>
+                <td>
+                  Le: <%= dateFormatDayMonthYear(user.currentDonation.pollSuggestions[i].date) %>,
+                  <% if (user.currentDonation.pollSuggestions[i].dayPart == 'DAY') { %>toute la journée<% } %>
+                  <% if (user.currentDonation.pollSuggestions[i].dayPart == 'MORNING') { %> le matin<% } %>
+                  <% if (user.currentDonation.pollSuggestions[i].dayPart == 'AFTERNOON') { %> l'après-midi<% } %>
+                </td>
+              <% } else { %>
+                <td>Heure: <%= user.currentDonation.pollSuggestions[i].hour %></td>
+              <% } %>
+
+              <td>
+                <% if (user.currentDonation.pollAnswers[0].answers[i] == 'YES') { %>Oui<% } %>
+                <% if (user.currentDonation.pollAnswers[0].answers[i] == 'NO') { %>Non<% } %>
+                <% if (user.currentDonation.pollAnswers[0].answers[i] == 'MAYBE') { %>Peut-être<% } %>
+              </td>
+            </tr>
+          <% } %>
+
+        </tbody>
+      </table>
+    <% } %>
+
+    <h4>Vos actions et commentaires</h4>
+    <% if (user.currentDonation.events.length == 0) { %>Pas d'actions répertoriées<% } %>
+
+    <% if (user.currentDonation.events.length != 0) { %>
+      <ul>
+      <% for (var i=0; i < user.currentDonation.events.length; i++) { %>
+        <li>
+          <%= dateFormatDayMonthYear(user.currentDonation.events[i].date) %>: 
+          <% if (user.currentDonation.events[i].name == 'CREATE_DONATION') { %> Proposition de don créé<% } %>
+          <% if (user.currentDonation.events[i].name == 'ADD_POLL_ANSWER') { %> Réponse au sondage<% } %>
+          <% if (user.currentDonation.events[i].name == 'UPDATE_POLL_ANSWER') { %> Modification des réponses au sondage<% } %>
+          <% if (user.currentDonation.events[i].name == 'CLOSE_POLL') { %> Fermeture du sandage<% } %>
+          <% if (user.currentDonation.events[i].name == 'CREATE_NEW_POLL') { %> Création d'un nouveau sondage<% } %>
+          <% if (user.currentDonation.events[i].name == 'SCHEDULE_DONATION') { %> Ajout de la date et des participants finals du don<% } %>
+          <% if (user.currentDonation.events[i].name == 'ADD_COMMENT') { %>
+            Ajout d'un commentaire => "<%= user.currentDonation.events[i].comment %>"
+            <% if(user.currentDonation.events[i].updated) { %><em>(Commentaire modifié)</em><% } %>
+          <% } %>
+          <% if (user.currentDonation.events[i].name == 'QUIT') { %> A quitté le don<% } %>
+        </li>
+      <% } %>
+      </ul>
+    <% } %>
+
+  <% } %>
+
+
+  <h2>Historique de dons</h2>
+  <% if(donationsHistory.length == 0) { %>Aucun historique de don<% } %>
+
+  <% if(donationsHistory.length != 0) { %>
+    <% for(var i=0; i < donationHistory; i++) { %>
+
+      <h3>Description du don</h3>
+      <ul>
+        <li>
+          <strong>Créé le</strong> <%= dateFormatDayMonthYearHourMinutSecond(donationHistory[i].createdAt) %> <strong>par</strong> <%= donationHistory[i].createdBy.firstName %> <%= donationHistory[i].createdBy.lastName %>
+        </li>
+        <li>
+          <strong>À : </strong>
+          <% if (donationHistory[i].mobileCollect) { %><%= donationHistory[i].mobileCollect %><% } %>
+          <% if (donationHistory[i].establishment) { %>
+            <ul>
+              <li><strong>Nom: </strong><%= donationHistory[i].establishment.name %></li>
+              <li><strong>Adresse: </strong><%= donationHistory[i].establishment.address %></li>
+            </ul>
+          <% } %>
+        </li>
+
+        <li>
+          <strong>Date finale:</strong>
+          <% if (!donationHistory[i].finalDate) { %>Pas encore décidée<% } %>
+          <% if (donationHistory[i].finalDate) { %><%= dateFormatDayMonthYearHourMinutSecond(donationHistory[i].finalDate) %><% } %>
+        </li>
+      </ul>
+
+      <h4>Vos réponses au sondage</h4>
+      <% if (!donationHistory[i].pollAnswers.length == 0) { %>Vous n'avez pas encore répondu à ce sondage<% } %>
+
+      <% if (donationHistory[i].pollAnswers != 0) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Proposition</th>
+              <th>Votre réponse</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var j=0; j < donationHistory[i].pollSuggestions.length; j++) { %>
+              <tr>
+                <% if(donationHistory[i].establishment != null) { %>
+                  <td>
+                    Le: <%= dateFormatDayMonthYear(donationHistory[i].pollSuggestions[j].date) %>,
+                    <% if (donationHistory[i].pollSuggestions[j].dayPart == 'DAY') { %>toute la journée<% } %>
+                    <% if (donationHistory[i].pollSuggestions[j].dayPart == 'MORNING') { %> le matin<% } %>
+                    <% if (donationHistory[i].pollSuggestions[j].dayPart == 'AFTERNOON') { %> l'après-midi<% } %>
+                  </td>
+                <% } else { %>
+                  <td>Heure: <%= donationHistory[i].pollSuggestions[j].hour %></td>
+                <% } %>
+
+                <td>
+                  <% if (donationHistory[i].pollAnswers[0].answers[j] == 'YES') { %>Oui<% } %>
+                  <% if (donationHistory[i].pollAnswers[0].answers[j] == 'NO') { %>Non<% } %>
+                  <% if (donationHistory[i].pollAnswers[0].answers[j] == 'MAYBE') { %>Peut-être<% } %>
+                </td>
+              </tr>
+            <% } %>
+
+          </tbody>
+        </table>
+      <% } %>
+
+      <h4>Vos actions et commentaires</h4>
+      <% if (donationHistory[i].events.length == 0) { %>Pas d'actions répertoriées<% } %>
+
+      <% if (donationHistory[i].events.length != 0) { %>
+        <ul>
+        <% for (var j=0; j < donationHistory[i].events.length; j++) { %>
+          <li>
+          <%= dateFormatDayMonthYearHourMinutSecond(donationHistory[i].events[j].date) %>:
+            <% if (donationHistory[i].events[j].name == 'CREATE_DONATION') { %> Proposition de don créé<% } %>
+            <% if (donationHistory[i].events[j].name == 'ADD_POLL_ANSWER') { %> Réponse au sondage<% } %>
+            <% if (donationHistory[i].events[j].name == 'UPDATE_POLL_ANSWER') { %> Modification des réponses au sondage<% } %>
+            <% if (donationHistory[i].events[j].name == 'CLOSE_POLL') { %> Fermeture du sandage<% } %>
+            <% if (donationHistory[i].events[j].name == 'CREATE_NEW_POLL') { %> Création d'un nouveau sondage<% } %>
+            <% if (donationHistory[i].events[j].name == 'SCHEDULE_DONATION') { %> Ajout de la date et des participants finals du don<% } %>
+            <% if (donationHistory[i].events[j].name == 'ADD_COMMENT') { %>
+              Ajout d'un commentaire => "<%= donationHistory[i].events[j].comment %>"
+              <% if(donationHistory[i].events[j].updated) { %><em>(Commentaire modifié)</em><% } %>
+            <% } %>
+            <% if (donationHistory[i].events[j].name == 'QUIT') { %> A quitté le don<% } %>
+          </li>
+        <% } %>
+        </ul>
+      <% } %>
+
+    <% } %>
+
+  <% } %>
+
+
+  <h2>Demandes d'export</h2>
+
+  <% for(var i=0; i < userGrpdExports.length; i++) { %>
+    <div>
+      <h3>Demande faite le : <%= dateFormatDayMonthYearHourMinutSecond(userGrpdExports[i].createdAt) %></h3>
+      <ul>
+        <li>
+          <strong>Statut :</strong>
+          <% if(userGrpdExports[i].status == 'ASKED') { %>En cours<% } %>
+          <% if(userGrpdExports[i].status == 'CANCELED') { %>Annulé<% } %>
+          <% if(userGrpdExports[i].status == 'DONE') { %>Envoyé<% } %>
+        </li>
+      </ul>
+      <hr/>
+    <div>
+  <% } %>
+</div>

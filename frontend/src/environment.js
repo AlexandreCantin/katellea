@@ -30,6 +30,7 @@ export const environmentValues = {
   USER_ENDPOINT_FACEBOOK_TOKEN: '/facebook-connect/',
   USER_ENDPOINT_LOGOUT: '/logout',
   USER_UPDATE_LAST_NOTIFICATION_READ_DATE: '/user/update-notification-read-date',
+  USER_ENDPOINT_GRPD_EXPORT: '/grpd/',
 
   NOTIFICATIONS_ENDPOINT: '/notifications',
 

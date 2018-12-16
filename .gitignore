@@ -4,6 +4,7 @@ conf/settings/settings-local.json
 src/cron/mobile-collects/*.json
 docker/*
 logs/*.log
+src/pdf/*
 
 
 # Preact-frontend

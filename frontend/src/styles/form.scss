@@ -2,11 +2,21 @@
 
 .form {
 
-  fieldset {
+  fieldset, .fieldset {
     padding: 30px;
-    legend {
+    border: 2px groove threedface;
+    legend, .legend {
       font-size: 1.5em;
       padding: 0 20px;
+    }
+  }
+  .fieldset {
+    padding-top: 0;
+    .legend {
+      position: relative;
+      top: -15px;
+      background: white;
+      display: inline-block;
     }
   }
   .form-line {

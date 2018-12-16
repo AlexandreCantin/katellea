@@ -12,6 +12,7 @@ import ActivePlateletForm from './activate-platelet-form';
 import HeaderUser from '../../generics/header/user/header-user';
 import Breadcrumb from '../../generics/breadcrumb/breadcrumb';
 import EscapeLinks from '../../generics/escape-links/escape-links';
+import GRPDExport from './grpd-export';
 
 require('./account.scss');
 
@@ -51,6 +52,7 @@ export default class Account extends Component {
             <UpdateAccountForm />
             <ActivePlateletForm />
             <DeleteAccountForm />
+            <GRPDExport />
           </div>
         </main>
       </div>
