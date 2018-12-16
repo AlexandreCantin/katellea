@@ -83,5 +83,6 @@ DonationSchema.methods.notifyCreator = function(notificationType, authorId) {
 const Donation = mongoose.model('Donation', DonationSchema);
 
 Donation.publicFieldsAsArray = ['createdAt', 'createdBy', 'establishment', 'mobileCollect', 'donationType', 'donationToken', 'pollSuggestions'];
+Donation.historyFieldsAsArray = ['createdAt', 'createdBy', 'establishment', 'mobileCollect', 'donationType', 'finalDate'];
 
 export default Donation;

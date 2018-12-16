@@ -68,7 +68,7 @@ const getDonationHistory = async (req, res) => {
   const donations = await Donation.find({
     status: { $in: [DONATION_STATUS.DONE, DONATION_STATUS.STATISTICS] },
     finalAttendees: req.userId
-  }, Donation.publicFieldsAsArray)
+  }, Donation.historyFieldsAsArray)
     .populate({ path: 'establishment', model: 'Establishment' })
     .populate({ path: 'createdBy', model: 'User', select: User.publicFieldsWithToken });
 
