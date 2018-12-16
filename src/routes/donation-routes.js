@@ -1,5 +1,6 @@
 import express from 'express';
 import dayjs from 'dayjs';
+import * as Sentry from '@sentry/node';
 
 import Donation from '../models/donation';
 import User from '../models/user';
@@ -128,8 +129,9 @@ const createDonation = async (req, res) => {
 
     return res.json(donationCreated);
   } catch (err) {
-    logger.error(err.message);
-    res.status(INTERNAL_SERVER_ERROR).send();
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 
 };
@@ -193,8 +195,9 @@ const updateDonation = async (req, res) => {
 
     return res.json(donationUpdated);
   } catch (err) {
-    logger.error(err.message);
-    res.status(INTERNAL_SERVER_ERROR).send();
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 
@@ -220,8 +223,9 @@ const addQuitUserEvent = async (req, res) => {
 
     return res.json(donationUpdated);
   } catch (err) {
-    logger.error(err.message);
-    res.status(INTERNAL_SERVER_ERROR).send();
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 
@@ -257,8 +261,9 @@ const createPollAnswer = async (req, res) => {
     const donationUpdated = await getDonationById(req.params.donationId);
     return res.json(donationUpdated);
   } catch (err) {
-    logger.error(err.message);
-    res.status(INTERNAL_SERVER_ERROR).send();
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 
@@ -301,8 +306,9 @@ const updatePollAnswer = async (req, res) => {
 
     return res.json(donationUpdated);
   } catch (err) {
-    logger.error(err.message);
-    res.status(INTERNAL_SERVER_ERROR).send();
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 
@@ -326,8 +332,9 @@ const addComment = async (req, res) => {
     const donationUpdated = await getDonationById(req.params.donationId);
     return res.json(donationUpdated);
   } catch (err) {
-    logger.error(err.message);
-    res.status(INTERNAL_SERVER_ERROR).send();
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 
@@ -357,8 +364,9 @@ const updateComment = async (req, res) => {
     const donationUpdated = await getDonationById(req.params.donationId);
     return res.json(donationUpdated);
   } catch (err) {
-    logger.error(err.message);
-    res.status(INTERNAL_SERVER_ERROR).send();
+    Sentry.captureException(err);
+    logger.error(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
 
