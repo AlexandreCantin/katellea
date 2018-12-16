@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --config ./jest.config.json --forceExit --verbose false",
-    "e2e": "docker-compose -f e2e-docker-compose.yml up",
-    "e2e-with-rebuild": "docker-compose -f e2e-docker-compose.yml up --build",
+    "e2e": "sudo docker-compose -f e2e-docker-compose.yml up",
+    "e2e-with-rebuild": "sudo docker-compose -f e2e-docker-compose.yml up --build",
     "start": "NODE_ENV=development nodemon index.js --ignore '/src/cron/mobile-collects/*.json' --ignore '/frontend/*'",
     "prod-start": "NODE_ENV=production node index.js",
     "inspect": "nodemon --inspect index.js",
