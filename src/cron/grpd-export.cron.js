@@ -76,7 +76,7 @@ export default class GRPDExportCron {
         // Create html content ans PDF file
         try {
 
-          let htmlContent = await ejs.renderFile('./src/templates/grpd/grpd-export.ejs', {
+          const htmlContent = await ejs.renderFile('./src/templates/grpd/grpd-export.ejs', {
             user,
             donationsHistory,
             userGrpdExports,
@@ -93,7 +93,6 @@ export default class GRPDExportCron {
         } catch(err) {
           Sentry.captureException(err);
           logger.error(err);
-          console.log(err);
           return;
         }
 

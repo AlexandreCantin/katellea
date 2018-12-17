@@ -25,7 +25,7 @@
     "keyword-spacing": 0,
     "brace-style": [2, "1tbs", { "allowSingleLine": true }],
     "comma-dangle": ["error", "only-multiline"],
-    "max-len": ["error", { "code": 150 }],
+    "max-len": ["error", { "code": 200 }],
     "object-curly-spacing": ["error", "always"],
     "padded-blocks": ["error", { "classes": "always" }],
     "arrow-parens": ["error", "as-needed"],

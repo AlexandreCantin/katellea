@@ -1,11 +1,7 @@
 import express from 'express';
 import path from 'path';
-
 import { NOT_FOUND, UNAUTHORIZED, INTERNAL_SERVER_ERROR } from 'http-status-codes';
 import * as Sentry from '@sentry/node';
-
-
-
 
 import { GRPD_EXPORT_STATUS } from '../constants';
 import logger from '../services/logger.service';
@@ -13,7 +9,6 @@ import GRPDExport from '../models/grpd-export';
 
 import { generateRandomString } from '../helpers/string.helper';
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
-
 
 
 const grpdRoutes = express.Router();

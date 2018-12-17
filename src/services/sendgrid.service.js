@@ -50,6 +50,7 @@ class SendgridServiceFactory {
       }
     });
   }
+
 }
 
 // Export as singleton
