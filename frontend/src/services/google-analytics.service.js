@@ -19,7 +19,7 @@ class GoogleAnalyticsServiceFactory {
 
   initGoogleAnalytics() {
     if (environment.GA_ID && environment.GA_ID !== '') {
-      ReactGA.initialize(environment.GA_ID);
+      ReactGA.initialize(environment.GA_ID, { gaOptions: { cookieExpires: 31536000 }});
 
       window.ga('create', environment.GA_ID, 'auto');
       // Anonymous mode if user not accept RGPD : https://developers.google.com/analytics/devguides/collection/analyticsjs/ip-anonymization
