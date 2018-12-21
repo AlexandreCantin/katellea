@@ -19,6 +19,7 @@ import { validateForm } from '../../services/forms/validate';
 import { Form, Field } from 'react-final-form';
 import Validators from '../../services/forms/validators';
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+import CollapseAlert from '../../generics/collapse-alert';
 
 require('./register.scss');
 
@@ -85,6 +86,7 @@ export default class Register extends Component {
       let donationToken = this.state.donation ? this.state.donation.donationToken : '';
 
       // Create form
+      console.log(userTempProfile)
       this.setState({
         showForm: true,
         initValues: {
@@ -137,6 +139,27 @@ export default class Register extends Component {
         initialValues={this.state.initValues}
         render={({ handleSubmit, invalid }) => (
           <form onSubmit={handleSubmit} className="form">
+
+            <Field name="gender" component="select">
+              {({ input, meta }) => (
+                <div className="form-line clearfix">
+                  <label htmlFor="gende">Sexe<span>*</span></label>
+                  <select {...input} id="gender" name="gender">
+                    <option value="FEMALE">Femme</option>
+                    <option value="UNKNOWN">Ne pas communiquer</option>
+                    <option value="MALE">Homme</option>
+                  </select>
+                </div>
+              )}
+            </Field>
+
+            <CollapseAlert
+              label="Pourquoi avons-nous besoin de cette information ?"
+              text="
+                Le nombre de dons du sang maximal par an n'est pas le même pour les femmes et les hommes (respectivement 4 et 6).
+                Cette information nous permet ainsi de gérer cela. En son absence, nous prendrons 6 dons par an."
+            />
+
             <Field name="gender">{({ input }) => (<input {...input} type="hidden" name="gender" />)}</Field>
             <Field name="sponsoredByToken">{({ input }) => (<input {...input} type="hidden" name="sponsoredByToken" />)}</Field>
             <Field name="donationToken">{({ input }) => (<input {...input} type="hidden" name="donationToken" />)}</Field>

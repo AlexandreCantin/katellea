@@ -67,3 +67,15 @@
   color: white;
   border: none;
 }
+
+.collapse-alert {
+  font-size: .85em;
+  > button {
+    text-decoration: underline;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  > div { padding: 10px; }
+}
