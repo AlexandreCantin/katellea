@@ -247,6 +247,8 @@ export default class Register extends Component {
 
           {/* #Beta => error message + limiting form display*/}
           {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain pour créer un nouveau compte</div> : showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
+          <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la Loire-Atlantique uniquement</div>
+
           {showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
         </div>
       </main>
