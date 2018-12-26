@@ -11,12 +11,12 @@ import { wellFormedPollAnswers, notifyCreatorNetwork } from '../helpers/donation
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
 import { canAccessDonation, canEditAsCreator, isUserCurrentDonation } from '../middlewares/can-access-donation';
 import { INTERNAL_SERVER_ERROR, BAD_REQUEST, NOT_FOUND, UNAUTHORIZED, OK } from 'http-status-codes';
-import { generateRandomString } from '../helpers/string.helper';
 import { getSmallNetworkIds, getCloseNetworkIds } from '../helpers/user.helper';
 import MailFactory from '../services/mail.service';
 import { createNotification } from '../helpers/notification.helper';
 import sanitize from 'sanitize-html';
 import logger from '../services/logger.service';
+import { DonationService } from '../services/donation.service';
 
 
 const donationRoutes = express.Router();
@@ -108,7 +108,7 @@ const createDonation = async (req, res) => {
   donation.establishment = req.body.establishmentId;
   donation.donationType = req.body.donationType;
   donation.pollSuggestions = req.body.pollSuggestions;
-  donation.donationToken = generateRandomString(15); // TODO: check if donationToken not already in use
+  donation.donationToken = await DonationService.generateUniqueToken();
   donation.createdBy = req.userId;
 
   // Add CREATE event
