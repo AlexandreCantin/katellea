@@ -97,7 +97,7 @@ export default class PromotionContainer extends Component {
       <div id="promotion-item" className="block-base">
         <h2>Parrainez vos amis !</h2>
 
-        {sponsor ? <div className="alert info">Votre parrain : {sponsor.firstName} {sponsor.lastName}</div> : null}
+        {sponsor ? <div className="alert info">Votre parrain/marraine : {sponsor.firstName} {sponsor.lastName}</div> : null}
 
         <div>
           <p>

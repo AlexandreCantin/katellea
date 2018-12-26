@@ -7,6 +7,7 @@ import { FlashMessageService } from '../services/flash-message/flash-message.ser
 import store from '../services/store';
 import { getSponsorAndDonationFromUrl } from '../services/token.service';
 import { DonationService } from '../services/donation/donation.service';
+import { isEmpty } from '../services/helper';
 
 class TokenRoute extends Component {
   constructor(props) {
@@ -52,25 +53,28 @@ class TokenRoute extends Component {
     navigate(url);
   }
 
-  async getDerivedStateFromProps() {
+  static async getDerivedStateFromProps(newProps, currentState) {
     // We get user from getKatelleaUserWithReminder()
     let user = store.getState().user;
+    if(isEmpty(user)) return;
+
+    const sponsor = currentState.sponsor || {};
 
     // Donation token & user don't have current donation
-    if (this.state.donation && user.hasCurrentDonation()) {
-      FlashMessageService.createError('Vous avez déjà une propostion de don en cours.', 'dashboard');
+    if (currentState.donation && user.hasCurrentDonation()) {
+      FlashMessageService.createError('Vous avez déjà une proposition de don en cours.', 'dashboard');
       navigate('/tableau-de-bord');
       return;
     }
 
-    if (this.state.donation && !user.hasCurrentDonation()) {
-      let canAccess = await DonationService.canAccessDonationByToken(this.state.donation.donationToken);
+    if (currentState.donation && !user.hasCurrentDonation()) {
+      let canAccess = await DonationService.canAccessDonationByToken(currentState.donation.donationToken);
 
       if (!canAccess) {
         // No sponsor => add sponsor
         if (user.sponsor === undefined) {
           // Note: then we return to componentWillReceiveProps() method
-          UserService.updateUser({}, this.state.sponsor.sponsorToken);
+          UserService.updateUser({}, sponsor.sponsorToken);
         } else {
           // Already sponsored...
           // TODO: One day ? Allow after all ?
@@ -79,8 +83,8 @@ class TokenRoute extends Component {
           return;
         }
       } else {
-        UserService.updateUser({ currentDonation: this.state.donation._id });
-        DonationService.getCurrentDonation(this.state.donation._id);
+        UserService.updateUser({ currentDonation: currentState.donation._id });
+        DonationService.getCurrentDonation(currentState.donation._id);
         FlashMessageService.createSuccess('Félicitations, vous venez de rejoindre cette proposition de don !', 'current-donation');
         navigate('/don-courant');
         return;
@@ -88,24 +92,24 @@ class TokenRoute extends Component {
     }
 
     // User has already a sponsor => dashboard + error
-    if (this.state.sponsor.sponsorToken && user.sponsor) {
+    if (sponsor.sponsorToken && user.sponsor) {
       // TODO: one day, multi-sponsor ?
-      FlashMessageService.createError('Vous avez déjà un parrain', 'dashboard');
+      FlashMessageService.createError('Vous avez déjà un parrain/marraine', 'dashboard');
       navigate('/tableau-de-bord');
       return;
     }
 
     // User can't be his own sponsor...
-    if (this.state.sponsor.id && user.id) {
-      FlashMessageService.createError('Vous ne pouvez pas devenir votre propre parrain !', 'dashboard');
+    if (sponsor.id && user.id) {
+      FlashMessageService.createError('Vous ne pouvez pas devenir votre propre parrain/marraine !', 'dashboard');
       navigate('/tableau-de-bord');
       return;
     }
 
     // User don't have a sponsor => add it
-    if (this.state.sponsor && !user.sponsor) {
-      UserService.updateUser({}, this.state.sponsor.sponsorToken);
-      FlashMessageService.createSuccess(`Félicitations, ${this.state.sponsor.firstName} ${this.state.sponsor.lastName} est devenu votre parrain !`, 'dashboard');
+    if (sponsor && !user.sponsor) {
+      UserService.updateUser({}, sponsor.sponsorToken);
+      FlashMessageService.createSuccess(`Félicitations, ${sponsor.firstName} ${sponsor.lastName} est devenu votre parrain/marraine !`, 'dashboard');
       navigate('/tableau-de-bord');
       return;
     }

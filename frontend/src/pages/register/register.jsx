@@ -86,7 +86,6 @@ export default class Register extends Component {
       let donationToken = this.state.donation ? this.state.donation.donationToken : '';
 
       // Create form
-      console.log(userTempProfile)
       this.setState({
         showForm: true,
         initValues: {
@@ -145,9 +144,9 @@ export default class Register extends Component {
                 <div className="form-line clearfix">
                   <label htmlFor="gende">Sexe<span>*</span></label>
                   <select {...input} id="gender" name="gender">
+                    <option value="MALE">Homme</option>
                     <option value="FEMALE">Femme</option>
                     <option value="UNKNOWN">Ne pas communiquer</option>
-                    <option value="MALE">Homme</option>
                   </select>
                 </div>
               )}
@@ -246,10 +245,8 @@ export default class Register extends Component {
           {sponsorUser ? <SponsorCard user={sponsorUser} /> : null}
 
           {/* #Beta => error message + limiting form display*/}
-          {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain pour créer un nouveau compte</div> : showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
           <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la Loire-Atlantique uniquement</div>
-
-          {showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
+          {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain/marraine pour créer un nouveau compte</div> : showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
         </div>
       </main>
     );

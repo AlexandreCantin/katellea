@@ -13,8 +13,8 @@ import Donation from '../models/donation';
 import { canAccessDonation } from '../middlewares/can-access-donation';
 import logger from '../services/logger.service';
 
-import { generateRandomString } from '../helpers/string.helper';
 import { addWeeksToDate } from '../helpers/date.helper';
+import { UserService } from '../services/user.service';
 
 
 const userRoutes = express.Router();
@@ -74,7 +74,7 @@ const createUser = async (req, res) => {
   user.firstVisit = true;
   user.minimumDate = new Date();
   user.lastNotificationReadDate = new Date();
-  user.sponsorToken = generateRandomString(); // TODO: check if sponsorToken not already in use
+  user.sponsorToken = await UserService.generateUniqueToken();
   user.sponsor = sponsorId ? sponsorId : undefined;
   user.currentDonation = currentDonationId ? currentDonationId : undefined;
 

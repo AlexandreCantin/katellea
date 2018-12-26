@@ -1,10 +1,10 @@
 import React from 'react';
 
 const DIRECTION = {
-  BOTH: { img: 'both.png', alt: 'Vous pouvez à la fois donner et recevoir du sang de votre parrain. Cool !' },
-  LEFT: { img: 'left.png', alt: 'Vous pouvez recevoir du sang de votre parrain mais pas inversement.' },
-  RIGHT: { img: 'right.png', alt: 'Vous pouvez donner votre sang à votre parrain mais pas inversement.' },
-  NO: { img: 'no.png', alt: 'Votre groupe sanguin n\'est pas compatible avec celui de votre parrain. Dommage !' },
+  BOTH: { img: 'both.png', alt: 'Vous pouvez à la fois donner et recevoir du sang de votre parrain/marraine. Cool !' },
+  LEFT: { img: 'left.png', alt: 'Vous pouvez recevoir du sang de votre parrain/marraine mais pas inversement.' },
+  RIGHT: { img: 'right.png', alt: 'Vous pouvez donner votre sang à votre parrain/marraine mais pas inversement.' },
+  NO: { img: 'no.png', alt: 'Votre groupe sanguin n\'est pas compatible avec celui de votre parrain/marraine. Dommage !' },
 };
 
 const BLOOD_COMPATIBILITY = {
