@@ -12,16 +12,16 @@
 
   "database": {
     "name": "katellea",
-    "username": "root",
-    "password": "root",
+    "username": "katellea",
+    "password": "katellea_pwd",
     "port": "27017",
     "host": "127.0.0.1"
   },
   "databaseTest": {
     "name": "katellea-test",
-    "username": "root",
-    "password": "root",
-    "port": "27017",
+    "username": "katellea",
+    "password": "katellea_pwd",
+    "port": "27018",
     "host": "127.0.0.1"
   },
 

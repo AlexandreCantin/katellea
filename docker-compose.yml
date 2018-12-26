@@ -15,6 +15,9 @@ services:
       - '27017:27017'
     user: 'root'
     environment:
+      MONGODB_ROOT_PASSWORD: root
+      MONGODB_USERNAME: katellea
+      MONGODB_PASSWORD: katellea_pwd
       MONGODB_DATABASE: katellea
 
   mongo-test:
@@ -23,7 +26,10 @@ services:
     ports:
       - '27018:27017'
     environment:
+      MONGODB_ROOT_PASSWORD: root
       MONGODB_DATABASE: katellea-test
+      MONGODB_USERNAME: katellea
+      MONGODB_PASSWORD: katellea_pwd
 
   mongo-express:
     image: mongo-express

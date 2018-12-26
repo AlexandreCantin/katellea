@@ -8,7 +8,7 @@ const database = environment[databaseKey];
 
 // MONGO_DB
 const initMongoDB = () => {
-  const mongoUrl = process.env.MONGO_URL || `mongodb://${database.host}:${database.port}/${database.name}`;
+  const mongoUrl = process.env.MONGO_URL || `mongodb://${database.username}:${database.password}@${database.host}:${database.port}/${database.name}`;
   mongoose.connect(mongoUrl, { useNewUrlParser: true }, err => {
     if(err) {
       Sentry.captureException(err);
