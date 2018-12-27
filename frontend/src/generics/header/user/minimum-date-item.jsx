@@ -12,7 +12,7 @@ import { validateForm } from '../../../services/forms/validate';
 require('./header-user.scss');
 
 const CONTRADICTIONS = [
-  { name: 'Infection ou fièvre de plus de 38°C', days: 14, label: '2 semaines' },
+  { name: 'Infection, prise d\'antibiotique ou fièvre de plus de 38°C', days: 14, label: '2 semaines' },
   { name: 'Vaccin', days: 28, label: '4 semaines' },
   { name: 'Intervention chirurgicale', days: 120, label: '4 mois' },
   { name: 'Examen endoscopique ', days: 120, label: '4 mois' },
@@ -137,7 +137,7 @@ export default class MinimumDateItem extends Component {
                 <Field name="eventDate">
                   {({ input, meta }) => (
                     <div className="form-line">
-                      <label htmlFor="event-date">Date approximative de l'évènement<span>*</span></label>
+                      <label htmlFor="event-date">Date approximative de l'évènement<span>*</span>(ou de fin de l'évènement)</label>
                       <input {...input} id="event-date" name="eventDate" type="date" ref={this.eventDateRef} />
 
                       {
