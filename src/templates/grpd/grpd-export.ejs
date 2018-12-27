@@ -1,12 +1,11 @@
 <div style="font-size: 16px">
   <div style="text-align:center">
-    <h1>Export des données de l'utilisateur : <%= user.firstName %><%= user.lastName %></h1>
+    <h1>Export des données de l'utilisateur : <%= user.name %></h1>
   </div>
 
   <h2>Votre compte</h2>
   <ul>
-    <li><strong>Prenom: </strong><%= user.firstName %></li>
-    <li><strong>Nom: </strong><%= user.lastName %></li>
+    <li><strong>Nom complet: </strong><%= user.name %></li>
     <li><strong>Date de création du compte: </strong><%= dateFormatDayMonthYearHourMinutSecond(user.createdAt) %></li>
     <li><strong>Date de dernière modification du compte: </strong><%= dateFormatDayMonthYearHourMinutSecond(user.updatedAt) %></li>
     <li>
@@ -87,8 +86,7 @@
 
   <% if (user.sponsor) { %>
     <ul>
-      <li><strong>Prénom: </strong><%= user.sponsor.firstName %></li>
-      <li><strong>Nom: </strong><%= user.sponsor.lastName %></li>
+      <li><strong>Nom: </strong><%= user.sponsor.name %></li>
     </ul>
   <% } %>
 
@@ -100,7 +98,7 @@
     <h4>Description du don</h4>
     <ul>
       <li>
-        <strong>Créé le</strong> <%= dateFormatDayMonthYearHourMinutSecond(user.currentDonation.createdAt) %> <strong>par</strong> <%= user.currentDonation.createdBy.firstName %> <%= user.currentDonation.createdBy.lastName %>
+        <strong>Créé le</strong> <%= dateFormatDayMonthYearHourMinutSecond(user.currentDonation.createdAt) %> <strong>par</strong> <%= user.currentDonation.createdBy.name %>
       </li>
       <li>
         <strong>À : </strong>
@@ -193,7 +191,7 @@
       <h3>Description du don</h3>
       <ul>
         <li>
-          <strong>Créé le</strong> <%= dateFormatDayMonthYearHourMinutSecond(donationHistory[i].createdAt) %> <strong>par</strong> <%= donationHistory[i].createdBy.firstName %> <%= donationHistory[i].createdBy.lastName %>
+          <strong>Créé le</strong> <%= dateFormatDayMonthYearHourMinutSecond(donationHistory[i].createdAt) %> <strong>par</strong> <%= donationHistory[i].createdBy.name %>
         </li>
         <li>
           <strong>À : </strong>

@@ -17,6 +17,9 @@ export const environmentValues = {
 
   // LOGIN ROUTES
   FACEBOOK_LOGIN_URL: '/auth/facebook',
+  GOOGLE_LOGIN_URL: '/auth/google/',
+  TWITTER_LOGIN_URL: '/auth/twitter/',
+  INSTAGRAM_LOGIN_URL: '/auth/instagram/',
 
   // KATELLEA
   SERVER_URL: 'http://localhost:3000',
@@ -29,6 +32,9 @@ export const environmentValues = {
   USER_IS_ADMIN_ENDPOINT: '/user/is-admin',
   USER_ENDPOINT_WITH_TOKEN: '/remember-me/',
   USER_ENDPOINT_FACEBOOK_TOKEN: '/facebook-connect/',
+  USER_ENDPOINT_TWITTER_TOKEN: '/twitter-connect/',
+  USER_ENDPOINT_GOOGLE_TOKEN: '/google-connect/',
+  USER_ENDPOINT_INSTAGRAM_TOKEN: '/instagram-connect/',
   USER_ENDPOINT_LOGOUT: '/logout',
   USER_UPDATE_LAST_NOTIFICATION_READ_DATE: '/user/update-notification-read-date',
   USER_ENDPOINT_GRPD_EXPORT: '/grpd/',

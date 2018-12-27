@@ -23,7 +23,7 @@ const computeDate = date => dayjs(date).format('dddd DD/MM');
 export default class MailFactory {
 
   static sendAttendeeMail(donation) {
-    const authorName = `${donation.createdBy.firstName} ${donation.createdBy.lastName}`;
+    const authorName = donation.createdBy.name;
     const subject = `Invitation à un don du sang par ${authorName}`;
 
     donation.finalAttendees.map(async attendee => {
@@ -77,8 +77,6 @@ export default class MailFactory {
 
 
   static async sendSponsorGodchildCreateDonationMail(user, donation) {
-    const creatorName = `${donation.createdBy.firstName} ${donation.createdBy.lastName}`;
-
     let userHasAlreadyOneDonation = false;
     if(user.hasOwnProperty('lastDonationDate')) {
       userHasAlreadyOneDonation = (user.lastDonationDate !== undefined && user.lastDonationDate !== null);
@@ -91,7 +89,7 @@ export default class MailFactory {
       FOOTER_TEAM
     });
 
-    const subject = `${creatorName} vient de proposer un nouveau don`;
+    const subject = `${donation.createdBy.name} vient de proposer un nouveau don`;
 
     try {
       SendgridService.sendMail({ subject, htmlContent, to: user.email });

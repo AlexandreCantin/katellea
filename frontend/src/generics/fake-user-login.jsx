@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 
-
 import { isEmpty } from '../services/helper';
 
 import store from '../services/store';
-import { USER_TEMP_ACTIONS } from '../services/user-temp/user-temp.reducers';
+import { environment } from '../environment';
+import { USER_ACTIONS } from '../services/user/user.reducers';
 
 const FAKE_USERS = [
-  { name: 'JohnDoe', data: { id: '1', token: 'johndoe' } },
-  { name: 'DrManhattan', data: { id: '2', token: 'manhattan' } },
-  { name: 'JackSparrow', data: { id: '3', token: 'jack' } },
-  { name: 'JamesBond', data: { id: '4', token: 'jamesbond' } },
+  { name: 'John Doe', socialNetworkKey: 'facebook_johndoe' },
+  { name: 'Dr Manhattan', socialNetworkKey: 'facebook_manhattan' },
+  { name: 'Jack Sparrow', socialNetworkKey: 'facebook_jack' },
+  { name: 'James Bond', socialNetworkKey: 'facebook_jamesbond' },
 ];
 
 export default class FakeUserLogin extends Component {
@@ -32,15 +32,24 @@ export default class FakeUserLogin extends Component {
     this.storeUnsubscribeFn();
   }
 
-  doFakeLogin = (event) => {
+  doFakeLogin = async (event) => {
     event.preventDefault();
+    let socialNetworkKey = event.target.getAttribute('data-key');
 
-    let userName = event.target.innerText;
-    let user = FAKE_USERS.find(user => user.name === userName);
-    store.dispatch({
-      type: USER_TEMP_ACTIONS.SET_PROFILE,
-      data: { userID: user.data.id, origin: 'facebook', accessToken: user.data.token }
-    });
+    const userResponse = await fetch(`${environment.SERVER_URL}/auth/fake/${socialNetworkKey}`);
+    if(userResponse.status === 200) {
+      const userData = await userResponse.json();
+
+      localStorage.setItem('USER_TOKEN', userData.katelleaToken);
+
+      store.dispatch({
+        type: USER_ACTIONS.SET_USER,
+        data: userData
+      });
+    }
+
+
+
   };
 
 
@@ -52,8 +61,8 @@ export default class FakeUserLogin extends Component {
         <ul className="list-unstyled inline-list">
           {
             FAKE_USERS.map(fake => (
-              <li key={fake.name}>
-                <button onClick={this.doFakeLogin} id={fake.name}>{fake.name}</button>
+              <li key={fake.socialNetworkKey}>
+                <button onClick={this.doFakeLogin} data-key={fake.socialNetworkKey}>{fake.name}</button>
               </li>)
             )
           }

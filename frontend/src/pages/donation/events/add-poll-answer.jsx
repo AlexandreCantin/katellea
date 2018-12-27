@@ -9,7 +9,7 @@ const DonationAddPollAnswer = (props) => {
   return (
     <div className="event donation-add-poll-answer">
       <p>
-        {author.firstName} {author.lastName} a répondu au sondage, <DonationEventDate date={event.date} />
+        {author.name} a répondu au sondage, <DonationEventDate date={event.date} />
       </p>
     </div>
   );

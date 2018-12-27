@@ -6,8 +6,7 @@ import { dateFormatYearMonthDay } from '../date-helper';
 export default class User {
   constructor({
     id,
-    firstName,
-    lastName,
+    name,
     email,
     gender,
     currentDonation,
@@ -29,8 +28,7 @@ export default class User {
   }
   ) {
     this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.name = name;
     this.email = email;
     this.gender = gender ? gender.toUpperCase(): undefined;
     this.currentDonation = currentDonation;
@@ -68,8 +66,7 @@ export default class User {
 
   toJSON() {
     return {
-      firstName: this.firstName,
-      lastName: this.lastName,
+      name: this.name,
       email: this.email,
       gender: this.gender !== GENDER.MALE && this.gender === GENDER.FEMALE ? this.gender : GENDER.UNKNOWN,
       currentDonation: this.currentDonation,
@@ -87,8 +84,7 @@ export default class User {
   copy() {
     return new User({
       id: this.id,
-      firstName: this.firstName,
-      lastName: this.lastName,
+      name: this.name,
       email: this.email,
       gender: this.gender,
       currentDonation: this.currentDonation,
@@ -111,8 +107,7 @@ export default class User {
   }
 
   toString() {
-    return `id: ${this.id} - firstName: ${this.firstName}
-            - lastName: ${this.lastName} - email: ${this.email} - gender: ${this.gender}
+    return `id: ${this.id} - name: ${this.name} - email: ${this.email} - gender: ${this.gender}
             - lastDonationDate: ${this.lastDonationDate} - katelleaToken: ${this.katelleaToken} - bloodType: ${this.bloodType}
             - sponsorToken: ${this.sponsorToken} - minimumDate: ${this.minimumDate} - donationPreference: ${this.donationPreference}`;
   }
@@ -122,8 +117,7 @@ export default class User {
 
     return new User({
       id: null,
-      firstName: sponsorData.firstName,
-      lastName: sponsorData.lastName,
+      name: sponsorData.name,
       email: null,
       gender: null,
       currentDonation: null,

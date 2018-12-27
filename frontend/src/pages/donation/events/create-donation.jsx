@@ -9,7 +9,7 @@ const DonationEventCreation = (props) => {
   return (
     <div className="event donation-comment-create">
       <p>
-        Sondage créé par {author.firstName} {author.lastName}, <DonationEventDate date={event.date} />
+        Sondage créé par {author.name}, <DonationEventDate date={event.date} />
       </p>
     </div>
   );

@@ -76,7 +76,7 @@ export default class AdminLogs extends Component {
         <select onChange={this.getUserLog}>
           <option value=""></option>
           { this.state.adminUsers.map(admin => (
-            <option key={admin.id} value={admin.id}>{ admin.firstName } { admin.lastName }</option>
+            <option key={admin.id} value={admin.id}>{ admin.name }</option>
           )) }
         </select>
       </div>
@@ -113,7 +113,7 @@ export default class AdminLogs extends Component {
                 logs.map(log => (
                   <tr key={log.id}>
                     <td>{ log.id }</td>
-                    <td>{ log.user.firstName } { log.user.lastName }</td>
+                    <td>{ log.user.name }</td>
                     <td>{ dateFormatLongDayDayMonthYearHourMinut(log.updatedAt) }</td>
                   </tr>
                 ))

@@ -26,7 +26,7 @@ export default class DonationToSubscribe extends Component {
     return (
       <div className="donation-to-subscribe">
         <div>
-          <div><span className="bold">Créé par</span> : {UserService.getFullName(donation.createdBy)}, le {dateFormatShortDayDayMonthYear(donation.createdAt)}</div>
+          <div><span className="bold">Créé par</span> : {donation.createdBy.name}, le {dateFormatShortDayDayMonthYear(donation.createdAt)}</div>
           <div><span className="bold">Lieu</span>  : {isEstablishmentDonation ? `${donation.establishment.name}, ${donation.establishment.address}` : donation.mobileCollect}</div>
           <div className="dates">
             <div className="label"><span className="bold">Dates proposées</span> :</div>

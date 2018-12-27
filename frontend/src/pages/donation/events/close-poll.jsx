@@ -9,7 +9,7 @@ const DonationEventClosePoll = (props) => {
   return (
     <div className="event donation-comment-create">
       <p>
-        Fermeture du sondage par {author.firstName} {author.lastName}, <DonationEventDate date={event.date} />
+        Fermeture du sondage par {author.name}, <DonationEventDate date={event.date} />
       </p>
     </div>
   );

@@ -15,8 +15,7 @@ export const USER_REDUCERS = (state = {}, action) => {
     case USER_ACTIONS.SET_USER:
       return new User({
         id: action.data.id,
-        firstName: action.data.firstName,
-        lastName: action.data.lastName,
+        name: action.data.name,
         email: action.data.email,
         gender: action.data.gender,
         currentDonation: action.data.currentDonation ? action.data.currentDonation : undefined,

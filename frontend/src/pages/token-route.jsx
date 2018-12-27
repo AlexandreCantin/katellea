@@ -109,7 +109,7 @@ class TokenRoute extends Component {
     // User don't have a sponsor => add it
     if (sponsor && !user.sponsor) {
       UserService.updateUser({}, sponsor.sponsorToken);
-      FlashMessageService.createSuccess(`Félicitations, ${sponsor.firstName} ${sponsor.lastName} est devenu votre parrain/marraine !`, 'dashboard');
+      FlashMessageService.createSuccess(`Félicitations, ${sponsor.name} est devenu votre parrain/marraine !`, 'dashboard');
       navigate('/tableau-de-bord');
       return;
     }

@@ -29,13 +29,14 @@ const getSponsorUser = async (req, res) => {
 };
 
 const isAdminUser = async (req, res) => {
-  if (UserService.isAdmin(req.user)) res.status(OK).send();
+  if (UserService.isAdmin(req.user)) return res.status(OK).send();
   return res.status(NOT_FOUND).send();
 }
 
 
 const createUser = async (req, res) => {
 
+  {/* #Beta */}
   if (!req.body.sponsoredByToken) {
     res.status(FORBIDDEN).send();
     return;
@@ -58,8 +59,7 @@ const createUser = async (req, res) => {
   }
 
   const user = new User();
-  user.firstName = sanitize(req.body.firstName);
-  user.lastName = sanitize(req.body.lastName);
+  user.name = sanitize(req.body.name);
   user.email = req.body.email;
   user.gender = req.body.gender;
   user.firstVisit = true;
@@ -68,6 +68,8 @@ const createUser = async (req, res) => {
   user.sponsorToken = await UserService.generateUniqueToken();
   user.sponsor = sponsorId ? sponsorId : undefined;
   user.currentDonation = currentDonationId ? currentDonationId : undefined;
+
+  user.socialNetworkKey = req.body.socialNetworkKey;
 
   user.bloodDonationDone = 0;
   user.bloodGiven = 0;
@@ -111,8 +113,7 @@ const updateNotificationReadDate = async (req, res) => {
 const updateUser = async (req, res) => {
 
   const user = new User();
-  user.firstName = req.body.firstName || req.user.firstName;
-  user.lastName = req.body.lastName || req.user.lastName;
+  user.name = req.body.name || req.user.name;
   user.email = req.body.email || req.user.email;
   user.lastDonationDate = req.body.lastDonationDate || req.user.lastDonationDate;
   user.lastDonationType = req.body.lastDonationType || req.user.lastDonationType;
@@ -185,8 +186,7 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res, next) => {
   const user = new User();
-  user.firstName = 'Utilisateur';
-  user.lastName = 'supprimé';
+  user.name = 'Utilisateur supprimé';
   user.email = '';
   user.lastDonationDate = null;
   user.lastDonationType = null;

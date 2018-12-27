@@ -7,7 +7,7 @@ export default class NotificationAddPollAnswer extends Component {
 
   renderNotificationContent(notification) {
     const author = notification.author;
-    return (<p><strong>{author.firstName} {author.lastName}</strong> a répondu au sondage,<br /><DonationEventDate date={notification.date} /></p>);
+    return (<p><strong>{author.name}</strong> a répondu au sondage,<br /><DonationEventDate date={notification.date} /></p>);
   }
 
   computeCssClass() {

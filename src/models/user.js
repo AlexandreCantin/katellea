@@ -6,8 +6,7 @@ import { extractEnumValues, GENDER, BLOOD_TYPE, DONATION_TYPE } from '../constan
 
 
 const UserSchema = mongoose.Schema({
-  firstName: String,
-  lastName: String,
+  name: String,
   email: {
     type: String,
     unique: true
@@ -46,6 +45,15 @@ const UserSchema = mongoose.Schema({
     default: ''
   },
 
+  /**
+   * This field role is to identified user when they come back.
+   * Its form is : SOCIAL_NETWORK + '_' + ID
+   * Exemple: facebook_17387398738979, twitter_123878754522...
+   *
+   * Why not used email ? Because Instagram and Twitter don't automaticaly returns email with the token...
+   * */
+  socialNetworkKey: String,
+
   // Statistics
   bloodDonationDone: { type: Number, default: 0 },
   plasmaDonationDone: { type: Number, default: 0 },
@@ -68,6 +76,7 @@ UserSchema.set('toJSON', {
   versionKey: false,
   transform: function(doc, ret) {
     if(!ret.katelleaToken) delete ret.katelleaToken;
+    delete ret.socialNetworkKey;
     delete ret._id;
   }
 });
@@ -80,7 +89,7 @@ UserSchema.methods.addKatelleaToken = function() {
 const User = mongoose.model('User', UserSchema);
 
 // Global
-User.publicFields = '_id firstName lastName gender establishment bloodType sponsorToken';
-User.adminLogFields = '_id firstName lastName';
+User.publicFields = '_id name gender establishment bloodType sponsorToken';
+User.adminLogFields = '_id name';
 
 export default User;

@@ -9,8 +9,7 @@ import { Form, Field } from 'react-final-form';
 
 
 const rules = {
-  firstName: [Validators.required(), Validators.minLength(3), Validators.maxLength(20)],
-  lastName: [Validators.required(), Validators.minLength(3), Validators.maxLength(20)],
+  name: [Validators.required(), Validators.minLength(3), Validators.maxLength(20)],
   email: [Validators.required(), Validators.email()],
   donationPreference: [],
   bloodType: []
@@ -24,8 +23,7 @@ export default class UpdateAccountForm extends Component {
     this.user = store.getState().user;
 
     this.formData = {
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
+      name: this.user.name,
       email: this.user.email,
       donationPreference: this.user.donationPreference,
       bloodType: this.user.bloodType,
@@ -51,31 +49,16 @@ export default class UpdateAccountForm extends Component {
             <form onSubmit={handleSubmit}>
               <fieldset>
                 <legend>Modifier vos informations</legend>
-                <Field name="firstName">
+                <Field name="name">
                   {({ input, meta }) => (
                     <div className="form-line clearfix">
-                      <label htmlFor="first-name">Prénom <span>*</span></label>
-                      <input {...input} id="first-name" type="text" name="firstName" />
+                      <label htmlFor="name">Nom complet <span>*</span></label>
+                      <input {...input} id="name" type="text" name="name" />
                       {meta.error && meta.touched ?
                         <div className="alert error">
-                          {meta.error === 'required' ? <div>Le champ 'Prénom' est obligatoire. Veuillez renseigner ce champs.</div> : null}
-                          {meta.error === 'minLength' ? <div>Le champ 'Prénom' doit comporter minimum 3 caractères.</div> : null}
-                          {meta.error === 'maxLength' ? <div>Le champ 'Prénom' ne doit pas dépasser 20 caractères.</div> : null}
-                        </div> : null}
-                    </div>
-                  )}
-                </Field>
-
-                <Field name="lastName">
-                  {({ input, meta }) => (
-                    <div className="form-line clearfix">
-                      <label htmlFor="last-name">Nom <span>*</span></label>
-                      <input {...input} id="last-name" type="text" name="lastName" />
-                      {meta.error && meta.touched ?
-                        <div className="alert error">
-                          {meta.error === 'required' ? <div>Le champ 'Nom' est obligatoire. Veuillez renseigner ce champs.</div> : null}
-                          {meta.error === 'minLength' ? <div>Le champ 'Nom' doit comporter minimum 3 caractères.</div> : null}
-                          {meta.error === 'maxLength' ? <div>Le champ 'Nom' ne doit pas dépasser 20 caractères.</div> : null}
+                          {meta.error === 'required' ? <div>Le champ 'Nom complet' est obligatoire. Veuillez renseigner ce champs.</div> : null}
+                          {meta.error === 'minLength' ? <div>Le champ 'Nom complet' doit comporter minimum 3 caractères.</div> : null}
+                          {meta.error === 'maxLength' ? <div>Le champ 'Nom complet' ne doit pas dépasser 20 caractères.</div> : null}
                         </div> : null}
                     </div>
                   )}

@@ -8,6 +8,11 @@
   "frontUrl": "http://localhost:8080",
   "adminEmails": [],
 
+  "session": {
+    "secure": false,
+    "secret": "iXUGzOVl6f"
+  },
+
   "cronWebhookUrl": "",
   "contactFormWebhookUrl": "",
 
@@ -31,6 +36,19 @@
     "secret": "",
     "callbackURL": "/auth/facebook"
   },
+  "twitter": {
+    "apiKey": "",
+    "secret": ""
+  },
+  "google": {
+    "clientID": "",
+    "clientSecret": ""
+  },
+  "instagram": {
+    "clientID": "",
+    "clientSecret": ""
+  },
+
 
   "cron": {
     "isMainLeader": true,

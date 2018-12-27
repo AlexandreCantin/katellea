@@ -11,7 +11,7 @@ function SponsorCard({ user }) {
   return (
     <div className={establishment ? 'sponsor-card has-establishment' : 'sponsor-card'}>
       <div>
-        <h4>Votre parrain/marraine : {user.firstName} {user.lastName}</h4>
+        <h4>Votre parrain/marraine : {user.name}</h4>
         <ul>
           <li>Groupe sanguin : {user.bloodTypeToString()}</li>
         </ul>

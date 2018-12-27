@@ -13,8 +13,7 @@ export const USER_TEMP_REDUCERS = (state = {}, action) => {
         userID: action.data.userID,
         origin: action.data.origin,
         accessToken: action.data.accessToken,
-        firstName: action.data.firstName,
-        lastName: action.data.lastName,
+        name: action.data.name,
         email: action.data.email,
         gender: action.data.gender
       });

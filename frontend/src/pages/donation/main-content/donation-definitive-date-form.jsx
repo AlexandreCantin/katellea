@@ -4,7 +4,6 @@ import dayjs from 'dayjs';
 import store from '../../../services/store';
 import PhoneLink from '../../../generics/phone-link';
 
-import { UserService } from '../../../services/user/user.service';
 import { DonationService } from '../../../services/donation/donation.service';
 import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
 
@@ -99,9 +98,9 @@ export default class DonationDefinitiveDateForm extends Component {
                         {({ input, meta }) => (
                           <div className={isSelected ? 'attendee selected' : 'attendee'}>
                             <label>
-                                <span className="sr-only">Confirmer la présence de {UserService.getFullName(pa.author)}</span>
+                                <span className="sr-only">Confirmer la présence de {pa.author.name}</span>
                                 <input {...input} type="checkbox" disabled={disabled} />
-                                <span>{UserService.getFullName(pa.author)}</span>
+                                <span>{pa.author.name}</span>
                               </label>
                           </div>
                         )}

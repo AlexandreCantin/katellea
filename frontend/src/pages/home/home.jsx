@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import Helmet from 'react-helmet';
 import { environment } from '../../environment';
 
@@ -10,12 +10,12 @@ import { getSponsorAndDonationFromUrl } from '../../services/token.service';
 import KatelleaStatistics from './katellea-statistics';
 import DonationCard from '../../generics/donation/donation-card/donation-card';
 import KatelleaFooter from './katellea-footer';
-import FakeUserLogin from '../../generics/fake-user-login';
 
 import Modal from '../../generics/modal';
 import EscapeLinks from '../../generics/escape-links/escape-links';
 import AuthLoginButtons from '../../generics/auth-login-button';
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+const FakeUserLogin = lazy(() => import('../../generics/fake-user-login'));
 
 require('./home.scss');
 
