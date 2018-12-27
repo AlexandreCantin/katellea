@@ -26,6 +26,7 @@ export default class KatelleaFooter extends Component {
               <button className="btn reset" onClick={this.showRGPDModal} title="Consulter notre Politique de confidentialité et utilisation de vos données personnelles (RGPD)">RGPD</button>
             </li>
             <li><Link to="/nous-contacter" title="Nous contacter">Contact</Link></li>
+            <li><Link to="/mentions-legales" title="Mentions légales">Mentions légales</Link></li>
             {/*<li><a href="#" title="">Presse</a></li>*/}
             {/*<li className="katellea-donation"><span><a href="#" title="">Don</a></span></li>*/}
           </ul>

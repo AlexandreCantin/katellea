@@ -225,15 +225,16 @@
   padding: 30px;
   margin-top: 30px;
   background-color: lightgray;
-
   display: flex;
+  @media (max-width: $min-width-mobile) { flex-direction: column; }
+
   > div {
       flex: 1;
   }
 
   .katellea-links {
     > ul {
-      column-count: 2;
+      column-count: 3;
       column-gap: 20px;
     }
     li {
