@@ -66,13 +66,27 @@ class DonationContainer extends Component {
 
   // RENDER
   render() {
-    const { currentDonation } = this.props;
+    const { currentDonation, user } = this.props;
     const { loading, eligibleDonations } = this.state;
 
     if (loading) return (<div id="donation" className="block-base text-center"><Loader /></div>);
 
-    if (!isEmpty(currentDonation)) {
+    else if (!isEmpty(currentDonation)) {
       return (<div id="donation" className="block-base"><DonationCard donation={currentDonation} /> </div>);
+    }
+
+    else if(user.quotaExceeded) {
+      return (
+        <div id="donation" className="block-base">
+          <div className="alert danger text-center">
+            Vous avez atteint vos 4 dons annuels possible.
+            Vous devrez donc attendre l'année prochaine afin de réaliser un nouveau don.
+          </div>
+          <div className="new-donation-container text-center">
+            <DonationCreateFormModal modalUrl="/tableau-de-bord/creer-un-nouveau-don" />
+          </div>
+        </div>
+      );
     }
 
     return (

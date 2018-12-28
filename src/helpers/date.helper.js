@@ -5,6 +5,10 @@ export const addWeeksToDate = function(date, weekNumber) {
   return dayjs(date).add(weekNumber, 'week');
 };
 
+export const computNextYearFirstJanuary = function() {
+  return dayjs().add(1, 'year').startOf('year');
+};
+
 export const keepOnlyYearMonthDay = function(date) {
   return dayjs(date).format('YYYY-MM-DD');
 };

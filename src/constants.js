@@ -1,3 +1,4 @@
+export const WOMAN_MAX_BLOOD_DONATION_YEAR = 4;
 
 export const DONATION_STATUS = {
   POLL_ON_GOING: 'POLL_ON_GOING',

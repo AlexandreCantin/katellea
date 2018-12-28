@@ -32,8 +32,10 @@ import DonationGlobalStatCron from './src/cron/donation-global-stat.cron';
 import BloodDonationEligibleCron from './src/cron/blood-donation-eligible.cron';
 import MobileCollectDownloadCron from './src/cron/mobile-collect-download.cron';
 import FirstDonationAdviceCron from './src/cron/first-donation-advice.cron';
-import { environment } from './conf/environment';
+import QuotaExceededResetCron from './src/cron/quota-exceeded.cron';
 import GRPDExportCron from './src/cron/grpd-export.cron';
+
+import { environment } from './conf/environment';
 
 // INIT APP
 const app = express();
@@ -58,6 +60,7 @@ if (CRON.isMainLeader) {
   cron.schedule(CRON.mobileCollectDownloadCron, () => MobileCollectDownloadCron.run());
   cron.schedule(CRON.firstDonationAdviceCron, () => FirstDonationAdviceCron.run());
   cron.schedule(CRON.grpdExportCron, () => GRPDExportCron.run());
+  cron.schedule(CRON.quotaExceededResetCron, () => QuotaExceededResetCron.run());
 }
 
 // MIDDLEWARES

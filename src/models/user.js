@@ -18,6 +18,10 @@ const UserSchema = mongoose.Schema({
   },
   lastDonationDate: Date,
   minimumDate: Date,
+  quotaExceeded: {
+    type: Boolean,
+    default: false
+  },
   lastDonationType: {
     type: String,
     enum: extractEnumValues(DONATION_TYPE)
