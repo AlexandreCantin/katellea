@@ -150,6 +150,7 @@ class UserServiceFactory {
             gender: null,
             currentDonation: null,
             lastDonationDate: userData.lastDonationDate,
+            quotaExceeded: null,
             lastDonationType: userData.lastDonationType,
             donationPreference: userData.donationPreference,
             bloodType: userData.bloodType,

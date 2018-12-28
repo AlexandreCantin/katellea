@@ -110,6 +110,7 @@ export default class Register extends Component {
       gender: values.gender,
       currentDonation: null,
       lastDonationDate: null,
+      quotaExceeded: false,
       lastDonationType: null,
       donationPreference: null,
       bloodType: null,

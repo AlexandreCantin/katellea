@@ -12,6 +12,7 @@ export default class User {
     gender,
     currentDonation,
     lastDonationDate,
+    quotaExceeded,
     lastDonationType,
     donationPreference,
     bloodType,
@@ -34,6 +35,7 @@ export default class User {
     this.gender = gender ? gender.toUpperCase(): undefined;
     this.currentDonation = currentDonation;
     this.lastDonationDate = lastDonationDate;
+    this.quotaExceeded = quotaExceeded;
     this.lastDonationType = lastDonationType;
     this.donationPreference = donationPreference;
     this.bloodType = bloodType;
@@ -91,6 +93,7 @@ export default class User {
       gender: this.gender,
       currentDonation: this.currentDonation,
       lastDonationDate: this.lastDonationDate,
+      quotaExceeded: this.quotaExceeded,
       lastDonationType: this.lastDonationType,
       donationPreference: this.donationPreference,
       bloodType: this.bloodType,
@@ -125,6 +128,7 @@ export default class User {
       gender: null,
       currentDonation: null,
       lastDonationDate: sponsorData.lastDonationDate,
+      quotaExceeded: null,
       lastDonationType: sponsorData.lastDonationType,
       donationPreference: sponsorData.donationPreference,
       bloodType: sponsorData.bloodType,

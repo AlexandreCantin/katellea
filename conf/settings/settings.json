@@ -33,13 +33,14 @@
 
   "cron": {
     "isMainLeader": true,
-    "statCRON": "0 * * * *",
-    "globalStatCRON": "0 * * * *",
-    "donationDoneCRON": "0 * * * *",
-    "bloodDonationEligibleCron": "0 * * * *",
-    "firstDonationAdviceCron": "0 * * * *",
-    "mobileCollectDownloadCron": "0 10 * * *",
-    "grpdExportCron": "0 15 * * *"
+    "donationDoneCRON": "5 * * * *",
+    "statCRON": "7 * * * *",
+    "globalStatCRON": "9 * * * *",
+    "bloodDonationEligibleCron": "11 * * * *",
+    "mobileCollectDownloadCron": "13 * * * *",
+    "firstDonationAdviceCron": "14 * * * *",
+    "grpdExportCron": "16 * * * *",
+    "quotaExceededResetCron": "18 * * * *"
   },
   "daysBeforeStatisticsAnalytics": 5,
   "weeksDelayBeforeEligibilty": 3,

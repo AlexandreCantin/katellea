@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 import Statistics from '../models/stat';
 import User from '../models/user';
-import { DONATION_TYPE, DONATION_STATUS, DONATION_REST_WEEKS, NOTIFICATION_TYPES } from '../constants';
+import { DONATION_TYPE, DONATION_STATUS, DONATION_REST_WEEKS, NOTIFICATION_TYPES, GENDER, WOMAN_MAX_BLOOD_DONATION_YEAR } from '../constants';
 import Donation from '../models/donation';
 import { createNotification } from '../helpers/notification.helper';
 import { SlackService } from '../services/slack.service';
@@ -56,7 +56,23 @@ export default class UserStatisticsCron {
             // Update user
             user.bloodDonationDone = user.bloodDonationDone + 1;
             user.lastDonationType = DONATION_TYPE.BLOOD;
-            user.minimumDate = addWeeksToDate(donation.finalDate, DONATION_REST_WEEKS.BLOOD);
+
+            // A woman can only make 4 blood donation
+            if(user.gender === GENDER.FEMALE && user.bloodDonationDone === WOMAN_MAX_BLOOD_DONATION_YEAR) {
+              // Should wait next year
+              const nextYearDate = computNextYearFirstJanuary();
+              const nextDonationDate = addWeeksToDate(donation.finalDate, DONATION_REST_WEEKS.BLOOD);
+
+              // Get the later date for minimumDate
+              if(nextDonationDate.isAfter(nextYearDate)) user.minimumDate = nextDonation;
+              else {
+                user.quotaExceeded = true;
+                user.minimumDate = nextYearDate;
+              }
+            } else {
+              // MAN or UNKNOWN : no 'really' blood donation limit
+              user.minimumDate = addWeeksToDate(donation.finalDate, DONATION_REST_WEEKS.BLOOD);
+            }
             break;
 
           case DONATION_TYPE.PLASMA:

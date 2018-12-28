@@ -21,6 +21,7 @@ export const USER_REDUCERS = (state = {}, action) => {
         gender: action.data.gender,
         currentDonation: action.data.currentDonation ? action.data.currentDonation : undefined,
         lastDonationDate: action.data.lastDonationDate,
+        quotaExceeded: action.data.quotaExceeded,
         lastDonationType: action.data.lastDonationType,
         donationPreference: action.data.donationPreference,
         bloodType: action.data.bloodType,
