@@ -6,7 +6,7 @@ import * as Sentry from '@sentry/node';
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
 
 import { DONATION_TYPE, DONATION_REST_WEEKS } from '../constants';
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, FORBIDDEN, BAD_REQUEST } from 'http-status-codes';
+import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, FORBIDDEN, BAD_REQUEST, IM_A_TEAPOT } from 'http-status-codes';
 
 import User from '../models/user';
 import Donation from '../models/donation';
@@ -20,19 +20,6 @@ import { UserService } from '../services/user.service';
 const userRoutes = express.Router();
 userRoutes.use(injectUserFromToken);
 
-const getUser = async (req, res) => {
-  // Ensure that only admins can get users by id
-  if (!req.isAdmin) return res.status(UNAUTHORIZED).send();
-
-  const user = await User.findById(req.params.id)
-    .populate({ path: 'establishment', model: 'Establishment' })
-    .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
-  if (user == null) return res.status(NOT_FOUND).send();
-
-  return res.json(user);
-};
-
-
 const getSponsorUser = async (req, res) => {
   const user = await User.findOne({ sponsorToken: req.params.token })
     .select(User.publicFields)
@@ -41,6 +28,11 @@ const getSponsorUser = async (req, res) => {
 
   return res.json(user);
 };
+
+const isAdminUser = async (req, res) => {
+  if (UserService.isAdmin(req.user)) res.status(OK).send();
+  return res.status(NOT_FOUND).send();
+}
 
 
 const createUser = async (req, res) => {
@@ -221,7 +213,7 @@ const deleteUser = async (req, res, next) => {
 
 
 // Routes
-userRoutes.get('/:id', getUser);
+userRoutes.post('/is-admin', isAdminUser);
 userRoutes.get('/sponsor/:token', getSponsorUser);
 userRoutes.post('/', createUser);
 userRoutes.put('/update-notification-read-date', updateNotificationReadDate);

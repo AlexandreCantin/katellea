@@ -1,5 +1,6 @@
 import { generateRandomString } from '../helpers/string.helper';
 import User from '../models/user';
+import { environment } from '../../conf/environment';
 
 /**
 * Service realted to user handling
@@ -19,6 +20,10 @@ class UserServiceFactory {
       }
     }
     return token;
+  }
+
+  isAdmin(user) {
+    return user.isAdmin && environment.adminEmails.includes(user.email);
   }
 
 }

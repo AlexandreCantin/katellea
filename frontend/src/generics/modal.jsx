@@ -54,8 +54,11 @@ export default class Modal extends Component {
 
   componentDidMount() {
     // Google Analytics
-    if(!this.props.modalUrl) throw new Error("No modal url defined");
-    GoogleAnalyticsService.sendModalView(this.props.modalUrl);
+    // Note: To disable the sending to GA (ex: in back office), you have to add a noModalUrl prop
+    if(!this.props.noModalUrl) {
+      if(!this.props.modalUrl) throw new Error("No modal url defined");
+      GoogleAnalyticsService.sendModalView(this.props.modalUrl);
+    }
 
     // Register last focus element
     this.activeElement = document.activeElement;

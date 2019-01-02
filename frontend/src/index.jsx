@@ -6,25 +6,29 @@ import 'babel-polyfill'; // Mainly for 'fetch as Google'
 import * as serviceWorker from './serviceWorker';
 import * as Sentry from '@sentry/browser';
 
+import { environment } from './environment';
 import store from './services/store';
 
-import NotFound from './pages/404/not-found';
+import Loader from './generics/loader/loader';
+import ErrorBoundary from './generics/error-boundary';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
+
 import Home from './pages/home/home';
 import TokenRoute from './pages/token-route';
 import Register from './pages/register/register';
+import NotFound from './pages/404/not-found';
+
 import { CouldHaveUserRoute } from './generics/routes/could-have-user-route';
 import { PrivateRoute } from './generics/routes/private-route';
+import { AdminRoute } from './generics/routes/admin-route';
 
 // Config dayjs
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import Loader from './generics/loader/loader';
-import ErrorBoundary from './generics/error-boundary';
-import { environment } from './environment';
-import { GoogleAnalyticsService } from './services/google-analytics.service';
 dayjs.locale('fr');
 dayjs.extend(relativeTime);
+
 
 // Lazy component
 const LegalTerms = lazy(() => import('./pages/legal-terms/legal-terms'));
@@ -34,6 +38,11 @@ const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
 const Account = lazy(() => import('./pages/account/account'));
 const CurrentDonation = lazy(() => import('./pages/donation/donation'));
 const DonationHistory = lazy(() => import('./pages/history/donation-history'));
+
+const AdminHome = lazy(() => import('./pages/admin/home/admin-home'));
+const AdminUsers = lazy(() => import('./pages/admin/users/admin-users'));
+const AdminStats = lazy(() => import('./pages/admin/stats/admin-stats'));
+
 
 require('./styles/global.scss');
 
@@ -67,6 +76,10 @@ class App extends Component {
                 <PrivateRoute component={Account} path="/mon-compte" />
                 <PrivateRoute component={CurrentDonation} path="/don-courant" />
                 <PrivateRoute component={DonationHistory} path="/historique-des-dons" />
+
+                <AdminRoute component={AdminHome} path="/admin" />
+                <AdminRoute component={AdminUsers} path="/admin/utilisateurs" />
+                <AdminRoute component={AdminStats} path="/admin/statistiques" />
 
                 <NotFound type="404" default />
               </Router>

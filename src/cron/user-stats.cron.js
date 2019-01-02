@@ -24,6 +24,14 @@ export default class UserStatisticsCron {
     const donations = await Donation.find({ status: DONATION_STATUS.DONE, statisticsDate: { $lte: new Date() } });
     SlackService.sendCronMessage(`UserStatisticsCron : ${donations.length} donations found`);
 
+    // No donation done during last 24h ? Create a Statistics object to follow user evolution
+    if(donations.length === 0) {
+      let dayStat = new Statistics();
+      dayStat.dayString = keepOnlyYearMonthDay(new Date());
+      dayStat = UserStatisticsCron.fillWithEmptyDonation(dayStat);
+      dayStat.save();
+    }
+
     donations.forEach(donation => {
       // Get the day or create it
       const donationDateString = keepOnlyYearMonthDay(donation.finalDate);
@@ -36,6 +44,7 @@ export default class UserStatisticsCron {
         if (!dayStat) {
           statObjectCache[donationDateString] = new Statistics();
           dayStat = statObjectCache[donationDateString];
+          dayStat = UserStatisticsCron.fillWithEmptyDonation(dayStat);
           dayStat.dayString = donationDateString;
         }
       }
@@ -105,6 +114,9 @@ export default class UserStatisticsCron {
       donation.status = DONATION_STATUS.STATISTICS;
       donation.save();
 
+      // Save dayStat
+      dayStat.save()
+
       // Create ending notification for donation creator
       createNotification({
         name: NOTIFICATION_TYPES.DONATION_STATISTICS,
@@ -122,4 +134,29 @@ export default class UserStatisticsCron {
     SlackService.sendCronMessage(`Ended UserStatisticsCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
+
+  static fillWithEmptyDonation(stat) {
+    // Will be filled later in DonationGlobalStatCron
+    stat.nbUsers = 0;
+    stat.nbSponsoredUsers = 0;
+    stat.dayNbUsers = 0;
+    stat.dayNbSponsoredUsers = 0;
+
+
+    stat.bloodDonation = 0;
+    stat.plasmaDonation = 0;
+    stat.plateletDonation = 0;
+    stat.bloodSponsoredDonation = 0;
+    stat.plasmaSponsoredDonation = 0;
+    stat.plateletSponsoredDonation = 0;
+
+    stat.dayBloodDonation = 0;
+    stat.dayPlasmaDonation = 0;
+    stat.dayPlateletDonation = 0;
+    stat.dayBloodSponsoredDonation = 0;
+    stat.dayPlasmaSponsoredDonation = 0;
+    stat.dayPlateletSponsoredDonation = 0;
+
+    return stat;
+  }
 }

@@ -31,6 +31,20 @@ class UserServiceFactory {
     return currentUser.isProfileComplete();
   }
 
+  isUserAdmin() {
+    let url = `${environment.SERVER_URL}${environment.USER_IS_ADMIN_ENDPOINT}`;
+    let headers = getKatelleaTokenHeaders();
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url, { headers, method: 'POST' });
+      if (response.status === 200) {
+        resolve();
+        return;
+      }
+      reject();
+    });
+  }
+
 
   logout() {
     localStorage.removeItem('USER_TOKEN');
