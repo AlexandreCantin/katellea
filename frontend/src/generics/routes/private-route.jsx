@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { navigate } from '@reach/router';
+import { navigate, Redirect } from '@reach/router';
 import { connect } from 'react-redux';
 
 import { isEmpty } from '../../services/helper';
@@ -10,21 +10,25 @@ import store from '../../services/store';
 class PrivateRouteComponent extends Component {
   constructor(props) {
     super(props);
-
     let user = store.getState().user;
     this.state = {
       hasUser: !isEmpty(user),
+      loading: true,
+      doRedirect: false
     };
   }
 
 
-  componentDidMount() {
+  async componentDidMount() {
     if (!this.state.hasUser) {
-      if (localStorage.getItem('USER_TOKEN') === null) { this.redirectToHome(); return; }
+      if (localStorage.getItem('USER_TOKEN') === null) {
+        this.redirectToHome();
+        return;
+      }
 
       let token = localStorage.getItem('USER_TOKEN');
-      UserService
-        .getKatelleaUserWithReminder(token)
+      UserService.getKatelleaUserWithReminder(token)
+        .then(() => this.setState({ loading: false }))
         .catch(err => this.redirectToHome());
     }
   }
@@ -38,15 +42,17 @@ class PrivateRouteComponent extends Component {
 
   redirectToHome() {
     FlashMessageService.createError('Vous devez être connecté pour accéder à cette page', 'homePage');
-    navigate('/');
+    this.setState({ doRedirect: true, loading: false });
   }
 
 
   render() {
     const { component: Component } = this.props;
-    const { hasUser } = this.state;
+    const { hasUser, loading, doRedirect } = this.state;
 
     if (hasUser) return <Component />;
+    else if(!loading && doRedirect) return <Redirect to="/" noThrow />
+
     return null;
   }
 
