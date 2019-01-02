@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 # Update apt-cache
 RUN apt-get update
-RUN apt-get -y install curl
+RUN apt-get -y install curl bzip2
 
 # Install NodeJS and create-react-app
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
