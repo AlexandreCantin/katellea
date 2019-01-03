@@ -17,8 +17,11 @@ export default class AuthServiceFactory {
   getFacebookProfile(token) {
     return new Promise((resolve, reject) => {
       if (environment.offlineMode && environment.environment == 'development') {
-        resolve({ email: FAKE_EMAILS.find(fake => fake.token === token).email });
-        return;
+        const fakeUser = FAKE_EMAILS.find(fake => fake.token === token);
+        if(fakeUser) {
+          resolve({ email: fakeUser.email });
+          return;
+        }
       }
 
       FB.api('/me', { fields: 'email', access_token: token }, user => {
