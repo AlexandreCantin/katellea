@@ -84,18 +84,20 @@ const createUser = async (req, res) => {
   user.plasmaGiven = 0;
   user.plateletDonationDone = 0;
   user.plateletGiven = 0;
-
-
+  
+  
   try {
     await user.save();
-
+    
     const userCreated = await User.findById(user._id).populate({ path: 'sponsor', model: 'User', select: User.publicFields });
     userCreated.addKatelleaToken();
-
+    
     return res.json(userCreated);
   } catch (err) {
+    if(err.errmsg && err.errmsg.startsWith('E11000 duplicate key error')) {
+      return res.status(UNAUTHORIZED).send();
+    }
     Sentry.captureException(err);
-    logger.error(err);
     return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
