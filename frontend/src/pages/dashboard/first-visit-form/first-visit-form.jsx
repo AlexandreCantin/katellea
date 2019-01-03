@@ -35,6 +35,7 @@ class FirstVisitForm extends Component {
     super(props);
 
     // Form ref
+    this.formRef = React.createRef();
     this.noLastDonationRef = React.createRef();
     this.lastDonationDateRef = React.createRef();
     this.lastDonationTypeRef = React.createRef();
@@ -52,6 +53,9 @@ class FirstVisitForm extends Component {
     };
   }
 
+  setFieldValue(field, value) {
+    this.formRef.current.form.getFieldState(field).change(value);
+  }
   changeLastDonation = (e) => {
     if (e.target.checked) {
 
@@ -60,14 +64,19 @@ class FirstVisitForm extends Component {
       STEP_2_FROM_RULES.lastDonationType = [];
 
       // And set empty values
+      this.setFieldValue('noLastDonation', true);
+      this.setFieldValue('lastDonationDate', '');
+      this.setFieldValue('lastDonationType', '');
       this.noLastDonationRef.current.value = true;
-      this.lastDonationDateRef.current.value = undefined;
-      this.lastDonationTypeRef.current.value = undefined;
+      this.lastDonationDateRef.current.value = '';
+      this.lastDonationTypeRef.current.value = '';
       this.setState({ lastDonationDateDateDisabled: true, lastDonationDateTypeDisabled: true });
     } else {
       this.setState({ lastDonationDateDateDisabled: false, lastDonationDateTypeDisabled: false });
       this.lastDonationTypeRef.current.value = 'BLOOD';
       this.noLastDonationRef.current.value = false;
+      this.setFieldValue('noLastDonation', false);
+      this.setFieldValue('lastDonationType', 'BLOOD');
 
       // Enable  'lastDonationDate' & 'lastDonationType' validators
       STEP_2_FROM_RULES.lastDonationDate = [Validators.required(), Validators.dateBeforeToday()];
@@ -126,32 +135,6 @@ class FirstVisitForm extends Component {
   renderStep0() {
     return (
       <div>
-
-        {/*<div className="text-center">
-          <p>Avec Katellea, vous pourrez :</p>
-          <div>
-            <ul className="katellea-objectives list-unstyled">
-              <li className="clearfix">
-                <img src="/icons/menu/teamwork.svg" alt="" />
-                <span>
-                  <ul className="list-unstyled goal-1">
-                    <li>Chercher un proche pour réaliser votre premier don de sang</li>
-                    <li>Parrainer vos proches pour qu'ils réalisent leur premier don de sang</li>
-                  </ul>
-                </span>
-              </li>
-              <li className="clearfix">
-                <img src="/icons/menu/calendar.svg" alt="" />
-                <span><span>Convenir de la meilleure date pour réaliser un don avec vos proches</span></span>
-              </li>
-              <li className="clearfix">
-                <img src="/icons/menu/speak.svg" alt="" />
-                <span><span>Promouvoir le don de sang auprès de votre entourage</span></span>
-              </li>
-            </ul>
-          </div>
-        </div>*/}
-
         <div className="text-center">
           <p>Katellea vous permet d'accompagner ou d'être accompagné pour réaliser un don du sang ou plasma en 3 étapes :</p>
           <div>
@@ -202,12 +185,13 @@ class FirstVisitForm extends Component {
           onSubmit={this.nextStep}
           validate={(values) => validateForm(values, STEP_2_FROM_RULES)}
           initialValues={this.state.step2Values}
+          ref={this.formRef}
           render={({ handleSubmit, form, invalid }) => (
             <form onSubmit={handleSubmit}>
-              <Field name="noLastDonation">
-                {({ input }) => (
+              <Field name="noLastDonation" type="checkbox">
+                {({ input, meta }) => (
                   <div className="no-donation text-center">
-                    <input {...input} id="no-last-donation" type="checkbox" name="noLastDonation" onChange={this.changeLastDonation} ref={this.noLastDonationRef} />
+                    <input {...input} id="no-last-donation" type="checkbox" onChange={this.changeLastDonation} ref={this.noLastDonationRef} />
                     <label htmlFor="no-last-donation">Je n'ai jamais fait de don</label>
                   </div>
                 )}
