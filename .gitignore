@@ -20,3 +20,4 @@ tests/e2e/reports/*
 selenium-debug.log
 reports/*.png
 docker/*
+selenium-server.log

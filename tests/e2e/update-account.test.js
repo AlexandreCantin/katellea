@@ -29,9 +29,7 @@ module.exports = {
       .setValue('.form.update-account input#last-name', 'Moore')
       .clearValue('.form.update-account input#email')
       .setValue('.form.update-account input#email', 'rogerMoore@mail.com')
-      // .clearValue('.form.update-account select#donation-preference')
-      // .setValue('.form.update-account select#donation-preference', 'PLASMA') // FIXME: not working...
-      .clearValue('.form.update-account select#blood-type')
+      .setValue('.form.update-account select#donation-preference', 'PLASMA') // FIXME: not working...
       .setValue('.form.update-account select#blood-type', 'A+')
       .saveScreenshot('./reports/homepage.png')
       .click('.form.update-account input[type=submit]')

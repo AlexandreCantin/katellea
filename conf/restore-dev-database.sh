@@ -27,16 +27,25 @@ then
   HOST='127.0.0.1'
 fi
 
+NO_USER=$4
+
 SAVE_DIR=$DB-save
 
 # Drop and create date database
 # Note : for installing mongo => sudo apt install mongodb-clients
-mongo $DB --port $PORT -u root -p root --eval "db.dropDatabase();" --host $HOST --authenticationDatabase "admin"
+if [ $NO_USER ]
+then mongo $DB --port $PORT --eval "db.dropDatabase();" --host $HOST
+else mongo $DB --port $PORT -u root -p root --eval "db.dropDatabase();" --host $HOST --authenticationDatabase "admin"
+fi
 
 for filepath in $SAVE_DIR/*.json; do
   # Extract collection
   filename=`echo $filepath | cut -d'/' -f 2`
   collection=`echo $filename | cut -d'.' -f 1`
 
-  mongoimport --db $DB --port $PORT -u katellea -p katellea_pwd --collection $collection < $filepath --host $HOST
+  if [ $NO_USER ]
+  then mongoimport --db $DB --port $PORT --collection $collection < $filepath --host $HOST
+  else mongoimport --db $DB --port $PORT -u katellea -p katellea_pwd --collection $collection < $filepath --host $HOST
+fi
+
 done

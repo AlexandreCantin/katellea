@@ -1,4 +1,4 @@
-{ "_id" : { "$oid" : "5bbbbfd8e210573d7ade84b8" }, "c" : 1, "f" : "_id", "m" : "Donation" }
+{ "_id" : { "$oid" : "5bbbbfd8e210573d7ade84b8" }, "c" : 2, "f" : "_id", "m" : "Donation" }
 { "_id" : { "$oid" : "5bbbbfd8e210573d7ade84b9" }, "c" : 11, "f" : "_id", "m" : "User" }
 { "_id" : { "$oid" : "5bbbbfd8e210573d7ade84bb" }, "c" : 0, "f" : "_id", "m" : "Statistics" }
 { "_id" : { "$oid" : "5bbbbfd8e210573d7ade84ba" }, "c" : 36114, "f" : "_id", "m" : "City" }
