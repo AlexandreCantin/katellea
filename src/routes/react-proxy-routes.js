@@ -45,11 +45,15 @@ rootRoutes.get('/mentions-legales', (req, res) => res.render('index', getRouteDa
 rootRoutes.get('/notre-mission-et-notre-equipe', (req, res) => res.render('index', getRouteData('mission-team', ' /notre-mission-et-notre-equipe')));
 rootRoutes.get('/nous-contacter', (req, res) => res.render('index', getRouteData('contact', '/nous-contacter')));
 
-// Connected routes : no need to specific SEO values
+// Connected routes and admin : no need to specific SEO values
 rootRoutes.get('/tableau-de-bord', (req, res) => res.render('index', getRouteData('root', '/')));
 rootRoutes.get('/don-courant', (req, res) => res.render('index', getRouteData('root', '/')));
 rootRoutes.get('/historique-des-dons', (req, res) => res.render('index', getRouteData('root', '/')));
 rootRoutes.get('/mon-compte', (req, res) => res.render('index', getRouteData('root', '/')));
+
+rootRoutes.get('/admin', (req, res) => res.render('index', getRouteData('root', '/')));
+rootRoutes.get('/admin/utilisateurs', (req, res) => res.render('index', getRouteData('root', '/')));
+rootRoutes.get('/admin/statistiques', (req, res) => res.render('index', getRouteData('root', '/')));
 
 // Not found : need to be handle server-side in order to make GoogleBot detect the 404 http status
 rootRoutes.get('*', (req, res) => res.status(NOT_FOUND).render('not-found'));
