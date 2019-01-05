@@ -1,6 +1,6 @@
 import { environment } from '../../conf/environment';
 import { IncomingWebhook } from '@slack/client';
-import * as Sentry from '@sentry/node';
+import { sendError } from '../helper';
 
 /**
  * Service for communication with Slack
@@ -16,7 +16,7 @@ class SlackServiceFactory {
     if(!environment.cronWebhookUrl) return;
 
     this.cronWebhook.send(message, function(err, res) {
-      if (err) Sentry.captureException(err);
+      if (err) sendError(err);
     });
   }
 
@@ -24,7 +24,7 @@ class SlackServiceFactory {
     if(!environment.contactFormWebhookUrl) return;
 
     this.contactFormWebhook.send(htmlBody, function(err, res) {
-      if (err) Sentry.captureException(err);
+      if (err) sendError(err);
     });
   }
 

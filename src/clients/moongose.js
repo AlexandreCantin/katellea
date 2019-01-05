@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { environment } from '../../conf/environment';
-import * as Sentry from '@sentry/node';
-import logger from '../services/logger.service';
+import { sendError } from '../helper';
+
 
 const databaseKey = process.env.NODE_ENV === 'testing' ? 'databaseTest' : 'database';
 const database = environment[databaseKey];
@@ -11,8 +11,7 @@ const initMongoDB = () => {
   const mongoUrl = process.env.MONGO_URL || `mongodb://${database.username}:${database.password}@${database.host}:${database.port}/${database.name}`;
   mongoose.connect(mongoUrl, { useNewUrlParser: true }, err => {
     if(err) {
-      Sentry.captureException(err);
-      logger.error(err.message);
+      sendError(err);
       process.exit(1);
     }
   });

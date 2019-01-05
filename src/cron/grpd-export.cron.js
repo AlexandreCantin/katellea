@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import ejs from 'ejs';
 import pdf from 'html-pdf';
 import fs from 'fs';
-import * as Sentry from '@sentry/node';
 
 import { SlackService } from '../services/slack.service';
 
@@ -12,9 +11,9 @@ import GRPDExport from '../models/grpd-export';
 import User from '../models/user';
 import Donation from '../models/donation';
 import Establishment from '../models/establishment';
-import logger from '../services/logger.service';
 import { environment } from '../../conf/environment';
 import MailFactory from '../services/mail.service';
+import { sendError } from '../helper';
 
 const DIRNAME = './src/pdf';
 
@@ -91,8 +90,7 @@ export default class GRPDExportCron {
           });
 
         } catch(err) {
-          Sentry.captureException(err);
-          logger.error(err);
+          sendError(err);
           return;
         }
 
@@ -101,8 +99,7 @@ export default class GRPDExportCron {
           grpdDemand.status = GRPD_EXPORT_STATUS.CANCELED;
           await GRPDExport.findOneAndUpdate({ _id: grpdDemand.id }, grpdDemand);
         } catch (err) {
-          Sentry.captureException(err);
-          logger.error(err);
+          sendError(err);
         }
 
         // Send mail with link

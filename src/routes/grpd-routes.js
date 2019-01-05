@@ -61,8 +61,7 @@ const createGRPDExport = async (req, res) => {
     const grpdCreated = await GRPDExport.findById(grpd._id);
     return res.json(grpdCreated);
   } catch(err) {
-    Sentry.captureException(err);
-    logger.error(err);
+    sendError(err);
     return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
@@ -82,8 +81,7 @@ const deleteGRPDExport = async (req, res) => {
     await GRPDExport.findOneAndUpdate({ _id: grpd.id }, grpd);
     return res.send('GRPDExport deleted');
   } catch (err) {
-    Sentry.captureException(err);
-    logger.error(err);
+    sendError(err);
     return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };

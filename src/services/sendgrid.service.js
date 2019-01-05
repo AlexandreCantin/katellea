@@ -1,6 +1,7 @@
 import { isArray } from 'util';
 import { environment } from '../../conf/environment';
 import logger from './logger.service';
+import { sendError } from '../helper';
 
 /**
  * Service for sending email with Sendgrid
@@ -23,7 +24,7 @@ class SendgridServiceFactory {
 
   sendMail({ subject, htmlContent, to }) {
     if (!this.activateMail) {
-      logger.error(`Mail was not send because 'activateMail' is false`);
+      sendError(new Error(`Mail was not send because 'activateMail' is false`));
       return;
     }
 
@@ -45,7 +46,7 @@ class SendgridServiceFactory {
         };
         this.sgMail.send(msg);
       } catch (err) {
-        logger.error(err);
+        sendError(err);
         throw err;
       }
     });

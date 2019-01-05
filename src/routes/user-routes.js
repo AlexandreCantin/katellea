@@ -1,7 +1,6 @@
 import express from 'express';
 import dayjs from 'dayjs';
 import sanitize from 'sanitize-html';
-import * as Sentry from '@sentry/node';
 
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
 
@@ -11,10 +10,10 @@ import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, FORBIDDEN, BAD_REQU
 import User from '../models/user';
 import Donation from '../models/donation';
 import { canAccessDonation } from '../middlewares/can-access-donation';
-import logger from '../services/logger.service';
 
 import { addWeeksToDate } from '../helpers/date.helper';
 import { UserService } from '../services/user.service';
+import { sendError } from '../helper';
 
 
 const userRoutes = express.Router();
@@ -76,20 +75,20 @@ const createUser = async (req, res) => {
   user.plasmaGiven = 0;
   user.plateletDonationDone = 0;
   user.plateletGiven = 0;
-  
-  
+
+
   try {
     await user.save();
-    
+
     const userCreated = await User.findById(user._id).populate({ path: 'sponsor', model: 'User', select: User.publicFields });
     userCreated.addKatelleaToken();
-    
+
     return res.json(userCreated);
   } catch (err) {
     if(err.errmsg && err.errmsg.startsWith('E11000 duplicate key error')) {
       return res.status(UNAUTHORIZED).send();
     }
-    Sentry.captureException(err);
+    sendError(err);
     return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
@@ -103,8 +102,7 @@ const updateNotificationReadDate = async (req, res) => {
 
     return res.status(OK).send();
   } catch (err) {
-    Sentry.captureException(err);
-    logger.error(err);
+    sendError(err);
     return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
@@ -178,8 +176,7 @@ const updateUser = async (req, res) => {
 
     return res.json(userUpdated);
   } catch (err) {
-    Sentry.captureException(err);
-    logger.error(err);
+    sendError(err);
     return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };
@@ -207,8 +204,7 @@ const deleteUser = async (req, res, next) => {
     await User.findOneAndUpdate({ _id: req.userId }, user);
     res.send('User deleted');
   } catch (err) {
-    Sentry.captureException(err);
-    logger.error(err);
+    sendError(err);
     return res.status(INTERNAL_SERVER_ERROR).send();
   }
 };

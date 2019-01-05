@@ -2,11 +2,10 @@
 
 import express from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
-import { hasOwnProperties } from '../helper';
+import { hasOwnProperties, sendError } from '../helper';
 import { SendgridService } from '../services/sendgrid.service';
 import sanitize from 'sanitize-html';
 import { environment } from '../../conf/environment';
-import logger from '../services/logger.service';
 import { SlackService } from '../services/slack.service';
 
 const contactRoutes = express.Router();
@@ -42,7 +41,7 @@ const sendContactForm = async (req, res) => {
       to: environment.mail.contactEmail,
     });
   } catch (err) {
-    logger.error(err);
+    sendError(err);
     return res.status(501).send();
   }
   return res.status(200).send();
