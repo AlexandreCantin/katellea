@@ -19,12 +19,14 @@ import userRoutes from './src/routes/user-routes';
 import authRoutes from './src/routes/auth-routes';
 import establishmentRoutes from './src/routes/establishment-route';
 import donationRoutes from './src/routes/donation-routes';
-import statisticsRoutes from './src/routes/stats-routes';
+import statisticsRoutes from './src/routes/public-stats-routes';
 import contactRoutes from './src/routes/contact-routes';
 import notificationsRoutes from './src/routes/notifications-route';
 import mobileCollectsRoutes from './src/routes/mobile-collects-routes';
 import rootRoutes from './src/routes/react-proxy-routes';
 import grpdRoutes from './src/routes/grpd-routes';
+import adminStatisticsRoutes from './src/routes/admin/admin-statistics-route';
+import adminUsersRoutes from './src/routes/admin/admin-users-route';
 
 import UserStatisticsCron from './src/cron/user-stats.cron';
 import DonationDoneCron from './src/cron/donation-done.cron';
@@ -86,6 +88,9 @@ app.use('/statistics', statisticsRoutes);
 app.use('/notifications', notificationsRoutes);
 app.use('/grpd', grpdRoutes);
 app.use(contactRoutes);
+// Admin
+app.use('/admin/statistics', adminStatisticsRoutes);
+app.use('/admin/users', adminUsersRoutes);
 
 // Serve React build : Need to be last !
 app.use(express.static('frontend/build'));

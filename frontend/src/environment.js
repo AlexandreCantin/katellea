@@ -26,6 +26,7 @@ export const environmentValues = {
 
   USER_ENDPOINT: '/user',
   USER_SPONSOR_ENDPOINT: '/user/sponsor/',
+  USER_IS_ADMIN_ENDPOINT: '/user/is-admin',
   USER_ENDPOINT_WITH_TOKEN: '/remember-me/',
   USER_ENDPOINT_FACEBOOK_TOKEN: '/facebook-connect/',
   USER_ENDPOINT_LOGOUT: '/logout',
@@ -49,6 +50,11 @@ export const environmentValues = {
   MOBILE_COLLECT_ENDPOINT_CLOSEST: '/mobile-collect/closest',
 
   CONTACT_ENDPOINT_URL: '/contact-form',
+
+  // ADMIN
+  ADMIN_LAST_STATISTICS_ENDPOINT: '/admin/statistics/last',
+  ADMIN_USER_ENDPOINT: '/admin/users',
+  ADMIN_USER_TOTAL_ENDPOINT: '/admin/users/count'
 };
 
 class EnvironmentValuesLoader {

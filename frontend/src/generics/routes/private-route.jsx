@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { navigate, Redirect } from '@reach/router';
+import { Redirect } from '@reach/router';
 import { connect } from 'react-redux';
 
 import { isEmpty } from '../../services/helper';

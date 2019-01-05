@@ -1,0 +1,17 @@
+@import '../styles/constants.scss';
+
+.pagination {
+  li {
+    margin-left: 10px;
+    margin-right: 0;
+
+    button {
+      border: none;
+      background-color: lightgray;
+      padding: 5px 10px;
+      &.selected {
+        background: white;
+      }
+    }
+  }
+}

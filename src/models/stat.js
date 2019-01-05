@@ -3,7 +3,9 @@ import { MongooseAutoIncrementID } from 'mongoose-auto-increment-reworked';
 
 const StatisticsSchema = mongoose.Schema({
   nbUsers: Number,
+  nbSponsoredUsers: Number,
   dayNbUsers: Number,
+  dayNbSponsoredUsers: Number,
   dayString: String,
 
   // ** Donation done ** //
