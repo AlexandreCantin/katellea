@@ -21,6 +21,20 @@ const getAllUsers = async (req, res) => {
   return res.json(users);
 }
 
+const doSearchUser = async (req, res) => {
+  const term = req.query.term;
+
+  const users = await User.find({
+    $or: [
+      { firstName: new RegExp(term, 'i') },
+      { lastName: new RegExp(term, 'i') },
+      { email: new RegExp(term, 'i') }
+    ]
+  });
+
+  return res.json(users);
+}
+
 const getTotalUserNumber = async (req, res) => {
   const userTotalCount = await User.countDocuments({});
   return res.json(userTotalCount);
@@ -28,5 +42,6 @@ const getTotalUserNumber = async (req, res) => {
 
 adminUsersRoutes.get('/', getAllUsers);
 adminUsersRoutes.get('/count', getTotalUserNumber);
+adminUsersRoutes.get('/search', doSearchUser);
 adminUsersRoutes.get('/:id', getUser);
 export default adminUsersRoutes;

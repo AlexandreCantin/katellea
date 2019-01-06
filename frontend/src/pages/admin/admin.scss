@@ -49,6 +49,13 @@ section.admin-content {
   .loader { display: inline-block; }
 }
 
+.admin-search-form {
+  display: flex;
+  margin-bottom: 30px;
+  input { flex: 15; padding: 10px; }
+  input[type=submit], button { flex: 1; }
+}
+
 #admin {
   .icons {
     display: grid;

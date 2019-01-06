@@ -18,6 +18,11 @@ class AdminUserServiceFactory {
     return this.doRequest(url);
   }
 
+  searchUser({ page, pageSize, term }) {
+    let url = `${environment.SERVER_URL}${environment.ADMIN_SEARCH_USER_ENDPOINT}?page=${page}&pageSize=${pageSize}&term=${term}`;
+    return this.doRequest(url);
+  }
+
   doRequest(url) {
     let headers = getKatelleaTokenHeaders();
     return new Promise(async (resolve, reject) => {

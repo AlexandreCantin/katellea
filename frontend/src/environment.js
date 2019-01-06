@@ -54,6 +54,7 @@ export const environmentValues = {
   // ADMIN
   ADMIN_LAST_STATISTICS_ENDPOINT: '/admin/statistics/last',
   ADMIN_USER_ENDPOINT: '/admin/users',
+  ADMIN_SEARCH_USER_ENDPOINT: '/admin/users/search',
   ADMIN_USER_TOTAL_ENDPOINT: '/admin/users/count'
 };
 
