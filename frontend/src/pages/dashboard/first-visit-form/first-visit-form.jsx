@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
+import dayjs from 'dayjs';
+
+import { DONATION_REST_WEEKS } from '../../../enum';
+import { extractKey } from '../../../services/helper';
+import { dateFormatLongDayDayMonthYear } from '../../../services/date-helper';
 
 import EstablishmentSelectForm from '../../../generics/establishment/select/establishment-select-form';
 import { UserService } from '../../../services/user/user.service';
@@ -10,7 +15,6 @@ import FlashMessage from '../../../generics/flash-message';
 
 import UserCompatibility from '../../../generics/blood/user-compatibility';
 import SponsorCompatibility from '../../../generics/blood/sponsor-compatibility';
-import { extractKey } from '../../../services/helper';
 import store from '../../../services/store';
 import Modal from '../../../generics/modal';
 import Validators from '../../../services/forms/validators';
@@ -56,6 +60,10 @@ class FirstVisitForm extends Component {
   setFieldValue(field, value) {
     this.formRef.current.form.getFieldState(field).change(value);
   }
+  getFieldValue(field) {
+    if(!this.formRef ||! this.formRef.current) return;
+    return this.formRef.current.form.getFieldState(field).value;
+  }
   changeLastDonation = (e) => {
     if (e.target.checked) {
 
@@ -83,6 +91,13 @@ class FirstVisitForm extends Component {
       STEP_2_FROM_RULES.lastDonationType = [Validators.required()];
     }
   }
+  computeMinimumDate(lastDonationDate, lastDonationType) {
+    lastDonationDate = lastDonationDate ? lastDonationDate : this.getFieldValue('lastDonationDate');
+    lastDonationType = lastDonationType ? lastDonationType : this.getFieldValue('lastDonationType') || 'BLOOD';
+    if(!lastDonationDate || !lastDonationType) return;
+
+    return dayjs(lastDonationDate).add(DONATION_REST_WEEKS[lastDonationType], 'week');
+  }
 
   saveEstablishment = (establishment) => {
     this.setState({ establishment, currentStep: this.state.currentStep + 1 });
@@ -104,7 +119,9 @@ class FirstVisitForm extends Component {
 
     let hasLastDonation = !this.state.step2Values.noLastDonation;
     user.lastDonationDate = hasLastDonation ? this.state.step2Values.lastDonationDate : null;
-    user.lastDonationDate = hasLastDonation ? this.state.step2Values.lastDonationType : null;
+    user.lastDonationType = hasLastDonation ? this.state.step2Values.lastDonationType : null;
+
+    user.minimumDate = hasLastDonation ? this.computeMinimumDate(user.lastDonationDate, user.lastDonationType) : new Date();
 
     user.bloodType = this.state.step3Values.bloodType;
 
@@ -131,7 +148,20 @@ class FirstVisitForm extends Component {
     if (stepNumber === 3) return { title: 'Votre groupe sanguin', cssClass: 'first-visit-form step-3', hideClose: true };
     if (stepNumber === 4) return { title: 'Merci !', cssClass: 'first-visit-form step-4', hideClose: true };
   }
+  renderMinimumDateBlock() {
+    const minimumDate = this.computeMinimumDate();
+    if(!minimumDate) return null;
 
+    const today = dayjs();
+    if(minimumDate.isAfter(today)) {
+      return (
+        <div className="alert info minimum-date">
+          Vous ne pourrez pas de faire de nouveau don avant le {dateFormatLongDayDayMonthYear(minimumDate)}
+        </div>
+      );
+    }
+    return null;
+  }
   renderStep0() {
     return (
       <div>
@@ -237,6 +267,8 @@ class FirstVisitForm extends Component {
                   )}
                 </Field>
               </div>
+
+              {this.renderMinimumDateBlock()}
 
               <div className="button-container">
                 <button className="btn grey" onClick={this.previousStep}>Retour</button>

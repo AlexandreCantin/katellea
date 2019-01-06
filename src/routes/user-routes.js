@@ -111,14 +111,14 @@ const updateNotificationReadDate = async (req, res) => {
 const updateUser = async (req, res) => {
 
   const user = new User();
-  user.firstName = req.body.firstName || user.firstName;
-  user.lastName = req.body.lastName || user.lastName;
-  user.email = req.body.email || user.email;
-  user.lastDonationDate = req.body.lastDonationDate || user.lastDonationDate;
-  user.lastDonationType = req.body.lastDonationType || user.lastDonationType;
-  user.donationPreference = req.body.donationPreference || user.donationPreference;
-  user.plateletActive = req.body.plateletActive || user.plateletActive;
-  user.lastNotificationReadDate = req.body.lastNotificationReadDate || user.lastNotificationReadDate;
+  user.firstName = req.body.firstName || req.user.firstName;
+  user.lastName = req.body.lastName || req.user.lastName;
+  user.email = req.body.email || req.user.email;
+  user.lastDonationDate = req.body.lastDonationDate || req.user.lastDonationDate;
+  user.lastDonationType = req.body.lastDonationType || req.user.lastDonationType;
+  user.donationPreference = req.body.donationPreference || req.user.donationPreference;
+  user.plateletActive = req.body.plateletActive || req.user.plateletActive;
+  user.lastNotificationReadDate = req.body.lastNotificationReadDate || req.user.lastNotificationReadDate;
 
   // Get sponsor
   let sponsorId = undefined;
@@ -134,9 +134,10 @@ const updateUser = async (req, res) => {
   if (req.body.minimumDate) {
     if (user.lastDonationType && user.lastDonationDate) {
       const newMinimumDate = dayjs(req.body.minimumDate);
+      const currentMinimumDate = dayjs(req.user.minimumDate);
       const minimumDateDueToDonation = addWeeksToDate(user.lastDonationDate, DONATION_REST_WEEKS[user.lastDonationType]);
 
-      if (newMinimumDate.isAfter(minimumDateDueToDonation)) user.minimumDate = req.body.minimumDate;
+      if (newMinimumDate.isAfter(minimumDateDueToDonation) || newMinimumDate.isAfter(currentMinimumDate)) user.minimumDate = req.body.minimumDate;
     } else {
       // Default case
       user.minimumDate = req.body.minimumDate;

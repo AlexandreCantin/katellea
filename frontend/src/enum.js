@@ -56,5 +56,12 @@ export const DONATION_LOCATION = {
   ESTABLISHMENT: { src: '/img/donation-location/fixed-site.svg', alt: "Etablissement de l'EFS" }
 };
 
+// TODO: check if only related to the last donation ?
+export const DONATION_REST_WEEKS = {
+  BLOOD: 8, // 8 weeks
+  PLASMA: 2, // 2 weeks
+  PLATELET: 4 // 4 weeks
+};
+
 export const GENDER = { MALE: 'MALE', FEMALE: 'FEMALE', UNKNOWN: 'UNKNOWN' };
 export const POLL_ANSWERS = { YES: 'YES', NO: 'NO', MAYBE: 'MAYBE' };
