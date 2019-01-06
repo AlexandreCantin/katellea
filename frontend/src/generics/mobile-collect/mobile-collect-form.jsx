@@ -11,7 +11,7 @@ import { Form, Field } from 'react-final-form';
 import { validateForm } from '../../services/forms/validate';
 
 const FORM_RULES = {
-  zipcode: [Validators.required(5), Validators.numeric(), Validators.minLength(5), Validators.maxLength(5)]
+  zipcode: [Validators.required(), Validators.numeric(), Validators.minLength(5), Validators.maxLength(5)]
 }
 
 export default class MobileCollectSelectForm extends Component {
