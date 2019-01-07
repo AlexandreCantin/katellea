@@ -34,6 +34,11 @@ const EstablishmentSchema = mongoose.Schema({
   },
 
   efsComment: String,
+
+  verified: {
+    type: Boolean,
+    default: false
+  },
   internalComment: String, // For Katella team only, to save some history for example
 
   distance: Number
@@ -44,6 +49,7 @@ EstablishmentSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
   transform: function(doc, ret) {
+    delete ret.verified;
     delete ret.internalComment;
     delete ret._id;
   }

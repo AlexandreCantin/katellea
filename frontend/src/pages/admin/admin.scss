@@ -113,11 +113,28 @@ section.admin-content {
     }
 
     tr:nth-child(2n) { background-color: #ecf0f1; }
-    td { padding: 10px 0; }
+    td {
+      padding: 10px 0;
+      img { height: 10px; width: 10px; }
+    }
   }
 
   .pagination {
     margin-top: 20px;
+  }
+}
+
+#modal {
+  .admin-establishment-details {
+    strong { font-size: 0.9em; }
+    .verified-form-line {
+      display: flex;
+      margin: 20px 0;
+      > span { width: 200px; }
+      > div { flex: 1; text-align: center; }
+
+      label { display: inline; }
+    }
   }
 }
 

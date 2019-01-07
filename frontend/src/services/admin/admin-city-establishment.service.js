@@ -34,6 +34,19 @@ class AdminCityEstablishmentServiceFactory {
     return this.doRequest(url);
   }
 
+  saveEstablishment({ id, verified, internalComment }) {
+    let url = `${environment.SERVER_URL}${environment.ADMIN_ESTABLISHMENT_ENDPOINT}/${id}`;
+    let headers = getKatelleaTokenHeaders();
+
+    return new Promise(async (resolve, reject) => {
+      try {
+        await fetch(url, { headers, method: 'PUT', body: JSON.stringify({ verified, internalComment }) });
+        resolve();
+      } catch(err) {
+        reject();
+      }
+    });
+  }
 
   doRequest(url) {
     let headers = getKatelleaTokenHeaders();

@@ -80,17 +80,19 @@ export default class AdminEstablishments extends Component {
                   <th>ID</th>
                   <th>Nom</th>
                   <th>Date de mise à jour</th>
+                  <th>Vérifié</th>
                   <th>En savoir plus</th>
                 </tr>
               </thead>
               <tbody>
               {
                 establishments.map(establishment => (
-                  <tr key={establishment.id}>
-                    <td>{ establishment.id }</td>
+                  <tr key={establishment._id}>
+                    <td>{ establishment._id }</td>
                     <td>{ establishment.name }</td>
                     <td>{ dateFormatDayMonthYearHourMinutSecond(establishment.updatedAt) }</td>
-                    <td><button data-id={establishment.id} onClick={this.selectEstablishment} className="btn small">Détails</button></td>
+                    <td><img src={establishment.verified ? '/icons/header/available.svg' : '/icons/header/unavailable.svg'} alt="" /></td>
+                    <td><button data-id={establishment._id} onClick={this.selectEstablishment} className="btn small">Détails</button></td>
                   </tr>
                 ))
               }
@@ -99,8 +101,10 @@ export default class AdminEstablishments extends Component {
           }
 
           { selectedEstablishment ?
-            <Modal title="Details de l'établissement" onClose={() => this.clearSelectedEstablishment()} noModalUrl>
-              <AdminEstablishmentDetails establishmentId={selectedEstablishment} />
+            <Modal title="Details de l'établissement" cssClass="admin-establishment-details" onClose={() => this.clearSelectedEstablishment()} noModalUrl>
+              <>
+                <AdminEstablishmentDetails establishmentId={selectedEstablishment} />
+              </>
             </Modal> : null }
         </section>
 
