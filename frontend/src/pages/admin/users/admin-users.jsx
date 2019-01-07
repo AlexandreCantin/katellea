@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { AdminHeader } from '../admin-header';
-
-import Validators from '../../../services/forms/validators';
-import { Form, Field } from 'react-final-form';
-import { validateForm } from '../../../services/forms/validate';
+import { AdminSearch } from '../admin-search';
 
 import Loader from '../../../generics/loader/loader';
 import Pagination from '../../../generics/pagination';
@@ -16,7 +13,6 @@ import { AdminUserDetails } from './admin-user-details';
 require('../admin.scss');
 
 const PAGE_SIZE = 30;
-const FORM_RULES = { term: [Validators.required(), Validators.minLength(2) ] }
 
 export default class AdminUsers extends Component {
 
@@ -67,8 +63,7 @@ export default class AdminUsers extends Component {
   clearSelectedUser = () => this.setState({ selectedUser: undefined });
 
   // SEARCH
-  searchUser = async (values) => {
-    const term = values.term;
+  searchUser = async (term) => {
     this.setState({ searchTerm: term, currentPage: 0, users: [] });
 
     try {
@@ -78,8 +73,7 @@ export default class AdminUsers extends Component {
       this.setState({ users:[] });
     }
   }
-  cancelSearch = (event) => {
-    event.preventDefault();
+  cancelSearch = () => {
     this.setState({ searchTerm: '', currentPage: 0, users: [] }, () => this.getUserPage());
   }
 
@@ -94,26 +88,10 @@ export default class AdminUsers extends Component {
 
 
         <section className="admin-content clearfix">
-          <Form
-            onSubmit={this.searchUser}
-            initialValues={{ term: searchTerm }}
-            validate={values => validateForm(values, FORM_RULES)}
-            render={({ handleSubmit, invalid }) => (
-              <form className="admin-search-form" onSubmit={handleSubmit}>
-                <Field name="term">
-                  {({ input }) => (
-                    <>
-                      <label htmlFor="term" className="sr-only">Id, nom, email..."</label>
-                      <input {...input} id="term" name="term" type="text" placeholder="Id, nom, email..." />
-                    </>
-                  )}
-                </Field>
-
-                { searchTerm ? <button onClick={this.cancelSearch}>Annuler</button> : null }
-                <label htmlFor="submit-user-search" className="sr-only">Chercher</label>
-                <input id="submit-user-search" type="submit" disabled={invalid} value="Chercher des utilisateurs" />
-              </form>
-            )} />
+          <AdminSearch
+            label="Id, nom, email..." submitText="Chercher des utilisateurs"
+            term={searchTerm} cancelFn={this.cancelSearch} submitFn={this.searchUser}
+          />
 
           { loading ? <div className="text-center"><Loader /></div> : null }
           { !loading && users.length === 0 ? <div className="alert info">Pas d'utilisateurs trouvées...</div> : null }

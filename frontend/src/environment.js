@@ -55,7 +55,14 @@ export const environmentValues = {
   ADMIN_LAST_STATISTICS_ENDPOINT: '/admin/statistics/last',
   ADMIN_USER_ENDPOINT: '/admin/users',
   ADMIN_SEARCH_USER_ENDPOINT: '/admin/users/search',
-  ADMIN_USER_TOTAL_ENDPOINT: '/admin/users/count'
+  ADMIN_USER_TOTAL_ENDPOINT: '/admin/users/count',
+
+  ADMIN_CITY_ENDPOINT: '/admin/city',
+  ADMIN_SEARCH_CITY_ENDPOINT: '/admin/city/search',
+  ADMIN_CITY_TOTAL_ENDPOINT: '/admin/city/count',
+
+  ADMIN_ESTABLISHMENT_ENDPOINT: '/admin/establishment',
+  ADMIN_SEARCH_ESTABLISHMENT_ENDPOINT: '/admin/establishment/search',
 };
 
 class EnvironmentValuesLoader {

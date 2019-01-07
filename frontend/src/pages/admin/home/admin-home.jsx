@@ -23,6 +23,14 @@ export default class AdminHome extends Component {
             <img src="/img/admin/stats.svg" alt="" />
             <span>Statistiques</span>
           </Link>
+          <Link to="/admin/etablissements" className="text-center">
+            <img src="/img/donation-location/fixed-site.svg" alt="" />
+            <span>Etablissements</span>
+          </Link>
+          <Link to="/admin/villes" className="text-center">
+            <img src="/img/admin/city.svg" alt="" />
+            <span>Villes</span>
+          </Link>
         </section>
       </div>
     );

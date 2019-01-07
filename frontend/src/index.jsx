@@ -42,6 +42,8 @@ const DonationHistory = lazy(() => import('./pages/history/donation-history'));
 const AdminHome = lazy(() => import('./pages/admin/home/admin-home'));
 const AdminUsers = lazy(() => import('./pages/admin/users/admin-users'));
 const AdminStats = lazy(() => import('./pages/admin/stats/admin-stats'));
+const AdminCities = lazy(() => import('./pages/admin/city/admin-cities'));
+const AdminEstablishments = lazy(() => import('./pages/admin/establishment/admin-establishments'));
 
 
 require('./styles/global.scss');
@@ -80,6 +82,8 @@ class App extends Component {
                 <AdminRoute component={AdminHome} path="/admin" />
                 <AdminRoute component={AdminUsers} path="/admin/utilisateurs" />
                 <AdminRoute component={AdminStats} path="/admin/statistiques" />
+                <AdminRoute component={AdminEstablishments} path="/admin/etablissements" />
+                <AdminRoute component={AdminCities} path="/admin/villes" />
 
                 <NotFound type="404" default />
               </Router>

@@ -18,8 +18,8 @@ class AdminUserServiceFactory {
     return this.doRequest(url);
   }
 
-  searchUser({ page, pageSize, term }) {
-    let url = `${environment.SERVER_URL}${environment.ADMIN_SEARCH_USER_ENDPOINT}?page=${page}&pageSize=${pageSize}&term=${term}`;
+  searchUser({ term }) {
+    let url = `${environment.SERVER_URL}${environment.ADMIN_SEARCH_USER_ENDPOINT}?term=${term}`;
     return this.doRequest(url);
   }
 
