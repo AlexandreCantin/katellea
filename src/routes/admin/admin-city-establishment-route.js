@@ -2,8 +2,11 @@ import express from 'express';
 
 import City from '../../models/city';
 import Establishment from '../../models/establishment';
+import { injectUserFromToken } from '../../middlewares/inject-user-from-token';
 
 const adminCityEstablishmentRoutes = express.Router();
+adminCityEstablishmentRoutes.use(injectUserFromToken);
+
 
 const getAllCities = async (req, res) => {
   let page = +req.query.page || 0;

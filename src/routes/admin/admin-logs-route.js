@@ -2,8 +2,10 @@ import express from 'express';
 
 import AdminLog from '../../models/admin-log';
 import User from '../../models/user';
+import { injectUserFromToken } from '../../middlewares/inject-user-from-token';
 
 const adminLogsRoutes = express.Router();
+adminLogsRoutes.use(injectUserFromToken);
 
 const getAllLogs = async (req, res) => {
   let page = +req.query.page || 0;
@@ -33,14 +35,15 @@ const findUserLogs = async (req, res) => {
 }
 
 const findLastUserLogs = async (req, res) => {
-  const logs = await AdminLog.find({ user : req.params.userId }).sort({ createdAt: +1 }).limit(1);
-  return res.json(logs);
+  const logs = await AdminLog.find({ user : +req.userId }).sort({ _id: -1 }).skip(1).limit(1);
+  return res.json(logs[0]);
 }
 
 
 adminLogsRoutes.get('/', getAllLogs);
 adminLogsRoutes.get('/count', getTotalLogsNumber);
 adminLogsRoutes.get('/user', getAllAdmins);
-adminLogsRoutes.get('/user/last', findUserLogs);
+adminLogsRoutes.get('/user/last', findLastUserLogs);
 adminLogsRoutes.get('/user/:userId', findUserLogs);
+
 export default adminLogsRoutes;

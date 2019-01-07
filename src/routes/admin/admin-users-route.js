@@ -1,8 +1,11 @@
 import express from 'express';
 
 import User from '../../models/user';
+import { injectUserFromToken } from '../../middlewares/inject-user-from-token';
 
 const adminUsersRoutes = express.Router();
+adminUsersRoutes.use(injectUserFromToken);
+
 
 const getUser = async (req, res) => {
   const user = await User.findById(req.params.id)
