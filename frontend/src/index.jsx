@@ -26,6 +26,7 @@ import { AdminRoute } from './generics/routes/admin-route';
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import AdminLogs from './pages/admin/logs/admin-logs';
 dayjs.locale('fr');
 dayjs.extend(relativeTime);
 
@@ -84,6 +85,7 @@ class App extends Component {
                 <AdminRoute component={AdminStats} path="/admin/statistiques" />
                 <AdminRoute component={AdminEstablishments} path="/admin/etablissements" />
                 <AdminRoute component={AdminCities} path="/admin/villes" />
+                <AdminRoute component={AdminLogs} path="/admin/logs" />
 
                 <NotFound type="404" default />
               </Router>
