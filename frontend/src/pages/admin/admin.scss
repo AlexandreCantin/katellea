@@ -65,10 +65,16 @@ section.admin-content {
     margin: auto;
     margin-top: 50px;
 
+    .admin-last-login {
+      grid-column: span 3;
+    }
+
     @media (max-width: $min-width-tablet) {
       grid-template-columns: 1fr 1fr;
       grid-gap: 30px;
       width: 95%;
+
+      .admin-last-login { grid-column: span 2; }
     }
 
 
@@ -95,7 +101,7 @@ section.admin-content {
 }
 
 
-#admin-users, #admin-cities, #admin-establishments {
+#admin-users, #admin-cities, #admin-establishments, #admin-logs {
   table {
     width: 100%;
     border-collapse: collapse;
@@ -112,5 +118,12 @@ section.admin-content {
 
   .pagination {
     margin-top: 20px;
+  }
+}
+
+#admin-logs {
+  .admin-logs-filter {
+    margin-bottom: 30px;
+    select { padding: 5px 40px; }
   }
 }

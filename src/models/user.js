@@ -81,5 +81,6 @@ const User = mongoose.model('User', UserSchema);
 
 // Global
 User.publicFields = '_id firstName lastName gender establishment bloodType sponsorToken';
+User.adminLogFields = '_id firstName lastName';
 
 export default User;

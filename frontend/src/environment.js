@@ -63,6 +63,11 @@ export const environmentValues = {
 
   ADMIN_ESTABLISHMENT_ENDPOINT: '/admin/establishment',
   ADMIN_SEARCH_ESTABLISHMENT_ENDPOINT: '/admin/establishment/search',
+
+  ADMIN_LOGS_ENDPOINT: '/admin/logs',
+  ADMIN_LOGS_TOTAL_ENDPOINT: '/admin/logs/count',
+  ADMIN_USER_LOGS_ENDPOINT: '/admin/logs/user/',
+  ADMIN_LAST_USER_LOG_ENDPOINT: '/admin/logs/user/last',
 };
 
 class EnvironmentValuesLoader {

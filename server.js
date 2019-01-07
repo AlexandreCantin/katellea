@@ -28,6 +28,7 @@ import grpdRoutes from './src/routes/grpd-routes';
 import adminStatisticsRoutes from './src/routes/admin/admin-statistics-route';
 import adminUsersRoutes from './src/routes/admin/admin-users-route';
 import adminCityEstablishmentRoutes from './src/routes/admin/admin-city-establishment-route';
+import adminLogsRoutes from './src/routes/admin/admin-logs-route';
 
 import UserStatisticsCron from './src/cron/user-stats.cron';
 import DonationDoneCron from './src/cron/donation-done.cron';
@@ -92,6 +93,7 @@ app.use(contactRoutes);
 // Admin
 app.use('/admin/statistics', adminStatisticsRoutes);
 app.use('/admin/users', adminUsersRoutes);
+app.use('/admin/logs', adminLogsRoutes);
 app.use('/admin', adminCityEstablishmentRoutes);
 
 // Serve React build : Need to be last !

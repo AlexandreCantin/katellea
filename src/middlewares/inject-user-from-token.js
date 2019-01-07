@@ -2,6 +2,7 @@ import { JWTService } from '../services/jwt.service';
 import { UNAUTHORIZED } from 'http-status-codes';
 import User from '../models/user';
 import { UserService } from '../services/user.service';
+import { AdminLogService } from '../services/admin-log.service';
 
 export const injectUserFromToken = async (req, res, next) => {
 
@@ -28,6 +29,9 @@ export const injectUserFromToken = async (req, res, next) => {
           req.userId = userId;
           req.user = user;
           req.isAdmin = UserService.isAdmin(user);
+
+          // Register AdminLog
+          AdminLogService.createLog(user);
 
           // Admin routes
           if(req.originalUrl.startsWith('/admin') && !req.isAdmin) canContinue = false;
