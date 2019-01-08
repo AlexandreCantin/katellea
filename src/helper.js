@@ -1,5 +1,5 @@
-import * as Sentry from '@sentry/node';
 import logger from './services/logger.service';
+import { SentryService } from './services/sentry.service';
 
 // Check if object contains all the given properties
 export const hasOwnProperties = (obj, properties) => {
@@ -11,6 +11,6 @@ export const hasOwnProperties = (obj, properties) => {
 
 export const sendError = (err) => {
   const message = err.message || err.errmsg;
-  Sentry.captureException(message);
+  SentryService.sendError(err);
   logger.error(message);
 }
