@@ -111,8 +111,7 @@ export default class AdminUsers extends Component {
                 users.map(user => (
                   <tr key={user.id}>
                     <td>{ user.id }</td>
-                    {/* TODO: use name in the future */}
-                    <td>{ user.firstName } { user.lastName }</td>
+                    <td>{ user.name }</td>
                     <td>{ user.email }</td>
                     <td>{ dateFormatDayMonthYearHourMinutSecond(user.createdAt) }</td>
                     <td><button data-id={user.id} onClick={this.selectUser} className="btn small">Détails</button></td>

@@ -27,8 +27,7 @@ const FROM_RULES = {
   sponsoredByToken: [],
   donationToken: [],
   gender: [],
-  firstName: [Validators.required(), Validators.minLength(3), Validators.maxLength(100)],
-  lastName: [Validators.required(), Validators.minLength(3), Validators.maxLength(100)],
+  name: [Validators.required(), Validators.minLength(3), Validators.maxLength(100)],
   email: [Validators.required(), Validators.email()],
 }
 
@@ -92,8 +91,7 @@ export default class Register extends Component {
           sponsoredByToken: sponsorToken,
           donationToken,
           gender: userTempProfile.gender,
-          firstName: userTempProfile.firstName,
-          lastName: userTempProfile.lastName,
+          name: userTempProfile.name,
           email: userTempProfile.email
         }
       });
@@ -104,8 +102,7 @@ export default class Register extends Component {
     // Create user
     let user = new User({
       id: null,
-      firstName: values.firstName,
-      lastName: values.lastName,
+      name: values.name,
       email: values.email,
       gender: values.gender,
       currentDonation: null,
@@ -127,7 +124,7 @@ export default class Register extends Component {
     });
 
     // Save it
-    UserService.saveKatelleaUser(user, true, values.sponsoredByToken, values.donationToken);
+    UserService.saveKatelleaUser(user, true, values.sponsoredByToken, values.donationToken, UserService.generateSocialNetworkKey());
   }
 
 
@@ -164,35 +161,17 @@ export default class Register extends Component {
             <Field name="sponsoredByToken">{({ input }) => (<input {...input} type="hidden" name="sponsoredByToken" />)}</Field>
             <Field name="donationToken">{({ input }) => (<input {...input} type="hidden" name="donationToken" />)}</Field>
 
-            <Field name="firstName">
+            <Field name="name">
               {({ input, meta }) => (
                 <div className="form-line clearfix">
-                  <label htmlFor="first-name">Prénom *</label>
-                  <input {...input} id="first-name" type="text" name="firstName" />
+                  <label htmlFor="name">Nom complet*</label>
+                  <input {...input} id="name" type="text" name="name" />
 
                   {meta.error && meta.touched ?
                     <div className="alert error">
-                      {meta.error === 'required' ? <div>Le champ 'Prénom' est obligatoire. Veuillez renseigner ce champs.</div> : null}
-                      {meta.error === 'minLength' ? <div>Le champ 'Prénom' doit comporter minimum 3 caractères.</div> : null}
-                      {meta.error === 'maxLength' ? <div>Le champ 'Prénom' ne doit pas dépasser 100 caractères.</div> : null}
-                    </div> : null
-                  }
-                </div>
-
-              )}
-            </Field>
-
-            <Field name="lastName">
-              {({ input, meta }) => (
-                <div className="form-line clearfix">
-                  <label htmlFor="last-name">Nom *</label>
-                  <input {...input} id="last-name" type="text" name="lastName" />
-
-                  {meta.error && meta.touched ?
-                    <div className="alert error">
-                      {meta.error === 'required' ? <div>Le champ 'Prénom' est obligatoire. Veuillez renseigner ce champs.</div> : null}
-                      {meta.error === 'minLength' ? <div>Le champ 'Prénom' doit comporter minimum 3 caractères.</div> : null}
-                      {meta.error === 'maxLength' ? <div>Le champ 'Prénom' ne doit pas dépasser 100 caractères.</div> : null}
+                      {meta.error === 'required' ? <div>Le champ 'Nom complet' est obligatoire. Veuillez renseigner ce champs.</div> : null}
+                      {meta.error === 'minLength' ? <div>Le champ 'Nom complet' doit comporter minimum 3 caractères.</div> : null}
+                      {meta.error === 'maxLength' ? <div>Le champ 'Nom complet' ne doit pas dépasser 100 caractères.</div> : null}
                     </div> : null
                   }
                 </div>
@@ -215,7 +194,7 @@ export default class Register extends Component {
               )}
             </Field>
 
-            {this.state.sponsorUser ?
+            {true ?
               <div className="submit-zone text-center">
                 <label htmlFor="submit" className="sr-only">Créer mon profil</label>
                 <input id="submit" type="submit" className="btn big" value="Créer mon profil" disabled={invalid} />

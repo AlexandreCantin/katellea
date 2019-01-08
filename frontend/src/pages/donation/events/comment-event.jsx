@@ -81,7 +81,7 @@ export default class DonationEventComment extends Component {
           {updated ? <em>(modifié)</em> : null}
           {this.state.isEditable ? <button className="edit btn" onClick={this.showEditForm}>Modifier</button> : null}
         </p>
-        <p className="comment-date">par {author.firstName} {author.lastName}, <DonationEventDate date={event.date} /></p>
+        <p className="comment-date">par {author.name}, <DonationEventDate date={event.date} /></p>
       </div>
     );
   }

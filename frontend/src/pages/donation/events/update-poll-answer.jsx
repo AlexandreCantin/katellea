@@ -10,7 +10,7 @@ const DonationUpdatePollAnswer = (props) => {
   return (
     <div className="event donation-add-poll-answer">
       <p>
-        {author.firstName} {author.lastName} a modifié ses réponses au sondage, <DonationEventDate date={event.date} />
+        {author.name} a modifié ses réponses au sondage, <DonationEventDate date={event.date} />
       </p>
     </div>
   );

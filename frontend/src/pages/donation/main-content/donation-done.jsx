@@ -4,7 +4,6 @@ import dayjs from 'dayjs';
 import store from '../../../services/store';
 import FlashMessage from '../../../generics/flash-message';
 
-import { UserService } from '../../../services/user/user.service';
 import { DonationService } from '../../../services/donation/donation.service';
 import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
 import { dateFormatShortDayDayMonthYear } from '../../../services/date-helper';
@@ -71,7 +70,7 @@ export default class DonationDone extends Component {
                             <div className={input.values.contains(id) ? 'attendee selected' : 'attendee'}>
                               <label>
                                 <input type="checkbox" name="finalAttendees" value={id} />
-                                <span>{UserService.getFullName(pa.author)}</span>
+                                <span>{pa.author.name}</span>
                               </label>
                             </div>
 

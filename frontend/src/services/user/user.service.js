@@ -14,10 +14,6 @@ import { USER_TEMP_ACTIONS } from '../user-temp/user-temp.reducers';
 
 class UserServiceFactory {
 
-  getFullName(user) {
-    return `${user.firstName} ${user.lastName}`;
-  }
-
   isAuthentificated() {
     let currentUser = store.getState().user || {};
     if (!isEmpty(currentUser)) return true;
@@ -43,6 +39,21 @@ class UserServiceFactory {
       }
       reject();
     });
+  }
+
+  /**
+   * This field role is to identified user when they come back.
+   * Its form is : SOCIAL_NETWORK + '_' + ID
+   * Exemple: facebook_17387398738979, twitter_123878754522...
+   *
+   * Why not used email ? Because Instagram and Twitter don't automaticaly returns email with the token...
+   * */
+  generateSocialNetworkKey() {
+    const userTempProfile = store.getState().userTempProfile;
+    const { origin, userID } = userTempProfile;
+
+    if(!origin || !userID) throw new Error(`No origin and/or on user ' : ${origin} - ${userID}`);
+    return origin + '_' + userID;
   }
 
 
@@ -109,29 +120,6 @@ class UserServiceFactory {
   }
 
 
-  computeKatelleaUserUrl(token, origin) {
-    if (origin === 'facebook') return `${environment.SERVER_URL}${environment.USER_ENDPOINT_FACEBOOK_TOKEN}${token}`;
-
-    throw new Error(`Origin ${origin} unknown`);
-  }
-  getKatelleaUser(token, origin) {
-    let url = this.computeKatelleaUserUrl(token, origin);
-
-    return new Promise(async (resolve, reject) => {
-      let response = await fetch(url);
-
-      if (response.status === 200) {
-        let userData = await response.json();
-        if (userData) {
-          this.saveUserInLocalStore(userData);
-          resolve();
-          return;
-        }
-      }
-      reject();
-    });
-  }
-
   async updateLastNotificationReadDate(lastNotificationReadDate) {
     let url = `${environment.SERVER_URL}${environment.USER_UPDATE_LAST_NOTIFICATION_READ_DATE}`;
     let headers = getKatelleaTokenHeaders();
@@ -158,8 +146,7 @@ class UserServiceFactory {
         if (userData) {
           let user = new User({
             id: userData.id,
-            firstName: userData.firstName,
-            lastName: userData.lastName,
+            name: userData.name,
             email: null,
             gender: null,
             currentDonation: null,
@@ -188,13 +175,16 @@ class UserServiceFactory {
   }
 
 
-  saveKatelleaUser(user, isCreation = false, sponsoredByToken = '', donationToken = '') {
+  saveKatelleaUser(user, isCreation = false, sponsoredByToken = '', donationToken = '', socialNetworkKey='') {
     let url = `${environment.SERVER_URL}${environment.USER_ENDPOINT}`;
     let headers = getKatelleaTokenHeaders(!isCreation);
+
+    if(isCreation && !socialNetworkKey) throw new Error('No socialNetworkKey given when creating user')
 
     let userData = user.toJSON();
     if (sponsoredByToken) userData.sponsoredByToken = sponsoredByToken;
     if (donationToken) userData.donationToken = donationToken;
+    if(isCreation) userData.socialNetworkKey = socialNetworkKey;
 
     return new Promise(async (resolve, reject) => {
       let response = await fetch(url, { headers, method: isCreation ? 'POST' : 'PUT', body: JSON.stringify(userData) });

@@ -26,7 +26,7 @@ function HeaderAccountItem({ user }) {
   return (
     <div role="menuitem" className="my-account dropdown-container" onMouseEnter={expandMenu} onMouseLeave={hideMenu}>
       <button className="btn reset has-dropdown" aria-haspopup="true" aria-expanded={hover ? 'true' : 'false'} aria-controls="#account-dropdown" onClick={toggleHover}>
-        {user.firstName + ' ' + user.lastName}
+        {user.name}
       </button>
       {renderAccountDropdown()}
     </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { UserService } from '../../../services/user/user.service';
 import { dateFormatLongDayDayMonthYearHourMinut } from '../../../services/date-helper';
 
 const DonationDateConfirmed = (props) => {
@@ -15,7 +14,7 @@ const DonationDateConfirmed = (props) => {
 
       <div className="attendees">
         <h3>Personnes inscrites</h3>
-        <ul>{donation.finalAttendees.map(attendee => (<li key={attendee.id}>{UserService.getFullName(attendee)}</li>))}</ul>
+        <ul>{donation.finalAttendees.map(attendee => (<li key={attendee.id}>{attendee.name}</li>))}</ul>
       </div>
 
       <div className="selfie alert info">

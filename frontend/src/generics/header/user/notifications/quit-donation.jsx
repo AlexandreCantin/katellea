@@ -7,7 +7,7 @@ export default class NotificationQuitDonation extends Component {
 
   renderNotificationContent(notification) {
     const author = notification.author;
-    return (<p><strong>{author.firstName} {author.lastName}</strong> a quitté votre proposition de don,<br /><DonationEventDate date={notification.date} /></p>);
+    return (<p><strong>{author.name}</strong> a quitté votre proposition de don,<br /><DonationEventDate date={notification.date} /></p>);
   }
 
   computeCssClass() {

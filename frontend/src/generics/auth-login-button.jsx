@@ -5,7 +5,6 @@ import { getParameterByName, isEmpty } from '../services/helper';
 
 import store from '../services/store';
 import { AuthService } from '../services/user-temp/auth.service';
-import { UserService } from '../services/user/user.service';
 
 const ORIGINS = ['facebook', 'twitter', 'google', 'instagram'];
 
@@ -15,25 +14,22 @@ export default class AuthLoginButtons extends Component {
   componentDidMount() {
     this.storeUnsubscribeFn1 = store.subscribe(() => {
       let userTempProfile = store.getState().userTempProfile;
-      if (isEmpty(userTempProfile) || userTempProfile.origin !== 'facebook') return;
 
-      UserService.getKatelleaUser(userTempProfile.accessToken, 'facebook')
-        .catch(() => {
-          // No user found
-          if (userTempProfile.hasCompleteInformations()) {
-            let url = '/creer-votre-compte';
+      if (isEmpty(userTempProfile) || !userTempProfile.origin) return;
 
-            let sponsorToken = getParameterByName('sponsor');
-            if (sponsorToken) url += `?sponsor=${sponsorToken}`;
+      // No user found
+      if (userTempProfile.hasCompleteInformations()) {
+        let url = '/creer-votre-compte';
 
-            let donationToken = getParameterByName('donation');
-            if (donationToken) url += `?donation=${donationToken}`;
+        let sponsorToken = getParameterByName('sponsor');
+        if (sponsorToken) url += `?sponsor=${sponsorToken}`;
 
-            navigate(url);
-            return;
-          }
+        let donationToken = getParameterByName('donation');
+        if (donationToken) url += `?donation=${donationToken}`;
 
-        });
+        navigate(url);
+        return;
+      }
     });
 
     // When we get an user : go to dashboard
@@ -62,6 +58,9 @@ export default class AuthLoginButtons extends Component {
     return (
       <div className="social-auth-buttons">
         <button data-origin="facebook" className="btn big facebook" onClick={this.doAuthLogin}>Se connecter avec Facebook</button>
+        <button data-origin="twitter" className="btn big twitter" onClick={this.doAuthLogin}>Se connecter avec Twitter</button>
+        <button data-origin="google" className="btn big google" onClick={this.doAuthLogin}>Se connecter avec Google</button>
+        <button data-origin="instagram" className="btn big instagram" onClick={this.doAuthLogin}>Se connecter avec Instagram</button>
       </div>
     );
   }

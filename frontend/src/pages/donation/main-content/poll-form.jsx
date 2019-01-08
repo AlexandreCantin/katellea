@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { POLL_ANSWERS } from '../../../enum';
-import { UserService } from '../../../services/user/user.service';
 import { DonationService } from '../../../services/donation/donation.service';
 import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
 import store from '../../../services/store';
@@ -89,7 +88,7 @@ export default class PollForm extends Component {
         validate={values => validateForm(values, this.formRules)}
         render={({ handleSubmit, invalid }) => (
           <form onSubmit={handleSubmit} className="poll-form text-center">
-            <div>{UserService.getFullName(user)}</div>
+            <div>{user.name}</div>
 
             {
               donation.pollSuggestions.map((ps, index) => {

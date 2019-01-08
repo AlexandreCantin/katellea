@@ -9,7 +9,6 @@ import Loader from '../../generics/loader/loader';
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 
 import { DonationService } from '../../services/donation/donation.service';
-import { UserService } from '../../services/user/user.service';
 import { DONATION_IMAGES } from '../../enum';
 import { dateFormatShortDayDayMonthYear } from '../../services/date-helper';
 import EscapeLinks from '../../generics/escape-links/escape-links';
@@ -54,7 +53,7 @@ export default class DonationHistory extends Component {
                 <span>{img.alt}</span>
               </div>
               <div className="info">
-                <div><span className="bold">Créé par :</span> {UserService.getFullName(donation.createdBy)}</div>
+                <div><span className="bold">Créé par :</span> {donation.createdBy.name}</div>
                 <div><span className="bold">Lieu :</span> {donation.establishment ? <span>{donation.establishment.name} - {donation.establishment.address}</span> : <span>{donation.mobileCollect}</span>
                 }</div>
               </div>

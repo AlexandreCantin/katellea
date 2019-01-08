@@ -29,8 +29,7 @@ const doSearchUser = async (req, res) => {
 
   const users = await User.find({
     $or: [
-      { firstName: new RegExp(term, 'i') },
-      { lastName: new RegExp(term, 'i') },
+      { name: new RegExp(term, 'i') },
       { email: new RegExp(term, 'i') }
     ]
   });

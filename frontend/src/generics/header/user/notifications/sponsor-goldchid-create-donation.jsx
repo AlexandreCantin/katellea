@@ -14,7 +14,7 @@ function NotificationSponsorGolchildCreateDonation({ notification }) {
   return (
     <li className={computeCssClass()}>
       <Link to="/tableau-de-bord" title="Consulter votre tableau pour découvrir cette proposition de don">
-        <strong><strong>{author.firstName} {author.lastName}</strong> a créé une nouvelle proposition de don que vous pouvez rejoindre !</strong><br />
+        <strong><strong>{author.name}</strong> a créé une nouvelle proposition de don que vous pouvez rejoindre !</strong><br />
         Nous vous invitons à consulter votre tableau de bord pour découvrir cette proposition de don.
           <br /><DonationEventDate date={notification.date} />
       </Link>
