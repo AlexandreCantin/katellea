@@ -49,6 +49,7 @@ export default class AuthLoginButtons extends Component {
 
   doAuthLogin = e => {
     e.preventDefault();
+    localStorage.removeItem('USER_TOKEN');
     let origin = e.target.getAttribute('data-origin');
     if (ORIGINS.includes(origin)) AuthService.doAuthLogin(origin);
   };
