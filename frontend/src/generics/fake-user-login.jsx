@@ -34,6 +34,8 @@ export default class FakeUserLogin extends Component {
 
   doFakeLogin = async (event) => {
     event.preventDefault();
+    localStorage.removeItem('USER_TOKEN');
+
     let socialNetworkKey = event.target.getAttribute('data-key');
 
     const userResponse = await fetch(`${environment.SERVER_URL}/auth/fake/${socialNetworkKey}`);
