@@ -37,10 +37,10 @@ const isAdminUser = async (req, res) => {
 const createUser = async (req, res) => {
 
   {/* #Beta */}
-  if (!req.body.sponsoredByToken) {
+  /*if (!req.body.sponsoredByToken) {
     res.status(FORBIDDEN).send();
     return;
-  }
+  }*/
 
   // Get sponsor
   let sponsorId = undefined;
