@@ -1,21 +1,23 @@
 import express from 'express';
 import sanitize from 'sanitize-html';
-import { NOT_FOUND } from 'http-status-codes';
+import { NOT_FOUND, UNAUTHORIZED } from 'http-status-codes';
+import fetch from 'node-fetch';
+import FormData from 'form-data';
+
 
 import passport from 'passport';
 import FacebookStrategy from 'passport-facebook';
-import TwitterStrategy from 'passport-twitter';
 import GoogleStrategy from 'passport-google-oauth2';
-import InstagramStrategy from 'passport-instagram';
 
 import { JWTService } from '../services/jwt.service';
 import User from '../models/user';
 import { environment } from '../../conf/environment';
 
+import { sendError } from '../helper';
 
 const authRoutes = express.Router();
 const facebookData = environment.facebook;
-const twitterData = environment.twitter;
+// const twitterData = environment.twitter;
 const googleData = environment.google;
 const instagramData = environment.instagram;
 
@@ -30,11 +32,11 @@ passport.use(new FacebookStrategy({
   return done(null, { profile: profile._json });
 }));
 
-passport.use(new TwitterStrategy({
+/*passport.use(new TwitterStrategy({
   consumerKey: twitterData.apiKey,
   consumerSecret: twitterData.secret,
-  callbackURL: `${environment.baseUrl}/auth/twitter`,
-  userProfileURL: 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true'
+  callbackURL: twitterData.callbackURL,
+  userProfileURL: 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true',
 }, function(accessToken, tokenSecret, profile, cb, done) {
   let email = '';
   if(cb.emails) email = cb.emails[0].value;
@@ -47,26 +49,16 @@ passport.use(new TwitterStrategy({
   };
 
   return done(null, { profile: profileData });
-
-}));
+}));*/
 
 // https://console.developers.google.com/apis/credentials
 passport.use(new GoogleStrategy({
   clientID:     googleData.clientID,
   clientSecret: googleData.clientSecret,
-  callbackURL: '/auth/google',
+  callbackURL: googleData.callbackURL,
   passReqToCallback: true
 },
 function(request, accessToken, refreshToken, profile, done) {
-  return done(null, { profile: profile._json });
-}));
-
-passport.use(new InstagramStrategy({
-  clientID:     instagramData.clientID,
-  clientSecret: instagramData.clientSecret,
-  callbackURL: '/auth/instagram',
-},
-function(accessToken, refreshToken, profile, done) {
   return done(null, { profile: profile._json });
 }));
 
@@ -153,27 +145,55 @@ const googleLoginResponse = async (req, res) => {
 /*************
  * INSTAGRAM *
  * ***********/
+const redirectToInstagram = (req, res) => {
+  const url = `https://api.instagram.com/oauth/authorize/?client_id=${instagramData.clientID}&redirect_uri=${instagramData.callbackURL}&response_type=code`
+  res.redirect(url);
+}
+
 const instagramLoginResponse = async (req, res) => {
-  // User exists ?
-  const user = await getUser('instagram_' + req.user.profile.data.id);
+  // 1 - Check if code
+  console.log(req.query.code);
+  if(!req.query.code) return res.status(UNAUTHORIZED).send('Erreur lors de la connexion. Veuillez réessayer.');
+
+  // 2 - Make request to Instagram
+  const data = new FormData();
+  data.append('client_id', instagramData.clientID);
+  data.append('client_secret', instagramData.clientSecret);
+  data.append('grant_type', 'authorization_code');
+  data.append('redirect_uri', instagramData.callbackURL);
+  data.append('code', req.query.code);
+
+  let userData = {}
+  try {
+    const response = await fetch('https://api.instagram.com/oauth/access_token', { method: 'POST',  body: data });
+    if(response.status !== 200) {
+      throw new Error(`[${response.status}] ${response.statusText} - ${response.url}`);
+    }
+    userData = await response.json();
+  } catch(err) {
+    sendError(err);
+    return res.status(UNAUTHORIZED).send('Erreur lors de la connexion. Veuillez réessayer.');
+  }
+
+  // 3 - Handle user data
+  const profile = userData.user;
+
+  // 3.1 - User exists ?
+  const user = await getUser('instagram_' + profile.id);
   if (user !== null) {
     return res.render('auth-response', { profile: generateUserString(user), domain: environment.frontUrl });
   }
 
-  let email = '';
-  if(req.user.profile.emails) email = req.user.profile.emails[0].value;
-
+  // 3.2 - User not exists
+  // Note: Instagram no provide emails...
   const cleanProfile = {
-    id: req.user.profile.data.id,
-    email: email,
-    name: req.user.profile.data.full_name,
+    id: profile.id,
+    name: profile.full_name,
     gender: 'UNKNOWN', // Not given by instagram API
 
     origin: 'instagram',
     action: 'register'
   };
-
-  Object.keys(cleanProfile).map(key => cleanProfile[key] = sanitize(cleanProfile[key]));
 
   return res.render('auth-response', { profile: generateProfileString(sanitizeObj(cleanProfile)), domain: environment.frontUrl });
 };
@@ -261,11 +281,11 @@ const sanitizeObj = (obj) => {
   );
 
   // Twitter
-  authRoutes.get(
+  /*authRoutes.get(
     '/auth/twitter',
     passport.authenticate('twitter', { session: false }),
     twitterLoginResponse
-  );
+  );*/
 
   // Google
   authRoutes.get(
@@ -275,11 +295,8 @@ const sanitizeObj = (obj) => {
   );
 
   // Instagram
-  authRoutes.get(
-    '/auth/instagram',
-    passport.authenticate('instagram', { session: false }),
-    instagramLoginResponse
-  );
+  authRoutes.get('/auth/instagram', redirectToInstagram);
+  authRoutes.get('/auth/instagram/callback', instagramLoginResponse);
 
 
   // Others

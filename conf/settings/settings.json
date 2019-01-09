@@ -34,19 +34,22 @@
   "facebook": {
     "appId": "",
     "secret": "",
-    "callbackURL": "/auth/facebook"
+    "callbackURL": "http://localhost:3000/auth/facebook"
   },
   "twitter": {
     "apiKey": "",
-    "secret": ""
+    "secret": "",
+    "callbackURL": "http://localhost:3000/auth/twitter"
   },
   "google": {
     "clientID": "",
-    "clientSecret": ""
+    "clientSecret": "",
+    "callbackURL": "http://localhost:3000/auth/google"
   },
   "instagram": {
     "clientID": "",
-    "clientSecret": ""
+    "clientSecret": "",
+    "callbackURL": "http://localhost:3000/auth/instagram/callback"
   },
 
 

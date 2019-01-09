@@ -143,7 +143,6 @@ export default class Home extends Component {
 
                 {<AuthLoginButtons />}
 
-                {!environment.production ? <FakeUserLogin /> : null}
               </div>
             </div>
 

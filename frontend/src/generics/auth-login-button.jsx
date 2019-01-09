@@ -59,7 +59,7 @@ export default class AuthLoginButtons extends Component {
     return (
       <div className="social-auth-buttons">
         <button data-origin="facebook" className="btn big facebook" onClick={this.doAuthLogin}>Se connecter avec Facebook</button>
-        <button data-origin="twitter" className="btn big twitter" onClick={this.doAuthLogin}>Se connecter avec Twitter</button>
+        {/*<button data-origin="twitter" className="btn big twitter" onClick={this.doAuthLogin}>Se connecter avec Twitter</button>*/}
         <button data-origin="google" className="btn big google" onClick={this.doAuthLogin}>Se connecter avec Google</button>
         <button data-origin="instagram" className="btn big instagram" onClick={this.doAuthLogin}>Se connecter avec Instagram</button>
       </div>

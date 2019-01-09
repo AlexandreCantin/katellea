@@ -4,6 +4,7 @@ import path from 'path';
 import cors from 'cors';
 import * as Sentry from '@sentry/node';
 
+
 import initMongoDB from './src/clients/moongose';
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
@@ -12,7 +13,6 @@ import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import errorHandler from './src/middlewares/errorHandler';
 import passport from 'passport';
-import session from 'express-session';
 
 import logger from './src/services/logger.service';
 
@@ -75,13 +75,6 @@ app.use(errorHandler);
 app.use(passport.initialize());
 if (process.env.NODE_ENV === 'production') app.use(helmet())
 if (process.env.NODE_ENV !== 'production') app.use(cors())
-
-app.use(session({
-  secret: environment.session.secret,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: environment.session.secure }
-}));
 
 // EJS
 app.set('view engine', 'ejs');
