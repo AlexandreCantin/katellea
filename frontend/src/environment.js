@@ -7,6 +7,8 @@ export const environmentValues = {
   production: false,
   offlineMode: true,
 
+  FACEBOOK_APP_ID: '',
+
   // GOOGLE ANALYTICS
   GA_ID: '',
 
