@@ -1,3 +1,5 @@
+@import '../../../styles/mixins.scss';
+
 #modal .first-visit-form {
 
   &.step-0 {
@@ -61,6 +63,16 @@
 
       .text-center { grid-column: span 4; }
       .button-container { grid-column: span 4; }
+    }
+
+    .blood-type-indications {
+      display: flex;
+      grid-column: span 4;
+      @media (max-width: $min-width-mobile) { flex-direction: column; }
+      > div {
+        flex: 1;
+        padding: 10px 20px;
+      }
     }
   }
 

@@ -89,7 +89,7 @@ UserSchema.methods.addKatelleaToken = function() {
 const User = mongoose.model('User', UserSchema);
 
 // Global
-User.publicFields = '_id name gender establishment bloodType sponsorToken';
+User.publicFields = '_id name establishment sponsorToken';
 User.adminLogFields = '_id name';
 
 export default User;

@@ -31,6 +31,7 @@ export const environmentValues = {
 
   USER_ENDPOINT: '/user',
   USER_SPONSOR_ENDPOINT: '/user/sponsor/',
+  USER_SPONSOR_COMPATIBILITY_ENDPOINT: '/user/sponsor-compatibility',
   USER_IS_ADMIN_ENDPOINT: '/user/is-admin',
   USER_ENDPOINT_WITH_TOKEN: '/remember-me/',
   USER_ENDPOINT_FACEBOOK_TOKEN: '/facebook-connect/',

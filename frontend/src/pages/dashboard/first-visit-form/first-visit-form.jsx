@@ -369,15 +369,19 @@ class FirstVisitForm extends Component {
                 )}
               </Field>
 
-              <div className="text-center">
-                <UserCompatibility bloodType={form.getFieldState('bloodType')} />
-              </div>
+              <div className="blood-type-indications">
+                { form.getFieldState('bloodType') && form.getFieldState('bloodType').value ?
+                  <div className="text-center">
+                    <UserCompatibility bloodType={form.getFieldState('bloodType').value} />
+                  </div> : null
+                }
 
 
-              {this.props.user.sponsor ?
-                <div>
-                  <SponsorCompatibility sponsorBloodType={this.props.user.sponsor.bloodType} userBloodType={form.getFieldState('bloodType')} />
+                { this.props.user.sponsor && form.getFieldState('bloodType') && form.getFieldState('bloodType').value ?
+                  <div>
+                    <SponsorCompatibility userBloodType={form.getFieldState('bloodType').value} />
                 </div> : null}
+              </div>
 
               <div className="button-container">
                 <button className="btn grey" onClick={this.previousStep}>Retour</button>
