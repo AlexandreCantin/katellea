@@ -110,7 +110,7 @@ export default class EstablishmentSelectForm extends Component {
         </div>
 
         {/* #Beta */}
-        <div className="alert warning">Dans le cadre de la beta, les établissements sont restreints à la Loire-Atlantique</div>
+        <div className="alert warning">Dans le cadre de la beta, les établissements sont restreints à la <strong>Loire-Atlantique</strong></div>
 
         <div className="suggestions">
           <FlashMessage scope="establishment" />

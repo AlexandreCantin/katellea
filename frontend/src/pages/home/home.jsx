@@ -139,7 +139,7 @@ export default class Home extends Component {
 
                 {/* #Beta => error message + hide buttons */}
                 {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain/marraine pour créer un nouveau compte</div> : null }
-                <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la Loire-Atlantique uniquement</div>
+                <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong> uniquement</div>
 
                 {<AuthLoginButtons />}
 

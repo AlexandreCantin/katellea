@@ -225,7 +225,7 @@ export default class Register extends Component {
           {sponsorUser ? <SponsorCard user={sponsorUser} /> : null}
 
           {/* #Beta => error message + limiting form display*/}
-          <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la Loire-Atlantique uniquement</div>
+          <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong> uniquement</div>
           {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain/marraine pour créer un nouveau compte</div> : showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
           {showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
         </div>

@@ -107,7 +107,7 @@ export default class MobileCollectSelectForm extends Component {
         </div>
 
         {/* #Beta */}
-        <div className="alert warning">Dans le cadre de la beta, les collectes mobiles sont restreints à la Loire-Atlantique</div>
+        <div className="alert warning">Dans le cadre de la beta, les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong></div>
 
         <div className="suggestions">
           <FlashMessage scope="mobile-collect" />
