@@ -118,7 +118,7 @@ const twitterLoginResponse = async (req, res) => {
  * ***********/
 const googleLoginResponse = async (req, res) => {
   // User exists ?
-  const user = await getUser('google_' + req.user.profile.userID);
+  const user = await getUser('google_' + req.user.profile.id);
   if (user !== null) {
     return res.render('auth-response', { profile: generateUserString(user), domain: environment.frontUrl });
   }
