@@ -42,6 +42,8 @@ class AuthServiceFactory {
           }
         });
       } else if(profile.action === 'login') {
+        if (profile.katelleaToken) localStorage.setItem('USER_TOKEN', profile.katelleaToken);
+
         store.dispatch({
           type: USER_ACTIONS.SET_USER,
           data: profile
