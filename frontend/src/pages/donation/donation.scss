@@ -69,6 +69,11 @@ $event-bg-color: lightblue;
     }
   }
 
+  .new-donation {
+    grid-column: span 2;
+    p { margin-bottom: 20px; }
+  }
+
   .actions {
     grid-column: span 2;
     .donation-actions { float: left; }

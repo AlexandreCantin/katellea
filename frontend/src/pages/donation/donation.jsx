@@ -75,6 +75,16 @@ class CurrentDonation extends Component {
       </div>
     );
   }
+  renderNewDonationButton() {
+    return (
+      <div className="main-content">
+        <div className="new-donation block-base text-center">
+          <p>Vous n'avez aucune proposition de don en cours.</p>
+          <DonationCreateFormModal modalUrl="/don-courant/creer-un-nouveau-don" />
+        </div>
+      </div>
+    );
+  }
 
   render() {
     const { donation } = this.props;
@@ -101,7 +111,7 @@ class CurrentDonation extends Component {
           <FlashMessage scope="current-donation" doScroll />
 
           {loading ? <Loader /> : null}
-          {showDonation ? this.renderDonation() : <DonationCreateFormModal modalUrl="/don-courant/creer-un-nouveau-don" /> }
+          {showDonation ? this.renderDonation() : this.renderNewDonationButton() }
         </main>
       </div>
     );
