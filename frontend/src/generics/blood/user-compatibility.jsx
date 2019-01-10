@@ -13,20 +13,29 @@ const BLOOD_COMPATIBILITY_ALT = {
 
 function UserCompatibility({ bloodType }) {
 
-  if (!bloodType) return null;
+  if (!bloodType || bloodType === 'UNKNOWN') return null;
 
   const alt = BLOOD_COMPATIBILITY_ALT[bloodType];
 
-  if (bloodType === 'A+') return <img src="/img/blood-type/A+.png" alt={alt} />;
-  else if (bloodType === 'A-') return <img src="/img/blood-type/A-.png" alt={alt} />;
-  else if (bloodType === 'B+') return <img src="/img/blood-type/B+.png" alt={alt} />;
-  else if (bloodType === 'B-') return <img src="/img/blood-type/B-.png" alt={alt} />;
-  else if (bloodType === 'AB+') return <img src="/img/blood-type/AB+.png" alt={alt} />;
-  else if (bloodType === 'AB-') return <img src="/img/blood-type/AB-.png" alt={alt} />;
-  else if (bloodType === 'O+') return <img src="/img/blood-type/O+.png" alt={alt} />;
-  else if (bloodType === 'O-') return <img src="/img/blood-type/O-.png" alt={alt} />;
+  function renderImage(bloodType) {
+    if (bloodType === 'A+') return <img src="/img/blood-type/A+.png" alt={alt} />;
+    else if (bloodType === 'A-') return <img src="/img/blood-type/A-.png" alt={alt} />;
+    else if (bloodType === 'B+') return <img src="/img/blood-type/B+.png" alt={alt} />;
+    else if (bloodType === 'B-') return <img src="/img/blood-type/B-.png" alt={alt} />;
+    else if (bloodType === 'AB+') return <img src="/img/blood-type/AB+.png" alt={alt} />;
+    else if (bloodType === 'AB-') return <img src="/img/blood-type/AB-.png" alt={alt} />;
+    else if (bloodType === 'O+') return <img src="/img/blood-type/O+.png" alt={alt} />;
+    else if (bloodType === 'O-') return <img src="/img/blood-type/O-.png" alt={alt} />;
+  }
 
-  return null;
+  return (
+    <>
+      <h2>Votre groupe sanguin</h2>
+      { bloodType === 'AB+' ? <div className="alert info">Vous êtes <strong>receveur universel</strong> !</div> : null }
+      { bloodType === 'O-' ? <div className="alert success">Vous êtes <strong>donneur universel</strong> ! Votre groupe sanguin est très recherché !</div> : null}
+      {renderImage(bloodType)}
+    </>
+  );
 }
 
 export default UserCompatibility;

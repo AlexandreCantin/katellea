@@ -4,8 +4,8 @@ import sanitize from 'sanitize-html';
 
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
 
-import { DONATION_TYPE, DONATION_REST_WEEKS } from '../constants';
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, FORBIDDEN, BAD_REQUEST, IM_A_TEAPOT } from 'http-status-codes';
+import { DONATION_TYPE, DONATION_REST_WEEKS, BLOOD_COMPATIBILITY } from '../constants';
+import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, BAD_REQUEST } from 'http-status-codes';
 
 import User from '../models/user';
 import Donation from '../models/donation';
@@ -27,6 +27,17 @@ const getSponsorUser = async (req, res) => {
 
   return res.json(user);
 };
+
+const getSponsorUserCompatibility = async (req, res) => {
+  if(!req.user.sponsor) return res.json({ direction: '' });
+
+  // Get sponsor
+  const sponsor = await User.findOne({ _id: req.user.sponsor });
+  if(!sponsor) return res.json({ direction: '' });
+
+  if (req.params.bloodType === 'UNKNOWN' || sponsor.bloodType === 'UNKNOWN') return res.json({ direction: '' });
+  return res.json({ direction: BLOOD_COMPATIBILITY[sponsor.bloodType][req.params.bloodType] });
+}
 
 const isAdminUser = async (req, res) => {
   if (UserService.isAdmin(req.user)) return res.status(OK).send();
@@ -213,6 +224,7 @@ const deleteUser = async (req, res, next) => {
 
 // Routes
 userRoutes.post('/is-admin', isAdminUser);
+userRoutes.get('/sponsor-compatibility/:bloodType', getSponsorUserCompatibility);
 userRoutes.get('/sponsor/:token', getSponsorUser);
 userRoutes.post('/', createUser);
 userRoutes.put('/update-notification-read-date', updateNotificationReadDate);

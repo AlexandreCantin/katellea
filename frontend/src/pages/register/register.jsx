@@ -216,7 +216,7 @@ export default class Register extends Component {
         <div className="register-form">
           <div className="title">
             <h1>Créer votre profil sur Katellea</h1>
-            <Breadcrumb links={[{ text: 'Créer votre compte', href: 'creer-votre-compte' }]} />
+            <Breadcrumb links={[{ text: 'Créer votre compte', href: '/creer-votre-compte' }]} />
           </div>
 
           <FlashMessage scope="registerForm" />
