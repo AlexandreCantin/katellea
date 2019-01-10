@@ -89,7 +89,7 @@ export default class Home extends Component {
           <div id="main-content" className="sr-only">&nbsp;</div>
           <div className="presentation-container">
             <div>
-              <h1>Bienvenue sur <span className="no-wrap"><img src="katellea-logo.png" alt="K" />atellea</span></h1>
+              <h1>Bienvenue sur <span className="no-wrap"><img src="katellea-logo.svg" alt="K" />atellea</span></h1>
 
               <p>Katellea vous permet d'accompagner ou d'être accompagné pour réaliser un don du sang ou plasma en 3 étapes :</p>
               <div>

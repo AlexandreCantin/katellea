@@ -40,7 +40,7 @@ class Menu extends Component {
         <div className="katellea-logo text-center">
           <span className="no-wrap">
             <Link onClick={this.linkClicked} to="/tableau-de-bord" title="Retour à l'accueil du site" getProps={isActive}>
-              <img src="katellea-logo.png" alt="K" />atellea <BetaBadge />
+              <img src="katellea-logo.svg" alt="K" />atellea <BetaBadge />
             </Link>
           </span>
           <span className="hide-tablet hide-desktop">Menu</span>

@@ -35,7 +35,7 @@ class NotFound extends Component {
           <div>
 
             <div className="no-wrap logo">
-              <img src="/katellea-logo.png" alt="K" />
+              <img src="/katellea-logo.svg" alt="K" />
               <span>atellea</span>
               <BetaBadge />
             </div>

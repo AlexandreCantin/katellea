@@ -72,7 +72,7 @@ export default class ContactForm extends Component {
 
           <div id="main-content">
             <div className="big-title no-wrap text-center">
-              <img src="/katellea-logo.png" alt="K" />
+              <img src="/katellea-logo.svg" alt="K" />
               <span>atellea</span>
             </div>
 
