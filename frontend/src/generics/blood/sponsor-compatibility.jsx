@@ -1,102 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { UserService } from '../../services/user/user.service';
 
 const DIRECTION = {
-  BOTH: { img: 'both.png', alt: 'Vous pouvez à la fois donner et recevoir du sang de votre parrain/marraine. Cool !' },
-  LEFT: { img: 'left.png', alt: 'Vous pouvez recevoir du sang de votre parrain/marraine mais pas inversement.' },
-  RIGHT: { img: 'right.png', alt: 'Vous pouvez donner votre sang à votre parrain/marraine mais pas inversement.' },
-  NO: { img: 'no.png', alt: 'Votre groupe sanguin n\'est pas compatible avec celui de votre parrain/marraine. Dommage !' },
+  BOTH: { img: 'both.png', text: 'Vous pouvez donner et recevoir du sang de votre parrain/marraine. Cool !' },
+  LEFT: { img: 'left.png', text: 'Vous pouvez recevoir du sang de votre parrain/marraine mais pas lui en donner.' },
+  RIGHT: { img: 'right.png', text: 'Vous pouvez donner votre sang à votre parrain/marraine mais pas inversement.' },
+  NO: { img: 'no.png', text: 'Votre groupe sanguin n\'est pas compatible avec celui de votre parrain/marraine. Dommage !' },
 };
 
-const BLOOD_COMPATIBILITY = {
-  'A+': {
-    'A+': DIRECTION.BOTH,
-    'A-': DIRECTION.LEFT,
-    'B+': DIRECTION.NO,
-    'B-': DIRECTION.NO,
-    'AB+': DIRECTION.RIGHT,
-    'AB-': DIRECTION.NO,
-    'O+': DIRECTION.LEFT,
-    'O-': DIRECTION.LEFT,
-  },
-  'A-': {
-    'A+': DIRECTION.RIGHT,
-    'A-': DIRECTION.BOTH,
-    'B+': DIRECTION.NO,
-    'B-': DIRECTION.NO,
-    'AB+': DIRECTION.RIGHT,
-    'AB-': DIRECTION.RIGHT,
-    'O+': DIRECTION.NO,
-    'O-': DIRECTION.LEFT,
-  },
-  'B+': {
-    'A+': DIRECTION.NO,
-    'A-': DIRECTION.NO,
-    'B+': DIRECTION.BOTH,
-    'B-': DIRECTION.LEFT,
-    'AB+': DIRECTION.RIGHT,
-    'AB-': DIRECTION.NO,
-    'O+': DIRECTION.LEFT,
-    'O-': DIRECTION.LEFT,
-  },
-  'B-': {
-    'A+': DIRECTION.NO,
-    'A-': DIRECTION.NO,
-    'B+': DIRECTION.RIGHT,
-    'B-': DIRECTION.BOTH,
-    'AB+': DIRECTION.RIGHT,
-    'AB-': DIRECTION.RIGHT,
-    'O+': DIRECTION.NO,
-    'O-': DIRECTION.LEFT,
-  },
-  'AB+': {
-    'A+': DIRECTION.LEFT,
-    'A-': DIRECTION.LEFT,
-    'B+': DIRECTION.LEFT,
-    'B-': DIRECTION.LEFT,
-    'AB+': DIRECTION.BOTH,
-    'AB-': DIRECTION.LEFT,
-    'O+': DIRECTION.LEFT,
-    'O-': DIRECTION.LEFT,
-  },
-  'AB-': {
-    'A+': DIRECTION.NO,
-    'A-': DIRECTION.LEFT,
-    'B+': DIRECTION.NO,
-    'B-': DIRECTION.LEFT,
-    'AB+': DIRECTION.RIGHT,
-    'AB-': DIRECTION.BOTH,
-    'O+': DIRECTION.NO,
-    'O-': DIRECTION.LEFT,
-  },
-  'O+': {
-    'A+': DIRECTION.RIGHT,
-    'A-': DIRECTION.NO,
-    'B+': DIRECTION.RIGHT,
-    'B-': DIRECTION.NO,
-    'AB+': DIRECTION.RIGHT,
-    'AB-': DIRECTION.NO,
-    'O+': DIRECTION.BOTH,
-    'O-': DIRECTION.LEFT,
-  },
-  'O-': {
-    'A+': DIRECTION.RIGHT,
-    'A-': DIRECTION.RIGHT,
-    'B+': DIRECTION.RIGHT,
-    'B-': DIRECTION.RIGHT,
-    'AB+': DIRECTION.RIGHT,
-    'AB-': DIRECTION.RIGHT,
-    'O+': DIRECTION.RIGHT,
-    'O-': DIRECTION.BOTH,
-  },
-};
+export default class SponsorCompatibility extends Component {
 
-function SponsorCompatibility({ sponsorBloodType, userBloodType }) {
+  constructor(props) {
+    super(props);
+    this.state = {
+      direction: undefined
+    };
+  }
 
-  if (sponsorBloodType === 'unknown' && userBloodType === 'unknown') return null;
-  let direction = BLOOD_COMPATIBILITY[sponsorBloodType][userBloodType];
-  if (!direction) return null;
+  shouldComponentUpdate(previousProps, previousState) {
+    if(previousProps.userBloodType !== this.props.userBloodType) return true;
+    if(previousState.direction !== this.state.direction) return true;
+    return false;
+  }
 
-  return (<img className="img-responsive" src={'/img/sponsor-compatibility/' + direction.img} alt={direction.alt} />);
+  componentDidUpdate(previousProps, previousState) {
+    if(previousProps.userBloodType !== this.props.userBloodType) this.getDirection();
+  }
+  componentDidMount() { this.getDirection(); }
+
+  async getDirection() {
+    if(this.props.userBloodType === 'UNKNOWN' || this.props.userBloodType === undefined) {
+      this.setState({ direction: undefined });
+    } else {
+      const newDirection = await UserService.getSponsorCompatibility(this.props.userBloodType);
+      this.setState({ direction: newDirection });
+    }
+  }
+
+  render() {
+    const { direction } = this.state;
+    if(!direction) return null;
+
+    let directionData = DIRECTION[direction];
+    return (
+      <>
+        <h2>Compatibilité avec votre parrain</h2>
+        <div className="alert info">{directionData.text}</div>
+        <img className="img-responsive" src={'/img/sponsor-compatibility/' + directionData.img} alt="" />
+      </>
+    );
+  }
 }
-
-export default SponsorCompatibility;

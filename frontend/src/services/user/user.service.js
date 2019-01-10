@@ -133,7 +133,7 @@ class UserServiceFactory {
     }
   }
 
-
+  // SPONSOR
   getSponsorUser(sponsorToken) {
     let url = `${environment.SERVER_URL}${environment.USER_SPONSOR_ENDPOINT}${sponsorToken}`;
 
@@ -154,7 +154,7 @@ class UserServiceFactory {
             quotaExceeded: null,
             lastDonationType: userData.lastDonationType,
             donationPreference: userData.donationPreference,
-            bloodType: userData.bloodType,
+            bloodType: null,
             sponsor: userData.sponsor,
             establishment: userData.establishment,
             firstVisit: null,
@@ -169,6 +169,21 @@ class UserServiceFactory {
           resolve(user);
           return;
         }
+      }
+      reject();
+    });
+  }
+
+  getSponsorCompatibility(bloodType) {
+    let url = `${environment.SERVER_URL}${environment.USER_SPONSOR_COMPATIBILITY_ENDPOINT}/${bloodType}`;
+    let headers = getKatelleaTokenHeaders();
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url, { headers });
+      if (response.status === 200) {
+        let data = await response.json();
+        resolve(data.direction);
+        return;
       }
       reject();
     });
