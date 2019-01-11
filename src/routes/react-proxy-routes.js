@@ -54,6 +54,9 @@ rootRoutes.get('/mon-compte', (req, res) => res.render('index', getRouteData('ro
 rootRoutes.get('/admin', (req, res) => res.render('index', getRouteData('root', '/')));
 rootRoutes.get('/admin/utilisateurs', (req, res) => res.render('index', getRouteData('root', '/')));
 rootRoutes.get('/admin/statistiques', (req, res) => res.render('index', getRouteData('root', '/')));
+rootRoutes.get('/admin/etablissements', (req, res) => res.render('index', getRouteData('root', '/')));
+rootRoutes.get('/admin/villes', (req, res) => res.render('index', getRouteData('root', '/')));
+rootRoutes.get('/admin/logs', (req, res) => res.render('index', getRouteData('root', '/')));
 
 // Not found : need to be handle server-side in order to make GoogleBot detect the 404 http status
 rootRoutes.get('*', (req, res) => res.status(NOT_FOUND).render('not-found'));

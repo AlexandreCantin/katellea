@@ -57,9 +57,6 @@ if (environment.SENTRY_CODE && environment.SENTRY_CODE !== '') {
 class App extends Component {
 
 
-  /** IMPORTANT
-   * => DO NOT FORGET TO UPDATE react-proxy-routes.js <=
-   */
   render() {
     return (
       <Provider store={store}>
@@ -67,6 +64,9 @@ class App extends Component {
           <div id="app">
             <Suspense fallback={<Loader />}>
               <Router>
+                {/** IMPORTANT
+                  * => DO NOT FORGET TO UPDATE react-proxy-routes.js <=
+                **/}
                 <Home path="/" exact />
                 <Register path="/creer-votre-compte" />
                 <TokenRoute path="/token" />
