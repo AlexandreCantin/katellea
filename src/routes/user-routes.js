@@ -211,6 +211,7 @@ const deleteUser = async (req, res, next) => {
   user.sponsorToken = null;
   user.katelleaToken = null;
   user.gender = null;
+  user.socialNetworkKey = null;
 
   try {
     await User.findOneAndUpdate({ _id: req.userId }, user);
