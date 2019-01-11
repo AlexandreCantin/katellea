@@ -172,34 +172,6 @@ export default class Home extends Component {
               </div>
             </div>
           </div>
-
-          {/*<div className="katellea-testimonials">
-            <h2>Témoignages</h2>
-
-            <div>
-              <div className="katellea-testimonial">
-                <div className="katellea-empty">&nbsp;</div>
-                <img src="s.png" className="lazyload" data-src="/img/testimonial_1.jpg" alt="" />
-                <div className="katellea-text">
-                  <p>
-                    "Je fais des dons de manière occasionnel. <br />C'est une manière d'aider les gens."<br />
-                    <i>Anne</i>
-                  </p>
-                </div>
-              </div>
-
-              <div className="katellea-testimonial">
-                <div className="katellea-text">
-                  <p className="katellea-right">
-                    "Je suis malade chronique.<br />Sans les dons, ma santé se serait beaucoup déterioré."<br />
-                    <i>Antoine</i>
-                  </p>
-                </div>
-                <img src="s.png" className="lazyload" data-src="/img/testimonial_2.jpg" alt="" />
-                <div className="katellea-empty">&nbsp;</div>
-              </div>
-            </div>
-          </div>*/}
         </main>
 
         <div id="footer" className="sr-only">&nbsp;</div>
