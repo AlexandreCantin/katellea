@@ -67,9 +67,10 @@ function(request, accessToken, refreshToken, profile, done) {
  * FACEBOOK  *
  * ***********/
 const facebookLoginResponse = async (req, res) => {
+  const email = req.user.profile.email || '';
 
   // User exists ?
-  const user = await getUser('facebook_' + req.user.profile.id);
+  const user = await getUser('facebook_' + req.user.profile.id, email);
   if (user !== null) {
     return res.render('auth-response', { profile: generateUserString(user), domain: environment.frontUrl });
   }
@@ -80,7 +81,7 @@ const facebookLoginResponse = async (req, res) => {
 
   const cleanProfile = {
     id: req.user.profile.id,
-    email: req.user.profile.email || '',
+    email,
     name: firstName + ' ' + lastName,
     gender: req.user.profile.gender,
     origin: 'facebook'
@@ -94,8 +95,10 @@ const facebookLoginResponse = async (req, res) => {
  * TWITTER ***
  * ***********/
 const twitterLoginResponse = async (req, res) => {
+  const email = req.user.profile.email || '';
+
   // User exists ?
-  const user = await getUser('twitter_' + req.user.profile.userID);
+  const user = await getUser('twitter_' + req.user.profile.userID, email);
   if (user !== null) {
     return res.render('auth-response', { profile: generateUserString(user), domain: environment.frontUrl });
   }
@@ -103,7 +106,7 @@ const twitterLoginResponse = async (req, res) => {
   // User not exists
   const cleanProfile = {
     id: req.user.profile.userID,
-    email: req.user.profile.email || '',
+    email,
     name: req.user.profile.name,
 
     origin: 'twitter',
@@ -117,8 +120,10 @@ const twitterLoginResponse = async (req, res) => {
  * GOOGLE ****
  * ***********/
 const googleLoginResponse = async (req, res) => {
+  const email = req.user.profile.emails ? req.user.profile.emails[0].value : '';
+
   // User exists ?
-  const user = await getUser('google_' + req.user.profile.id);
+  const user = await getUser('google_' + req.user.profile.id, email);
   if (user !== null) {
     return res.render('auth-response', { profile: generateUserString(user), domain: environment.frontUrl });
   }
@@ -130,7 +135,7 @@ const googleLoginResponse = async (req, res) => {
 
   const cleanProfile = {
     id: req.user.profile.id,
-    email: req.user.profile.emails[0].value || '',
+    email,
     name: req.user.profile.displayName,
     gender,
 
@@ -247,14 +252,26 @@ const fakeSocialConnect = async (req, res, next) => {
 /**********
  * HELPER *
  **********/
-const getUser = async(socialNetworkKey) => {
+const getUser = async(socialNetworkKey, email) => {
 
-  const user = await User.findOne({ socialNetworkKey })
-    .populate({ path: 'establishment', model: 'Establishment' })
-    .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
+  let user;
 
-    if(user) user.addKatelleaToken()
-    return user;
+  // Check email
+  if(email) {
+    user = await User.findOne({ email })
+      .populate({ path: 'establishment', model: 'Establishment' })
+      .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
+    }
+
+    // Check socialNetworkKey
+    if(!user) {
+      user = await User.findOne({ socialNetworkKey })
+        .populate({ path: 'establishment', model: 'Establishment' })
+        .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
+  }
+
+  if(user) user.addKatelleaToken()
+  return user;
 }
 
 const generateProfileString = (profile) => {
