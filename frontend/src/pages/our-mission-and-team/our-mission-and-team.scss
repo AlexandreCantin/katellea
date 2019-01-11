@@ -1,0 +1,34 @@
+@import '../../styles/mixins.scss';
+
+#our-mission-and-team {
+
+  .team-members {
+    margin-top: 50px;
+    display: table; display: grid; /* table for old browser compatibility */
+    grid-gap: 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    @media (max-width: $min-width-desktop) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: $min-width-tablet) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    > div {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 10px auto;
+      border-radius: 50%;
+    }
+    .role {
+      font-size: .9em;
+      font-style: italic;
+    }
+  }
+}

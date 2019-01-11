@@ -12,6 +12,8 @@ import store from '../../services/store';
 import Breadcrumb from '../../generics/breadcrumb/breadcrumb';
 import EscapeLinks from '../../generics/escape-links/escape-links';
 
+require('./our-mission-and-team.scss');
+
 export default class OurMissionAndTeam extends Component {
 
   constructor(props) {
@@ -76,10 +78,16 @@ export default class OurMissionAndTeam extends Component {
             <div className="block">
               <h1 id="equipe">Notre équipe</h1>
               <p>
-                {/*Katellea est une ONG (association loi 1901) dont le but est l’amélioration, la maintenance et l’exploitation du site <a href="katellea.fr">katellea.fr</a> et de l’application associé (du même nom).*/}
                 Les équipes de Katellea pensent que chacun peut contribuer à sauver davantage de vie, notamment via le don du sang.
                 Pour cela, la technologie et les réseaux sociaux peuvent y jouer un rôle prépondérant.
               </p>
+              <div className="team-members clearfix">
+                <div>
+                  <img src="img/team/alexandre_cantin.jpg" alt="" />
+                  <span>Alexandre CANTIN</span>
+                  <span className="role">Créateur de Katellea</span>
+                </div>
+              </div>
             </div>
           </div>
         </main>
