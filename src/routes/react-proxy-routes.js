@@ -21,6 +21,9 @@ const reactRouteData = {
   'mission-team': {
     title: 'Notre équipe et notre mission | Katellea'
   },
+  'presse': {
+    title: 'Kit presse | Katellea'
+  },
   'contact': {
     title: 'Nous contacter | Katellea'
   },
@@ -44,6 +47,7 @@ rootRoutes.get('/token', (req, res) => res.render('index', getRouteData('token',
 rootRoutes.get('/mentions-legales', (req, res) => res.render('index', getRouteData('legal-terms', '/mentions-legales')));
 rootRoutes.get('/notre-mission-et-notre-equipe', (req, res) => res.render('index', getRouteData('mission-team', ' /notre-mission-et-notre-equipe')));
 rootRoutes.get('/nous-contacter', (req, res) => res.render('index', getRouteData('contact', '/nous-contacter')));
+rootRoutes.get('/presse', (req, res) => res.render('index', getRouteData('presse', '/presse')));
 
 // Connected routes and admin : no need to specific SEO values
 rootRoutes.get('/tableau-de-bord', (req, res) => res.render('index', getRouteData('root', '/')));

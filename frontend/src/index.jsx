@@ -34,6 +34,7 @@ dayjs.extend(relativeTime);
 // Lazy component
 const LegalTerms = lazy(() => import('./pages/legal-terms/legal-terms'));
 const OurMissionAndTeam = lazy(() => import('./pages/our-mission-and-team/our-mission-and-team'));
+const Press = lazy(() => import('./pages/press/press'));
 const ContactForm = lazy(() => import('./pages/contact-form/contact-form'));
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
 const Account = lazy(() => import('./pages/account/account'));
@@ -74,6 +75,7 @@ class App extends Component {
                 <CouldHaveUserRoute component={LegalTerms} path="/mentions-legales" />
                 <CouldHaveUserRoute component={OurMissionAndTeam} path="/notre-mission-et-notre-equipe" />
                 <CouldHaveUserRoute component={ContactForm} path="/nous-contacter" />
+                <CouldHaveUserRoute component={Press} path="/presse" />
 
                 <PrivateRoute component={Dashboard} path="/tableau-de-bord" />
                 <PrivateRoute component={Account} path="/mon-compte" />

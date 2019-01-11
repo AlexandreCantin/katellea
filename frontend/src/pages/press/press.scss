@@ -1,0 +1,16 @@
+@import '../../styles/mixins.scss';
+
+#press {
+  h2 {
+    margin-top: 40px;
+  }
+
+  .logo {
+    display: flex;
+    max-width: 500px;
+    > p {
+      flex: 1;
+      text-align: center;
+    }
+  }
+}

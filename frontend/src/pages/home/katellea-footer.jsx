@@ -27,7 +27,7 @@ export default class KatelleaFooter extends Component {
             </li>
             <li><Link to="/nous-contacter" title="Nous contacter">Contact</Link></li>
             <li><Link to="/mentions-legales" title="Mentions légales">Mentions légales</Link></li>
-            {/*<li><a href="#" title="">Presse</a></li>*/}
+            <li><Link to="/presse" title="Presse">Presse</Link></li>
             {/*<li className="katellea-donation"><span><a href="#" title="">Don</a></span></li>*/}
           </ul>
         </div>
@@ -38,7 +38,6 @@ export default class KatelleaFooter extends Component {
             <li><TwitterKatelleaLink /></li>
             <li><GithubKatelleaLink /></li>
           </ul>
-          <p>Alexandre CANTIN</p>
         </div>
         {showRGPDModal ? <RGPDModal closeModalFn={this.closeRGPDModal} showButtons={false} /> : null}
       </footer>
