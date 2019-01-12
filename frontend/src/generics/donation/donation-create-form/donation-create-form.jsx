@@ -55,7 +55,8 @@ export default class DonationCreateForm extends Component {
       donationLocation: undefined,
       establishment: this.user.establishment,
       showNewEstablishment: false,
-      showNewMobileCollect: false
+      showNewMobileCollect: false,
+      multipleDayDonation: true
     }
   }
 
@@ -107,11 +108,11 @@ export default class DonationCreateForm extends Component {
   }
   updateEstablishment = (establishment) => {
     this.getField('establishment').change(establishment);
-    this.setState({ establishment, showNewEstablishment: false });
+    this.setState({ establishment, showNewEstablishment: false, multipleDayDonation: true });
   }
   updateMobileCollect = (mobileCollect) => {
     this.getField('mobileCollect').change(mobileCollect.computemobileCollectText());
-    this.setState({ showNewMobileCollect: false });
+    this.setState({ showNewMobileCollect: false, multipleDayDonation: mobileCollect.multipleDay });
   }
 
 
@@ -120,7 +121,7 @@ export default class DonationCreateForm extends Component {
     let errors = validateForm(values, rules);
     if (!isEmpty(errors)) return errors;
 
-    errors = this.isEstablishment() ? datesValidationEstablishment(values.dateSuggestions, 'dateSuggestions', true) : datesValidationMobileCollect(values.hourSuggestions, 'hourSuggestions');
+    errors = this.state.multipleDayDonation ? datesValidationMultipleDays(values.dateSuggestions, 'dateSuggestions', true) : datesValidationOneDay(values.hourSuggestions, 'hourSuggestions');
     if (!isEmpty(errors)) return errors;
   }
 
@@ -130,7 +131,7 @@ export default class DonationCreateForm extends Component {
     const isEstablishment = this.isEstablishment();
     const isMobileCollect = this.isMobileCollect();
 
-    let pollSuggestions = isEstablishment ?
+    let pollSuggestions = this.state.multipleDayDonation ?
       values.dateSuggestions.map(ps => ({ date: ps.date, dayPart: ps.dayPart })) : values.hourSuggestions.map(hour => ({ hour }));
 
     let donation = new Donation({
@@ -165,7 +166,7 @@ export default class DonationCreateForm extends Component {
 
 
   // RENDER
-  renderPollSuggestionsEstablishmentFieldset() {
+  renderPollSuggestionsMultipleDay() {
     return (
       <fieldset>
         <legend>4 - Proposition de dates</legend>
@@ -232,7 +233,7 @@ export default class DonationCreateForm extends Component {
     );
   }
 
-  renderPollSuggestionsMobileCollectFieldset() {
+  renderPollSuggestionsOneDay() {
     return (
       <fieldset>
         <legend>3 - Proposition d'heures</legend>
@@ -417,13 +418,15 @@ export default class DonationCreateForm extends Component {
 
             {/* Mobile collect form steps */}
             {this.isMobileCollect() ? this.renderFindMobileCollect() : null}
-            {this.showPollSuggestionsMobileCollect() ? this.renderPollSuggestionsMobileCollectFieldset() : null}
+            {this.showPollSuggestionsMobileCollect() ?
+              this.state.multipleDayDonation ? this.renderPollSuggestionsMultipleDay() : this.renderPollSuggestionsOneDay()
+              : null}
 
 
             {/* Establishment from steps */}
             {this.isEstablishment() ? this.renderFindEstablishment() : null}
             {this.showDonationType() ? this.renderDonationType() : null}
-            {this.showPollSuggestionsEstablishment() ? this.renderPollSuggestionsEstablishmentFieldset() : null}
+            {this.showPollSuggestionsEstablishment() ? this.renderPollSuggestionsMultipleDay() : null}
 
             {
               valid ?
@@ -441,7 +444,7 @@ export default class DonationCreateForm extends Component {
 
 
 
-function datesValidationEstablishment(values, fieldName) {
+function datesValidationMultipleDays(values, fieldName) {
   let errors = {};
   errors[fieldName] = [];
 
@@ -480,7 +483,7 @@ function datesValidationEstablishment(values, fieldName) {
 }
 
 
-function datesValidationMobileCollect(values, fieldName) {
+function datesValidationOneDay(values, fieldName) {
 
   let errors = {};
   errors[fieldName] = [];

@@ -7,6 +7,7 @@ const MobileCollectSchema = mongoose.Schema({
   city: String,
   beginDate: Date,
   endDate: Date,
+  multipleDay: Boolean,
   longitude: Number,
   latitude: Number,
   coordinates: {

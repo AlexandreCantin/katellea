@@ -21,7 +21,8 @@ export default class DonationToSubscribe extends Component {
   render() {
     const { donation } = this.props;
     const nbPollSuggestions = donation.pollSuggestions.length;
-    const isEstablishmentDonation = donation.establishment !== undefined;
+    const isEstablishmentDonation = donation.isEstablishmentDonation();
+    const isMultipleDay = donation.isMultipleDay();
 
     return (
       <div className="donation-to-subscribe">
@@ -32,7 +33,7 @@ export default class DonationToSubscribe extends Component {
             <div className="label"><span className="bold">Dates proposées</span> :</div>
             {
               donation.pollSuggestions.map(
-                (pollSuggest, index) => <PollSuggestionDate key={index} isEstablishmentDonation={isEstablishmentDonation} pollSuggestion={pollSuggest} index={index} nbPollSuggestions={nbPollSuggestions} />
+                (pollSuggest, index) => <PollSuggestionDate key={index} isMultipleDay={isMultipleDay} pollSuggestion={pollSuggest} index={index} nbPollSuggestions={nbPollSuggestions} />
               )
             }
           </div>

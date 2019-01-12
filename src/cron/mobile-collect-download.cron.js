@@ -94,6 +94,8 @@ const computeCollection = (currentFilePath, mobileCollectCollections) => {
     const stop = collectData.stop.substring(0, collectData.stop.indexOf('CET'));
     mobileCollect.beginDate = new Date(start);
     mobileCollect.endDate = new Date(stop);
+    mobileCollect.multipleDay = !dayjs(start).startOf('day').isSame(dayjs(stop).startOf('day'));
+
     mobileCollect.place = collectData.name;
     mobileCollect.city = collectData['where:name'];
     mobileCollect.coordinates = [collectData.lon, collectData.lat];

@@ -3,6 +3,25 @@ import { dateFormatLongDayDayMonthYear, dateFormatHourMinut } from '../../servic
 
 
 function MobileCollectResult({ mobileCollect }) {
+
+  function renderMultipleDay(mobileCollect) {
+    return (
+      <div>
+        <div>Du {dateFormatLongDayDayMonthYear(mobileCollect.beginDate)} au {dateFormatLongDayDayMonthYear(mobileCollect.endDate)}</div>
+        <div>Horaire: {dateFormatHourMinut(mobileCollect.beginDate)} - {dateFormatHourMinut(mobileCollect.endDate)}</div>
+      </div>
+    )
+  }
+
+  function renderOnlyDay(start) {
+    return (
+      <div>
+        <div>Le {dateFormatLongDayDayMonthYear(start)}</div>
+        <div>De {dateFormatHourMinut(mobileCollect.beginDate)} à {dateFormatHourMinut(mobileCollect.endDate)}</div>
+      </div>
+    )
+  }
+
   return (
     <div className="mobile-connect-result">
       <div>
@@ -13,10 +32,7 @@ function MobileCollectResult({ mobileCollect }) {
         </div>
         {mobileCollect.distance ? <div>À environ {mobileCollect.distance} Km</div> : null}
       </div>
-      <div>
-        <div>Le {dateFormatLongDayDayMonthYear(mobileCollect.start)}</div>
-        <div>De {dateFormatHourMinut(mobileCollect.beginDate)} à {dateFormatHourMinut(mobileCollect.endDate)}</div>
-      </div>
+      { mobileCollect.multipleDay ? renderMultipleDay(mobileCollect) : renderOnlyDay(mobileCollect.start) }
     </div>
   );
 }

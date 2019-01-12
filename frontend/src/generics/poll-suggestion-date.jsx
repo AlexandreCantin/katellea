@@ -3,7 +3,7 @@ import { DAY_PARTS_LABEL } from '../enum';
 import { dateFormatShortDayDayMonthYear } from '../services/date-helper';
 import { DonationService } from '../services/donation/donation.service';
 
-function PollSuggestionDate({ isEstablishmentDonation, pollSuggestion, index, nbPollSuggestions }) {
+function PollSuggestionDate({ isMultipleDay, pollSuggestion, index, nbPollSuggestions }) {
 
   const computeClass = (nbPollSuggestions, index) => {
     // We use this method because last-child/first-child can't be used
@@ -17,7 +17,7 @@ function PollSuggestionDate({ isEstablishmentDonation, pollSuggestion, index, nb
     return DAY_PARTS_LABEL[dayPart];
   }
 
-  const value = isEstablishmentDonation ? dateFormatShortDayDayMonthYear(pollSuggestion.date) : DonationService.formatHourPollSuggestion(pollSuggestion.hour);
+  const value = isMultipleDay ? dateFormatShortDayDayMonthYear(pollSuggestion.date) : DonationService.formatHourPollSuggestion(pollSuggestion.hour);
 
   return (
     <div className={computeClass(nbPollSuggestions, index)}>

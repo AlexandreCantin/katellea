@@ -2,12 +2,13 @@ import { dateFormatLongDayDayMonthYear, dateFormatHourMinut } from '../date-help
 
 export class MobileCollect {
 
-  constructor({ id, city, place, longitude, latitude, beginDate, endDate, distance = undefined }) {
+  constructor({ id, city, place, longitude, latitude, multipleDay, beginDate, endDate, distance = undefined }) {
     this.id = id;
     this.city = city;
     this.place = place;
     this.longitude = longitude;
     this.latitude = latitude;
+    this.multipleDay = multipleDay;
     this.beginDate = new Date(beginDate);
     this.endDate = new Date(endDate);
     this.distance = distance;
@@ -21,6 +22,7 @@ export class MobileCollect {
       place: json.place,
       longitude: json.longitude,
       latitude: json.latitude,
+      multipleDay: json.multipleDay,
       beginDate: json.beginDate,
       endDate: json.endDate,
       distance: json.distance

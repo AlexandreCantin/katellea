@@ -110,4 +110,8 @@ export default class Donation {
     if(this.mobileCollect === undefined) return false;
     return true;
   }
+
+  isMultipleDay() {
+    return this.pollSuggestions[0].hasOwnProperty('date');
+  }
 }

@@ -6,14 +6,14 @@ const PollDates = (props) => {
   const { donation, donationPollOnGoing } = props;
 
   const nbPollSuggestions = donation.pollSuggestions.length;
-  const isEstablishmentDonation = donation.isEstablishmentDonation();
+  const isMultipleDay = donation.isMultipleDay();
 
   return (
     <div className="poll-header">
       <div>&nbsp;</div>
       {
         donation.pollSuggestions.map(
-          (pollSuggestion, index) => <PollSuggestionDate key={index} isEstablishmentDonation={isEstablishmentDonation} pollSuggestion={pollSuggestion} index={index} nbPollSuggestions={nbPollSuggestions} />
+          (pollSuggestion, index) => <PollSuggestionDate key={index} isMultipleDay={isMultipleDay} pollSuggestion={pollSuggestion} index={index} nbPollSuggestions={nbPollSuggestions} />
         )
       }
       {donationPollOnGoing ? <div>&nbsp;</div> : null}
