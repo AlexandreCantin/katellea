@@ -61,17 +61,11 @@ export default class OurMissionAndTeam extends Component {
             <div className="block">
               <h1 id="mission">Notre mission</h1>
               <p>
-                La principale mission de Katellea se veut simple : amener davantage de personnes  réaliser des dons du sang et de plasma ainsi que combattre les freins associés.
-                Aucune ressource ne pouvant se substituer au sang et les besoins étant constant, nous espérons limiter les situations d’urgence autour des réserves de sang et fournir davantage de ressources aux chercheurs.
+                La mission de Katellea est simple : permettre à des personnes voulant faire des dons du sang, mais ne souhaitant pas y aller seule, de solliciter leurs proches via les réseaux sociaux pour ensuite convenir de la date et le lieu pour réaliser ce don.
+                Aucune ressource ne pouvant se substituer au sang et les besoins étant constant, nous espérons limiter les situations d’urgence autour des réserves de sang.
               </p>
 
-              <p>
-                Pour y parvenir, nous misons sur l’implication de chacun, notamment via un système de parrainage par l’intermédiaire d’un proche, rendant ainsi le premier don plus rassurant mais aussi plus convivial !
-                Nous souhaitons aussi permettre à tout le monde de communiquer plus efficacement autour des dons du sang auprès de son entourage.
-              </p>
-              <p>
-                Nous savons que le parcours sera semé d’embûches mais nous comptons sur notre détermination pour créer un impact autour de cette problématique.
-              </p>
+              <p>Nous comptons sur notre détermination pour créer un impact autour de cette problématique.</p>
 
             </div>
 
