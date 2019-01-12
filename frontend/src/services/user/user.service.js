@@ -162,6 +162,7 @@ class UserServiceFactory {
             sponsorToken: userData.sponsorToken,
             katelleaToken: null,
             plateletActive: null,
+            godchildNumber: null,
             lastNotificationReadDate: null,
             createdAt: userData.createdAt,
             updatedAt: null
@@ -253,6 +254,21 @@ class UserServiceFactory {
     store.dispatch({
       type: USER_ACTIONS.SET_USER,
       data: userData
+    });
+  }
+
+
+  getGodchilds() {
+    let url = `${environment.SERVER_URL}${environment.USER_GODCHILDS_ENDPOINT}`;
+    let headers = getKatelleaTokenHeaders();
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url, { headers });
+      if (response.status === 200) {
+        let godchilds = await response.json();
+        if (godchilds) { resolve(godchilds); return; }
+      }
+      reject();
     });
   }
 }

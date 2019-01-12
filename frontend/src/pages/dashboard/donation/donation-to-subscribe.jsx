@@ -21,8 +21,8 @@ export default class DonationToSubscribe extends Component {
   render() {
     const { donation } = this.props;
     const nbPollSuggestions = donation.pollSuggestions.length;
-    const isEstablishmentDonation = donation.isEstablishmentDonation();
-    const isMultipleDay = donation.isMultipleDay();
+    const isEstablishmentDonation = donation.establishment !== null;
+    const isMultipleDay = donation.pollSuggestions[0].hasOwnProperty('date');
 
     return (
       <div className="donation-to-subscribe">

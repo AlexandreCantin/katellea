@@ -22,6 +22,7 @@ export default class User {
     sponsorToken,
     katelleaToken,
     plateletActive,
+    godchildNumber,
     lastNotificationReadDate,
     createdAt,
     updatedAt
@@ -45,7 +46,7 @@ export default class User {
     this.firstVisit = firstVisit;
     this.minimumDate = new Date(minimumDate);
     this.plateletActive = plateletActive || false;
-
+    this.godchildNumber = godchildNumber;
     this.lastNotificationReadDate = new Date(lastNotificationReadDate);
 
     this.createdAt = new Date(createdAt);
@@ -100,6 +101,7 @@ export default class User {
       sponsorToken: this.sponsorToken,
       katelleaToken: this.katelleaToken,
       plateletActive: this.plateletActive,
+      godchildNumber: this.godchildNumber,
       lastNotificationReadDate: this.lastNotificationReadDate ? dateFormatYearMonthDay(this.lastNotificationReadDate): this.lastNotificationReadDate,
       createdAt: dateFormatYearMonthDay(this.createdAt),
       updatedAt: dateFormatYearMonthDay(this.updatedAt)
@@ -133,6 +135,7 @@ export default class User {
       sponsorToken: sponsorData.sponsorToken,
       katelleaToken: null,
       plateletActive: null,
+      godchildNumber: null,
       lastNotificationReadDate: null,
       createdAt: sponsorData.createdAt,
       updatedAt: null

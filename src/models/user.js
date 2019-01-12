@@ -36,6 +36,12 @@ const UserSchema = mongoose.Schema({
   sponsorToken: String,
   isAdmin: Boolean,
   firstVisit: Boolean,
+
+  godchildNumber: {
+    type: Number,
+    default: 0
+  },
+
   plateletActive: {
     type: Boolean,
     default: false
@@ -90,6 +96,7 @@ const User = mongoose.model('User', UserSchema);
 
 // Global
 User.publicFields = '_id name establishment sponsorToken';
+User.compatibilityFields = '_id name bloodType';
 User.adminLogFields = '_id name';
 
 export default User;

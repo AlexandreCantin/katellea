@@ -31,6 +31,7 @@ export const USER_REDUCERS = (state = {}, action) => {
         sponsorToken: action.data.sponsorToken,
         katelleaToken: action.data.katelleaToken ? action.data.katelleaToken : state.katelleaToken, // Keep token if no token given
         plateletActive: action.data.plateletActive,
+        godchildNumber: action.data.godchildNumber,
         lastNotificationReadDate: action.data.lastNotificationReadDate,
         createdAt: action.data.createdAt,
         updatedAt: action.data.updatedAt

@@ -33,6 +33,7 @@ export const environmentValues = {
   USER_SPONSOR_ENDPOINT: '/user/sponsor/',
   USER_SPONSOR_COMPATIBILITY_ENDPOINT: '/user/sponsor-compatibility',
   USER_IS_ADMIN_ENDPOINT: '/user/is-admin',
+  USER_GODCHILDS_ENDPOINT: '/user/godchilds',
   USER_ENDPOINT_WITH_TOKEN: '/remember-me/',
   USER_ENDPOINT_FACEBOOK_TOKEN: '/facebook-connect/',
   USER_ENDPOINT_TWITTER_TOKEN: '/twitter-connect/',

@@ -4,6 +4,7 @@ import { SocialNetworksService } from '../../../services/social-network.service'
 import store from '../../../services/store';
 import { SHARE_PREFIXES } from '../../../enum';
 import Modal from '../../../generics/modal';
+import MyGodchilds from './my-godchilds';
 
 const POP_TITLE = `Parrainez un proche !`;
 const MESSAGE_TEXT = `Vous hésitez à faire votre premier don du sang ? Je peux vous y accompagner`;
@@ -98,10 +99,11 @@ export default class PromotionContainer extends Component {
         <h2>Parrainez vos amis !</h2>
 
         {sponsor ? <div className="alert info">Votre parrain/marraine : {sponsor.name}</div> : null}
+        <MyGodchilds />
 
         <div>
           <p>
-            Parrainez vos amis pour les accompagner à leur premier don du sang !<br /> Envoyez une proposition de parrainage sur les réseaux sociaux :
+            Parrainez des proches pour réaliser un don avec eux ou les accompagner à leur premier don !<br /> Envoyez une proposition de parrainage sur les réseaux sociaux :
           </p>
           <div className="button-container text-center">
             <button className="btn big" onClick={this.showPromotionModal}>Parrainez des proches</button>

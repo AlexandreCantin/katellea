@@ -28,6 +28,22 @@ const getSponsorUser = async (req, res) => {
   return res.json(user);
 };
 
+const getGodchilds = async(req, res) => {
+  const godchilds = await User.find({ sponsor: req.userId }).select(User.compatibilityFields);
+  let godchildObj = godchilds.map(godchild => godchild.toObject());
+
+  if(req.user.bloodType !== 'UNKNOWN') {
+    godchildObj.forEach(godchild => {
+      if(godchild.bloodType !== 'UNKNOWN') {
+        godchild.compatibility = BLOOD_COMPATIBILITY[req.user.bloodType][godchild.bloodType];
+        godchild.bloodType = undefined; // Delete bloodType
+      }
+    });
+  }
+
+  return res.json(godchildObj);
+}
+
 const getSponsorUserCompatibility = async (req, res) => {
   if(!req.user.sponsor) return res.json({ direction: '' });
 
@@ -57,7 +73,14 @@ const createUser = async (req, res) => {
   let sponsorId = undefined;
   if (req.body.sponsoredByToken) {
     const sponsorUser = await User.findOne({ sponsorToken: req.body.sponsoredByToken });
-    if (sponsorUser) sponsorId = sponsorUser.id;
+    if (sponsorUser) {
+      sponsorId = sponsorUser.id;
+
+      // Increment godchildNumber for sponsor
+      const godchildNumber = sponsorUser.godchildNumber || 0;
+      sponsorUser.godchildNumber = godchildNumber+1;
+      sponsorUser.save();
+    }
     // #Beta only ?
     else res.status(BAD_REQUEST).send();
   }
@@ -81,6 +104,7 @@ const createUser = async (req, res) => {
   user.currentDonation = currentDonationId ? currentDonationId : undefined;
 
   user.socialNetworkKey = req.body.socialNetworkKey;
+  user.godchildNumber = 0;
 
   user.bloodDonationDone = 0;
   user.bloodGiven = 0;
@@ -225,6 +249,7 @@ const deleteUser = async (req, res, next) => {
 
 // Routes
 userRoutes.post('/is-admin', isAdminUser);
+userRoutes.get('/godchilds', getGodchilds);
 userRoutes.get('/sponsor-compatibility/:bloodType', getSponsorUserCompatibility);
 userRoutes.get('/sponsor/:token', getSponsorUser);
 userRoutes.post('/', createUser);

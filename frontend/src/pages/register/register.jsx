@@ -118,6 +118,7 @@ export default class Register extends Component {
       sponsorToken: null,
       katelleaToken: null,
       plateletActive: null,
+      godchildNumber: null,
       lastNotificationReadDate: null,
       createdAt: null,
       updatedAt: null

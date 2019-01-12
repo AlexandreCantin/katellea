@@ -142,6 +142,7 @@ export default class Home extends Component {
                 <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong> uniquement</div>
 
                 {<AuthLoginButtons />}
+                {!environment.production ? <FakeUserLogin /> : null}
 
               </div>
             </div>
