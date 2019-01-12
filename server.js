@@ -71,7 +71,6 @@ if (CRON.isMainLeader) {
 // MIDDLEWARES
 // app.use(loggingMiddleware);
 app.use(bodyParser.json());
-app.use(errorHandler);
 app.use(passport.initialize());
 if (process.env.NODE_ENV === 'production') app.use(helmet())
 if (process.env.NODE_ENV !== 'production') app.use(cors())
@@ -100,6 +99,10 @@ app.use('/admin', adminCityEstablishmentRoutes);
 // Serve React build : Need to be last !
 app.use(express.static('frontend/build'));
 app.use(rootRoutes);
+
+// Error handler
+app.use(errorHandler);
+
 
 // By using (!module.parent) condition, we avoid EADDRINUSE when testing because app will start once
 let startApp = process.env.NODE_ENV != 'test';
