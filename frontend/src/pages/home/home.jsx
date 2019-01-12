@@ -163,12 +163,12 @@ export default class Home extends Component {
               <div>
                 <h3>...de sauver des vies</h3>
                 <p>
-                  En cas d'urgence : suite à un accident ou lors d'un accouchement.<br />Pour le traitement des maladies chroniques.
+                  En cas d'urgence : suite à un accident, lors d'un accouchement...<br />Mais aussi pour le traitement des maladies chroniques.
                 </p>
               </div>
               <div>
                 <h3>...d'aider la recherche</h3>
-                <p>Les dons non utilisés servent à la recherche sur<br />les maladies génétiques.</p>
+                <p>Les dons non utilisés servent les centres de recherche, la formation universitaire,<br />la création de produits d'analyse biologiques...<br /></p>
               </div>
             </div>
           </div>
