@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import { UserService } from '../../services/user/user.service';
-import { FlashMessageService } from '../../services/flash-message/flash-message.service';
-import store from '../../services/store';
-import Validators from '../../services/forms/validators';
-import { validateForm } from '../../services/forms/validate';
+import store from '../../../services/store';
+import Validators from '../../../services/forms/validators';
+import { validateForm } from '../../../services/forms/validate';
 import { Form, Field } from 'react-final-form';
 
+import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
+import { UserService } from '../../../services/user/user.service';
 
-const rules = {
+const FORM_RULES = {
   name: [Validators.required(), Validators.minLength(3), Validators.maxLength(20)],
   email: [Validators.required(), Validators.email()],
   donationPreference: [],
@@ -43,7 +43,7 @@ export default class UpdateAccountForm extends Component {
 
         <Form
           onSubmit={this.updateUser}
-          validate={values => validateForm(values, rules)}
+          validate={values => validateForm(values, FORM_RULES)}
           initialValues={this.formData}
           render={({ handleSubmit, reset, submitting, pristine, values, invalid }) => (
             <form onSubmit={handleSubmit}>
@@ -112,7 +112,8 @@ export default class UpdateAccountForm extends Component {
                 </Field>
 
                 <div className="text-center">
-                  <input className="btn big" type="submit" value="Modifier mes informations" disabled={invalid} />
+                  <label htmlFor="update-account" className="sr-only">Modifier mes informations</label>
+                  <input id="update-account" className="btn big" type="submit" value="Modifier mes informations" disabled={invalid} />
                 </div>
               </fieldset>
             </form>

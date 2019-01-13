@@ -11,9 +11,9 @@ module.exports = {
       // Account
       .moveToElement('nav.katellea .my-account.dropdown-container button', 10, 10)
       .pause(500)
-      .click('nav.katellea a[href="/mon-compte"]')
+      .click('nav.katellea a[href="/mon-profil"]')
       .pause(1500)
-      .assert.containsText('main h1', 'Votre compte')
+      .assert.containsText('main h1', 'Mon profil')
 
       // Ask GRPD export
       .assert.containsText('#grpd-export button.btn.big', 'Demander un export de vos données')

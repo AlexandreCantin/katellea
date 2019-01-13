@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PhoneLink from '../../phone-link';
 import { GoogleAnalyticsService } from '../../../services/google-analytics.service';
+import { computeTabAttributes, computeTabPanelAttributes } from '../../../services/tab-helper';
 
 require('./establishment-card.scss');
 
@@ -20,7 +21,7 @@ export default class EstablishmentCard extends Component {
     const establishment = this.props.establishment;
 
     this.state = {
-      selectTab: 'presentation',
+      selectTab: PRESENTATION_TAB,
       establishment,
       openStreetMapIframeUrl: EstablishmentCard.generateOpenStreetMapIframeUrl(establishment)
     };
@@ -52,38 +53,13 @@ export default class EstablishmentCard extends Component {
     this.setState({ selectTab: target });
   }
 
-  computeTabAttributes(tabId, selectTab) {
-    // https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html
-    const isSelected = selectTab === tabId;
-
-    let values = {
-      id: tabId,
-      'aria-controls': '#' + tabId + '-tab',
-      'aria-selected': isSelected,
-      className: this.cssClass(tabId)
-    };
-    if (!isSelected) values.tabIndex = -1;
-
-    return values;
-  }
-  computeTabPanelAttributes(tabId) {
-    // https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html
-    return {
-      className: 'tab-content',
-      role: 'tabpanel',
-      tabIndex: 0,
-      id: tabId + '-tab',
-      'aria-labelledby': tabId
-    };
-  }
-
   // RENDER
   renderAppointment(value) {
     return value ? '(sur rendez-vous)' : '(sans rendez-vous)';
   }
   renderPresentation(establishment) {
     return (
-      <div  {...this.computeTabPanelAttributes(PRESENTATION_TAB)}>
+      <div  {...computeTabPanelAttributes(PRESENTATION_TAB)}>
         <h5>Adresse</h5>
         <p>{establishment.address}</p>
         <h5>Dons possibles</h5>
@@ -96,7 +72,7 @@ export default class EstablishmentCard extends Component {
   }
   renderOpeningHours(establishment) {
     return (
-      <div {...this.computeTabPanelAttributes(OPENING_HOURS_TAB)}>
+      <div {...computeTabPanelAttributes(OPENING_HOURS_TAB)}>
         <h5>Horaires d'ouverture</h5>
         <ul>
           <li>Lundi : {establishment.mondayHours}</li>
@@ -111,7 +87,7 @@ export default class EstablishmentCard extends Component {
   }
   renderContact(establishment) {
     return (
-      <div {...this.computeTabPanelAttributes(CONTACT_TAB)}>
+      <div {...computeTabPanelAttributes(CONTACT_TAB)}>
         <ul>
           <li>Téléphone : <PhoneLink establishment={establishment} /></li>
           {establishment.email ? <li>E-mail: {establishment.email}</li> : null}
@@ -137,9 +113,9 @@ export default class EstablishmentCard extends Component {
           <div>
 
             <div className="establishment-view" role="tablist">
-              <button {...this.computeTabAttributes(PRESENTATION_TAB, selectTab)} onClick={this.selectTab}>Présentation</button>
-              <button {...this.computeTabAttributes(OPENING_HOURS_TAB, selectTab)} onClick={this.selectTab}>Horaires</button>
-              <button {...this.computeTabAttributes(CONTACT_TAB, selectTab)} onClick={this.selectTab}>Contact</button>
+              <button {...computeTabAttributes(PRESENTATION_TAB, selectTab, this.cssClass(PRESENTATION_TAB))} onClick={this.selectTab}>Présentation</button>
+              <button {...computeTabAttributes(OPENING_HOURS_TAB, selectTab, this.cssClass(OPENING_HOURS_TAB))} onClick={this.selectTab}>Horaires</button>
+              <button {...computeTabAttributes(CONTACT_TAB, selectTab, this.cssClass(CONTACT_TAB))} onClick={this.selectTab}>Contact</button>
               <button id={MAP_TAB} onClick={this.selectTab} className={this.cssClass(CONTACT_TAB)} aria-hidden="true">Carte</button>
             </div>
 

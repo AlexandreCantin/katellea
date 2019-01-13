@@ -81,7 +81,7 @@ export default class LegalTerms extends Component {
 
             <p>
               Toutefois, l’utilisateur est informé que conformément aux articles 39 et suivants de la loi n°78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés,
-              il dispose d’un droit d’accès aux informations le concernant dans la <a className="native" href="//katellea.fr/mon-compte">page dédiée à la gestion de son compte</a> (nécessite d'être authentifié).<br />
+              il dispose d’un droit d’accès aux informations le concernant dans la <a className="native" href="//katellea.fr/mon-profil">page dédiée à la gestion de son compte</a> (nécessite d'être authentifié).<br />
               Pour plus d'informations, l'utilisateur dispose d'un <a className="native" href="//katellea.fr/nous-contacter">formulaire de contact</a>.
             </p>
 

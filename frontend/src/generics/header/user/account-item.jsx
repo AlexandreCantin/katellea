@@ -17,7 +17,7 @@ function HeaderAccountItem({ user }) {
 
     return (
       <ul id="account-dropdown" className={cssClasses} aria-label="submenu">
-        <li><Link to="/mon-compte">Mon compte</Link></li>
+        <li><Link to="/mon-profil">Mon profil</Link></li>
         <li><LogoutButton /></li>
       </ul>
     );

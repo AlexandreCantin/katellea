@@ -119,6 +119,7 @@ export default class Register extends Component {
       katelleaToken: null,
       plateletActive: null,
       godchildNumber: null,
+      notificationSettings: null,
       lastNotificationReadDate: null,
       createdAt: null,
       updatedAt: null

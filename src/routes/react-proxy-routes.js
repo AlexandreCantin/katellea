@@ -53,7 +53,7 @@ rootRoutes.get('/presse', (req, res) => res.render('index', getRouteData('presse
 rootRoutes.get('/tableau-de-bord', (req, res) => res.render('index', getRouteData('root', '/')));
 rootRoutes.get('/don-courant', (req, res) => res.render('index', getRouteData('root', '/')));
 rootRoutes.get('/historique-des-dons', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/mon-compte', (req, res) => res.render('index', getRouteData('root', '/')));
+rootRoutes.get('/mon-profil', (req, res) => res.render('index', getRouteData('root', '/')));
 
 rootRoutes.get('/admin', (req, res) => res.render('index', getRouteData('root', '/')));
 rootRoutes.get('/admin/utilisateurs', (req, res) => res.render('index', getRouteData('root', '/')));

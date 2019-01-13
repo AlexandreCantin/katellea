@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { FlashMessageService } from '../../services/flash-message/flash-message.service';
-import { UserService } from '../../services/user/user.service';
-import { extractKey } from '../../services/helper';
+import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
+import { UserService } from '../../../services/user/user.service';
+import { extractKey } from '../../../services/helper';
 
 class ActivePlateletForm extends Component {
 

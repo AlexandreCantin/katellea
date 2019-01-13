@@ -105,6 +105,7 @@ const createUser = async (req, res) => {
 
   user.socialNetworkKey = req.body.socialNetworkKey;
   user.godchildNumber = 0;
+  user.notificationSettings = {};
 
   user.bloodDonationDone = 0;
   user.bloodGiven = 0;
@@ -154,6 +155,7 @@ const updateUser = async (req, res) => {
   user.lastDonationType = req.body.lastDonationType || req.user.lastDonationType;
   user.donationPreference = req.body.donationPreference || req.user.donationPreference;
   user.plateletActive = req.body.plateletActive || req.user.plateletActive;
+  user.notificationSettings = req.body.notificationSettings || req.user.notificationSettings || {};
   user.lastNotificationReadDate = req.body.lastNotificationReadDate || req.user.lastNotificationReadDate;
 
   // Get sponsor

@@ -23,6 +23,7 @@ export default class User {
     katelleaToken,
     plateletActive,
     godchildNumber,
+    notificationSettings,
     lastNotificationReadDate,
     createdAt,
     updatedAt
@@ -47,6 +48,8 @@ export default class User {
     this.minimumDate = new Date(minimumDate);
     this.plateletActive = plateletActive || false;
     this.godchildNumber = godchildNumber;
+
+    this.notificationSettings = notificationSettings || {};
     this.lastNotificationReadDate = new Date(lastNotificationReadDate);
 
     this.createdAt = new Date(createdAt);
@@ -78,6 +81,7 @@ export default class User {
       minimumDate: dateFormatYearMonthDay(this.minimumDate),
       plateletActive: this.plateletActive,
       establishmentId: this.establishment ? this.establishment.id : null,
+      notificationSettings: this.notificationSettings,
       lastNotificationReadDate: this.lastNotificationReadDate ? dateFormatYearMonthDay(this.lastNotificationReadDate) : undefined,
     };
   }
@@ -102,6 +106,7 @@ export default class User {
       katelleaToken: this.katelleaToken,
       plateletActive: this.plateletActive,
       godchildNumber: this.godchildNumber,
+      notificationSettings: this.notificationSettings,
       lastNotificationReadDate: this.lastNotificationReadDate ? dateFormatYearMonthDay(this.lastNotificationReadDate): this.lastNotificationReadDate,
       createdAt: dateFormatYearMonthDay(this.createdAt),
       updatedAt: dateFormatYearMonthDay(this.updatedAt)
@@ -136,6 +141,7 @@ export default class User {
       katelleaToken: null,
       plateletActive: null,
       godchildNumber: null,
+      notificationSettings: null,
       lastNotificationReadDate: null,
       createdAt: sponsorData.createdAt,
       updatedAt: null

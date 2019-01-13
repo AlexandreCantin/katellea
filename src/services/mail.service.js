@@ -47,6 +47,8 @@ export default class MailFactory {
 
 
   static async bloodDonationEligibleMail(user) {
+    if(MailFactory.userDeclineNotification(user, 'bloodEligible')) return;
+
     const subject = `Votre délai d'attente entre deux dons est bientôt terminé`;
 
     const htmlContent = await ejs.renderFile('./src/templates/emails/blood-donation-eligible-mail.ejs', {
@@ -77,6 +79,8 @@ export default class MailFactory {
 
 
   static async sendSponsorGodchildCreateDonationMail(user, donation) {
+    if(MailFactory.userDeclineNotification(user, 'sponsorGodchildCreateDonation')) return;
+
     let userHasAlreadyOneDonation = false;
     if(user.hasOwnProperty('lastDonationDate')) {
       userHasAlreadyOneDonation = (user.lastDonationDate !== undefined && user.lastDonationDate !== null);
@@ -111,4 +115,13 @@ export default class MailFactory {
     } catch(err) {/* Nothing to do */}
   }
 
+
+  // HELPER
+  static userDeclineNotification(user, field) {
+    const notificationSettings = user.notificationSettings || {};
+    if(!notificationSettings.hasOwnProperty(field)) return false;
+
+    // if TRUE: User ==> wants <== the notification
+    return !notificationSettings[field];
+  }
 }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-
-import { FlashMessageService } from '../../services/flash-message/flash-message.service';
-import { UserService } from '../../services/user/user.service';
 import { navigate } from '@reach/router';
-import Modal from '../../generics/modal';
+
+import Modal from '../../../generics/modal';
+import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
+import { UserService } from '../../../services/user/user.service';
 
 // useState(false) => showConfirmModal
 export default class DeleteAccountForm extends Component {
@@ -37,7 +37,7 @@ export default class DeleteAccountForm extends Component {
 
   renderConfirmModal() {
     return (
-      <Modal cssclassName="confirm-delete-modal" role="alertdialog" title="Supprimer de votre compte ?" onClose={this.closeDeleteConfirm} modalUrl="/mon-compte/supprimer-votre-compte">
+      <Modal cssclassName="confirm-delete-modal" role="alertdialog" title="Supprimer de votre compte ?" onClose={this.closeDeleteConfirm} modalUrl="/mon-profil/supprimer-votre-compte">
         <p>
           Confirmez-vous la suppression de votre compte ?<br />
           Cela entraînera la suppression de votre compte et l'anonymisation de vos dons.
@@ -53,7 +53,7 @@ export default class DeleteAccountForm extends Component {
     const { showConfirmModal } = this.state;
 
     return (
-      <div className="form block-base">
+      <div className="form delete-form block-base">
         <form onSubmit={e => e.preventDefault()}>
           <fieldset>
             <legend>Supprimer mon compte</legend>

@@ -65,3 +65,5 @@ export const DONATION_REST_WEEKS = {
 
 export const GENDER = { MALE: 'MALE', FEMALE: 'FEMALE', UNKNOWN: 'UNKNOWN' };
 export const POLL_ANSWERS = { YES: 'YES', NO: 'NO', MAYBE: 'MAYBE' };
+
+export const NOTIFICATION_ANSWERS = { YES: 'YES', NO: 'NO' }

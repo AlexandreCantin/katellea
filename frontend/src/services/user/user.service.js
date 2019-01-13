@@ -163,6 +163,7 @@ class UserServiceFactory {
             katelleaToken: null,
             plateletActive: null,
             godchildNumber: null,
+            notificationSettings: null,
             lastNotificationReadDate: null,
             createdAt: userData.createdAt,
             updatedAt: null

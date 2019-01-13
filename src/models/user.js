@@ -4,6 +4,22 @@ import { MongooseAutoIncrementID } from 'mongoose-auto-increment-reworked';
 import { JWTService } from '../services/jwt.service';
 import { extractEnumValues, GENDER, BLOOD_TYPE, DONATION_TYPE } from '../constants';
 
+/*
+  Notification schema:
+    - Save user preferences for emails
+    if TRUE: User ==> wants <== the notification
+*/
+const NotificationSettingsSchema = mongoose.Schema({
+  bloodEligible: {
+    type: Boolean,
+    default: true
+  },
+  sponsorGodchildCreateDonation: {
+    type: Boolean,
+    default: true
+  }
+});
+export const NotificationSettings = mongoose.model('NotificationSettings', NotificationSettingsSchema);
 
 const UserSchema = mongoose.Schema({
   name: String,
@@ -50,6 +66,7 @@ const UserSchema = mongoose.Schema({
     type: String,
     default: ''
   },
+  notificationSettings: NotificationSettingsSchema,
 
   /**
    * This field role is to identified user when they come back.

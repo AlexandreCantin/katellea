@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Loader from '../../generics/loader/loader';
-import FlashMessage from '../../generics/flash-message';
+import Loader from '../../../generics/loader/loader';
+import FlashMessage from '../../../generics/flash-message';
 
-import { UserService } from '../../services/user/user.service';
-import { FlashMessageService } from '../../services/flash-message/flash-message.service';
+import { UserService } from '../../../services/user/user.service';
+import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
 
 export default class GRPDExport extends Component {
 

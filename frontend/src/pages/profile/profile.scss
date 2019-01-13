@@ -1,0 +1,88 @@
+@import '../../styles/mixins.scss';
+
+#profile-page {
+
+  .breadcrumb-nav {
+    margin-top: 20px;
+  }
+
+
+  .main-content {
+    grid-gap: 0;
+
+    .tabs {
+      grid-column: span 3;
+      button {
+        border: none;
+        padding: 10px 20px;
+        background: white;
+        margin-right: 10px;
+        &:not(.selected) {
+          background: lightgray;
+        }
+      }
+    }
+
+    .tab-content {
+      grid-column: span 3;
+      > div:first-child {
+        border-top-left-radius: 0;
+        padding-top: 40px;
+      }
+    }
+
+    // Account
+    .tab-content.account {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      .update-account {
+        grid-column: span 2;
+        form { margin-bottom: 20px; }
+      }
+
+      @media (max-width: $min-width-mobile) {
+        grid-template-columns: 1fr;
+        .update-account {
+          grid-column: span 1;
+          form { margin-bottom: 0; }
+        }
+      }
+    }
+
+    // Notification
+    .notification {
+      .line {
+        display: grid;
+        grid-template-columns: 3fr 1fr 1fr;
+        padding: 20px;
+        align-items: center;
+
+        &:nth-child(even) { background-color: lightgray; }
+
+        .text { font-weight: bold; }
+        .input { text-align: center; }
+        label { display: inline-block; }
+
+        @media (max-width: $min-width-mobile) {
+          grid-template-columns: 1fr 1fr;
+          text-align: center;
+          .text {
+            padding-bottom: 10px;
+            grid-column: span 2;
+          }
+        }
+      }
+
+      .text-center { margin-top: 20px; }
+    }
+
+  }
+}
+
+#modal .modal-body.confirm-delete-modal {
+  text-align: center;
+
+  button.confirm {
+    margin-top: 30px;
+  }
+}
