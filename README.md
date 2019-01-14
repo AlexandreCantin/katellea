@@ -55,6 +55,10 @@ export default overridesEnvironmentValues;
 ```
 * Run `npm run start` and wait for your browser to start at `localhost:8080`
 
+* Note: if you got troubles with _max watches_, you can type in your terminal :
+`echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`
+
+
 ## Testing
 
 :construction: Coming soon :construction:
