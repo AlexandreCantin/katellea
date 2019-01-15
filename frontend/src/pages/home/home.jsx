@@ -45,7 +45,7 @@ export default class Home extends Component {
 
   renderGayDetailsModal() {
     return (
-      <Modal cssclassName="gay-modal" title="Don pour les homosexuelles" onClose={this.closeGayDetailsModal} modalUrl="/don-homosexuel">
+      <Modal cssclassName="gay-modal" title="Don pour les homosexuels" onClose={this.closeGayDetailsModal} modalUrl="/don-homosexuel">
         <p>Depuis le 10 juillet 2016, de nouveaux droits s'appliquent pour les personnes homosexuelles.</p>
 
         <div className="women">
@@ -114,10 +114,10 @@ export default class Home extends Component {
                   <img src="s.png" className="lazyload" data-src="/img/rainbow_flag.svg" alt="" />
                 </div>
                 <div>
-                  <h2 className="no-margin">Don pour les homosexuelles</h2>
+                  <h2 className="no-margin">Don pour les homosexuels</h2>
                   <div>
                     <ul className="list-unstyled">
-                      <li><span className="bold">Femmes homosexuelles</span> : aucune condition spécifique</li>
+                      <li><span className="bold">Femmes</span> : aucune condition spécifique</li>
                       <li><span className="bold">Hommes et dons de plasma</span> : aucune condition spécifique</li>
                       <li><span className="bold">Hommes et dons sang/plaquettes</span> : sous condition</li>
                     </ul>
