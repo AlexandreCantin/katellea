@@ -3,6 +3,7 @@ import express from 'express';
 import AdminLog from '../../models/admin-log';
 import User from '../../models/user';
 import { injectUserFromToken } from '../../middlewares/inject-user-from-token';
+import { NOT_FOUND } from 'http-status-codes';
 
 const adminLogsRoutes = express.Router();
 adminLogsRoutes.use(injectUserFromToken);
@@ -36,6 +37,7 @@ const findUserLogs = async (req, res) => {
 
 const findLastUserLogs = async (req, res) => {
   const logs = await AdminLog.find({ user : +req.userId }).sort({ _id: -1 }).skip(1).limit(1);
+  if(logs.length == 0) return res.status(NOT_FOUND).send();
   return res.json(logs[0]);
 }
 
