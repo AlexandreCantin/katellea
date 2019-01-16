@@ -47,8 +47,7 @@ export default class AuthLoginButtons extends Component {
     this.storeUnsubscribeFn2();
   }
 
-  doAuthLogin = e => {
-    e.preventDefault();
+  waitForAuthLogin = e => {
     localStorage.removeItem('USER_TOKEN');
     let origin = e.target.getAttribute('data-origin');
     if (ORIGINS.includes(origin)) AuthService.doAuthLogin(origin);
@@ -58,10 +57,10 @@ export default class AuthLoginButtons extends Component {
   render() {
     return (
       <div className="social-auth-buttons">
-        <button data-origin="facebook" className="btn big facebook" onClick={this.doAuthLogin}>Continuer avec Facebook</button>
-        {/*<button data-origin="twitter" className="btn big twitter" onClick={this.doAuthLogin}>Continuer avec Twitter</button>*/}
-        <button data-origin="google" className="btn big google" onClick={this.doAuthLogin}>Continuer avec Google</button>
-        <button data-origin="instagram" className="btn big instagram" onClick={this.doAuthLogin}>Continuer avec Instagram</button>
+        <a className="btn big facebook" data-origin="facebook" target="_blank" href={AuthService.computeConnectURL('facebook')} onClick={this.waitForAuthLogin}>Continuer avec Facebook</a>
+        {/*<a className="btn big twitter" data-origin="twitter" target="_blank" href={AuthService.computeConnectURL('twitter')} onClick={this.waitForAuthLogin}>Continuer avec Twitter</a>*/}
+        <a className="btn big google" data-origin="google" target="_blank" href={AuthService.computeConnectURL('google')} onClick={this.waitForAuthLogin}>Continuer avec Google</a>
+        <a className="btn big instagram" data-origin="instagram" target="_blank" href={AuthService.computeConnectURL('instagram')} onClick={this.waitForAuthLogin}>Continuer avec Instagram</a>
       </div>
     );
   }

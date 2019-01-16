@@ -20,9 +20,7 @@ class AuthServiceFactory {
     return `${origin.charAt(0).toUpperCase() + origin.slice(1)} connexion`;
   }
 
-  async doAuthLogin(origin) {
-    let url = this.computeConnectURL(origin);
-    window.open(url, this.computePopupTitle(origin), 'scrollbars=yes, width=640, height=640');
+  doAuthLogin(origin) {
     window.addEventListener('message', (event) => {
       if(event.origin !== environment.SERVER_URL) return;
 
