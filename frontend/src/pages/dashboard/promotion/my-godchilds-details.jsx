@@ -6,7 +6,7 @@ const DIRECTION = {
   BOTH: { img: 'both-simple.png', text: 'Vous pouvez donner et recevoir du sang de votre filleul/filleule. Cool !' },
   LEFT: { img: 'left-simple.png', text: 'Vous pouvez recevoir du sang de votre filleul/filleule mais pas lui en donner.' },
   RIGHT: { img: 'right-simple.png', text: 'Vous pouvez donner votre sang à votre filleul/filleule mais pas inversement.' },
-  NO: { img: 'no.png', text: 'Votre groupe sanguin n\'est pas compatible avec celui de votre filleul/filleule. Dommage !' },
+  NO: { img: 'no-simple.png', text: 'Votre groupe sanguin n\'est pas compatible avec celui de votre filleul/filleule. Dommage !' },
 };
 
 export default class MyGodchildsDetails extends Component {
