@@ -48,8 +48,12 @@ export default class MyGodchildsDetails extends Component {
                 <tr key={godchild._id}>
                   <td>{ godchild.name }</td>
                   <td>
-                    <img src={'/img/sponsor-compatibility/' + DIRECTION[godchild.compatibility].img } alt="" />
-                    <span>{ DIRECTION[godchild.compatibility].text }</span>
+                    { godchild.compatibility ?
+                      <>
+                        <img src={'/img/sponsor-compatibility/' + DIRECTION[godchild.compatibility].img } alt="" />
+                        <span>{ DIRECTION[godchild.compatibility].text }</span>
+                      </> : <span>Compatibilité inconnu</span>
+                    }
                   </td>
                 </tr>
               ))
