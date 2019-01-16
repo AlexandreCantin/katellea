@@ -3,7 +3,43 @@ import * as Sentry from '@sentry/node';
 import { environment } from '../../conf/environment';
 import { NOT_FOUND } from 'http-status-codes';
 
+import User from '../models/user';
+import Donation from '../models/donation';
+
+
 const rootRoutes = express.Router();
+
+const TITLE_DEFAULT = "Accompagnement don du sang - Katellea";
+const DESCRIPTION_DEFAULT = "Parrainer et accompagner un proche pour son premier don du sang";
+
+const computeTitleAndDescription = async (path, req) => {
+  if(path !== 'token') return {};
+
+  let title = TITLE_DEFAULT;
+  let description = DESCRIPTION_DEFAULT;
+
+  // Sponsor token
+  if(req.query.hasOwnProperty('sponsor')) {
+    try {
+      const sponsor = await User.findOne({ sponsorToken : req.query.sponsor });
+      title = `Don du sang : Faites-vous parrainer par ${sponsor.name}`;
+    } catch(err) {}
+  }
+
+  // Donation token
+  else if(req.query.hasOwnProperty('donation')) {
+    try {
+      const donation = await Donation.findOne({ donationToken : req.query.donation })
+        .populate({ path: 'createdBy', model: 'User', select: User.publicFields });
+
+      title = `Rejoignez la proposition de don faite par ${donation.createdBy.name}`;
+    } catch(err) {}
+  }
+
+  return { title, description };
+}
+
+
 
 const reactRouteData = {
   'root': {
@@ -30,37 +66,44 @@ const reactRouteData = {
 };
 
 // For now : get only data
-const getRouteData = function(path, extraPath) {
-  // TODO: handle social network metas
+const getRouteData = async(path, extraPath, req) => {
   let data = reactRouteData[path];
   if(!data) {
     Sentry.captureException(new Error(`Route data not found for path: ${path}`));
-    data = getRouteData('root', '/');
+    data = await getRouteData('root', '/');
   }
   data.canonical = environment.frontUrl + extraPath;
+
+  // Social network metas
+  const metaData = await computeTitleAndDescription(path, req);
+  data.title = metaData.title || TITLE_DEFAULT;
+  data.description = metaData.description || DESCRIPTION_DEFAULT;
+
   return data; // Default route fallback
 };
 
-rootRoutes.get('/', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/creer-votre-compte', (req, res) => res.render('index', getRouteData('create-account', '/creer-votre-compte')));
-rootRoutes.get('/token', (req, res) => res.render('index', getRouteData('token', '/token'))); // TODO: handle social network metas
-rootRoutes.get('/mentions-legales', (req, res) => res.render('index', getRouteData('legal-terms', '/mentions-legales')));
-rootRoutes.get('/notre-mission-et-notre-equipe', (req, res) => res.render('index', getRouteData('mission-team', ' /notre-mission-et-notre-equipe')));
-rootRoutes.get('/nous-contacter', (req, res) => res.render('index', getRouteData('contact', '/nous-contacter')));
-rootRoutes.get('/presse', (req, res) => res.render('index', getRouteData('presse', '/presse')));
+rootRoutes.get('/', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/creer-votre-compte', async (req, res) => res.render('index', await getRouteData('create-account', '/creer-votre-compte')));
+
+rootRoutes.get('/token', async (req, res) => res.render('index', await getRouteData('token', '/token', req)));
+
+rootRoutes.get('/mentions-legales', async (req, res) => res.render('index', await getRouteData('legal-terms', '/mentions-legales')));
+rootRoutes.get('/notre-mission-et-notre-equipe', async (req, res) => res.render('index', await getRouteData('mission-team', ' /notre-mission-et-notre-equipe')));
+rootRoutes.get('/nous-contacter', async (req, res) => res.render('index', await getRouteData('contact', '/nous-contacter')));
+rootRoutes.get('/presse', async (req, res) => res.render('index', await getRouteData('presse', '/presse')));
 
 // Connected routes and admin : no need to specific SEO values
-rootRoutes.get('/tableau-de-bord', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/don-courant', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/historique-des-dons', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/mon-profil', (req, res) => res.render('index', getRouteData('root', '/')));
+rootRoutes.get('/tableau-de-bord', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/don-courant', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/historique-des-dons', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/mon-profil', async (req, res) => res.render('index', await getRouteData('root', '/')));
 
-rootRoutes.get('/admin', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/admin/utilisateurs', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/admin/statistiques', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/admin/etablissements', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/admin/villes', (req, res) => res.render('index', getRouteData('root', '/')));
-rootRoutes.get('/admin/logs', (req, res) => res.render('index', getRouteData('root', '/')));
+rootRoutes.get('/admin', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/admin/utilisateurs', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/admin/statistiques', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/admin/etablissements', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/admin/villes', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/admin/logs', async (req, res) => res.render('index', await getRouteData('root', '/')));
 
 // Not found : need to be handle server-side in order to make GoogleBot detect the 404 http status
 rootRoutes.get('*', (req, res) => res.status(NOT_FOUND).render('not-found'));
