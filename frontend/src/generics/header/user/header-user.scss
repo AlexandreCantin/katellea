@@ -102,12 +102,6 @@ nav.katellea {
         font-size: .95em;
       }
     }
-
-    .modal-body {
-      form > div {
-        margin: 20px 0;
-      }
-    }
   }
 
   /* NOTIFICATIONS */
@@ -256,7 +250,10 @@ nav.katellea {
       }
     }
   }
+}
 
+#modal .modal-body.minimum-date {
+  .or { margin: 30px; }
 }
 
 .dropdown-container {

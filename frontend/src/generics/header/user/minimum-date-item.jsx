@@ -31,6 +31,10 @@ const FORM_RULES = {
   eventDate: [Validators.required(), Validators.dateBeforeToday()]
 }
 
+const FORM_DATE_RULES = {
+  date: [Validators.required(), Validators.dateAfterToday()]
+}
+
 // Do useHover/useState
 export default class MinimumDateItem extends Component {
 
@@ -82,6 +86,11 @@ export default class MinimumDateItem extends Component {
     this.closeMinimumDateModal();
   }
 
+  updateUserWithAbsoluteDate = (values) => {
+    UserService.updateUser({ minimumDate: values.date });
+    this.closeMinimumDateModal();
+  }
+
   expandMenu = () => { if (!this.state.hover) this.setState({ hover: true }); }
   hideMenu = () => { if (this.state.hover) this.setState({ hover: false }); }
   toggleHover = () => this.setState({ hover: !this.state.hover });
@@ -102,18 +111,20 @@ export default class MinimumDateItem extends Component {
 
   renderMinimumDateModal() {
     return (
-      <Modal title={this.createLinkTitle()} onClose={this.closeMinimumDateModal} modalUrl="/indiquer-une-indisponibilite">
-        <div className="alert danger text-center">
-          Seule la date de fin d'indisponibilité est conservée.<br />
-          L'évènement ainsi que sa date n'étant pas conservés, <strong>nous ne pouvons pas les déduire.</strong>
-        </div>
+      <Modal title={this.createLinkTitle()} onClose={this.closeMinimumDateModal} modalUrl="/indiquer-une-indisponibilite" cssClass="minimum-date">
 
         <Form
           onSubmit={this.updateUser}
           validate={values => validateForm(values, FORM_RULES)}
-          render={({ values, handleSubmit, invalid, valid }) => (
+          render={({ handleSubmit, invalid, valid }) => (
             <form className="form" onSubmit={handleSubmit}>
               <fieldset>
+                <legend>En indiquant un évènement</legend>
+
+                <div className="alert danger text-center">
+                  Seule la date de fin d'indisponibilité est conservée.<br />
+                  L'évènement ainsi que sa date n'étant pas conservés, <strong>nous ne pouvons pas les déduire.</strong>
+                </div>
 
                 <Field name="eventType" type="select">
                   {({ input, meta }) => (
@@ -153,10 +164,46 @@ export default class MinimumDateItem extends Component {
                 {valid ? this.renderMinimumDateText() : null}
 
                 <div className="text-center">
-                  <input className="btn" type="submit" value={this.state.userCanMakeDonation ? 'Ajouter une indisponibilité' : 'Modifier votre indisponibilité'} disabled={invalid} />
+                  <label className="sr-only" htmlFor="event-submit">{this.createLinkTitle()}</label>
+                  <input id="event-submit" className="btn" type="submit" value={this.createLinkTitle()} disabled={invalid} />
                 </div>
               </fieldset>
 
+            </form>
+          )} />
+
+          <div className="or text-center">ou</div>
+
+          <Form
+            onSubmit={this.updateUserWithAbsoluteDate}
+            validate={values => validateForm(values, FORM_DATE_RULES)}
+            render={({ handleSubmit, invalid }) => (
+              <form className="form" onSubmit={handleSubmit}>
+                <fieldset>
+                  <legend>Indiquer directement une date</legend>
+
+                  <Field name="date">
+                    {({ input, meta }) => (
+                      <div className="form-line">
+                        <label htmlFor="event-date">Nouvelle date d'indisponibilité<span>*</span></label>
+                        <input {...input} id="event-date" name="date" type="date" ref={this.eventDateRef} />
+
+                        {
+                          meta.error && meta.touched ?
+                            <div className="alert error">
+                              {meta.error === 'required' ? <div>Ce champs est requis</div> : null}
+                              {meta.error === 'dateAfterToday' ? <div>Cette date doit être dans le futur</div> : null}
+                            </div> : null
+                        }
+                      </div>
+                    )}
+                  </Field>
+
+                  <div className="text-center">
+                    <label className="sr-only" htmlFor="date-submit">{this.createLinkTitle()}</label>
+                    <input id="date-submit" className="btn" type="submit" value={this.createLinkTitle()} disabled={invalid} />
+                  </div>
+                </fieldset>
             </form>
           )} />
 
