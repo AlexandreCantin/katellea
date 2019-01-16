@@ -94,7 +94,7 @@ app.use(contactRoutes);
 app.use('/admin/statistics', adminStatisticsRoutes);
 app.use('/admin/users', adminUsersRoutes);
 app.use('/admin/logs', adminLogsRoutes);
-app.use('/admin', adminCityEstablishmentRoutes);
+app.use('/admin/city-establishment', adminCityEstablishmentRoutes);
 
 // Serve React build : Need to be last !
 app.use(express.static('frontend/build'));

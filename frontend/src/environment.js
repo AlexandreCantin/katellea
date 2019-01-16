@@ -67,12 +67,12 @@ export const environmentValues = {
   ADMIN_SEARCH_USER_ENDPOINT: '/admin/users/search',
   ADMIN_USER_TOTAL_ENDPOINT: '/admin/users/count',
 
-  ADMIN_CITY_ENDPOINT: '/admin/city',
-  ADMIN_SEARCH_CITY_ENDPOINT: '/admin/city/search',
-  ADMIN_CITY_TOTAL_ENDPOINT: '/admin/city/count',
+  ADMIN_CITY_ENDPOINT: '/admin/city-establishment/city',
+  ADMIN_SEARCH_CITY_ENDPOINT: '/admin/city-establishment/city/search',
+  ADMIN_CITY_TOTAL_ENDPOINT: '/admin/city-establishment/city/count',
 
-  ADMIN_ESTABLISHMENT_ENDPOINT: '/admin/establishment',
-  ADMIN_SEARCH_ESTABLISHMENT_ENDPOINT: '/admin/establishment/search',
+  ADMIN_ESTABLISHMENT_ENDPOINT: '/admin/city-establishment/establishment',
+  ADMIN_SEARCH_ESTABLISHMENT_ENDPOINT: '/admin/city-establishment/establishment/search',
 
   ADMIN_LOGS_ENDPOINT: '/admin/logs',
   ADMIN_LOGS_TOTAL_ENDPOINT: '/admin/logs/count',
