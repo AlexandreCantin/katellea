@@ -52,7 +52,7 @@ const getSponsorUserCompatibility = async (req, res) => {
   if(!sponsor) return res.json({ direction: '' });
 
   if (req.params.bloodType === 'UNKNOWN' || sponsor.bloodType === 'UNKNOWN') return res.json({ direction: '' });
-  return res.json({ direction: BLOOD_COMPATIBILITY[sponsor.bloodType][req.params.bloodType] });
+  return res.json({ direction: BLOOD_COMPATIBILITY[req.params.bloodType][sponsor.bloodType] });
 }
 
 const isAdminUser = async (req, res) => {
