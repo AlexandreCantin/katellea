@@ -157,52 +157,6 @@ export default class ContactForm extends Component {
                 </form>
               )}
             />
-
-            {/*<form className="form" onSubmit={this.sendForm}>
-
-  
-
-              <div className="form-line clearfix">
-                <label htmlFor="email">E-mail *</label>
-                <input id="email" type="email" name="email"  maxLength="150" />
-
-                {contactForm.hasErrors('email') && contactForm.isTouched('email') ?
-                  <div className="alert error">
-                    {contactForm.hasError('email', 'required') ? <div>Le champ 'E-mail' est obligatoire. Veuillez renseigner ce champ.</div> : null}
-                    {contactForm.hasError('email', 'email') ? <div>L'email n'est pas un e-mail valide. Exemple : example@mail.com</div> : null}
-                  </div> : null
-                }
-              </div>
-
-              <div className="form-line clearfix">
-                <label htmlFor="subject">Sujet *</label>
-                <input id="subject" type="text" name="subject"  maxLength="150" />
-
-                {contactForm.hasErrors('subject') && contactForm.isTouched('subject') ?
-                  <div className="alert error">
-                    {contactForm.hasError('subject', 'required') ? <div>Le champ 'Sujet' est obligatoire. Veuillez renseigner ce champs.</div> : null}
-                    {contactForm.hasError('subject', 'minLength') ? <div>Le champ 'Sujet' doit comporter minimum 3 caractères.</div> : null}
-                    {contactForm.hasError('subject', 'maxLength') ? <div>Le champ 'Sujet' ne doit pas dépasser 150 caractères.</div> : null}
-                  </div> : null
-                }
-              </div>
-
-              <div className="form-line">
-                <label htmlFor="message">Votre message :</label>
-                <textarea id="message"  name="message" maxLength="3000"></textarea>
-                <p>3000 caractères maximum</p>
-
-                {contactForm.hasErrors('message') && contactForm.isTouched('message') ?
-                  <div className="alert error">
-                    {contactForm.hasError('message', 'required') ? <div>Le champ 'Message' est obligatoire. Veuillez renseigner ce champs.</div> : null}
-                    {contactForm.hasError('message', 'maxLength') ? <div>Le champ 'Message' ne doit pas dépasser 3000 caractères.</div> : null}
-                  </div> : null
-                }
-              </div>
-
-              
-              </form>*/}
-
           </div>
         </main>
       </div>
