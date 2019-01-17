@@ -51,6 +51,19 @@ nav.katellea {
     background-color: white;
   }
 
+  .logo {
+    font-size: 20px;
+    display: inline-block;
+    margin-top: 7px;
+    @media (max-width: 600px) { display: none; }
+    img {
+      height: 40px;
+      margin-left: 100px;
+      position: relative;
+      top: 2px;
+    }
+  }
+
   /* ACCOUNT */
   .my-account {
     > button.btn {
