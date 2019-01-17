@@ -236,6 +236,13 @@ const deleteUser = async (req, res, next) => {
   user.gender = null;
   user.socialNetworkKey = null;
 
+  // Remove sponsor
+  if (user.sponsor) {
+    const sponsorUser = await User.findById(user.sponsor);
+    sponsorUser.godchildNumber = sponsorUser.godchildNumber - 1; // Decrement godchildNumber for sponsor
+    sponsorUser.save();
+  }
+
   try {
     await User.findOneAndUpdate({ _id: req.userId }, user);
     res.send('User deleted');
