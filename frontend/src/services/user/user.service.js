@@ -165,6 +165,7 @@ class UserServiceFactory {
             godchildNumber: null,
             notificationSettings: null,
             lastNotificationReadDate: null,
+            stats: null,
             createdAt: userData.createdAt,
             updatedAt: null
           });

@@ -108,11 +108,8 @@ const createUser = async (req, res) => {
   user.notificationSettings = {};
 
   user.bloodDonationDone = 0;
-  user.bloodGiven = 0;
   user.plasmaDonationDone = 0;
-  user.plasmaGiven = 0;
   user.plateletDonationDone = 0;
-  user.plateletGiven = 0;
 
 
   try {

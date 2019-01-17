@@ -34,6 +34,7 @@ export const USER_REDUCERS = (state = {}, action) => {
         godchildNumber: action.data.godchildNumber,
         notificationSettings: action.data.notificationSettings,
         lastNotificationReadDate: action.data.lastNotificationReadDate,
+        stats: action.data.stats,
         createdAt: action.data.createdAt,
         updatedAt: action.data.updatedAt
       });

@@ -25,6 +25,7 @@ export default class User {
     godchildNumber,
     notificationSettings,
     lastNotificationReadDate,
+    stats,
     createdAt,
     updatedAt
   }
@@ -51,6 +52,7 @@ export default class User {
 
     this.notificationSettings = notificationSettings || {};
     this.lastNotificationReadDate = new Date(lastNotificationReadDate);
+    this.stats = stats;
 
     this.createdAt = new Date(createdAt);
     this.updatedAt = new Date(updatedAt);
@@ -108,6 +110,7 @@ export default class User {
       godchildNumber: this.godchildNumber,
       notificationSettings: this.notificationSettings,
       lastNotificationReadDate: this.lastNotificationReadDate ? dateFormatYearMonthDay(this.lastNotificationReadDate): this.lastNotificationReadDate,
+      stats: this.stats,
       createdAt: dateFormatYearMonthDay(this.createdAt),
       updatedAt: dateFormatYearMonthDay(this.updatedAt)
     });
@@ -143,6 +146,7 @@ export default class User {
       godchildNumber: null,
       notificationSettings: null,
       lastNotificationReadDate: null,
+      stats: {},
       createdAt: sponsorData.createdAt,
       updatedAt: null
     });

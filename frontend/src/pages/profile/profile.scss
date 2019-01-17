@@ -35,6 +35,12 @@
     .tab-content.account {
       display: grid;
       grid-template-columns: 2fr 1fr;
+
+      .alert {
+        grid-column: span 2;
+        margin-top: 15px;
+      }
+
       .update-account {
         grid-column: span 2;
         form { margin-bottom: 20px; }

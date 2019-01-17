@@ -121,6 +121,7 @@ export default class Register extends Component {
       godchildNumber: null,
       notificationSettings: null,
       lastNotificationReadDate: null,
+      stats: {},
       createdAt: null,
       updatedAt: null
     });

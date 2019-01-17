@@ -3,6 +3,7 @@ import { MongooseAutoIncrementID } from 'mongoose-auto-increment-reworked';
 
 import { JWTService } from '../services/jwt.service';
 import { extractEnumValues, GENDER, BLOOD_TYPE, DONATION_TYPE } from '../constants';
+import { hasOwnProperties } from '../helper';
 
 /*
   Notification schema:
@@ -99,6 +100,19 @@ UserSchema.set('toJSON', {
   versionKey: false,
   transform: function(doc, ret) {
     if(!ret.katelleaToken) delete ret.katelleaToken;
+
+    // Group statistics has one field
+    if (hasOwnProperties(ret, ['bloodDonationDone', 'plasmaDonationDone', 'plateletDonationDone'])) {
+      ret.stats = {};
+      ret.stats.bloodDonationDone = ret.bloodDonationDone;
+      ret.stats.plasmaDonationDone = ret.plasmaDonationDone;
+      ret.stats.plateletDonationDone = ret.plateletDonationDone;
+
+      delete ret.bloodDonationDone;
+      delete ret.plasmaDonationDone;
+      delete ret.plateletDonationDone;
+    }
+
     delete ret.socialNetworkKey;
     delete ret._id;
   }
