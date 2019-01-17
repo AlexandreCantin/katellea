@@ -4,7 +4,7 @@ import { RGPDService } from './rgpd.service';
 export class HotjarService {
 
   static initHotjar() {
-    if (environment.HOTJAR_CODE && environment.HOTJAR_CODE !== '' && RGPDService.userAcceptsRGPD()) {
+    if (environment.HOTJAR_CODE && environment.HOTJAR_CODE !== '' && RGPDService.getRGPDValue('tracking')) {
       (function (h, o, t, j, a, r) {
         h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments); };
         h._hjSettings = { hjid: environment.HOTJAR_CODE, hjsv: 6 };

@@ -32,10 +32,15 @@
     }
   }
 
-  .tab-map iframe {
-    width: 100%;
-    border: none;
-    height: 350px;
+  .tab-map {
+    .alert { margin: 15px; }
+    button { max-width: 250px; margin: 20px auto 5px auto; }
+
+    iframe {
+      width: 100%;
+      border: none;
+      height: 350px;
+    }
   }
 
 }

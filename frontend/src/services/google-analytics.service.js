@@ -23,7 +23,7 @@ class GoogleAnalyticsServiceFactory {
 
       window.ga('create', environment.GA_ID, 'auto');
       // Anonymous mode if user not accept RGPD : https://developers.google.com/analytics/devguides/collection/analyticsjs/ip-anonymization
-      if (!RGPDService.userAcceptsRGPD()) window.ga('set', 'anonymizeIp', true);
+      if (!RGPDService.getRGPDValue('tracking')) window.ga('set', 'anonymizeIp', true);
     }
 
     this.started = true;

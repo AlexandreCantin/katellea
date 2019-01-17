@@ -12,6 +12,8 @@ import store from '../../services/store';
 import Breadcrumb from '../../generics/breadcrumb/breadcrumb';
 import EscapeLinks from '../../generics/escape-links/escape-links';
 
+require('./legal-terms.scss');
+
 export default class LegalTerms extends Component {
 
   constructor(props) {
@@ -85,13 +87,97 @@ export default class LegalTerms extends Component {
               Pour plus d'informations, l'utilisateur dispose d'un <a className="native" href="//katellea.fr/nous-contacter">formulaire de contact</a>.
             </p>
 
-            <h2>4. Cookies</h2>
-            <p>
-              Katellea utilise des cookies permettant d’enregistrer des informations relatives à la navigation de l’utilisateur de manière anonyme et dans un but d’analyses statistiques.
-              Les cookies générés ont une durée de conservation limitée à 12 mois. Ces cookies sont émis par les sociétés Google (via Goole Analytics), Hotjar, OpenStreetMap et Youtube.
-              Vous trouverez <a className="native" href="https://privacy.google.com/businesses/">toutes les informations sur la conformité / CGU de Google Analytics ici.</a>
-              L’utilisateur peut s’opposer à l'enregistrement de cookies sur son ordinateur.
-            </p>
+            <h2>4. Cookies et données personnelles</h2>
+            <h3>Liste des cookies et finalités</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Service émetteur</th>
+                  <th>Durée</th>
+                  <th>Finalité</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>_ga</td>
+                  <td>Google Analytics</td>
+                  <td>1 an</td>
+                  <td>Suivi de la provenance et des comportements des utilisateurs sur le site</td>
+                </tr>
+                <tr>
+                  <td>_gat</td>
+                  <td>Google Analytics</td>
+                  <td>Fin de la session</td>
+                  <td>Etude des actions des utilisateurs sur le site</td>
+                </tr>
+                <tr>
+                  <td>_git</td>
+                  <td>Google Analytics</td>
+                  <td>24h</td>
+                  <td>Analyse Géographique de la provenance des utilisateurs</td>
+                </tr>
+                <tr>
+                  <td>_hjDonePolls</td>
+                  <td>Hotjar</td>
+                  <td>1 an</td>
+                  <td>Limiter l'affichage des formulaire(s) à une seule fois par personne</td>
+                </tr>
+                <tr>
+                  <td>_hjIncludedInSample</td>
+                  <td>Hotjar</td>
+                  <td>Fin de la session</td>
+                  <td>Ce cookie est configuré pour permettre à Hotjar de savoir si le comportement d’un visiteur a déjà été analysé ou non.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Liste des données personnelles stockées et finalités</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Finalité/Raison</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nom complet</td>
+                  <td>Affichage de votre nom dans l'interface et les e-mails</td>
+                </tr>
+                <tr>
+                  <td>E-mail</td>
+                  <td>Pour l'envoi d'e-mails liés à Katellea (évènements, actions à réaliser...) ou lors de campagnes de promotion liées à Katellea.</td>
+                </tr>
+                <tr>
+                  <td>Sexe</td>
+                  <td>
+                    Le nombre de dons du sang maximal par an n'est pas le même pour les femmes et les hommes (respectivement 4 et 6).
+                    Cette information nous permet ainsi de gérer cela.<br />
+                    <em>L'utilisateur peut choisir de n'indiquer aucun sexe</em>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Historiques des dons</td>
+                  <td>Sert à des fins statistiques mais aussi informative pour l'utilisateur</td>
+                </tr>
+                <tr>
+                  <td>Commentaires et réponses aux sondages liés aux propositions de dates</td>
+                  <td>Informations liées à l'interaction de l'utilisateur au sein d'une proposition de dons en cours ou passées.</td>
+                </tr>
+                <tr>
+                  <td>Groupe sanguin</td>
+                  <td>Indiquer à l'utilisateur sa compatibilité vis-à-vis de son parrain/marraine et de ses filleuls/filleules.</td>
+                </tr>
+                <tr>
+                  <td>Etablissement EFS de référence</td>
+                  <td>Etablissement proposé par défaut lors de la création d'une nouvelle proposition de don.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p>L’utilisateur peut s’opposer à l'enregistrement de certains cookies sur son ordinateur.</p>
+            <p>Vous trouverez <a className="native" href="https://privacy.google.com/businesses/">toutes les informations sur la conformité / CGU de Google Analytics ici.</a></p>
 
             <h3>4.1 Supprimer mes cookies</h3>
             <p>Comment supprimer mes cookies ?</p>
@@ -99,42 +185,26 @@ export default class LegalTerms extends Component {
               <iframe title="Vidéo de la CNIL intitulé : Comment supprimer mes cookies" width="800" height="450" src="https://www.youtube.com/embed/Ij9EkAQzVvM?feature=oembed" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen>&nbsp;</iframe>
             </div>
 
-            <h2>5. Sites tiers</h2>
-            <p>Des appels vers des services tiers sont effectués. Ils concernent le bon fonctionnement du site (authentification, mailing, analyse d'usage...) par exemple.</p>
-            <p>Liste non exhaustives de services tiers :</p>
-            <ul>
-              <li>Facebook</li>
-              <li>Google</li>
-              <li>Twitter</li>
-              <li>Instagram</li>
-              <li>Google Analytics</li>
-              <li>Hotjar</li>
-              <li>Youtube</li>
-              <li>www.data.gouv.fr</li>
-              <li>MailJet</li>
-              <li>OpenStreetMap</li>
-            </ul>
-
-            <h2>6. Fonctionnement du service</h2>
+            <h2>5. Fonctionnement du service</h2>
             <p>
               Le service proposé sur le site <a className="native" href="//katellea.fr">katellea.fr</a> a pour objectif de favoriser l’accompagnement entre individus en vue de la réalisation de dons de sang/plasma/plaquettes.
               Pour se faire, l'utilisateur pourra communiquer sur les réseaux sociaux, répondre à des sondages, discuter avec d'autres membres...
             </p>
 
-            <h2>7. Obligations de l'utilisateur</h2>
+            <h2>6. Obligations de l'utilisateur</h2>
             <p>L’utilisateur du site reconnaît avoir pris connaissance et accepter les présentes conditions d’utilisation avant toute utilisation du site.</p>
             <p>L’utilisation du site internet <a className="native" href="//katellea.fr">katellea.fr</a> est soumise au respect par  l’utilisateur de : la législation française et les présentes conditions d’utilisation.</p>
             <p>Les présentes conditions d’utilisation peuvent être modifiées à tout moment ; la date de mise à jour est mentionnée. Ces modifications sont opposables à l’utilisateur dès leur mise en ligne sur le site internet <a className="native" href="//katellea.fr">katellea.fr</a>. L’utilisateur est donc invité à consulter régulièrement la dernière version mise à jour.</p>
 
-            <h2>8. Propriété intellectuelle</h2>
+            <h2>7. Propriété intellectuelle</h2>
             <p>Le site web <a className="native" href="//katellea.fr">katellea.fr</a> est protégé au titre des dispositions relatives au droit d’auteur défini aux articles L.111-1 et suivants du code de la propriété intellectuelle et au titre des dispositions relatives aux bases de données définies aux articles L.341-1 et suivants du même code.</p>
             <p>Sans préjudice des dispositions prévues à l’article L.122-5 du code de la propriété intellectuelle, toute représentation, reproduction ou diffusion, intégrale ou partielle du site, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Katellea constitue un acte de contrefaçon, sanctionné au titre des articles L.335-2 et L.335.3 du même code.</p>
             <p>Par ailleurs, la marque Katellea est protégée au titre des articles L.712-1 et suivants du code de la propriété intellectuelle. Toute représentation, reproduction ou diffusion, intégrale ou partielle de la marque Katellea, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Katellea constitue un acte de contrefaçon, sanctionné au titre des articles L.716-1 du même code.</p>
 
-            <h2>9. Crédits</h2>
+            <h2>8. Crédits</h2>
             <p>Les cartes générées utilisent le service <a className="native" href="https://www.openstreetmap.org/">https://www.openstreetmap.org/</a></p>
             <p>Les données des collectes mobiles sont récupérés via <a className="native" href="https://www.data.gouv.fr/fr/datasets/dates-et-lieux-des-collectes-de-don-du-sang/">https://www.data.gouv.fr/fr/datasets/dates-et-lieux-des-collectes-de-don-du-sang/</a></p>
-            
+
             <h3>9.1 - Crédit des icônes</h3>
             <p>Icons made by <a className="native" href="http://www.freepik.com" title="Freepik">Freepik</a> from <a className="native" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a className="native" href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a></p>
             <p>Icons made by <a href="https://www.flaticon.com/authors/dimitry-miroliubov" title="Dimitry Miroliubov">Dimitry Miroliubov</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" rel="noopener noreferrer" target="_blank">CC 3.0 BY</a></p>
