@@ -8,7 +8,7 @@ import logger from '../../src/services/logger.service';
 
 // Database connection
 const database = environment.database;
-const mongoUrl = process.env.MONGO_URL || `mongodb://${database.host}:${database.port}/${database.name}`;
+const mongoUrl = process.env.MONGO_URL || `mongodb://${database.username}:${database.password}@${database.host}:${database.port}/${database.name}`;
 mongoose.connect(mongoUrl, { useNewUrlParser: true });
 
 
