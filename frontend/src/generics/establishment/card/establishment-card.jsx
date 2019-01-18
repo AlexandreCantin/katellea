@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PhoneLink from '../../phone-link';
 import { GoogleAnalyticsService } from '../../../services/google-analytics.service';
 import { computeTabAttributes, computeTabPanelAttributes } from '../../../services/tab-helper';
+import { RGPDService } from '../../../services/rgpd.service';
 
 require('./establishment-card.scss');
 
@@ -41,6 +42,10 @@ export default class EstablishmentCard extends Component {
     return `http://www.openstreetmap.org/export/embed.html?bbox=${longitude + BBOX_DELTA},${latitude + BBOX_DELTA},${longitude - BBOX_DELTA},${latitude - BBOX_DELTA}&layer=mapnik&marker=${latitude},${longitude}`;
   }
 
+  acceptRGPDOpenStreetMap = () => {
+    RGPDService.updateRGPDConsent({ otherServices: true });
+    this.forceUpdate();
+  }
 
   cssClass = (tabName) => {
     let cssClasses = 'reset text-center';
@@ -95,6 +100,17 @@ export default class EstablishmentCard extends Component {
       </div>);
   }
   renderMap(establishment) {
+    if(!RGPDService.getRGPDValue('otherServices')) {
+      return(
+        <div className="tab-map" aria-hidden="true">
+          <div className="alert info text-center">
+            Vous n'avez pas accepté les conditions d'utilisation d'OpenStreetMap.
+            <button className="btn"onClick={this.acceptRGPDOpenStreetMap}>Accepter et voir la carte</button>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="tab-map" aria-hidden="true">
         <iframe title={"Carte de localisation de l'établissement : " + establishment.name} src={this.state.openStreetMapIframeUrl}>&nbsp;</iframe>

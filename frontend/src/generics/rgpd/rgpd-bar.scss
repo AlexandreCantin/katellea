@@ -15,8 +15,14 @@
   p { margin-bottom: 15px; }
 
   ul.actions {
+    display: flex;
     text-align: center;
+    max-width: 800px;
+    margin: auto;
+    align-items: center;
+
     li {
+      flex: 1;
       margin-right: 0 !important;
       > a, > button {
           color: white;
