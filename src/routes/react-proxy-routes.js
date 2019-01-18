@@ -21,7 +21,7 @@ const computeTitleAndDescription = async (path, req) => {
   // Sponsor token
   if(req.query.hasOwnProperty('sponsor')) {
     try {
-      const sponsor = await User.findOne({ sponsorToken : req.query.sponsor });
+      const sponsor = await User.findOne({ sponsorToken : removeOrigin(req.query.sponsor) });
       title = `Don du sang : Faites-vous parrainer par ${sponsor.name}`;
     } catch(err) {}
   }
@@ -29,7 +29,7 @@ const computeTitleAndDescription = async (path, req) => {
   // Donation token
   else if(req.query.hasOwnProperty('donation')) {
     try {
-      const donation = await Donation.findOne({ donationToken : req.query.donation })
+      const donation = await Donation.findOne({ donationToken : removeOrigin(req.query.donation) })
         .populate({ path: 'createdBy', model: 'User', select: User.publicFields });
 
       title = `Rejoignez la proposition de don faite par ${donation.createdBy.name}`;
@@ -39,6 +39,11 @@ const computeTitleAndDescription = async (path, req) => {
   return { title, description };
 }
 
+const removeOrigin = (token) => {
+  // Token: dir-T5h7x99 => T5h7x99
+  if(token.indexOf('-') > 0) return token.split('-')[1];
+  return token;
+}
 
 
 const reactRouteData = {
