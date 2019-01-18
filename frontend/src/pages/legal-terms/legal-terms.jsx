@@ -134,10 +134,13 @@ export default class LegalTerms extends Component {
             <h2>9. Crédits</h2>
             <p>Les cartes générées utilisent le service <a className="native" href="https://www.openstreetmap.org/">https://www.openstreetmap.org/</a></p>
             <p>Les données des collectes mobiles sont récupérés via <a className="native" href="https://www.data.gouv.fr/fr/datasets/dates-et-lieux-des-collectes-de-don-du-sang/">https://www.data.gouv.fr/fr/datasets/dates-et-lieux-des-collectes-de-don-du-sang/</a></p>
-            
+
             <h3>9.1 - Crédit des icônes</h3>
             <p>Icons made by <a className="native" href="http://www.freepik.com" title="Freepik">Freepik</a> from <a className="native" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a className="native" href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a></p>
             <p>Icons made by <a href="https://www.flaticon.com/authors/dimitry-miroliubov" title="Dimitry Miroliubov">Dimitry Miroliubov</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" rel="noopener noreferrer" target="_blank">CC 3.0 BY</a></p>
+
+            <h3>9.2 - Crédit des villes</h3>
+            <p>Les coordonnées des villes françaises est issue du site <a href="http://www.bibichette.com/base-de-donnees-des-villes-francaise/">http://www.bibichette.com/base-de-donnees-des-villes-francaise/</a></p>
           </main>
         </div>
       </div>

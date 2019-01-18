@@ -1,7 +1,7 @@
 { "_id" : { "$oid" : "5bbbbfd8e210573d7ade84b8" }, "c" : 2, "f" : "_id", "m" : "Donation" }
 { "_id" : { "$oid" : "5bbbbfd8e210573d7ade84b9" }, "c" : 11, "f" : "_id", "m" : "User" }
 { "_id" : { "$oid" : "5bbbbfd8e210573d7ade84bb" }, "c" : 0, "f" : "_id", "m" : "Statistics" }
-{ "_id" : { "$oid" : "5bbbbfd8e210573d7ade84ba" }, "c" : 36114, "f" : "_id", "m" : "City" }
+{ "_id" : { "$oid" : "5bbbbfd8e210573d7ade84ba" }, "c" : 77348, "f" : "_id", "m" : "City" }
 { "_id" : { "$oid" : "5bbbbfd8e210573d7ade84bc" }, "c" : 122, "f" : "_id", "m" : "Establishment" }
 { "_id" : { "$oid" : "5bc483fd8bf8b22216cd0a08" }, "c" : 3, "f" : "_id", "m" : "Notification" }
 { "_id" : { "$oid" : "5bc4eb8aca4f9b34c9258ab0" }, "c" : 3, "f" : "_id", "m" : "MobileCollect" }
