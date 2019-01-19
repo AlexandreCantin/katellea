@@ -39,13 +39,21 @@
       margin-bottom: 30px;
       input { vertical-align: bottom; margin-right: 5px; }
     }
-    hr { margin-bottom: 30px; }
+    hr { margin-bottom: 0; }
 
     .donation {
       display: flex;
+      padding-top: 30px;
       label { margin-right: 10px; }
       > div { flex: 1; }
       .alert { margin-top: 10px; }
+
+      &.disabled {
+        opacity: .8;
+        padding: 30px 0 20px 0;
+        background-color: lightgray;
+        > div { opacity: .5; }
+      }
     }
 
     .minimum-date {

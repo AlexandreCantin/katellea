@@ -228,7 +228,7 @@ class FirstVisitForm extends Component {
               </Field>
 
               <hr />
-              <div className="donation">
+              <div className={ this.state.lastDonationDateDateDisabled ? 'donation disabled':'donation' }>
 
                 <Field name="lastDonationDate">
                   {({ input, meta }) => (
