@@ -94,7 +94,14 @@ const createUser = async (req, res) => {
 
   const user = new User();
   user.name = sanitize(req.body.name);
+
+  /**
+   * FIXME: With Gmail, dots doesn't matter so a user can create an other account with the same address...
+   *        But we can't simply remove the dots because the user can think that its email is wrong...
+   *   => https://support.google.com/mail/answer/7436150
+   */
   user.email = req.body.email;
+
   user.gender = req.body.gender;
   user.firstVisit = true;
   user.minimumDate = new Date();

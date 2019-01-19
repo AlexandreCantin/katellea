@@ -256,18 +256,16 @@ const getUser = async(socialNetworkKey, email) => {
 
   let user;
 
+  // Check socialNetworkKey
+  user = await User.findOne({ socialNetworkKey })
+    .populate({ path: 'establishment', model: 'Establishment' })
+    .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
+
   // Check email
-  if(email) {
+  if(email && !user) {
     user = await User.findOne({ email })
       .populate({ path: 'establishment', model: 'Establishment' })
       .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
-    }
-
-    // Check socialNetworkKey
-    if(!user) {
-      user = await User.findOne({ socialNetworkKey })
-        .populate({ path: 'establishment', model: 'Establishment' })
-        .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
   }
 
   if(user) user.addKatelleaToken()
