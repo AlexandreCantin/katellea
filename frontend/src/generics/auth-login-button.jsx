@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 
-import { getParameterByName, isEmpty } from '../services/helper';
+import { getParameterByName, isEmpty, capitalize } from '../services/helper';
 
 import store from '../services/store';
 import { AuthService } from '../services/user-temp/auth.service';
@@ -81,6 +81,12 @@ export default class AuthLoginButtons extends Component {
     if (ORIGINS.includes(origin)) AuthService.doAuthLogin(origin);
   }
 
+  computeLinkTitle(origin) {
+    return `Se connecter avec ${capitalize(origin)} (ouverture dans une nouvelle fenêtre)`;
+  }
+  computeLinkText(origin) {
+    return `Continuer avec ${capitalize(origin)}`;
+  }
 
   // RENDER
   renderRGPDModal() {
@@ -106,15 +112,24 @@ export default class AuthLoginButtons extends Component {
   }
 
   render() {
+    const socialNetworks = ['facebook',/*'twitter',*/'google','instagram'];
+
     return (
       <>
         { this.state.showRGPDModal ? this.renderRGPDModal() : null }
 
         <div className="social-auth-buttons">
-          <a className="btn big facebook" data-origin="facebook" target="_blank" href={AuthService.computeConnectURL('facebook')} onClick={this.waitForAuthLogin}>Continuer avec Facebook</a>
-          {/*<a className="btn big twitter" data-origin="twitter" target="_blank" href={AuthService.computeConnectURL('twitter')} onClick={this.waitForAuthLogin}>Continuer avec Twitter</a>*/}
-          <a className="btn big google" data-origin="google" target="_blank" href={AuthService.computeConnectURL('google')} onClick={this.waitForAuthLogin}>Continuer avec Google</a>
-          <a className="btn big instagram" data-origin="instagram" target="_blank" href={AuthService.computeConnectURL('instagram')} onClick={this.waitForAuthLogin}>Continuer avec Instagram</a>
+          {socialNetworks.map(origin => (
+            <a
+              className={"btn big "+ origin}
+              data-origin={origin}
+              target="_blank"
+              title={this.computeLinkTitle(origin)}
+              href={AuthService.computeConnectURL(origin)}
+              onClick={this.waitForAuthLogin}>
+                {this.computeLinkText(origin)}
+            </a>
+          ))}
         </div>
       </>
     );
