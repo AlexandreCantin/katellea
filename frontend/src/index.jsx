@@ -21,6 +21,7 @@ import NotFound from './pages/404/not-found';
 import { CouldHaveUserRoute } from './generics/routes/could-have-user-route';
 import { PrivateRoute } from './generics/routes/private-route';
 import { AdminRoute } from './generics/routes/admin-route';
+import { EmailVerificationRoute } from './pages/email-verification-route';
 
 // Config dayjs
 import dayjs from 'dayjs';
@@ -71,6 +72,7 @@ class App extends Component {
                 <Home path="/" exact />
                 <Register path="/creer-votre-compte" />
                 <TokenRoute path="/token" />
+                <EmailVerificationRoute path="/email-verification" />
 
                 <CouldHaveUserRoute component={LegalTerms} path="/mentions-legales" />
                 <CouldHaveUserRoute component={OurMissionAndTeam} path="/notre-mission-et-notre-equipe" />

@@ -8,6 +8,7 @@ export default class User {
     id,
     name,
     email,
+    emailVerified,
     gender,
     currentDonation,
     lastDonationDate,
@@ -33,6 +34,7 @@ export default class User {
     this.id = id;
     this.name = name;
     this.email = email;
+    this.emailVerified = emailVerified;
     this.gender = gender ? gender.toUpperCase(): undefined;
     this.currentDonation = currentDonation;
     this.lastDonationDate = lastDonationDate;
@@ -93,6 +95,7 @@ export default class User {
       id: this.id,
       name: this.name,
       email: this.email,
+      emailVerified: this.emailVerified,
       gender: this.gender,
       currentDonation: this.currentDonation,
       lastDonationDate: this.lastDonationDate,
@@ -129,6 +132,7 @@ export default class User {
       id: null,
       name: sponsorData.name,
       email: null,
+      emailVerified: null,
       gender: null,
       currentDonation: null,
       lastDonationDate: sponsorData.lastDonationDate,

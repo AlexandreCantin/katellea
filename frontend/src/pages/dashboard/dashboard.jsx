@@ -8,6 +8,7 @@ import Menu from '../../generics/menu/menu';
 import FirstVisitForm from './first-visit-form/first-visit-form';
 
 import AboutContainer from './about/about-container';
+import EmailVerified from './email-verified';
 import DonationContainer from './donation/donation-container';
 import EstablishmentContainer from './establishment/establishment-container';
 import PromotionContainer from './promotion/promotion-container';
@@ -54,6 +55,8 @@ export default class Dashboard extends Component {
             <FlashMessage scope="dashboard" />
 
             <FirstVisitForm />
+
+            <EmailVerified />
 
             <DonationContainer />
             <StatisticsContainer />

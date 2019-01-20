@@ -34,7 +34,7 @@ class SendgridServiceFactory {
     // Dev-only => Redirect all mail to one e-mail address
     if (this.redirectAllMailTo) to = [this.redirectAllMailTo];
 
-    logger.info(`Sending email => ${subject} -- To : ${to.join(', ')}`);
+    logger.info(`Sending email => ${subject} -- From: ${this.fromEmail} -- To: ${to.join(', ')}`);
 
     to.forEach(email => {
       try {

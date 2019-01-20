@@ -71,7 +71,7 @@
   "mail": {
     "redirectAllMailTo": "",
     "activateMail": false,
-    "fromEmail": "no-reply@katellea.fr",
+    "fromEmail": "katellea-no-reply@katellea.fr",
     "fromName": "Katellea",
     "contactEmail": "<set-it>",
     "apiKey": "<set it>"

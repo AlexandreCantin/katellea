@@ -90,6 +90,7 @@ const getRouteData = async(path, extraPath, req) => {
 rootRoutes.get('/', async (req, res) => res.render('index', await getRouteData('root', '/')));
 rootRoutes.get('/creer-votre-compte', async (req, res) => res.render('index', await getRouteData('create-account', '/creer-votre-compte')));
 
+rootRoutes.get('/email-verification', async (req, res) => res.render('index', await getRouteData('root', '/')));
 rootRoutes.get('/token', async (req, res) => res.render('index', await getRouteData('token', '/token', req)));
 
 rootRoutes.get('/mentions-legales', async (req, res) => res.render('index', await getRouteData('legal-terms', '/mentions-legales')));

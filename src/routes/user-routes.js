@@ -12,6 +12,7 @@ import Donation from '../models/donation';
 import { canAccessDonation } from '../middlewares/can-access-donation';
 
 import { addWeeksToDate } from '../helpers/date.helper';
+import { EmailVerificationService } from '../services/email-verification.service';
 import { UserService } from '../services/user.service';
 import { sendError } from '../helper';
 import { environment } from '../../conf/environment';
@@ -62,6 +63,40 @@ const isAdminUser = async (req, res) => {
 }
 
 
+/**
+ * Set user.emailVerified as true (if token is correct)
+ */
+const validateUser = async(req, res) => {
+  if(!req.params.token) return res.status(NOT_FOUND).send();
+
+  try {
+    const userId = await EmailVerificationService.verifyUser(req.params.token);
+
+    const userUpdated = await User.findById(userId)
+      .populate({ path: 'establishment', model: 'Establishment' })
+      .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
+
+    userUpdated.addKatelleaToken();
+
+    return res.json(userUpdated);
+  } catch(err) {
+    sendError(err);
+    return res.status(BAD_REQUEST).send();
+  }
+}
+
+
+const reSendEmailVerificationEmail = async (req, res) => {
+  // TODO: check last EmailVerification => avoid spamming
+  if(await EmailVerificationService.checkEmailVerificationOnGoing(req.user)) {
+    return res.status(FORBIDDEN).send();
+  }
+
+  EmailVerificationService.createEmailVerification(req.user, true);
+  return res.status(OK).send();
+}
+
+
 const createUser = async (req, res) => {
 
   {/* #Beta */}
@@ -97,6 +132,7 @@ const createUser = async (req, res) => {
    *   => https://support.google.com/mail/answer/7436150
    */
   user.email = req.body.email;
+  user.emailVerified = false;
 
   user.gender = req.body.gender;
   user.firstVisit = true;
@@ -197,6 +233,8 @@ const updateUser = async (req, res) => {
 
   user.bloodType = req.body.bloodType || user.bloodType;
   user.establishment = req.body.hasOwnProperty('establishmentId') ? req.body.establishmentId : user.establishment;
+
+  if(user.firstVisit === true) EmailVerificationService.createEmailVerification(userCreated);
   user.firstVisit = false;
 
   // If we get null has currentDonation, we delete the current donation
@@ -223,6 +261,9 @@ const updateUser = async (req, res) => {
       .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
 
     userUpdated.addKatelleaToken();
+
+    // Start email validation process if mail has been updated
+    if(req.body.email && req.body.email != req.user.email) EmailVerificationService.createEmailVerification(userUpdated, true);
 
     return res.json(userUpdated);
   } catch (err) {
@@ -270,6 +311,8 @@ const deleteUser = async (req, res, next) => {
 // Routes
 userRoutes.post('/is-admin', isAdminUser);
 userRoutes.get('/godchilds', getGodchilds);
+userRoutes.post('/email-verification/:token', validateUser);
+userRoutes.post('/re-send-email-verification', reSendEmailVerificationEmail);
 userRoutes.get('/sponsor-compatibility/:bloodType', getSponsorUserCompatibility);
 userRoutes.get('/sponsor/:token', getSponsorUser);
 userRoutes.post('/', createUser);
