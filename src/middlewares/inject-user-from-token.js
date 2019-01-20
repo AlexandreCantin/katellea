@@ -31,7 +31,7 @@ export const injectUserFromToken = async (req, res, next) => {
           req.isAdmin = UserService.isAdmin(user);
 
           // Register AdminLog
-          AdminLogService.createLog(user);
+          if(req.originalUrl.startsWith('/admin') && req.isAdmin) AdminLogService.createLog(user);
 
           // Admin routes
           if(req.originalUrl.startsWith('/admin') && !req.isAdmin) canContinue = false;
