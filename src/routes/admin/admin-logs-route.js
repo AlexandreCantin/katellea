@@ -13,7 +13,7 @@ const getAllLogs = async (req, res) => {
   let pageSize = +req.query.pageSize || 50;
 
   const logs = await AdminLog.find({})
-    .sort({ _id: +1 }).skip(page*pageSize).limit(pageSize)
+    .skip(page*pageSize).limit(pageSize).sort({ createdAt: -1 })
     .populate({ path: 'user', model: 'User', select: User.adminLogFields });
   return res.json(logs);
 }
@@ -30,7 +30,7 @@ const getAllAdmins = async (req, res) => {
 }
 
 const findUserLogs = async (req, res) => {
-  const logs = await AdminLog.find({ user : req.params.userId }).sort({ createdAt: +1 })
+  const logs = await AdminLog.find({ user : req.params.userId }).sort({ createdAt: -1 })
     .populate({ path: 'user', model: 'User', select: User.adminLogFields });
   return res.json(logs);
 }
