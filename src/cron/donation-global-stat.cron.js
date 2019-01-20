@@ -43,12 +43,12 @@ export default class DonationGlobalStatCron {
       // Get number of user creation
       const beginDate = dayjs(stat.dayString).set('hour', 0).set('minute', 0).set('second', 0);
       const endDate = dayjs(stat.dayString).set('hour', 23).set('minute', 59).set('second', 59);
-      const usersLength = await User.countDocuments({ createdAt: { $gte: beginDate.date(), $lt: endDate.date() } });
+      const usersLength = await User.countDocuments({ createdAt: { $gte: beginDate.toDate(), $lt: endDate.toDate() } });
       baseNbUsers += usersLength;
 
       // Get number of sponsored user creation
       const sponsoredUsersLength = await User.countDocuments({
-        createdAt: { $gte: beginDate.date(), $lt: endDate.date() },
+        createdAt: { $gte: beginDate.toDate(), $lt: endDate.toDate() },
         sponsor: { $exists: true }
       });
       baseNbSponsoredUsers += sponsoredUsersLength;
@@ -101,11 +101,11 @@ export default class DonationGlobalStatCron {
     // Get number of user creation
     const beginDate = dayjs().set('hour', 0).set('minute', 0).set('second', 0);
     const endDate = dayjs().set('hour', 23).set('minute', 59).set('second', 59);
-    const usersCreatedCount = await User.countDocuments({ createdAt: { $gte: beginDate.date(), $lt: endDate.date() } });
+    const usersCreatedCount = await User.countDocuments({ createdAt: { $gte: beginDate.toDate(), $lt: endDate.toDate() } });
     firstStat.dayNbUsers = usersCreatedCount;
 
     // Get number of sponsor user creation
-    const sponsoredUsersCreatedCount = await User.countDocuments({ createdAt: { $gte: beginDate.date(), $lt: endDate.date() }, sponsor: { $exists: true } });
+    const sponsoredUsersCreatedCount = await User.countDocuments({ createdAt: { $gte: beginDate.toDate(), $lt: endDate.toDate() }, sponsor: { $exists: true } });
     firstStat.dayNbSponsoredUsers = sponsoredUsersCreatedCount;
 
     firstStat.bloodDonation = 0;
