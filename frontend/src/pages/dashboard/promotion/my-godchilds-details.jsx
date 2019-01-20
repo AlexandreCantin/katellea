@@ -52,7 +52,7 @@ export default class MyGodchildsDetails extends Component {
                       <>
                         <img src={'/img/sponsor-compatibility/' + DIRECTION[godchild.compatibility].img } alt="" />
                         <span>{ DIRECTION[godchild.compatibility].text }</span>
-                      </> : <span>Compatibilité inconnu</span>
+                      </> : <span>Compatibilité inconnue</span>
                     }
                   </td>
                 </tr>

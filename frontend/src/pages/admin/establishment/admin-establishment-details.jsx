@@ -105,7 +105,7 @@ export class AdminEstablishmentDetails extends Component {
                   <div className="form-line">
                     <label htmlFor="internalComment">Commentaire (à usage interne uniquement):</label>
                     <textarea {...input} id="internalComment" name="internalComment"></textarea>
-                    <strong>N'oubliez d'ajouter la date et l'auteur du commentaire !</strong>
+                    <strong>N'oubliez pas d'ajouter la date et l'auteur du commentaire !</strong>
                   </div>
                 )}
               </Field>
