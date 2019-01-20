@@ -69,18 +69,11 @@ const createUser = async (req, res) => {
     return;
   }
 
-  // Get sponsor
+  // Check if sponsor exists
   let sponsorId = undefined;
   if (req.body.sponsoredByToken) {
     const sponsorUser = await User.findOne({ sponsorToken: req.body.sponsoredByToken });
-    if (sponsorUser) {
-      sponsorId = sponsorUser.id;
-
-      // Increment godchildNumber for sponsor
-      const godchildNumber = sponsorUser.godchildNumber || 0;
-      sponsorUser.godchildNumber = godchildNumber+1;
-      sponsorUser.save();
-    }
+    if (sponsorUser) sponsorId = sponsorUser.id;
     // #Beta only ?
     else res.status(BAD_REQUEST).send();
   }
@@ -124,6 +117,17 @@ const createUser = async (req, res) => {
 
     const userCreated = await User.findById(user._id).populate({ path: 'sponsor', model: 'User', select: User.publicFields });
     userCreated.addKatelleaToken();
+
+    // Increment godchildNumber for sponsor
+    // Why not before ? because if creating fails we don't want to increase godchildNumber
+    if (req.body.sponsoredByToken) {
+      const sponsorUser = await User.findOne({ sponsorToken: req.body.sponsoredByToken });
+      if (sponsorUser) {
+        const godchildNumber = sponsorUser.godchildNumber || 0;
+        sponsorUser.godchildNumber = godchildNumber+1;
+        sponsorUser.save();
+      }
+    }
 
     return res.json(userCreated);
   } catch (err) {
