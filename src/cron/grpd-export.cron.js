@@ -43,7 +43,7 @@ export default class GRPDExportCron {
 
     // Get all GRPDExport
     const grpdDemands = await GRPDExport.find({ status: GRPD_EXPORT_STATUS.ASKED });
-    SlackService.sendCronMessage(`${grpdDemands} demandes d'export`);
+    SlackService.sendCronMessage(`${grpdDemands.length} demandes d'export`);
 
     grpdDemands.forEach(async grpdDemand => {
       // 1 - Get datas
