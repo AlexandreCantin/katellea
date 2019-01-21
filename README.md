@@ -20,7 +20,7 @@
 
 ### Server side :
 
-    - NodeJs & Express : Back-end server
+    - Node.js & Express : Back-end server
     - MongoDB & Mongoose : ORM
 
 ### Front-end :
@@ -35,7 +35,7 @@
 
 ### Installation
 
-:warning: I assume you already have **NodeJS** and **Docker** installed on your machine :warning:
+:warning: I assume you already have **Node.js** and **Docker** installed on your machine :warning:
 
 ### :dvd: Node server
 
