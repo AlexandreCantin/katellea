@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import Statistics from '../models/stat';
 import User from '../models/user';
 import { SlackService } from '../services/slack.service';
+import { asyncForEach } from '../helper';
 
 const DELTA_DAYS = 30;
 
@@ -10,15 +11,15 @@ const DELTA_DAYS = 30;
 In this script, we take the DayStatistics from 30 days - or the oldest one - and consolidate all the values.
 We assume that the oldest values has correct values.
 */
-export default class DonationGlobalStatCron {
+export default class GlobalStatCron {
 
   static async run() {
     const startDate = dayjs();
-    SlackService.sendCronMessage(`Start DonationGlobalStatCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
+    SlackService.sendCronMessage(`Start GlobalStatCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // In this script, we assume taht we already have stats object in database.
     // But we need to create automatically the first one
-    DonationGlobalStatCron.createFirstStatIfNeeded();
+    GlobalStatCron.createFirstStatIfNeeded();
 
     // Compute days
     const maxDate = dayjs().subtract(DELTA_DAYS, 'day');
@@ -37,7 +38,7 @@ export default class DonationGlobalStatCron {
     let dayPlasmaSponsoredDonationBase = baseStat !== undefined ? baseStat.plasmaSponsoredDonation : 0;
     let dayPlateletSponsoredDonationBase = baseStat !== undefined ? baseStat.plateletSponsoredDonation : 0;
 
-    stats.forEach(async (stat, index) => {
+    asyncForEach(stats, async (stat, index) => {
       if(index === 0) return;
 
       // Get number of user creation
@@ -46,12 +47,15 @@ export default class DonationGlobalStatCron {
       const usersLength = await User.countDocuments({ createdAt: { $gte: beginDate.toDate(), $lt: endDate.toDate() } });
       baseNbUsers += usersLength;
 
+      console.log('beginDate => ', beginDate.toDate(),' - endDate => ', endDate.toDate())
+
       // Get number of sponsored user creation
       const sponsoredUsersLength = await User.countDocuments({
         createdAt: { $gte: beginDate.toDate(), $lt: endDate.toDate() },
         sponsor: { $exists: true }
       });
       baseNbSponsoredUsers += sponsoredUsersLength;
+      console.log(stat.dayString, ' - usersLength => ', usersLength,' - sponsoredUsersLength => ', sponsoredUsersLength)
 
       // Increments values
       dayBloodDonationBase += stat.dayBloodDonation;
@@ -78,7 +82,7 @@ export default class DonationGlobalStatCron {
     });
 
     const endDate = dayjs();
-    SlackService.sendCronMessage(`Ended DonationGlobalStatCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendCronMessage(`Ended GlobalStatCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 

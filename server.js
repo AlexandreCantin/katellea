@@ -33,7 +33,7 @@ import adminLogsRoutes from './src/routes/admin/admin-logs-route';
 
 import UserStatisticsCron from './src/cron/user-stats.cron';
 import DonationDoneCron from './src/cron/donation-done.cron';
-import DonationGlobalStatCron from './src/cron/donation-global-stat.cron';
+import GlobalStatCron from './src/cron/global-stat.cron';
 import BloodDonationEligibleCron from './src/cron/blood-donation-eligible.cron';
 import MobileCollectDownloadCron from './src/cron/mobile-collect-download.cron';
 import FirstDonationAdviceCron from './src/cron/first-donation-advice.cron';
@@ -59,7 +59,7 @@ initMongoDB();
 const CRON = environment.cron;
 if (CRON.isMainLeader) {
   cron.schedule(CRON.statCRON, () => UserStatisticsCron.run());
-  cron.schedule(CRON.globalStatCRON, () => DonationGlobalStatCron.run());
+  cron.schedule(CRON.globalStatCRON, () => GlobalStatCron.run());
   cron.schedule(CRON.donationDoneCRON, () => DonationDoneCron.run());
   cron.schedule(CRON.bloodDonationEligibleCron, () => BloodDonationEligibleCron.run());
   cron.schedule(CRON.mobileCollectDownloadCron, () => MobileCollectDownloadCron.run());

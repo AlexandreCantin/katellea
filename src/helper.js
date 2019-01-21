@@ -14,3 +14,13 @@ export const sendError = (err) => {
   SentryService.sendError(err);
   logger.error(message);
 }
+
+/**
+ * When we want to use an async function in a forEach but want to respect the loop order
+ * See: https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
+ */
+export const asyncForEach = async (array, callback) => {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array)
+  }
+}

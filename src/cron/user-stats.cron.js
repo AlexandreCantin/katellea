@@ -136,7 +136,7 @@ export default class UserStatisticsCron {
 
 
   static fillWithEmptyDonation(stat) {
-    // Will be filled later in DonationGlobalStatCron
+    // Will be filled later in GlobalStatCron
     stat.nbUsers = 0;
     stat.nbSponsoredUsers = 0;
     stat.dayNbUsers = 0;
