@@ -76,7 +76,7 @@ export default class AuthLoginButtons extends Component {
   };
 
   acceptRGPDAndLogin = (e) => {
-    RGPDService.setAcceptAll();
+    RGPDService.acceptsAll();
     let origin = e.target.getAttribute('data-origin');
     if (ORIGINS.includes(origin)) AuthService.doAuthLogin(origin);
   }
@@ -93,7 +93,7 @@ export default class AuthLoginButtons extends Component {
     const origin = this.state.origin;
 
     return (
-      <Modal title="Vous devez accepter les condtions du RGPD" onClose={this.closeRGPDModal} modalUrl='/tableau-de-bord/parrainage' cssClass="rgpd-auth-modal">
+      <Modal title="Vous devez accepter les condtions du RGPD pour continuer" onClose={this.closeRGPDModal} modalUrl='/tableau-de-bord/parrainage' cssClass="rgpd-auth-modal">
         <div>
           <p>
             Pour fonctionner, Katellea stocke un certain nombre de données dites personnelles (nom, email, groupe sanguin...).
@@ -120,7 +120,7 @@ export default class AuthLoginButtons extends Component {
 
         <div className="social-auth-buttons">
           {socialNetworks.map(origin => (
-            <a
+            <a key={origin}
               className={"btn big "+ origin}
               data-origin={origin}
               target="_blank"
