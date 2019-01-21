@@ -220,10 +220,6 @@ const updateUser = async (req, res) => {
       .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
 
     userUpdated.addKatelleaToken();
-    console.log('user');
-    console.log(user);
-    console.log("req.user");
-    console.log(req.user);
 
     return res.json(userUpdated);
   } catch (err) {
