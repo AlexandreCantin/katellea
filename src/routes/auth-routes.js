@@ -157,7 +157,6 @@ const redirectToInstagram = (req, res) => {
 
 const instagramLoginResponse = async (req, res) => {
   // 1 - Check if code
-  console.log(req.query.code);
   if(!req.query.code) return res.status(UNAUTHORIZED).send('Erreur lors de la connexion. Veuillez réessayer.');
 
   // 2 - Make request to Instagram

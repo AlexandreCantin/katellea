@@ -47,15 +47,12 @@ export default class GlobalStatCron {
       const usersLength = await User.countDocuments({ createdAt: { $gte: beginDate.toDate(), $lt: endDate.toDate() } });
       baseNbUsers += usersLength;
 
-      console.log('beginDate => ', beginDate.toDate(),' - endDate => ', endDate.toDate())
-
       // Get number of sponsored user creation
       const sponsoredUsersLength = await User.countDocuments({
         createdAt: { $gte: beginDate.toDate(), $lt: endDate.toDate() },
         sponsor: { $exists: true }
       });
       baseNbSponsoredUsers += sponsoredUsersLength;
-      console.log(stat.dayString, ' - usersLength => ', usersLength,' - sponsoredUsersLength => ', sponsoredUsersLength)
 
       // Increments values
       dayBloodDonationBase += stat.dayBloodDonation;
