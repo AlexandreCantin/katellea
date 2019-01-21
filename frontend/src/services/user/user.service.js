@@ -206,6 +206,7 @@ class UserServiceFactory {
 
     return new Promise(async (resolve, reject) => {
       let response = await fetch(url, { headers, method: isCreation ? 'POST' : 'PUT', body: JSON.stringify(userData) });
+
       if (response.status === 200) {
         let userData = await response.json();
         if (userData) {
@@ -215,6 +216,10 @@ class UserServiceFactory {
         }
       } else if (response.status === 401 && isCreation) {
         FlashMessageService.createError('Un utilisateur utilise déjà cette adresse e-mail.', 'registerForm');
+        reject();
+        return;
+      } else if (response.status === 403 && isCreation) {
+        FlashMessageService.createError("La limite des comptes sans parrain/marraine -pour la beta- est atteinte.", 'registerForm');
         reject();
         return;
       }

@@ -1,6 +1,7 @@
 {
   "production": false,
   "environment": "development",
+  "betaLimit": 100,
 
   "offlineMode": true,
   "jwtSecret": "9uu+*3q$#8m-*eeoko)bc)=ped#et5%a#+njahro&e#=mb_kyt",

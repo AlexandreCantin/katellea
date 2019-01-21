@@ -33,6 +33,13 @@
     .alert.error {
       margin-top: 10px;
     }
+
+    .alert.error:nth-child(4) {
+      margin-top: 50px;
+      font-weight: bold;
+      font-size: 1.1em;
+      text-align: center;
+    }
   }
 
   .sponsor-card {

@@ -5,7 +5,7 @@ import sanitize from 'sanitize-html';
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
 
 import { DONATION_TYPE, DONATION_REST_WEEKS, BLOOD_COMPATIBILITY } from '../constants';
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, BAD_REQUEST } from 'http-status-codes';
+import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK, BAD_REQUEST, FORBIDDEN } from 'http-status-codes';
 
 import User from '../models/user';
 import Donation from '../models/donation';
@@ -14,6 +14,7 @@ import { canAccessDonation } from '../middlewares/can-access-donation';
 import { addWeeksToDate } from '../helpers/date.helper';
 import { UserService } from '../services/user.service';
 import { sendError } from '../helper';
+import { environment } from '../../conf/environment';
 
 
 const userRoutes = express.Router();
@@ -64,7 +65,9 @@ const isAdminUser = async (req, res) => {
 const createUser = async (req, res) => {
 
   {/* #Beta */}
-  if (!req.body.sponsoredByToken) {
+  const userNumber = await User.countDocuments({});
+
+  if (!req.body.sponsoredByToken && userNumber >= environment.betaLimit) {
     res.status(FORBIDDEN).send();
     return;
   }

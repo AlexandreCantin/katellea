@@ -20,6 +20,7 @@ import { Form, Field } from 'react-final-form';
 import Validators from '../../services/forms/validators';
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 import CollapseAlert from '../../generics/collapse-alert';
+import { FlashMessageService } from '../../services/flash-message/flash-message.service';
 
 require('./register.scss');
 
@@ -99,6 +100,8 @@ export default class Register extends Component {
   }
 
   registerUser = (values) => {
+    FlashMessageService.deleteFlashMessage();
+
     // Create user
     let user = new User({
       id: null,
@@ -222,14 +225,17 @@ export default class Register extends Component {
             <Breadcrumb links={[{ text: 'Créer votre compte', href: '/creer-votre-compte' }]} />
           </div>
 
-          <FlashMessage scope="registerForm" />
 
           {donation ? <DonationCard donation={donation} /> : null}
           {sponsorUser ? <SponsorCard user={sponsorUser} /> : null}
 
           {/* #Beta => error message + limiting form display*/}
           <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong> uniquement</div>
-          {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain/marraine pour créer un nouveau compte</div> : showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
+          {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain/marraine pour créer un nouveau compte (sauf pour les 100 premiers utilisateurs)</div> : null }
+
+          <FlashMessage scope="registerForm" />
+
+          {showForm ? this.renderForm() : <div className="login-button"><AuthLoginButtons /></div>}
         </div>
       </main>
     );
