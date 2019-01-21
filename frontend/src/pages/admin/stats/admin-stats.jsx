@@ -51,10 +51,6 @@ export default class AdminStats extends Component {
               <StatsBarGraph stats={stats} title="Nombre de nouveaux d'utilisateurs (avec parrain/marraine)" fields={['dayNbUsers', 'dayNbSponsoredUsers']} />
               <StatsBarGraph stats={stats} title="Nombre total d'utilisateurs (avec parrain/marraine)" fields={['nbUsers', 'nbSponsoredUsers']} />
 
-              <StatsBarGraph stats={stats} title="Nombre total de don du sang par jour (avec utilisateur avec parrain/marraine)" fields={['bloodDonation', 'nbSponsoredUsers']} />
-              <StatsBarGraph stats={stats} title="Nombre total de don de plasma par jour (avec utilisateur avec parrain/marraine)" fields={['plasmaDonation', 'nbSponsoredUsers']} />
-              <StatsBarGraph stats={stats} title="Nombre total d'utilisateurs par jour (avec utilisateur avec parrain/marraine)" fields={['plateletDonation', 'nbSponsoredUsers']} />
-
               <StatsBarGraph stats={stats} title="Nombre de dons du sang par jour (avec utilisateur avec parrain/marraine)" fields={['dayBloodDonation', 'dayBloodSponsoredDonation']} />
               <StatsBarGraph stats={stats} title="Nombre de dons de plasma par jour (avec utilisateur avec parrain/marraine)" fields={['dayPlasmaDonation', 'dayPlasmaSponsoredDonation']} />
               <StatsBarGraph stats={stats} title="Nombre de dons de plaquettes par jour (avec utilisateur avec parrain/marraine)" fields={['dayPlateletDonation', 'dayPlateletSponsoredDonation']} />
