@@ -156,7 +156,7 @@ const updateNotificationReadDate = async (req, res) => {
 
 const updateUser = async (req, res) => {
 
-  const user = new User();
+  const user = req.user.toObject();
   user.name = req.body.name || req.user.name;
   user.email = req.body.email || req.user.email;
   user.lastDonationDate = req.body.lastDonationDate || req.user.lastDonationDate;
@@ -220,6 +220,10 @@ const updateUser = async (req, res) => {
       .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
 
     userUpdated.addKatelleaToken();
+    console.log('user');
+    console.log(user);
+    console.log("req.user");
+    console.log(req.user);
 
     return res.json(userUpdated);
   } catch (err) {
