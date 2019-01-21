@@ -60,10 +60,10 @@ class Notification extends Component {
     UserService.updateUser({ notificationSettings })
     .then(() => {
       const message = 'Vos préférences ont été mis à jour';
-      FlashMessageService.createSuccess(message, 'account');
+      FlashMessageService.createSuccess(message, 'notifications');
     })
     .catch(() => {
-      FlashMessageService.createError('Erreur lors de la mise à jour de votre compte. Veuillez réessayer ultérieurement.', 'account');
+      FlashMessageService.createError('Erreur lors de la mise à jour de votre compte. Veuillez réessayer ultérieurement.', 'notifications');
     });
   }
 

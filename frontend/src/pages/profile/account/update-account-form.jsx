@@ -82,7 +82,7 @@ export default class UpdateAccountForm extends Component {
                   {({ input, meta }) => (
                     <div className="form-line clearfix">
                       <label htmlFor="donation-preference">Préférence du don <span>*</span></label>
-                      <select id="donation-preference" name="donationPreference">
+                      <select {...input} id="donation-preference" name="donationPreference">
                         <option value="NONE">Pas de préférence</option>
                         <option value="BLOOD">Don de sang</option>
                         <option value="PLASMA">Don de plasma</option>
@@ -96,7 +96,7 @@ export default class UpdateAccountForm extends Component {
                   {({ input, meta }) => (
                     <div className="form-line clearfix">
                       <label htmlFor="blood-type">Votre groupe sanguin <span>*</span></label>
-                      <select id="blood-type" name="bloodType">
+                      <select {...input} id="blood-type" name="bloodType">
                         <option value="UNKNOWN">Inconnu</option>
                         <option value="A+">A+</option>
                         <option value="A-">A-</option>
