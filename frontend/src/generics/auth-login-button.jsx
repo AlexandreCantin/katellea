@@ -103,7 +103,7 @@ export default class AuthLoginButtons extends Component {
           <p>Pour vous connecter, votre <strong>“consentement positif et explicite”</strong> pour la récupération de ces données est nécessaire.</p>
 
           <div className="buttons text-center">
-            <a className="btn big" data-origin={origin} href={AuthService.computeConnectURL(origin)} onClick={this.acceptRGPDAndLogin}>Tout accepter et continuer</a>
+            <a className="btn big" data-origin={origin} href={AuthService.computeConnectURL(origin)} target="_blank" title={this.computeLinkTitle(origin)} onClick={this.acceptRGPDAndLogin} >Tout accepter et continuer</a>
             <button className="btn">Personnaliser</button>
           </div>
         </div>
