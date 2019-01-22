@@ -234,7 +234,7 @@ const updateUser = async (req, res) => {
   user.bloodType = req.body.bloodType || user.bloodType;
   user.establishment = req.body.hasOwnProperty('establishmentId') ? req.body.establishmentId : user.establishment;
 
-  if(user.firstVisit === true) EmailVerificationService.createEmailVerification(userCreated);
+  if(user.firstVisit === true) EmailVerificationService.createEmailVerification(user);
   user.firstVisit = false;
 
   // If we get null has currentDonation, we delete the current donation
