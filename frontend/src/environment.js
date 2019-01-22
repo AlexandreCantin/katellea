@@ -31,6 +31,8 @@ export const environmentValues = {
 
   USER_ENDPOINT: '/user',
   USER_SPONSOR_ENDPOINT: '/user/sponsor/',
+  USER_SEND_VALIDATE_MAIL_ENDPOINT: '/user/email-verification/',
+  USER_RESEND_MAIL_ENDPOINT: '/user/re-send-email-verification',
   USER_SPONSOR_COMPATIBILITY_ENDPOINT: '/user/sponsor-compatibility',
   USER_IS_ADMIN_ENDPOINT: '/user/is-admin',
   USER_GODCHILDS_ENDPOINT: '/user/godchilds',

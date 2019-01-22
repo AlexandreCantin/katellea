@@ -1,8 +1,26 @@
 @import '../../../styles/constants.scss';
-#donation {
+
+
+#email-verified, #donation {
   grid-column: span 2;
   @media (max-width: $min-width-mobile) { grid-column: span 1; }
+}
 
+#email-verified {
+  padding: 15px 30px !important;
+  border-radius: 0;
+
+  .success {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  > div {
+    margin-top: 15px;
+  }
+}
+
+#donation {
   .new-donation-container {
     margin-top: 25px;
   }

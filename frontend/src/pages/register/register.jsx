@@ -107,6 +107,7 @@ export default class Register extends Component {
       id: null,
       name: values.name,
       email: values.email,
+      emailVerified: false,
       gender: values.gender,
       currentDonation: null,
       lastDonationDate: null,

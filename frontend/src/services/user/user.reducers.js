@@ -17,6 +17,7 @@ export const USER_REDUCERS = (state = {}, action) => {
         id: action.data.id,
         name: action.data.name,
         email: action.data.email,
+        emailVerified: action.data.emailVerified,
         gender: action.data.gender,
         currentDonation: action.data.currentDonation ? action.data.currentDonation : undefined,
         lastDonationDate: action.data.lastDonationDate,

@@ -11,6 +11,7 @@ import { NOTIFICATIONS_ACTIONS } from '../notifications/notification.reducers';
 import { FLASH_MESSAGE_ACTIONS } from '../flash-message/flash-message.reducers';
 import { USER_TEMP_ACTIONS } from '../user-temp/user-temp.reducers';
 
+export const ALREADY_SEND_LAST_HOUR = 'ALREADY_SEND_LAST_HOUR';
 
 class UserServiceFactory {
 
@@ -148,6 +149,7 @@ class UserServiceFactory {
             id: userData.id,
             name: userData.name,
             email: null,
+            emailVerified: null,
             gender: null,
             currentDonation: null,
             lastDonationDate: userData.lastDonationDate,
@@ -237,6 +239,36 @@ class UserServiceFactory {
     });
 
     return this.saveKatelleaUser(user, false, sponsoredByToken);
+  }
+
+
+  validateUserMail(token) {
+    let url = `${environment.SERVER_URL}${environment.USER_SEND_VALIDATE_MAIL_ENDPOINT}${token}`;
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url, { method: 'POST' });
+      if(response.status === 200) {
+        let userData = await response.json();
+        if (userData) {
+          this.saveUserInLocalStore(userData);
+          resolve();
+          return;
+        }
+      }
+      reject();
+    });
+  }
+
+  reSendEmailVerifiedEmail() {
+    let url = `${environment.SERVER_URL}${environment.USER_RESEND_MAIL_ENDPOINT}`;
+    let headers = getKatelleaTokenHeaders();
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url, { method: 'POST', headers });
+      if (response.status === 200) { resolve(); return; }
+      else if (response.status === 403) { reject(new Error(ALREADY_SEND_LAST_HOUR)); return; }
+      reject();
+    });
   }
 
 

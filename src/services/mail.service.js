@@ -116,6 +116,22 @@ export default class MailFactory {
   }
 
 
+  static async sendEmailVerificationEmail(user, url) {
+    const subject = `Validation de votre adresse e-mail`;
+    const htmlContent = await ejs.renderFile('./src/templates/emails/email-verified-mail.ejs', { url, FOOTER_TEAM });
+    try {
+      SendgridService.sendMail({ subject, htmlContent, to: user.email });
+    } catch(err) {/* Nothing to do */}
+  }
+  static async reSendEmailVerificationEmail(user, url) {
+    const subject = `Validation de votre adresse e-mail`;
+    const htmlContent = await ejs.renderFile('./src/templates/emails/resend-email-verified-mail.ejs', { user, url, FOOTER_TEAM });
+    try {
+      SendgridService.sendMail({ subject, htmlContent, to: user.email });
+    } catch(err) {/* Nothing to do */}
+  }
+
+
   // HELPER
   static userDeclineNotification(user, field) {
     const notificationSettings = user.notificationSettings || {};

@@ -12,6 +12,7 @@ export const injectUserFromToken = async (req, res, next) => {
   else if(req.originalUrl.startsWith('/grpd/pdf/')) methods = [];
   else if(req.originalUrl.startsWith('/donation/token/')) methods = [];
   else if(req.originalUrl.startsWith('/user/sponsor/')) methods = [];
+  else if(req.originalUrl.startsWith('/user/email-verification')) methods = [];
 
   if (methods.includes(req.method)) {
     let canContinue = false;

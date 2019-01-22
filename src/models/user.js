@@ -78,6 +78,11 @@ const UserSchema = mongoose.Schema({
    * */
   socialNetworkKey: String,
 
+  emailVerified:  {
+    type: Boolean,
+    default: false
+  },
+
   // Statistics
   bloodDonationDone: { type: Number, default: 0 },
   plasmaDonationDone: { type: Number, default: 0 },
