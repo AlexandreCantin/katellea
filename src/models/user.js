@@ -40,11 +40,11 @@ const UserSchema = mongoose.Schema({
   },
   lastDonationType: {
     type: String,
-    enum: extractEnumValues(DONATION_TYPE)
+    enum: extractEnumValues(DONATION_TYPE).concat([null])
   },
   donationPreference: {
     type: String,
-    enum: extractEnumValues(DONATION_TYPE)
+    enum: extractEnumValues(DONATION_TYPE).concat([null])
   },
   bloodType: {
     type: String,
