@@ -19,48 +19,47 @@ class EmailVerificationServiceFactory {
   }
 
   async createEmailVerification(user, isResend = false) {
+    const userId = user.id || user._id;
+
     // Set user verified_email as false
     if(user.emailVerified === true) {
-      user.emailVerified = false;
-      user.save();
+      const userToUpdate = await User.findById(userId);
+      userToUpdate.emailVerified = false;
+      await userToUpdate.save();
     }
 
     // Delete old verification if exists
-    await EmailVerification.findOneAndRemove({ user: user.id });
+    await EmailVerification.findOneAndRemove({ user: userId });
 
     // Create new EmailVerification
     const token = generateRandomString(15);
     let emailVerification = new EmailVerification();
     emailVerification.token = token;
-    emailVerification.user = user.id;
-    emailVerification.save()
+    emailVerification.user = userId;
+    await emailVerification.save();
 
     // Send email with email verification link
     const url = `${environment.frontUrl}/email-verification?token=${token}`;
 
-    if(isResend) MailFactory.reSendEmailVerificationEmail(user, url)
-    else MailFactory.sendEmailVerificationEmail(user, url);
+    if(isResend) await MailFactory.reSendEmailVerificationEmail(user, url);
+    else await MailFactory.sendEmailVerificationEmail(user, url);
   }
 
 
   async verifyUser(emailVerificationToken) {
-    try {
-      const emailVerification = await EmailVerification.findOne({ token: emailVerificationToken });
+    const emailVerification = await EmailVerification.findOne({ token: emailVerificationToken });
 
-      // Set user as verified
-      const user = await User.findById(emailVerification.user);
+    // Set user as verified
+    const user = await User.findById(emailVerification.user);
 
-      // User already verified ? No need to go further
-      if(user.emailVerified === true) return emailVerification.user;
+    // User already verified ? No need to go further
+    if(user.emailVerified === true) return emailVerification.user;
 
-      user.emailVerified = true;
-      await user.save();
+    user.emailVerified = true;
+    await user.save();
 
-      // Important => return userId
-      return emailVerification.user;
-    } catch(err) {
-      throw new Error('User not set as verified');
-    }
+    // Important => return userId
+    return emailVerification.user;
   }
 
 }

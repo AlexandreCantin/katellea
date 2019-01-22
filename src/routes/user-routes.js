@@ -92,7 +92,7 @@ const reSendEmailVerificationEmail = async (req, res) => {
     return res.status(FORBIDDEN).send();
   }
 
-  EmailVerificationService.createEmailVerification(req.user, true);
+  await EmailVerificationService.createEmailVerification(req.user, true);
   return res.status(OK).send();
 }
 
@@ -234,7 +234,7 @@ const updateUser = async (req, res) => {
   user.bloodType = req.body.bloodType || user.bloodType;
   user.establishment = req.body.hasOwnProperty('establishmentId') ? req.body.establishmentId : user.establishment;
 
-  if(user.firstVisit === true) EmailVerificationService.createEmailVerification(user);
+  if(user.firstVisit === true) await EmailVerificationService.createEmailVerification(user);
   user.firstVisit = false;
 
   // If we get null has currentDonation, we delete the current donation
@@ -263,7 +263,7 @@ const updateUser = async (req, res) => {
     userUpdated.addKatelleaToken();
 
     // Start email validation process if mail has been updated
-    if(req.body.email && req.body.email != req.user.email) EmailVerificationService.createEmailVerification(userUpdated, true);
+    if(req.body.email && req.body.email != req.user.email) await EmailVerificationService.createEmailVerification(userUpdated, true);
 
     return res.json(userUpdated);
   } catch (err) {
