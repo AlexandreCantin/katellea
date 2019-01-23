@@ -63,7 +63,9 @@
     "mobileCollectDownloadCron": "13 * * * *",
     "firstDonationAdviceCron": "14 * * * *",
     "grpdExportCron": "16 * * * *",
-    "quotaExceededResetCron": "18 * * * *"
+    "quotaExceededResetCron": "18 * * * *",
+    "newAnd30DaysWithoutDonationCron": "18 15 * * *",
+    "donationReminderCron": "18 30 * * *"
   },
   "daysBeforeStatisticsAnalytics": 5,
   "weeksDelayBeforeEligibilty": 3,

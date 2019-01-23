@@ -6,6 +6,7 @@ import { DONATION_TYPE_LABEL } from '../constants';
 import User from '../models/user';
 import { environment } from '../../conf/environment';
 
+// Global values
 const DISCLAIMER = `
   N'hésitez pas à prendre des photos/selfies de votre don et à les partager sur les réseaux sociaux.<br/>
   Il n'y a pas de honte à partager votre geste. Au contraire, cela peut inspirer d'autres personnes à en faire aussi !
@@ -16,6 +17,14 @@ const FOOTER_TEAM = `À bientôt,<br/>L'équipe de <a href="${environment.frontU
 
 const computeDonationDate = date => dayjs(date).format('dddd DD/MM/YYYY à HH:mm');
 const computeDate = date => dayjs(date).format('dddd DD/MM');
+
+
+const DAYS_REMINDER_DATA = {
+  '15': { subject: "Eligible à un nouveau don depuis 15 jours", template: 'day-reminder/15-mail.ejs' },
+  '30': { subject: "Eligible à un nouveau don depuis 30 jours", template: 'day-reminder/30-mail.ejs' },
+  '90': { subject: "Eligible à un nouveau don depuis 90 jours", template: 'day-reminder/90-mail.ejs' },
+}
+
 
 /**
  * Service for creating generating content and call SendgridService for sending
@@ -132,6 +141,30 @@ export default class MailFactory {
   }
 
 
+  static async availableToNewDonationReminder(user, dayNbToSubtract) {
+    console.log(MailFactory.userDeclineNotification(user, dayNbToSubtract + 'DayReminder'))
+    if(MailFactory.userDeclineNotification(user, dayNbToSubtract + 'DayReminder')) return;
+
+    const data = DAYS_REMINDER_DATA[dayNbToSubtract.toString()];
+
+    const subject = data.subject;
+    const htmlContent = await ejs.renderFile('./src/templates/emails/' + data.template, { user, frontUrl: environment.frontUrl, FOOTER_TEAM });
+
+    try {
+      SendgridService.sendMail({ subject, htmlContent, to: user.email });
+    } catch(err) {/* Nothing to do */}
+  }
+
+
+  static async newAnd30DaysWithoutDonationMail(user) {
+    const subject = "Participez ou créer votre premier don";
+    const htmlContent = await ejs.renderFile('./src/templates/emails/day-reminder/new-and-30-days-without-donation-mail.ejs', { user, frontUrl: environment.frontUrl, FOOTER_TEAM });
+
+    try {
+      SendgridService.sendMail({ subject, htmlContent, to: user.email });
+    } catch(err) {/* Nothing to do */}
+  }
+
   // HELPER
   static userDeclineNotification(user, field) {
     const notificationSettings = user.notificationSettings || {};
@@ -140,4 +173,5 @@ export default class MailFactory {
     // if TRUE: User ==> wants <== the notification
     return !notificationSettings[field];
   }
+
 }

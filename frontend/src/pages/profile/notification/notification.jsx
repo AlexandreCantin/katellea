@@ -13,7 +13,10 @@ import FlashMessage from '../../../generics/flash-message';
 
 const NOTIFICATION_NAMES = [
   { name: 'bloodEligible', label: 'Quand vous êtes éligible à un nouveau don ?' },
-  { name: 'sponsorGodchildCreateDonation', label: 'Quand vos filleul(e)s créaient une nouvelle proposition de don ?' }
+  { name: 'sponsorGodchildCreateDonation', label: 'Quand vos filleul(e)s créaient une nouvelle proposition de don ?' },
+  { name: '15DayReminder', label: 'Rappel après 15 jours d\'éligibilité à un nouveau don' },
+  { name: '30DayReminder', label: 'Rappel après 1 mois d\'éligibilité à un nouveau don' },
+  { name: '90DayReminder', label: 'Rappel après 3 mois d\'éligibilité à un nouveau don' },
 ];
 
 const FORM_RULES = {
@@ -31,7 +34,10 @@ class Notification extends Component {
     this.state = {
       initialValues: {
         bloodEligible: this.computeValue(notifications, 'bloodEligible'),
-        sponsorGodchildCreateDonation: this.computeValue(notifications, 'sponsorGodchildCreateDonation')
+        sponsorGodchildCreateDonation: this.computeValue(notifications, 'sponsorGodchildCreateDonation'),
+        '15DayReminder': this.computeValue(notifications, '15DayReminder'),
+        '30DayReminder': this.computeValue(notifications, '30DayReminder'),
+        '90DayReminder': this.computeValue(notifications, '90DayReminder')
       }
     }
   }

@@ -39,6 +39,8 @@ import MobileCollectDownloadCron from './src/cron/mobile-collect-download.cron';
 import FirstDonationAdviceCron from './src/cron/first-donation-advice.cron';
 import QuotaExceededResetCron from './src/cron/quota-exceeded.cron';
 import GRPDExportCron from './src/cron/grpd-export.cron';
+import NewAnd30DaysWithoutDonationCron from './src/cron/new-and-30-days-without-donation.cron';
+import DonationReminderCron from './src/cron/donation-reminder-user.cron';
 
 import { environment } from './conf/environment';
 
@@ -66,6 +68,8 @@ if (CRON.isMainLeader) {
   cron.schedule(CRON.firstDonationAdviceCron, () => FirstDonationAdviceCron.run());
   cron.schedule(CRON.grpdExportCron, () => GRPDExportCron.run());
   cron.schedule(CRON.quotaExceededResetCron, () => QuotaExceededResetCron.run());
+  cron.schedule(CRON.newAnd30DaysWithoutDonationCron, () => NewAnd30DaysWithoutDonationCron.run());
+  cron.schedule(CRON.donationReminderCron, () => DonationReminderCron.run());
 }
 
 // MIDDLEWARES
