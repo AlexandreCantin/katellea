@@ -36,14 +36,12 @@ export default class GRPDExportCron {
 
   static async run() {
     const startDate = dayjs();
-    SlackService.sendCronMessage(`Start GRPDExportCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // Create PDF folder if not exists
     if (!fs.existsSync(DIRNAME)) fs.mkdirSync(DIRNAME);
 
     // Get all GRPDExport
     const grpdDemands = await GRPDExport.find({ status: GRPD_EXPORT_STATUS.ASKED });
-    SlackService.sendCronMessage(`${grpdDemands.length} demandes d'export`);
 
     grpdDemands.forEach(async grpdDemand => {
       // 1 - Get datas
@@ -112,7 +110,7 @@ export default class GRPDExportCron {
 
     const endDate = dayjs();
     SlackService.sendCronMessage(
-      `Ended GRPDExportCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`
+      `GRPDExportCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes -- ${grpdDemands.length} demandes d'export`
     );
   }
 

@@ -23,8 +23,6 @@ export default class MobileCollectDownloadCron {
 
   static run() {
     const startDate = dayjs();
-    SlackService.sendCronMessage(`Start MobileCollectDownloadCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
-
 
     // Create the log directory if it does not exist
     if (!fs.existsSync(dirname)) {
@@ -48,12 +46,10 @@ export default class MobileCollectDownloadCron {
         try {
           fs.openSync(currentFilePath, 'w+');
           fs.writeFileSync(currentFilePath, data);
-          SlackService.sendCronMessage(`Fichier : ${currentFilePath} créé - ${dayjs().format('DD/MM/YYYY')}`);
 
           // Collection of all new mobileCollect
           let mobileCollectCollections = [];
           mobileCollectCollections = computeCollection(currentFilePath, mobileCollectCollections);
-          SlackService.sendCronMessage(`Nombre de collectes mobiles => ${mobileCollectCollections.length}`);
 
           // Drop collection
           await MobileCollect.deleteMany({});
@@ -76,7 +72,7 @@ export default class MobileCollectDownloadCron {
 
 const writeEndDate = startDate => {
   const endDate = dayjs();
-  SlackService.sendCronMessage(`Ended MobileCollectDownloadCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+  SlackService.sendCronMessage(`MobileCollectDownloadCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes -- Nombre de collectes mobiles => ${mobileCollectCollections.length}`);
 };
 
 const computeCollection = (currentFilePath, mobileCollectCollections) => {

@@ -11,13 +11,12 @@ export default class DonationReminderCron {
 
   static async run() {
     const startDate = dayjs();
-    SlackService.sendCronMessage(`Start DonationReminderCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
 
     [15,30,90].forEach(dayToSubtract => notifyUsers(dayToSubtract));
 
     const endDate = dayjs();
-    SlackService.sendCronMessage(`Ended DonationDoneCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendCronMessage(`DonationDoneCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
   notifyUser(dayNbToSubtract) {

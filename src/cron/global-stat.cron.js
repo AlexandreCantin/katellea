@@ -15,7 +15,6 @@ export default class GlobalStatCron {
 
   static async run() {
     const startDate = dayjs();
-    SlackService.sendCronMessage(`Start GlobalStatCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // In this script, we assume taht we already have stats object in database.
     // But we need to create automatically the first one
@@ -79,7 +78,7 @@ export default class GlobalStatCron {
     });
 
     const endDate = dayjs();
-    SlackService.sendCronMessage(`Ended GlobalStatCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendCronMessage(`GlobalStatCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 

@@ -15,7 +15,6 @@ export default class FirstDonationAdviceCron {
 
   static async run() {
     const startDate = dayjs();
-    SlackService.sendCronMessage(`Start FirstDonatioAdviceCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // In xx days
     const beginPeriodDate = dayjs().set('hour', 0).set('minute', 0).set('second', 0).add(DELAY_BEFORE_DONATION_IN_DAYS, 'day');
@@ -34,7 +33,7 @@ export default class FirstDonationAdviceCron {
 
     const endDate = dayjs();
     SlackService.sendCronMessage(
-      `Ended FirstDonatioAdviceCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`
+      `FirstDonatioAdviceCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`
     );
   }
 

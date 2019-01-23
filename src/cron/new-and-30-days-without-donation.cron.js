@@ -10,7 +10,6 @@ export default class NewAnd30DaysWithoutDonationCron {
 
   static async run() {
     const startDate = dayjs();
-    SlackService.sendCronMessage(`Start NewAnd30DaysWithoutDonationCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     let begin = dayjs().subtract(30, 'day').startOf('day');
     let end = dayjs().subtract(30, 'day').endOf('day');
@@ -32,7 +31,7 @@ export default class NewAnd30DaysWithoutDonationCron {
     });
 
     const endDate = dayjs();
-    SlackService.sendCronMessage(`Ended NewAnd30DaysWithoutDonationCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendCronMessage(`NewAnd30DaysWithoutDonationCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
 }

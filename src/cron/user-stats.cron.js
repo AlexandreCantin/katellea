@@ -15,14 +15,12 @@ export default class UserStatisticsCron {
 
   static async run() {
     const startDate = dayjs();
-    SlackService.sendCronMessage(`Start UserStatisticsCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
     // Avoid too much request to database by caching objects
     const statObjectCache = {};
 
     // Get all donations DONE and with statisticsDate in the past
     const donations = await Donation.find({ status: DONATION_STATUS.DONE, statisticsDate: { $lte: new Date() } });
-    SlackService.sendCronMessage(`UserStatisticsCron : ${donations.length} donations found`);
 
     // No donation done during last 24h ? Create a Statistics object to follow user evolution
     if(donations.length === 0) {
@@ -131,7 +129,7 @@ export default class UserStatisticsCron {
     Object.keys(statObjectCache).forEach(key => statObjectCache[key].save());
 
     const endDate = dayjs();
-    SlackService.sendCronMessage(`Ended UserStatisticsCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
+    SlackService.sendCronMessage(`UserStatisticsCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes - Nombre de donation: ${donations.length}`);
   }
 
 
