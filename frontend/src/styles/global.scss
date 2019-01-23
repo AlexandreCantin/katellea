@@ -120,9 +120,12 @@ p {
 /* Screen-reader only */
 
 .sr-only {
-  position: absolute !important;
+  position: fixed !important;
   left: -10000px !important;
   bottom: -10000px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }
 
 /* Lock the scroll position by adding this class to the `<html>` element. */
