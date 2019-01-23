@@ -1,9 +1,5 @@
 import { DATE_HOUR_FORMAT } from '../helpers/date.helper';
 import dayjs from 'dayjs';
-import { DONATION_STATUS, DONATION_EVENTS, NOTIFICATION_TYPES } from '../constants';
-import Donation from '../models/donation';
-import { createNotification } from '../helpers/notification.helper';
-import { environment } from '../../conf/environment';
 import { SlackService } from '../services/slack.service';
 import User from '../models/user';
 

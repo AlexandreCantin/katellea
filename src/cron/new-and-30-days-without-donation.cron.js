@@ -1,9 +1,5 @@
 import { DATE_HOUR_FORMAT } from '../helpers/date.helper';
 import dayjs from 'dayjs';
-import { DONATION_STATUS, DONATION_EVENTS, NOTIFICATION_TYPES } from '../constants';
-import Donation from '../models/donation';
-import { createNotification } from '../helpers/notification.helper';
-import { environment } from '../../conf/environment';
 import { SlackService } from '../services/slack.service';
 import User from '../models/user';
 
@@ -16,8 +12,8 @@ export default class NewAnd30DaysWithoutDonationCron {
     const startDate = dayjs();
     SlackService.sendCronMessage(`Start NewAnd30DaysWithoutDonationCron at ${startDate.format(DATE_HOUR_FORMAT)}`);
 
-    let begin = dayjs().subtract(dayNbToSubtract, 'day').startOf('day');
-    let end = dayjs().subtract(dayNbToSubtract, 'day').endOf('day');
+    let begin = dayjs().subtract(30, 'day').startOf('day');
+    let end = dayjs().subtract(30, 'day').endOf('day');
 
     const users = User.find({
       $where : "this.createdAt == this.minimumDate",
