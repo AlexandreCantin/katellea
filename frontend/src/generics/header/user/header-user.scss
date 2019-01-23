@@ -8,9 +8,8 @@ nav.katellea {
   margin-top: 25px;
 
   @include mx-block-base(0 0 0 25px);
-  @media (max-width: $min-width-tablet) {
-    margin-top: 0;
-  }
+  @media (max-width: $min-width-tablet) { margin-top: 0; }
+  @media (max-width: $min-width-mobile) { font-size: .9em; }
 
   > div {
     height: $menu-height;
@@ -80,8 +79,9 @@ nav.katellea {
         padding-right: 20px;
       }
       @media (max-width: $min-width-mobile) {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 90px;
       }
     }
 
@@ -96,10 +96,12 @@ nav.katellea {
       ul { margin: 0 -20px; }
     }
     @media (max-width: $min-width-mobile) {
-      max-width: 180px;
+      max-width: 155px;
       ul { margin: 0 -20px; }
     }
-    > button { display: flex; }
+    > button { display: flex;
+      @media (max-width: $min-width-mobile) { padding: 0 10px !important; }
+    }
 
     .block {
       align-self: center;
@@ -266,7 +268,10 @@ nav.katellea {
 }
 
 #modal .modal-body.minimum-date {
-  .or { margin: 30px; }
+  .or {
+    margin: 30px;
+    @media (max-width: $min-width-mobile) { margin: 20px; }
+  }
 }
 
 .dropdown-container {

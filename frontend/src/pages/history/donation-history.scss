@@ -19,6 +19,7 @@
           display: block;
           margin: 0 auto 15px auto;
           max-width: 150px;
+          @media (max-width: $min-width-mobile) { max-width: 100px; }
         }
       }
     }
@@ -27,6 +28,7 @@
       flex: 5;
       align-self: center;
       > div { margin-bottom: 20px; }
+      @media (max-width: $min-width-mobile) { padding-left: 15px; }
     }
   }
 }

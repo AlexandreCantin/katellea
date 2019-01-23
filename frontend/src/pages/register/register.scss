@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  
+
   @media (max-width: $min-width-tablet) {
     grid-template-columns: 1fr 8fr 1fr;
   }
@@ -18,7 +18,10 @@
     grid-template-columns: 1fr 10fr 1fr;
   }
 
-  h1 { margin-bottom: 5px; }
+  h1 {
+    margin-bottom: 5px;
+    @media (max-width: $min-width-mobile) { margin-bottom: 20px; }
+  }
   .title { margin-bottom: 40px; }
 
   .register-form {
@@ -27,6 +30,7 @@
     grid-column: 2;
     grid-row: 2;
     padding: 50px;
+    @media (max-width: $min-width-mobile) { padding: 10px 25px; }
 
     @include mx-social-auth();
 

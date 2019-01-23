@@ -33,7 +33,7 @@
 
     @media (max-width: $min-width-mobile) {
       padding: 20px;
-      h1 { text-align: center; }
+      h1 { text-align: center; font-size: 2em; }
     }
 
 
@@ -115,6 +115,7 @@
       font-size: 2.5em;
       padding: 65px 0 25px 0;
       margin: 0;
+      @media (max-width: $min-width-mobile) { font-size: 1.5em; }
   }
 
   .katellea-statistics {
@@ -226,21 +227,29 @@
   margin-top: 30px;
   background-color: lightgray;
   display: flex;
-  @media (max-width: $min-width-mobile) { flex-direction: column; }
 
-  > div {
-      flex: 1;
+  @media (max-width: $min-width-mobile) {
+    flex-direction: column;
+    padding: 10px;
   }
+
+  > div { flex: 1; }
 
   .katellea-links {
     flex: 2;
     > ul {
       column-count: 4;
       column-gap: 20px;
+      li { padding: 15px; }
     }
-    li {
-      padding: 15px;
+    @media (max-width: $min-width-mobile) {
+      > ul {
+        margin-bottom: 20px;
+        li { padding: 10px 5px; text-align: center; }
+        a, button { padding: 0; }
+      }
     }
+
     .katellea-donation {
       > span {
         border-radius: 25px;

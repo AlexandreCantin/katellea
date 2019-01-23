@@ -21,6 +21,7 @@ body {
   background-color: $body-background-color;
   font-family: $body-font;
   color: $text-color;
+  @media (max-width: $min-width-mobile) { font-size: .95em; }
 }
 
 #app {
@@ -95,6 +96,7 @@ p {
 
 .block-base {
   @include mx-block-base();
+  @media (max-width: $min-width-mobile) { padding: 15px; }
 }
 
 // Hide
