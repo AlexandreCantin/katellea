@@ -2,7 +2,7 @@
 
 $animation-duration: 1s;
 
-#modal {
+.modal {
   position: absolute;
   z-index: 3500;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -39,7 +39,7 @@ $animation-duration: 1s;
     overflow-y: auto;
 
     width: 70%;
-    left: 40%;
+    left: 35%;
     margin-left: -15%;
 
     max-width: 1000px;

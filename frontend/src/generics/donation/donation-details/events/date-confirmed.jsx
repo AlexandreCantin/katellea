@@ -1,6 +1,6 @@
 import React from 'react';
 import DonationEventDate from './event-date';
-import { dateFormatLongDayDayMonthYearHourMinut } from '../../../services/date-helper';
+import { dateFormatLongDayDayMonthYearHourMinut } from '../../../../services/date-helper';
 
 const DonationEventDefinitiveDate = (props) => {
   const { event } = props;

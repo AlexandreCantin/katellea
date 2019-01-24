@@ -26,7 +26,7 @@ class HeaderUser extends Component {
       <nav className="katellea">
         <button className="hide-desktop menu-button" onClick={this.openMenu}>MENU</button>
         <Link className="hide-desktop logo" to="/tableau-de-bord" title="Retour à l'accueil du site">
-          <img src="katellea-logo.svg" alt="K" />atellea <BetaBadge />
+          <img src="/katellea-logo.svg" alt="K" />atellea <BetaBadge />
         </Link>
         <HeaderAccountItem user={user} />
         <MinimumDateItem user={user} />

@@ -6,6 +6,7 @@ import { Form, Field } from 'react-final-form';
 import { navigate } from '@reach/router';
 
 import store from '../../../services/store';
+import Modal from '../../modal';
 import { DONATION_LOCATION, DONATION_STATUS } from '../../../enum';
 import { UserService } from '../../../services/user/user.service';
 import { DonationService } from '../../../services/donation/donation.service';
@@ -14,11 +15,11 @@ import Validators from '../../../services/forms/validators';
 import { validateForm } from '../../../services/forms/validate';
 import { dateFormatYearMonthDay, dateFormatHourMinut } from '../../../services/date-helper';
 
-import { isEmpty } from '../../../services/helper';
+import { isEmpty, saveToLocalStorage, getLocalStorageValue } from '../../../services/helper';
 import FlashMessage from '../../flash-message';
 import EstablishmentSelectForm from '../../establishment/select/establishment-select-form';
 import MobileCollectSelectForm from '../../mobile-collect/mobile-collect-form';
-import Donation, { DONATION_VISIBILITY } from '../../../services/donation/donation';
+import Donation from '../../../services/donation/donation';
 import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
 
 require('./donation-create-form.scss');
@@ -43,10 +44,14 @@ export default class DonationCreateForm extends Component {
     this.user = store.getState().user;
 
     this.formData = {
+      isPublicDonation: isEmpty(this.user),
       donationType: this.user.donationPreference || 'BLOOD',
       establishment: this.user.establishment,
       hourSuggestions: [dateFormatHourMinut(dayjs())],
       dateSuggestions: [{ date: dateFormatYearMonthDay(dayjs().add(1, 'day')), dayPart: 'DAY' }],
+
+      name: getLocalStorageValue('name'),
+      email: getLocalStorageValue('email')
     }
 
     this.formRef = React.createRef();
@@ -62,12 +67,19 @@ export default class DonationCreateForm extends Component {
 
   componentDidMount() {
     // When donation created, set it as current for the user
-    this.storeUnsubscribeFn = store.subscribe(() => {
-      if (!isEmpty(store.getState().donation)) UserService.updateUser({ currentDonation: store.getState().donation.id });
-    });
+    if(!isEmpty(this.user)) {
+      this.storeUnsubscribeFn = store.subscribe(() => {
+        if (!isEmpty(store.getState().donation)) UserService.updateUser({ currentDonation: store.getState().donation.id });
+      });
+    }
   }
   componentWillUnmount() {
-    this.storeUnsubscribeFn();
+    if(!isEmpty(this.user)) this.storeUnsubscribeFn();
+  }
+
+  componentDidUpdate() {
+    // Notify parent to update their focusable elements (on modal mode only)
+    if(this.props.updateFocusableElements) this.props.updateFocusableElements();
   }
 
   updateDonationLocation = (e) => this.setState({ donationLocation: e.target.value });
@@ -118,6 +130,14 @@ export default class DonationCreateForm extends Component {
 
   validate = (values) => {
     const rules = this.isEstablishment() ? ESTABLISHMENT_FORM_RULES : MOBILE_COLLECT_FORM_RULES;
+    // Handle registered vs non-register donation
+    if(isEmpty(this.user)) {
+      rules.email = [Validators.required(), Validators.email()];
+      rules.name = [Validators.required(), Validators.minLength(3), Validators.maxLength(150), Validators.alphaDash()];
+      rules.rgpd = [Validators.required()];
+    }
+
+
     let errors = validateForm(values, rules);
     if (!isEmpty(errors)) return errors;
 
@@ -134,10 +154,13 @@ export default class DonationCreateForm extends Component {
     let pollSuggestions = this.state.multipleDayDonation ?
       values.dateSuggestions.map(ps => ({ date: ps.date, dayPart: ps.dayPart })) : values.hourSuggestions.map(hour => ({ hour }));
 
+    // Save some data to localStorage
+    if(values.isPublicDonation) saveToLocalStorage({ name: values.name, email: values.email });
+
     let donation = new Donation({
       id: null,
+      isPublicDonation: values.isPublicDonation,
       status: DONATION_STATUS.POLL_ON_GOING,
-      visibility: DONATION_VISIBILITY.SMALL_NETWORK,
       establishment: isEstablishment ? values.establishment : null,
       mobileCollect: isMobileCollect ? values.mobileCollect : null,
       donationType: values.donationType,
@@ -145,20 +168,24 @@ export default class DonationCreateForm extends Component {
       pollAnswers: [],
       finalDate: null,
       events: [],
-      finalAttendees: [],
+      finalAttendeesUser: [],
+      finalAttendeesGuest: [],
       statisticsDate: null,
       donationToken: null,
       createdBy: null,
+      createdByGuest: values.isPublicDonation ? { name: values.name, email: values.email } : null,
       createdAt: null,
       updatedAt: null
     });
 
     // Save new donation
     try {
-      await DonationService.saveDonation(donation, true);
-      FlashMessageService.createSuccess('Le don a été créé avec succès', 'donation-create-form');
-      // Redirect to current donation page
-      setTimeout(() => navigate('/don-courant'), 1000);
+      const donationCreated = await DonationService.saveDonation(donation, '', true, values.acceptEligibleMail);
+      FlashMessageService.createSuccess('Le don a été créé avec succès', 'donation');
+
+      // Redirect to donation page
+      const url = `/donation/${donationCreated.donationToken}`;
+      setTimeout(() => navigate(url), 1000);
     } catch (error) {
       FlashMessageService.createError('Erreur lors de la création du don.. Veuillez nous excuser..!', 'donation-create-form');
     }
@@ -348,7 +375,11 @@ export default class DonationCreateForm extends Component {
                 {establishment ? <button className="btn danger" onClick={this.removeEtablishment}>x</button> : null}
               </div>
             </div>
-            {showNewEstablishment ? <EstablishmentSelectForm onSelect={this.updateEstablishment} onClose={this.closeNewEstablishment} /> : null}
+            {showNewEstablishment ?
+              <Modal title="Trouver un établissement" onClose={this.closeNewEstablishment} modalUrl='/tableau-de-bord/nouveau-don/etablissement' level="2">
+                <EstablishmentSelectForm onSelect={this.updateEstablishment} />
+              </Modal>
+            : null}
 
           </fieldset>
         )}
@@ -366,13 +397,82 @@ export default class DonationCreateForm extends Component {
                 <button className="find-mobile-collect btn fr" onClick={this.showNewMobileCollect} disabled={this.state.showNewMobileCollect}>Trouver une collecte mobile</button>
                 <label className="block" htmlFor="free-location">Pour une collecte mobile, vous pouvez indiquer sa localisation ci-dessous :</label>
               </div>
-              {this.state.showNewMobileCollect ? <MobileCollectSelectForm onSelect={this.updateMobileCollect} onClose={this.closeNewMobileCollect} /> : null}
-
-              <textarea {...input} id="free-location"></textarea>
+              {this.state.showNewMobileCollect ?
+                <Modal title="Trouver une collecte mobile" onClose={this.closeNewMobileCollect} modalUrl='/tableau-de-bord/nouveau-don/collecte-mobile' level="2">
+                  <MobileCollectSelectForm onSelect={this.updateMobileCollect} />
+                </Modal> : <textarea {...input} id="free-location"></textarea>}
             </div>
           </fieldset>
         )}
       </Field>
+    );
+  }
+  renderNonRegisteredFields() {
+    return (
+      <fieldset className="coordinates">
+        <legend className="no-style">Vos coordonnées</legend>
+        <p className="alert info">Ces données seront supprimées 6 mois après la date finale du don.</p>
+        <div>
+          <Field name="name">
+            {({ input, meta }) => (
+              <div className="form-line">
+                <div>
+                  <label htmlFor="name">Prénom & Nom *</label>
+                  <input {...input} id="name" type="text" name="name" maxLength="150" />
+                </div>
+
+                {meta.error && meta.touched ?
+                  <div className="alert error">
+                    {meta.error === 'required' ? <div>Le champ 'Prénom & Nom' est obligatoire. Veuillez renseigner ce champs.</div> : null}
+                    {meta.error === 'minLength' ? <div>Le champ 'Prénom & Nom' doit comporter minimum 3 caractères.</div> : null}
+                    {meta.error === 'maxLength' ? <div>Le champ 'Prénom & Nom' ne doit pas dépasser 150 caractères.</div> : null}
+                    {meta.error === 'alphaDash' ? <span>Seuls les lettres sont autorisées.</span> : null}
+                  </div> : null}
+              </div>
+            )}
+          </Field>
+          <Field name="email">
+            {({ input, meta }) => (
+              <div className="form-line">
+                <div>
+                  <label htmlFor="email">E-mail <span>*</span></label>
+                  <input {...input} id="email" type="email" name="email" />
+                </div>
+                {meta.error && meta.touched ?
+                  <div className="alert error">
+                    {meta.error === 'required' ? <div>Le champ 'E-mail' est obligatoire. Veuillez renseigner ce champs.</div> : null}
+                    {meta.error === 'email' ? <div>L'email n'est pas un e-mail valide. Exemple : example@mail.com</div> : null}
+                  </div> : null}
+              </div>
+            )}
+          </Field>
+        </div>
+
+        <Field name="rgpd" type="checkbox">
+          {({ input, meta }) => (
+            <div className="form-line accept-field">
+              <div>
+                <input {...input} id="accept-rgpd" type="checkbox" />
+                <label htmlFor="accept-rgpd">J'accepte que Katellea stocke ces informations durant toute la durée de cette proposition de don.</label>
+              </div>
+              {meta.error && meta.touched ?
+                <div className="alert error">
+                  {meta.error === 'required' ? <div>Vous devez cocher cette case afin de continuer.</div> : null}
+                </div> : null }
+            </div>
+          )}
+        </Field>
+        <Field name="acceptEligibleMail" type="checkbox">
+          {({ input }) => (
+            <div className="form-line accept-field">
+              <div>
+                <input {...input} id="accept-eligible-new-donation" type="checkbox" />
+                <label htmlFor="accept-eligible-new-donation">J'accepte d'être sollicité lorsque je serai disponible pour un nouveau don.</label>
+              </div>
+            </div>
+          )}
+        </Field>
+      </fieldset>
     );
   }
   render() {
@@ -389,6 +489,10 @@ export default class DonationCreateForm extends Component {
 
             <fieldset className="no-border">
               <legend>1 - Type de collecte</legend>
+
+              <Field name="isPublicDonation" type="checkbox">
+                {({ input }) => (<input className="hide" {...input} type="checkbox" disabled="disabled" />)}
+                </Field>
 
               <div className="radio-line">
                 <Field name="donationLocation" type="radio" value="ESTABLISHMENT">
@@ -419,14 +523,22 @@ export default class DonationCreateForm extends Component {
             {/* Mobile collect form steps */}
             {this.isMobileCollect() ? this.renderFindMobileCollect() : null}
             {this.showPollSuggestionsMobileCollect() ?
-              this.state.multipleDayDonation ? this.renderPollSuggestionsMultipleDay() : this.renderPollSuggestionsOneDay()
+              <>
+                {this.state.multipleDayDonation ? this.renderPollSuggestionsMultipleDay() : this.renderPollSuggestionsOneDay()}
+                {isEmpty(this.user) ? this.renderNonRegisteredFields() : null}
+              </>
               : null}
 
 
-            {/* Establishment from steps */}
+            {/* Establishment form steps */}
             {this.isEstablishment() ? this.renderFindEstablishment() : null}
             {this.showDonationType() ? this.renderDonationType() : null}
-            {this.showPollSuggestionsEstablishment() ? this.renderPollSuggestionsMultipleDay() : null}
+            {this.showPollSuggestionsEstablishment() ?
+              <>
+                {this.renderPollSuggestionsMultipleDay()}
+                {isEmpty(this.user) ? this.renderNonRegisteredFields() : null}
+              </>
+            : null}
 
             {
               valid ?

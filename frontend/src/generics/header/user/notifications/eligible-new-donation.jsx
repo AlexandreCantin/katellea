@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import DonationEventDate from '../../../../pages/donation/events/event-date';
+import DonationEventDate from '../../../donation/donation-details/events/event-date';
 
 function NotificationEligibleNewDonation({ notification, notRead }) {
 
@@ -13,7 +13,7 @@ function NotificationEligibleNewDonation({ notification, notRead }) {
   return (
     <li className={computeCssClass()}>
       <Link to="/tableau-de-bord" title="Consulter votre tableau pour créer ou rejoindre une proposition de don">
-        <strong>Dans environ 3 semaines, vous êtes de nouveau en capacité de réaliser un nouveau don !</strong><br />
+        <strong>Dans environ 1 semaine, vous pourrez réaliser un nouveau don !</strong><br />
         Nous vous invitons à consulter votre tableau de bord pour créer ou rejoindre une proposition de don.<br />
         <DonationEventDate date={notification.date} />
       </Link>

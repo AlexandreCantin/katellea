@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import DonationEventDate from '../../../../pages/donation/events/event-date';
 import store from '../../../../services/store';
 import { Link } from '@reach/router';
+import DonationEventDate from '../../../donation/donation-details/events/event-date';
 
 export default class NotificationClosePoll extends Component {
 

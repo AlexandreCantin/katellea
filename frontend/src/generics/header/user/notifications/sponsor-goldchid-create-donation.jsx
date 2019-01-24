@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import DonationEventDate from '../../../../pages/donation/events/event-date';
+import DonationEventDate from '../../../donation/donation-details/events/event-date';
 
 function NotificationSponsorGolchildCreateDonation({ notification }) {
   const author = notification.author;

@@ -5,12 +5,25 @@ export function getParameterByName(name) {
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 
+export function getLocalStorageValue(field) {
+  const val = localStorage.getItem(field);
+  if(val === null) return '';
+  return val;
+}
+
+export function saveToLocalStorage(data) {
+  Object.keys(data).map(key => localStorage.setItem(key, data[key]));
+}
+
 export function getKatelleaTokenHeaders(addToken = true) {
   let headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   };
-  if (addToken) headers['Katellea-Token'] = store.getState().user.katelleaToken;
+  if (addToken) {
+    const user = store.getState().user;
+    headers['Katellea-Token'] = user ? user.katelleaToken : '';
+  }
 
   return headers;
 }

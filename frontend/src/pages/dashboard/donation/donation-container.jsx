@@ -37,7 +37,7 @@ class DonationContainer extends Component {
       let newUserHasCurrentDonation = store.getState().user.hasCurrentDonation();
       if (!this.userHasCurrentDonation && newUserHasCurrentDonation) {
         this.userHasCurrentDonation = true;
-        FlashMessageService.createSuccess('Félicitations, vous venez de rejoindre cette proposition de don !', 'current-donation');
+        FlashMessageService.createSuccess('Félicitations, vous venez de rejoindre cette proposition de don !', 'donation');
         navigate('/don-courant');
       }
     });
@@ -83,7 +83,7 @@ class DonationContainer extends Component {
             Vous devrez donc attendre l'année prochaine afin de réaliser un nouveau don.
           </div>
           <div className="new-donation-container text-center">
-            <DonationCreateFormModal modalUrl="/tableau-de-bord/creer-un-nouveau-don" />
+            <DonationCreateFormModal modalUrl="/tableau-de-bord/nouveau-don" />
           </div>
         </div>
       );
@@ -95,7 +95,7 @@ class DonationContainer extends Component {
         {eligibleDonations.map(donation => <DonationToSubscribe key={donation._id} donation={donation} />)}
 
         <div className="new-donation-container text-center">
-          <DonationCreateFormModal modalUrl="/tableau-de-bord/creer-un-nouveau-don" />
+          <DonationCreateFormModal modalUrl="/tableau-de-bord/nouveau-don" />
         </div>
       </div>
     );

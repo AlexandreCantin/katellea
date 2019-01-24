@@ -1,5 +1,6 @@
 import logger from './services/logger.service';
 import { SentryService } from './services/sentry.service';
+import { environment } from '../conf/environment';
 
 // Check if object contains all the given properties
 export const hasOwnProperties = (obj, properties) => {
@@ -13,6 +14,17 @@ export const sendError = (err) => {
   const message = err.message || err.errmsg;
   SentryService.sendError(err);
   logger.error(message);
+  if(environment.production !== 'production') console.log(err);
+}
+
+// Small string format : http://mir.aculo.us/2011/03/09/little-helpers-a-tweet-sized-javascript-templating-engine/
+export function simpleTemplate(string, data) {
+  let result = string;
+  for (const entry in data) {
+      if (!entry) continue;
+      result = result.replace(new RegExp('{' + entry + '}', 'g'), data[entry]);
+  }
+  return result;
 }
 
 /**

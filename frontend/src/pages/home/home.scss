@@ -16,13 +16,36 @@
 
   .presentation-container {
     background-color: rgba(255, 255, 255, .95);
-    width: 90%;
+    width: 95%;
+    max-width: 1600px;
     margin: auto;
-    padding: 50px;
+    padding: 25px 50px 50px 50px;
+
+    > div {
+      display: flex;
+      > div {
+        flex: 1;
+        &:first-child { padding-right: 10px; }
+        &:nth-child(2) {
+          padding-left: 10px;
+          p { margin-bottom: 20px; }
+          hr { margin-top: 20px; }
+        }
+      }
+
+      @media (max-width: $min-width-mobile) { padding: 20px; }
+
+      @media (max-width: $min-width-tablet) {
+        flex-direction: column;
+        > div:first-child { margin-bottom: 30px; }
+      }
+
+    }
 
     h1 {
+      grid-column: span 2;
       font-size: 3em;
-      margin: 0 0 20px 0;
+      margin: 0 0 50px 0;
       img {
         height: 60px;
         position: relative;
@@ -30,20 +53,6 @@
         left: 6px;
       }
     }
-
-    @media (max-width: $min-width-mobile) {
-      padding: 20px;
-      h1 { text-align: center; font-size: 2em; }
-    }
-
-
-    display: flex;
-    @media (max-width: $min-width-tablet) {
-      flex-direction: column;
-      > div:first-child { margin-bottom: 30px; }
-    }
-
-    > div { flex: 1; }
 
     ol.katellea-objectives {
       margin-top: 10px;

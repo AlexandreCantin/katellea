@@ -2,7 +2,9 @@ import express from 'express';
 import cron from 'node-cron';
 import path from 'path';
 import cors from 'cors';
+import 'express-async-errors';
 import * as Sentry from '@sentry/node';
+
 
 
 import initMongoDB from './src/clients/moongose';

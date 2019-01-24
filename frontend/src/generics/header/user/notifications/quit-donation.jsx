@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DonationEventDate from '../../../../pages/donation/events/event-date';
+import DonationEventDate from '../../../donation/donation-details/events/event-date';
 import store from '../../../../services/store';
 import { Link } from '@reach/router';
 

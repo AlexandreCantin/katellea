@@ -1,9 +1,8 @@
 import { getParameterByName } from './helper';
 import { UserService } from './user/user.service';
-import { DonationService } from './donation/donation.service';
 import { SHARE_PREFIXES } from '../enum';
 
-export const getSponsorAndDonationFromUrl = async (addOrign=false) => {
+export const getSponsorFromUrl = async (addOrign=false) => {
   let result = {};
 
   let sponsorToken = getParameterByName('sponsor');
@@ -14,22 +13,6 @@ export const getSponsorAndDonationFromUrl = async (addOrign=false) => {
     let sponsorUser = await UserService.getSponsorUser(sponsorToken);
     if (sponsorUser) {
       result.sponsorUser = sponsorUser;
-    }
-  }
-
-  // Get donation (if needed)
-  let donationToken = getParameterByName('donation');
-  if(donationToken) {
-    if(addOrign) result.origin = determineOrigin(donationToken);
-    donationToken = removeOrigin(donationToken);
-
-    let donation = await DonationService.getDonationByToken(donationToken);
-    if(donation) {
-      let sponsorUser = await UserService.getSponsorUser(donation.createdBy.sponsorToken);
-      if (sponsorUser) {
-        result.sponsorUser = sponsorUser;
-        result.donation = donation;
-      }
     }
   }
 

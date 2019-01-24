@@ -2,9 +2,10 @@ import ejs from 'ejs';
 import dayjs from 'dayjs';
 
 import { SendgridService } from './sendgrid.service';
-import { DONATION_TYPE_LABEL } from '../constants';
+import { DONATION_TYPE_LABEL, NOTIFICATION_TYPES } from '../constants';
 import User from '../models/user';
 import { environment } from '../../conf/environment';
+import { simpleTemplate, sendError } from '../helper';
 
 // Global values
 const DISCLAIMER = `
@@ -26,16 +27,35 @@ const DAYS_REMINDER_DATA = {
 }
 
 
+const SEND_GUEST_CREATOR_MAIL = {
+  'SOMEONE_ADD_POLL_ANSWER_TO_YOUR_DONATION': {
+    subject: '{name} a répondu à votre proposition de don',
+    template: 'someone-add-poll-answer.ejs'
+  },
+  'SOMEONE_UPDATE_POLL_ANSWER_TO_YOUR_DONATION': {
+    subject: '{name} a mis à jour sa proposition de don',
+    template: 'someone-update-poll-answer.ejs'
+  },
+  'SOMEONE_ADD_COMMENT_TO_YOUR_DONATION': {
+    subject: '{name} a commenté à votre proposition de don',
+    template: 'someone-add-comment.ejs'
+  },
+  'ELIGIBLE_TO_NEW_DONATION': {
+    subject: 'Disponible pour un nouveau don',
+    template: 'eligible-to-new-donation.ejs'
+  }
+}
+
 /**
  * Service for creating generating content and call SendgridService for sending
  */
 export default class MailFactory {
 
   static sendAttendeeMail(donation) {
-    const authorName = donation.createdBy.name;
+    const authorName = donation.getCreatorName();
     const subject = `Invitation à un don du sang par ${authorName}`;
 
-    donation.finalAttendees.map(async attendee => {
+    donation.finalAttendeesUser.map(async attendee => {
       if(attendee._id === donation.createdBy._id) return;
       const user = await User.findById(attendee._id);
 
@@ -57,18 +77,24 @@ export default class MailFactory {
 
   static async bloodDonationEligibleMail(user) {
     if(MailFactory.userDeclineNotification(user, 'bloodEligible')) return;
+    MailFactory._bloodDonationEligibleMail(user.name, user.email, user.lastDonationDate);
+  }
 
+  static async bloodDonationEligibleGuestAdmin(name, email, donation) {
+    MailFactory._bloodDonationEligibleMail(name, email, donation.finalDate);
+  }
+
+  static async _bloodDonationEligibleMail(name, email, donationDate) {
     const subject = `Votre délai d'attente entre deux dons est bientôt terminé`;
-
     const htmlContent = await ejs.renderFile('./src/templates/emails/blood-donation-eligible-mail.ejs', {
-      user,
+      name,
       frontUrl: environment.frontUrl,
-      lastDonationDate: computeDate(user.lastDonationDate),
+      donationDate: computeDate(donationDate),
       FOOTER_TEAM
-    });
+    }).catch((err) => sendError(err));
 
     try {
-      SendgridService.sendMail({ subject, htmlContent, to: user.email });
+      SendgridService.sendMail({ subject, htmlContent, to: email });
     } catch(err) {/* Nothing to do */}
   }
 
@@ -142,7 +168,6 @@ export default class MailFactory {
 
 
   static async availableToNewDonationReminder(user, dayNbToSubtract) {
-    console.log(MailFactory.userDeclineNotification(user, dayNbToSubtract + 'DayReminder'))
     if(MailFactory.userDeclineNotification(user, dayNbToSubtract + 'DayReminder')) return;
 
     const data = DAYS_REMINDER_DATA[dayNbToSubtract.toString()];
@@ -172,6 +197,49 @@ export default class MailFactory {
 
     // if TRUE: User ==> wants <== the notification
     return !notificationSettings[field];
+  }
+
+  static async sendDonationAdminMail(name, email, donation) {
+    const subject = "Votre don créé sur Katellea";
+    const donationUrl = `${environment.frontUrl}/donation/${donation.donationToken}`;
+    const adminDonationUrl = `${environment.frontUrl}/donation/${donation.donationToken}?admin=${donation.adminToken}`;
+
+    const htmlContent = await ejs.renderFile('./src/templates/emails/guest-creator/donation-admin-mail.ejs',
+      { name, donationUrl, adminDonationUrl, FOOTER_TEAM }
+    );
+
+    try {
+      SendgridService.sendMail({ subject, htmlContent, to: email });
+    } catch(err) {/* Nothing to do */}
+  }
+
+  static async sendDonationDone(name, email, donation) {
+    const subject = "Merci pour votre don !";
+    const adminDonationUrl = `${environment.frontUrl}/donation/${donation.donationToken}?admin=${donation.adminToken}`;
+
+    const htmlContent = await ejs.renderFile('./src/templates/emails/guest-creator/donation-done.ejs',
+      { name, adminDonationUrl, FOOTER_TEAM }
+    );
+
+    try {
+      SendgridService.sendMail({ subject, htmlContent, to: email });
+    } catch(err) {/* Nothing to do */}
+  }
+
+  static async sendGuestCreatorMail(donation, donationType, name, email, actionAuthorName) {
+    const donationUrl = `${environment.frontUrl}/donation/${donation.donationToken}`;
+    const adminDonationUrl = `${environment.frontUrl}/donation/${donation.donationToken}?admin=${donation.adminToken}`;
+
+    const mailData = SEND_GUEST_CREATOR_MAIL[donationType];
+    const htmlContent = await ejs.renderFile('./src/templates/emails/guest-creator/' + mailData.template,
+      { name, donationUrl, adminDonationUrl, actionAuthorName, FOOTER_TEAM }
+    );
+
+    const subject = simpleTemplate(mailData.subject, { name: actionAuthorName })
+
+    try {
+      SendgridService.sendMail({ subject, htmlContent, to: email });
+    } catch(err) {/* Nothing to do */}
   }
 
 }

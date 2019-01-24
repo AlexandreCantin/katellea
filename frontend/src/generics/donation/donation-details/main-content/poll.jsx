@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import { DONATION_STATUS } from '../../../services/donation/donation';
+import { DONATION_STATUS } from '../../../../services/donation/donation';
 import PollDates from './poll-dates';
 import PollAnswer from './poll-answer';
 import PollForm from './poll-form';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
-import { extractKey } from '../../../services/helper';
-import DonationCard from '../../../generics/donation/donation-card/donation-card';
+import { extractKey, isEmpty } from '../../../../services/helper';
+import DonationCard from '../../../../generics/donation/donation-card/donation-card';
 
 class Poll extends Component {
 
@@ -21,18 +21,21 @@ class Poll extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, currentState) {
-    currentState.unavailablePollSuggestions = Poll.determineUnavaiblePollSuggestions(nextProps.user, nextProps.donation.pollSuggestions);
-
     if (currentState.donationPollOnGoing && nextProps.donation.isPollEnded()) {
       currentState.donationPollOnGoing = false;
       currentState.userPoll = undefined;
     }
+
+    if(isEmpty(nextProps.user)) return currentState;
+    currentState.unavailablePollSuggestions = Poll.determineUnavaiblePollSuggestions(nextProps.user, nextProps.donation.pollSuggestions);
 
     return currentState;
   }
 
 
   static determineUnavaiblePollSuggestions(user, pollSuggestions) {
+    if(isEmpty(user)) return [];
+
     let minimumDate = dayjs(user.minimumDate);
     return pollSuggestions.filter(pollSuggestion => dayjs(pollSuggestion.date).isBefore(minimumDate));
   }
@@ -80,8 +83,8 @@ class Poll extends Component {
         <DonationCard donation={donation} />
 
         <div className="poll-table">
-          <PollDates donation={donation} donationPollOnGoing={donationPollOnGoing} />
-          {donation.pollAnswers.map((pa, index) => <PollAnswer key={index} pollAnswer={pa} donationPollOnGoing={donationPollOnGoing} />)}
+          <PollDates donation={donation} />
+          {donation.pollAnswers.map((pa, index) => <PollAnswer key={index} donation={donation} pollAnswer={pa} />)}
           {donationPollOnGoing ? <PollForm donation={donation} unavailablePollSuggestions={unavailablePollSuggestions} /> : null}
         </div>
       </div>

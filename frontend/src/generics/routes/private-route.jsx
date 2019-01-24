@@ -50,7 +50,7 @@ class PrivateRouteComponent extends Component {
     const { component: Component } = this.props;
     const { hasUser, loading, doRedirect } = this.state;
 
-    if (hasUser) return <Component />;
+    if (hasUser) return <Component {...this.props} />;
     else if(!loading && doRedirect) return <Redirect to="/" noThrow />
 
     return null;

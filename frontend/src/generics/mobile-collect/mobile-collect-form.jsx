@@ -25,6 +25,11 @@ export default class MobileCollectSelectForm extends Component {
     };
   }
 
+  componentDidUpdate() {
+    // Notify parent to update their focusable elements (on modal mode only)
+    if(this.props.updateFocusableElements) this.props.updateFocusableElements();
+  }
+
   // SEARCH
   searchByLocalisation = (e) => {
     e.preventDefault();
@@ -107,7 +112,7 @@ export default class MobileCollectSelectForm extends Component {
         </div>
 
         {/* #Beta */}
-        <div className="alert warning">Dans le cadre de la beta, les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong></div>
+        <div className="alert warning">Dans le cadre de la beta, les collectes mobiles sont restreintes à la <strong>Loire-Atlantique</strong></div>
 
         <div className="suggestions">
           <FlashMessage scope="mobile-collect" />

@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
+import slugify from 'slugify';
 
-import store from '../../../services/store';
-import PhoneLink from '../../../generics/phone-link';
+import store from '../../../../services/store';
+import PhoneLink from '../../../../generics/phone-link';
 
-import { DonationService } from '../../../services/donation/donation.service';
-import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
+import { DonationService } from '../../../../services/donation/donation.service';
+import { FlashMessageService } from '../../../../services/flash-message/flash-message.service';
 
-import FlashMessage from '../../../generics/flash-message';
-import Modal from '../../../generics/modal';
-import { DONATION_STATUS } from '../../../enum';
+import FlashMessage from '../../../../generics/flash-message';
+import Modal from '../../../../generics/modal';
 
-import Validators from '../../../services/forms/validators';
+import Validators from '../../../../services/forms/validators';
 import { Form, Field } from 'react-final-form';
-import { validateForm } from '../../../services/forms/validate';
-import { isEmpty } from '../../../services/helper';
+import { validateForm } from '../../../../services/forms/validate';
+import { isEmpty } from '../../../../services/helper';
+import { DONATION_STATUS } from '../../../../enum';
 
 const FORM_RULES = {
   finalDate: [Validators.required(), Validators.dateAfterToday()],
@@ -28,23 +29,29 @@ export default class DonationDefinitiveDateForm extends Component {
 
     this.user = store.getState().user;
 
+    this.initialValues = {}
+    if(!isEmpty(this.user)) this.initialValues = { finalAttendees: [this.props.donation.createdBy.id] };
+    else this.initialValues = { finalAttendees: [this.props.donation.createdByGuest.name] };
+
     this.state = {
       showDefinitiveDateModal: false,
-      isCreator: this.props.donation.isCreator(this.user.id),
-      validateDateForm: new Form({
-      })
+      isCreator: this.props.isAdmin || this.props.donation.isCreator(this.user.id),
     };
   }
 
 
   addDefinitiveDateAndAttendees = (values) => {
-    // Compute user ids as Number
-    let finalAttendeesIdAsNumber = values.finalAttendees.map(id => parseInt(id, 10));
-    values.finalAttendees = finalAttendeesIdAsNumber;
+    const { finalAttendeesUser, finalAttendeesGuest } = DonationService.separateGuestAndUser(values.finalAttendees);
+
     values.status = DONATION_STATUS.DATE_CONFIRMED;
     values.finalDate = dayjs(values.finalDate).toISOString();
 
-    DonationService.updateDonation(values)
+    DonationService.updateDonation({
+      finalDate: dayjs(values.finalDate).toISOString(),
+      status: DONATION_STATUS.DATE_CONFIRMED,
+      finalAttendeesUser,
+      finalAttendeesGuest
+    }, this.props.adminToken)
       .then(() => {
         FlashMessageService.createSuccess('Le don a été mis à jour', 'definitive-date');
         setTimeout(() => this.closeDefinitiveDateModal(), 1500);
@@ -63,7 +70,7 @@ export default class DonationDefinitiveDateForm extends Component {
         <>
           <Form
             onSubmit={this.addDefinitiveDateAndAttendees}
-            initialValues={{finalAttendees: [this.props.donation.createdBy.id]}}
+            initialValues={this.initialValues}
             validate={values => validateForm(values, FORM_RULES)}
             render={({ handleSubmit, invalid, values }) => (
               <form className="form" onSubmit={handleSubmit}>
@@ -89,18 +96,20 @@ export default class DonationDefinitiveDateForm extends Component {
                 <div className="attendees">
                 {
                   this.props.donation.pollAnswers.map(pa => {
-                    const id = pa.author.id;
-                    const disabled = id === this.user.id;
-                    const isSelected = values.finalAttendees.includes(id);
+                    const id = pa.author ? pa.author.id : slugify(pa.username);
+                    const name = pa.username || pa.author.name;
+
+                    const disabled = isEmpty(this.user) ? this.props.donation.createdByGuest.name === name : id === this.user.id;
+                    const isSelected = isEmpty(this.user) ? values.finalAttendees.includes(pa.username) : values.finalAttendees.includes(id);
 
                     return (
-                      <Field key={pa.author.id} name="finalAttendees" type="checkbox" value={id} multiple="true">
+                      <Field key={id} name="finalAttendees" type="checkbox" value={pa.username} multiple="true">
                         {({ input, meta }) => (
                           <div className={isSelected ? 'attendee selected' : 'attendee'}>
                             <label>
-                                <span className="sr-only">Confirmer la présence de {pa.author.name}</span>
+                                <span className="sr-only">Confirmer la présence de {name}</span>
                                 <input {...input} type="checkbox" disabled={disabled} />
-                                <span>{pa.author.name}</span>
+                                <span>{name}</span>
                               </label>
                           </div>
                         )}
@@ -130,7 +139,7 @@ export default class DonationDefinitiveDateForm extends Component {
       <div className="donation-definitive-date block-base">
         <div className="alert warning">
           {
-            isEstablishmentDonation ? <h2>Action à réaliser : Prise de rendez-vous</h2> : <h2>Action à réaliser: indiquer l'heure retenue</h2>
+            isEstablishmentDonation ? <h2>Action à réaliser : Prendre rendez-vous</h2> : <h2>Action à réaliser: indiquer l'heure retenue</h2>
           }
         </div>
         {isEstablishmentDonation ? <p>Le choix des dates étant terminé. Il convient à l'organisateur de cette proposition de prendre rendez-vous auprès de {donation.establishment.name}.</p> : null}
