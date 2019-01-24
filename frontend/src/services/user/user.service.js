@@ -221,7 +221,7 @@ class UserServiceFactory {
         reject();
         return;
       } else if (response.status === 403 && isCreation) {
-        FlashMessageService.createError("La limite des comptes sans parrain/marraine -pour la beta- est atteinte.", 'registerForm');
+        FlashMessageService.createError("La limite des comptes -pour la beta- est atteinte.", 'registerForm');
         reject();
         return;
       }

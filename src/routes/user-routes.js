@@ -101,8 +101,7 @@ const createUser = async (req, res) => {
 
   {/* #Beta */}
   const userNumber = await User.countDocuments({});
-
-  if (!req.body.sponsoredByToken && userNumber >= environment.betaLimit) {
+  if (userNumber >= environment.betaLimit) {
     res.status(FORBIDDEN).send();
     return;
   }
