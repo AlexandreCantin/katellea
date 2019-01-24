@@ -11,14 +11,11 @@ import { hasOwnProperties } from '../helper';
     if TRUE: User ==> wants <== the notification
 */
 const NotificationSettingsSchema = mongoose.Schema({
-  bloodEligible: {
-    type: Boolean,
-    default: true
-  },
-  sponsorGodchildCreateDonation: {
-    type: Boolean,
-    default: true
-  }
+  bloodEligible: { type: Boolean, default: true },
+  sponsorGodchildCreateDonation: { type: Boolean, default: true },
+  '15DayReminder': { type: Boolean, default: true },
+  '30DayReminder':  { type: Boolean, default: true },
+  '90DayReminder' : { type: Boolean, default: true }
 });
 export const NotificationSettings = mongoose.model('NotificationSettings', NotificationSettingsSchema);
 

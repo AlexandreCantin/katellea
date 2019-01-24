@@ -13,17 +13,17 @@ export default class DonationReminderCron {
     const startDate = dayjs();
 
 
-    [15,30,90].forEach(dayToSubtract => notifyUsers(dayToSubtract));
+    [15,30,90].forEach(dayToSubtract => DonationReminderCron.notifyUsers(dayToSubtract));
 
     const endDate = dayjs();
     SlackService.sendCronMessage(`DonationDoneCron at ${endDate.format(DATE_HOUR_FORMAT)} - Durée : ${endDate.diff(startDate, 'seconds')} secondes`);
   }
 
-  notifyUser(dayNbToSubtract) {
+  static async notifyUsers(dayNbToSubtract) {
     let begin = dayjs().subtract(dayNbToSubtract, 'day').startOf('day');
     let end = dayjs().subtract(dayNbToSubtract, 'day').endOf('day');
 
-    const users = User.find({
+    const users = await User.find({
       minimumDate: { $gte: begin.toDate(), $lt: end.toDate() },
       lastDonationDate: { $ne: null },
       quotaExceeded: false

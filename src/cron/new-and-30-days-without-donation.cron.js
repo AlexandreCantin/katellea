@@ -11,13 +11,10 @@ export default class NewAnd30DaysWithoutDonationCron {
   static async run() {
     const startDate = dayjs();
 
-    let begin = dayjs().subtract(30, 'day').startOf('day');
-    let end = dayjs().subtract(30, 'day').endOf('day');
-
-    const users = User.find({
+    const users = await User.find({
       $where : "this.createdAt == this.minimumDate",
       currentDonation: null,
-      quotaExceeded: false
+      quotaExceeded: false,
     });
 
 
