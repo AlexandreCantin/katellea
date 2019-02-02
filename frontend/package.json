@@ -41,6 +41,7 @@
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-config-synacor": "^3.0.3",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "terser": "^3.14.1"
   }
 }
