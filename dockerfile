@@ -15,12 +15,12 @@ RUN npm install pm2 -g
 # Install Node project
 ADD package.json /usr/local/node_temp/
 WORKDIR /usr/local/node_temp/
-RUN npm install
+RUN npm install --only=production
 
 # Install React project
 ADD frontend/package.json /usr/local/react_temp/
 WORKDIR /usr/local/react_temp/
-RUN npm install
+RUN npm install --only=production
 
 # Copy all the folder
 WORKDIR /code/
