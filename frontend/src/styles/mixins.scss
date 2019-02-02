@@ -27,3 +27,9 @@
   }
 }
 
+@mixin  mx-input-style() {
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  border: solid 1px lightgrey;
+}

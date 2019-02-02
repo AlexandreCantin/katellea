@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import DonationEventDate from '../../../../pages/donation/events/event-date';
-import store from '../../../../services/store';
+import DonationEventDate from '../../../donation/donation-details/events/event-date';
 import { Link } from '@reach/router';
+import store from '../../../../services/store';
 
 export default class NotificationDonationDone extends Component {
 

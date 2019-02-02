@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 /**
  *
@@ -42,9 +44,16 @@ const TAB_KEY = 9;
 const ECHAP_KEY = 27;
 
 export default class Modal extends Component {
+  static defaultProps = { level: '1' }
+  static propTypes = { level: PropTypes.string }
 
   constructor(props) {
     super(props);
+
+    // For accessibility
+    this.modalSelector = '#modal.modal';
+    if(this.isSecondLevel()) this.modalSelector += '.level-2';
+    this.modalSelector += ' .modal-content';
 
     this.state = {
       role: this.props.role || 'dialog',
@@ -64,21 +73,21 @@ export default class Modal extends Component {
     this.activeElement = document.activeElement;
 
     // Register focusable nodes + Focus to the close button
-    this.focusableNodes = document.querySelector('#modal .modal-content').querySelectorAll(FOCUSABLE_ELEMENTS);
+    this.focusableNodes = document.querySelector(this.modalSelector).querySelectorAll(FOCUSABLE_ELEMENTS);
     this.currentFocusIndex = 0;
     this.focusableNodes[this.currentFocusIndex].focus();
 
     // Disabled global scroll
-    document.querySelector('html').classList.add('lock-scroll');
+    if(!this.isSecondLevel()) document.querySelector('html').classList.add('lock-scroll');
   }
 
   componentDidUpdate() {
-    this.focusableNodes = document.querySelector('#modal .modal-content').querySelectorAll(FOCUSABLE_ELEMENTS);
+    this.focusableNodes = document.querySelector(this.modalSelector).querySelectorAll(FOCUSABLE_ELEMENTS);
   }
 
   componentWillUnmount() {
     // Enabled scroll on the whole document
-    document.querySelector('html').classList.remove('lock-scroll');
+    if(!this.isSecondLevel()) document.querySelector('html').classList.remove('lock-scroll');
   }
 
   onKeyDown = (e) => {
@@ -87,10 +96,10 @@ export default class Modal extends Component {
 
     // Shift-alt-key => previous focusable element
     if (e.shiftKey && e.keyCode === TAB_KEY) {
-      e.preventDefault(); this.focusPreviousNode();
+      e.preventDefault(); e.stopPropagation(); this.focusPreviousNode();
     } else if (e.keyCode === TAB_KEY) {
       // Tab key only
-      e.preventDefault(); this.focusNextNode();
+      e.preventDefault(); e.stopPropagation(); this.focusNextNode();
     }
   }
   focusNextNode() {
@@ -103,8 +112,23 @@ export default class Modal extends Component {
     if (this.currentFocusIndex < 0) this.currentFocusIndex = this.focusableNodes.length - 1;
     this.focusableNodes[this.currentFocusIndex].focus();
   }
+  updateFocusableElements = () => {
+    const modalContent = document.querySelector(this.modalSelector);
+    if(!modalContent) return;
+
+    this.focusableNodes = modalContent.querySelectorAll(FOCUSABLE_ELEMENTS);
+
+    // Reset the focus on the first element if needed
+    if(this.currentFocusIndex >= this.focusableNodes.length) {
+      this.currentFocusIndex = 0;
+      this.focusableNodes[this.currentFocusIndex].focus();
+    }
+  }
 
 
+  isSecondLevel() {
+    return this.props.level === '2';
+  }
   computeCssClass() {
     let cssClasses = 'modal-body';
     if (this.props.cssClass) cssClasses = cssClasses.concat(' ').concat(this.props.cssClass);
@@ -115,7 +139,7 @@ export default class Modal extends Component {
     if (this.state.hideClose) return;
 
     // Focus on the last element
-    this.activeElement.focus();
+    this.activeElement.focus(); // FIXME: not working (element is always: <body></body>)
     this.props.onClose();
   }
 
@@ -123,14 +147,19 @@ export default class Modal extends Component {
     const { title, children } = this.props;
     const { role, hideClose } = this.state;
 
+    const childrenWithProps = React.Children.map(children, child => {
+      if(child === null) return null;
+      return React.cloneElement(child, { updateFocusableElements: this.updateFocusableElements })
+    });
+
     return ReactDOM.createPortal(
-      <div id="modal" aria-modal="true" tabIndex="-1" role={role} aria-label={title} onKeyDown={this.onKeyDown}>
+      <div id="modal" className={cx('modal', { 'level-2': this.props.level === '2'})} aria-modal="true" tabIndex="-1" role={role} aria-label={title} onKeyDown={this.onKeyDown}>
         <div className="dark-background" onClick={this.closeModal}>&nbsp;</div>
         <div className="modal-content">
           {!hideClose ? <button className="btn close" onClick={this.closeModal} ref={c => this.closeButton = c}><span className="sr-only">Close</span>X</button> : null}
           <div className="modal-title"><h1>{title}</h1></div>
 
-          <div className={this.computeCssClass()}>{children}</div>
+          <div className={this.computeCssClass()}>{childrenWithProps}</div>
         </div>
       </div>, document.body);
   }

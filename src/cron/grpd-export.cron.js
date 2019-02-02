@@ -26,7 +26,7 @@ export default class GRPDExportCron {
 
     donation.pollAnswers = donation.pollAnswers.filter(pa => pa.author === userId);
     donation.events = donation.events.filter(ev => ev.author === userId);
-    donation.finalAttendees = donation.finalAttendees.filter(faId => faId === userId);
+    donation.finalAttendeesUser = donation.finalAttendeesUser.filter(faId => faId === userId);
 
     // Populate author and establishment
     donation.createdBy = await User.findById(userId);

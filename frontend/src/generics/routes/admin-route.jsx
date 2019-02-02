@@ -64,7 +64,7 @@ class AdminRouteComponent extends Component {
 
     if(loading) return null;
     else if(doRedirect) return <Redirect to="/not-found" noThrow />
-    else if(isAdmin) return <Component />
+    else if(isAdmin) return <Component {...this.props} />
     return null;
   }
 

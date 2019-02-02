@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
-import { POLL_ANSWERS } from '../../../enum';
-import { DonationService } from '../../../services/donation/donation.service';
-import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
-import store from '../../../services/store';
+import { POLL_ANSWERS } from '../../../../enum';
+import { DonationService } from '../../../../services/donation/donation.service';
+import { FlashMessageService } from '../../../../services/flash-message/flash-message.service';
+import store from '../../../../services/store';
 
-import Validators from '../../../services/forms/validators';
+import Validators from '../../../../services/forms/validators';
 import { Form, Field } from 'react-final-form';
-import { validateForm } from '../../../services/forms/validate';
+import { validateForm } from '../../../../services/forms/validate';
+import { isEmpty, getLocalStorageValue, saveToLocalStorage } from '../../../../services/helper';
 
 
 export default class PollForm extends Component {
@@ -15,25 +16,29 @@ export default class PollForm extends Component {
   constructor(props) {
     super(props);
 
-    const user = store.getState().user;
+    this.user = store.getState().user;
 
-    let userAnswers = this.props.donation.pollAnswers.filter(pollAnswer => +pollAnswer.author.id === +user.id);
-    if (userAnswers.length) userAnswers = userAnswers[0].answers;
+    let userAnswers = [];
+    if(!isEmpty(this.user)) {
+      let userAnswers = this.props.donation.pollAnswers.filter(pollAnswer => pollAnswer.author ? +pollAnswer.author.id === +this.user.id : false);
+      if (userAnswers.length) userAnswers = userAnswers[0].answers;
+    }
 
-    // Will be initi
     this.localUserAnswers = {};
     this.formRules = {};
     this.generateFormDatas(userAnswers);
 
     this.state = {
       userHasAnswerPoll: userAnswers.length !== 0,
-      user: user
+      user: this.user
     };
   }
 
 
   static getDerivedStateFromProps(nextProps, currentState) {
-    let userAnswers = nextProps.donation.pollAnswers.filter(pollAnswer => +pollAnswer.author.id === +currentState.user.id);
+    if(isEmpty(currentState.user)) return currentState;
+
+    let userAnswers = nextProps.donation.pollAnswers.filter(pollAnswer => pollAnswer.author ? +pollAnswer.author.id === +currentState.user.id : false);
     currentState.userHasAnswerPoll= (userAnswers.length !== 0);
     return currentState;
   }
@@ -44,6 +49,12 @@ export default class PollForm extends Component {
   generateFormDatas(userAnswers) {
     this.formRules = {}
     this.localUserAnswers = {};
+
+    // Add name field if user is not logged
+    if(isEmpty(this.user)) {
+      this.formRules['name'] = [Validators.required(), Validators.minLength(3), Validators.maxLength(150), Validators.alphaDash()];
+      this.localUserAnswers['name'] = getLocalStorageValue('name');
+    }
 
     this.props.donation.pollSuggestions.forEach((ps, index) => {
       let fieldName = this.generatePollSuggestionName(index);
@@ -67,19 +78,58 @@ export default class PollForm extends Component {
   }
 
   savePollAnswer = (values) => {
+    const isUpdate = !this.state.userHasAnswerPoll;
+
+    // Guest username
+    let username;
+    if(!this.user.id) {
+      username = values.name.trim();
+      delete values.name;
+      if(username) saveToLocalStorage({ name: username });
+
+      // Check if the username is already in use
+      const usedUsername = this.props.donation.pollAnswers.map(pa => pa.username.toUpperCase() || pa.author.name.toUpperCase());
+      if(usedUsername.includes(username.toUpperCase())) {
+        FlashMessageService.createError('Ce nom est déjà utilisée.', 'donation');
+        return;
+      }
+    }
+
     let pollAnswers = Object.values(values);
-    DonationService.savePollAnswer(this.props.donation, pollAnswers, !this.state.userHasAnswerPoll)
-      .then(() => {
-        FlashMessageService.createSuccess('Vos choix ont été pris en compte.', 'current-donation');
-      })
-      .catch(() => {
-        FlashMessageService.createError('Erreur lors de la sauvegarde de vos réponses. Veuillez réessayer ultérieurement', 'current-donation');
-      });
+    const data = username ? { answers: pollAnswers, username } : { answers: pollAnswers };
+
+    DonationService.savePollAnswer(this.props.donation, data, isUpdate, username ? false : true)
+      .then(() => FlashMessageService.createSuccess('Vos choix ont été pris en compte.', 'donation'))
+      .catch(() => FlashMessageService.createError('Erreur lors de la sauvegarde de vos réponses. Veuillez réessayer ultérieurement', 'donation'));
   }
 
+  renderNameField() {
+    return (
+      <div className="name-field">
+        <Field name="name">
+          {({ input, meta }) => (
+            <>
+              <label htmlFor="name">Votre nom :</label>
+              <input {...input} id="name" />
+
+              { meta.error && meta.touched ?
+                <span className="alert error">
+                  {meta.error === 'required' ? <span>Le champ 'Nom' est obligatoire. Veuillez renseigner ce champs.</span> : null}
+                  {meta.error === 'minLength' ? <span>Le champ 'Nom' doit comporter minimum 3 caractères.</span> : null}
+                  {meta.error === 'maxLength' ? <span>Le champ 'Nom' ne doit pas dépasser 150 caractères.</span> : null}
+                  {meta.error === 'alphaDash' ? <span>Seuls les lettres sont autorisées.</span> : null}
+                </span> : null}
+            </>
+          )}
+        </Field>
+      </div>
+    )
+  }
   render() {
     const { donation } = this.props;
     const { userHasAnswerPoll, user } = this.state;
+
+    const hasUser = !isEmpty(user);
 
     return (
       <Form
@@ -88,7 +138,7 @@ export default class PollForm extends Component {
         validate={values => validateForm(values, this.formRules)}
         render={({ handleSubmit, invalid }) => (
           <form onSubmit={handleSubmit} className="poll-form text-center">
-            <div>{user.name}</div>
+            { hasUser ? <div>{user.name}</div> : this.renderNameField() }
 
             {
               donation.pollSuggestions.map((ps, index) => {
@@ -137,7 +187,7 @@ export default class PollForm extends Component {
               })
             }
             <div className="text-center">
-              <input className="btn" type="submit" value={userHasAnswerPoll ? 'Modifier' : 'Valider'} disabled={invalid} />
+              <input className="btn" type="submit" value={hasUser && userHasAnswerPoll ? 'Modifier' : 'Valider'} disabled={invalid} />
             </div>
           </form>
         )} />

@@ -17,10 +17,10 @@ export const DONATION_VISIBILITY = {
 
 export default class Donation {
 
-  constructor({ id, status, visibility, establishment, mobileCollect, donationType, pollSuggestions, pollAnswers, finalDate, events, finalAttendees, statisticsDate, createdBy, donationToken, createdAt, updatedAt }) {
+  constructor({ id, isPublicDonation, status, establishment, mobileCollect, donationType, pollSuggestions, pollAnswers, finalDate, events, finalAttendeesUser, finalAttendeesGuest, statisticsDate, createdBy, createdByGuest, donationToken, createdAt, updatedAt }) {
     this.id = id;
+    this.isPublicDonation = isPublicDonation;
     this.status = status;
-    this.visibility = visibility;
     this.mobileCollect = mobileCollect;
     this.establishment = establishment ? Establishment.fromJSON(establishment) : null;
     this.donationType = donationType;
@@ -28,10 +28,12 @@ export default class Donation {
     this.pollAnswers = pollAnswers || [];
     this.finalDate = new Date(finalDate);
     this.events = events || [];
-    this.finalAttendees = finalAttendees || [];
+    this.finalAttendeesUser = finalAttendeesUser || [];
+    this.finalAttendeesGuest = finalAttendeesGuest || [];
     this.statisticsDate = statisticsDate;
     this.donationToken = donationToken;
     this.createdBy = createdBy;
+    this.createdByGuest = createdByGuest;
     this.createdAt = new Date(createdAt);
     this.updatedAt = new Date(updatedAt);
   }
@@ -39,23 +41,23 @@ export default class Donation {
   toJSON() {
     return {
       status: this.status,
-      visibility: this.visibility,
+      isPublicDonation: this.isPublicDonation,
       mobileCollect: this.mobileCollect,
       establishmentId: this.establishment ? this.establishment.id : null,
       donationType: this.donationType,
       pollSuggestions: this.pollSuggestions,
       finalDate: this.finalDate,
-      finalAttendees: this.finalAttendees,
-      // pollAnswers: this.pollAnswers,
-      // events: this.events,
+      finalAttendeesGuest: this.finalAttendeesGuest,
+      finalAttendeesUser: this.finalAttendeesUser,
+      createdByGuest: this.createdByGuest
     };
   }
 
   copy() {
     return new Donation({
       id: this.id,
+      isPublicDonation: this.isPublicDonation,
       status: this.status,
-      visibility: this.visibility,
       establishment: this.establishment,
       mobileCollect: this.mobileCollect,
       donationType: this.donationType,
@@ -63,10 +65,12 @@ export default class Donation {
       pollAnswers: this.pollAnswers,
       finalDate: this.finalDate,
       events: this.events,
-      finalAttendees: this.finalAttendees,
+      finalAttendeesGuest: this.finalAttendeesGuest,
+      finalAttendeesUser: this.finalAttendeesUser,
       statisticsDate: this.statisticsDate,
       donationToken: this.donationToken,
       createdBy: this.createdBy,
+      createdByGuest: this.createdByGuest,
       createdAt: dateFormatYearMonthDay(this.createdAt),
       updatedAt: dateFormatYearMonthDay(this.updatedAt)
     });
@@ -90,13 +94,14 @@ export default class Donation {
   }
 
   isCreator(userId) {
+    if(!this.createdBy) return false;
     return +this.createdBy.id === +userId;
   }
   hasEstablishment() {
     return this.establishment !== undefined && this.establishment !== null;
   }
   isUserFinalAttendee(userId) {
-    return this.finalAttendees.indexOf(+userId) !== -1;
+    return this.finalAttendeesUser.indexOf(+userId) !== -1;
   }
 
   isEstablishmentDonation() {
@@ -113,5 +118,9 @@ export default class Donation {
 
   isMultipleDay() {
     return this.pollSuggestions[0].hasOwnProperty('date');
+  }
+
+  getCreatorName() {
+    return this.createdBy ? this.createdBy.name : this.createdByGuest.name;
   }
 }

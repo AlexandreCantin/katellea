@@ -12,7 +12,7 @@ const HeaderHome = () => {
     <header className="home">
       <div className="logo-container fl">
         <Link to="/" title="Retour à l'accueil du site" className="no-wrap">
-          <img src="katellea-logo.svg" alt="K" />
+          <img src="/katellea-logo.svg" alt="K" />
           <span>atellea</span>
           <BetaBadge />
         </Link>

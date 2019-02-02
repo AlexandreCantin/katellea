@@ -195,7 +195,7 @@ class UserServiceFactory {
   }
 
 
-  saveKatelleaUser(user, isCreation = false, sponsoredByToken = '', donationToken = '', socialNetworkKey='') {
+  saveKatelleaUser(user, isCreation = false, sponsoredByToken = '', socialNetworkKey='') {
     let url = `${environment.SERVER_URL}${environment.USER_ENDPOINT}`;
     let headers = getKatelleaTokenHeaders(!isCreation);
 
@@ -203,7 +203,6 @@ class UserServiceFactory {
 
     let userData = user.toJSON();
     if (sponsoredByToken) userData.sponsoredByToken = sponsoredByToken;
-    if (donationToken) userData.donationToken = donationToken;
     if(isCreation) userData.socialNetworkKey = socialNetworkKey;
 
     return new Promise(async (resolve, reject) => {

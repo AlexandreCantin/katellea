@@ -1,5 +1,6 @@
 import React from 'react';
-import { dateFormatLongDayDayMonthYearHourMinut } from '../../../services/date-helper';
+import { dateFormatLongDayDayMonthYearHourMinut } from '../../../../services/date-helper';
+import slugify from 'slugify';
 
 const DonationDateConfirmed = (props) => {
   const { donation } = props;
@@ -14,7 +15,8 @@ const DonationDateConfirmed = (props) => {
 
       <div className="attendees">
         <h3>Personnes inscrites</h3>
-        <ul>{donation.finalAttendees.map(attendee => (<li key={attendee.id}>{attendee.name}</li>))}</ul>
+        <ul>{donation.finalAttendeesUser.map(attendee => (<li key={attendee.id}>{attendee.name}</li>))}</ul>
+        <ul>{donation.finalAttendeesGuest.map(attendeeName => (<li key={slugify(attendeeName)}>{attendeeName}</li>))}</ul>
       </div>
 
       <div className="selfie alert info">

@@ -44,13 +44,26 @@ class DonationServiceFactory {
   async getDonationByToken(donationToken) {
     let url = `${environment.SERVER_URL}${environment.DONATION_TOKEN_ENDPOINT}${donationToken}`;
     return new Promise(async (resolve, reject) => {
-      let response = await fetch(url);
-      let donationsData = await response.json();
-      if (donationsData) {
-        resolve(donationsData);
-        return;
-      }
+      try {
+        let response = await fetch(url);
+        let donationData = await response.json();
+        if (donationData) {
+          this.saveDonationInLocalStore(donationData);
+          resolve();
+          return;
+        }
+      } catch(err) {}
 
+      reject();
+    });
+  }
+
+  async isDonationAdmin(donationToken, adminToken) {
+    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/${donationToken}/is-admin/${adminToken}`;
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url);
+      if(response.status === 200) { return resolve(true); }
       reject();
     });
   }
@@ -96,7 +109,7 @@ class DonationServiceFactory {
     return hourValue.replace(':', 'h');
   }
 
-  updateDonation(data) {
+  updateDonation(data, adminToken) {
     let donation = store.getState().donation.copy();
 
     Object.keys(data).map(key => {
@@ -104,17 +117,19 @@ class DonationServiceFactory {
       return donation[key] = data[key];
     });
 
-    return this.saveDonation(donation);
+    return this.saveDonation(donation, adminToken);
   }
 
 
-  saveDonation(donation, isCreation = false) {
+  saveDonation(donation, adminToken = '', isCreation = false, acceptEligibleMail = false) {
     let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}`;
-    if (!isCreation) url = `${url}/${donation.id}`;
+    if (!isCreation) url = `${url}/${donation.donationToken}`;
+    if(adminToken) url = `${url}?adminToken=${adminToken}`;
 
-    let headers = getKatelleaTokenHeaders();
+    let headers = getKatelleaTokenHeaders(!adminToken);
 
     let donationData = donation.toJSON();
+    if(acceptEligibleMail) donationData.acceptEligibleMail = acceptEligibleMail;
 
     return new Promise(async (resolve, reject) => {
       let response = await fetch(url, { headers, method: isCreation ? 'POST' : 'PUT', body: JSON.stringify(donationData) });
@@ -122,7 +137,7 @@ class DonationServiceFactory {
         let donationData = await response.json();
         if (donationData) {
           this.saveDonationInLocalStore(donationData);
-          resolve();
+          resolve(donationData);
           return;
         }
       }
@@ -131,12 +146,32 @@ class DonationServiceFactory {
   }
 
 
-  savePollAnswer(donation, answers, isCreation = false) {
-    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/${donation.id}${environment.POLL_ANSWER_ENDPOINT}`;
-    let headers = getKatelleaTokenHeaders();
+  savePollAnswer(donation, answersData, isCreation = false, addToken = undefined) {
+    const method = isCreation ? 'POST' : 'PUT';
+    const headers = getKatelleaTokenHeaders(addToken);
+    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/${donation.donationToken}${environment.POLL_ANSWER_ENDPOINT}`;
 
     return new Promise(async (resolve, reject) => {
-      let response = await fetch(url, { headers, method: isCreation ? 'POST' : 'PUT', body: JSON.stringify({ answers }) });
+      let response = await fetch(url, { headers, method, body: JSON.stringify(answersData) });
+      if (response.status === 200) {
+        let donationData = await response.json();
+        if (donationData) {
+          this.saveDonationInLocalStore(donationData);
+          return resolve();
+        }
+      }
+      reject();
+    });
+  }
+
+
+  saveComment(donation, commentData, isCreation = false, addToken = false) {
+    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/${donation.donationToken}${environment.COMMENT_ENDPOINT}`;
+    if (!isCreation) url = `${url}/${commentData.commentId}`;
+    let headers = getKatelleaTokenHeaders(addToken);
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url, { headers, method: isCreation ? 'POST' : 'PUT', body: JSON.stringify(commentData) });
       if (response.status === 200) {
         let donationData = await response.json();
         if (donationData) {
@@ -149,29 +184,16 @@ class DonationServiceFactory {
     });
   }
 
+  deleteDonation(donation, adminToken='', comment='') {
+    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/${donation.donationToken}`;
+    if(adminToken) url = `${url}?adminToken=${adminToken}`;
 
-  saveComment(donation, comment, isCreation = false) {
-    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/${donation.id}${environment.COMMENT_ENDPOINT}`;
-    if (!isCreation) url = `${url}/${comment.id}`;
-    let headers = getKatelleaTokenHeaders();
+    let headers = getKatelleaTokenHeaders(!adminToken);
 
     return new Promise(async (resolve, reject) => {
-      let response = await fetch(url, { headers, method: isCreation ? 'POST' : 'PUT', body: JSON.stringify(comment) });
-      if (response.status === 200) {
-        let donationData = await response.json();
-        if (donationData) {
-          this.saveDonationInLocalStore(donationData);
-          resolve();
-          return;
-        }
-      }
+      let response = await fetch(url, { headers, method: 'DELETE', body: JSON.stringify({ comment }) });
+      if(response.status === 200) { return resolve(true); }
       reject();
-    });
-  }
-
-  deleteDonation() {
-    store.dispatch({
-      type: DONATION_ACTIONS.DELETE_DONATION
     });
   }
 
@@ -182,6 +204,20 @@ class DonationServiceFactory {
       type: DONATION_ACTIONS.SET_DONATION,
       data: donationData
     });
+  }
+
+  // Helper
+  separateGuestAndUser(finalAttendees) {
+    let finalAttendeesUser = [];
+    let finalAttendeesGuest = [];
+
+    // Compute user ids as Number
+    finalAttendees.forEach(finalAttendee => {
+      if(Number.isInteger(+finalAttendee)) finalAttendeesUser.push(+finalAttendee);
+      else finalAttendeesGuest.push(finalAttendee)
+    });
+
+    return { finalAttendeesUser, finalAttendeesGuest };
   }
 }
 

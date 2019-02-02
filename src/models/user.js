@@ -17,7 +17,7 @@ const NotificationSettingsSchema = mongoose.Schema({
   '30DayReminder':  { type: Boolean, default: true },
   '90DayReminder' : { type: Boolean, default: true }
 });
-export const NotificationSettings = mongoose.model('NotificationSettings', NotificationSettingsSchema);
+const NotificationSettings = mongoose.model('NotificationSettings', NotificationSettingsSchema);
 
 const UserSchema = mongoose.Schema({
   name: String,

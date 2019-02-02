@@ -48,7 +48,7 @@ export default class UserStatisticsCron {
       }
 
       // Add global + user statistics
-      donation.finalAttendees.forEach(attendee => {
+      donation.finalAttendeesUser.forEach(attendee => {
         const user = User.findById(attendee.id);
         const isSponsored = user.hasOwnProperty('sponsor');
 
@@ -107,6 +107,18 @@ export default class UserStatisticsCron {
 
         user.save();
       });
+
+      // Global stats for public donation
+      donation.finalAttendeesGuest.forEach(() => {
+        switch (donation.donationType) {
+          case DONATION_TYPE.BLOOD:
+            dayStat.dayBloodDonation = dayStat.dayBloodDonation + 1;
+          case DONATION_TYPE.PLASMA:
+            dayStat.dayPlasmaDonation = dayStat.dayPlasmaDonation + 1;
+          case DONATION_TYPE.PLATELET:
+            dayStat.dayPlateletDonation = dayStat.dayPlateletDonation + 1;
+        };
+      })
 
       // Make donation as 'treated'
       donation.status = DONATION_STATUS.STATISTICS;

@@ -62,10 +62,24 @@ $event-bg-color: lightblue;
 #donation-page {
 
   .main-content {
-    grid-template-columns: 3fr 1fr;
-    @media (max-width: $min-width-tablet) {
-      grid-template-columns: 1fr;
-      .actions { grid-column: span 1; }
+    &.no-user {
+      max-width: 1600px;
+      margin: 80px auto 20px auto;
+      .main-content {
+        display: table; display: grid; /* table for old browser compatibility */
+        grid-gap: 30px;
+        grid-template-columns: 3fr 1fr;
+        margin-top: 30px;
+
+      }
+
+      @media (max-width: $min-width-tablet) {
+        margin: 80px 20px 20px 20px;
+        .main-content {
+          grid-template-columns: 1fr;
+          .actions { grid-column: span 1; }
+        }
+      }
     }
   }
 
@@ -74,12 +88,16 @@ $event-bg-color: lightblue;
     p { margin-bottom: 20px; }
   }
 
-  .actions {
+  .main-content > .actions {
     grid-column: span 2;
+    @media (max-width: $min-width-tablet) { grid-column: span 1; }
+    // margin-top: 30px;
+
     .donation-actions { float: left; }
     .share-actions {
       float: right;
       a, img { width: 30px; height: 30px; }
+      .btn { padding: 0 0 0 15px; }
     }
   }
 
@@ -126,7 +144,12 @@ $event-bg-color: lightblue;
 
     .comment-input {
       padding: 10px;
-      textarea { width: 100%; border: solid 1px lightgrey; }
+
+      input { padding: 5px 10px; }
+      .name-field { margin-bottom: 10px; }
+      input, textarea { border: solid 1px lightgrey;}
+      input, textarea, .alert { width: 100%; }
+      .alert { display: inline-block; margin: 5px 0; }
     }
 
     .donation-comment {
@@ -181,6 +204,19 @@ $event-bg-color: lightblue;
     }
 
     .poll-answer {
+      img {
+        width: 20px;
+        vertical-align: bottom;
+        margin-right: 5px;
+      }
+
+      .btn.reset {
+        padding: 5px;
+        margin-left: 5px;
+        text-align: center;
+        img { margin: 0; height: 16px; vertical-align: text-top; }
+      }
+
       &:last-child > div { border-bottom: solid 1px $border-color; }
       > div {
         border-top: solid 1px $border-color;
@@ -201,6 +237,24 @@ $event-bg-color: lightblue;
   }
 
   .poll-form {
+
+    .name-field {
+      display: flex !important;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      .alert {
+        margin-top: 10px;
+        max-width: 250px;
+      }
+      input {
+        margin-top: 12px;
+        padding: 5px;
+        max-width: 250px;
+        text-align: center;
+      }
+    }
+
     > div {
       border-top: solid 1px $border-color;
       border-left: solid 1px $border-color;
@@ -223,6 +277,10 @@ $event-bg-color: lightblue;
     }
   }
 
+  .donation-confirmed-date {
+    margin-bottom: 20px;
+  }
+
 }
 
 #modal .modal-body.quit-donation {
@@ -233,12 +291,24 @@ $event-bg-color: lightblue;
   }
 }
 
-#modal .modal-body.donation-done {
-  .thank-you > h2 {
-    display: inline-block; margin: 0 30px;
-    font-size: 2em;
+.no-donation-found {
+  margin-top: 30px;
+  .btn {
+    display: inline-block;
+    margin-top: 10px;
+    color: white;
+    &.small { margin-right: 30px; }
   }
-  img { height: 50px; }
+}
+
+.donation-done {
+  .thank-you {
+    > h2 {
+      display: inline-block; margin: 0 30px;
+      font-size: 2em;
+    }
+    img { height: 50px; }
+  }
   > div:first-child {
     div {
       display: inline-flex;
@@ -256,7 +326,7 @@ $event-bg-color: lightblue;
   }
 }
 
-#modal .modal-body.definitive-date-form {
+#modal .modal-body.definitive-date-form, #modal .modal-body.definitive-attendees-form {
 
   .attendees {
     display: table; display: grid; /* table for old browser compatibility */
@@ -279,5 +349,34 @@ $event-bg-color: lightblue;
         > span, input { align-self: center; }
       }
     }
+  }
+
+  .btn-container { margin-top: 20px; grid-column: span 2; }
+}
+
+#modal .modal-body.edit-donation-answer {
+  .poll-table {
+    display: grid;
+    width: 100%;
+    grid-row-gap: 20px;
+
+    > div, > form > div:first-child { display: grid; }
+    &.1-size > div, > form > div:first-child{ grid-template-columns: repeat(1, 1fr); }
+    &.2-size > div, > form > div:first-child{ grid-template-columns: repeat(2, 1fr); }
+    &.3-size > div, > form > div:first-child{ grid-template-columns: repeat(3, 1fr); }
+    &.4-size > div, > form > div:first-child{ grid-template-columns: repeat(4, 1fr); }
+    &.5-size > div, > form > div:first-child{ grid-template-columns: repeat(5, 1fr); }
+
+    .date {
+      > span:first-child { display: block; }
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .button-container {
+      padding-top: 30px;
+      text-align: center;
+    }
+
   }
 }

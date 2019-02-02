@@ -24,10 +24,12 @@ export default class DonationToSubscribe extends Component {
     const isEstablishmentDonation = donation.establishment !== null;
     const isMultipleDay = donation.pollSuggestions[0].hasOwnProperty('date');
 
+    const name = donation.getCreatorName();
+
     return (
       <div className="donation-to-subscribe">
         <div>
-          <div><span className="bold">Créé par</span> : {donation.createdBy.name}, le {dateFormatShortDayDayMonthYear(donation.createdAt)}</div>
+          <div><span className="bold">Créé par</span> : {name}, le {dateFormatShortDayDayMonthYear(donation.createdAt)}</div>
           <div><span className="bold">Lieu</span>  : {isEstablishmentDonation ? `${donation.establishment.name}, ${donation.establishment.address}` : donation.mobileCollect}</div>
           <div className="dates">
             <div className="label"><span className="bold">Dates proposées</span> :</div>

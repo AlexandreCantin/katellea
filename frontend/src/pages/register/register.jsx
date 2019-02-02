@@ -8,7 +8,7 @@ import SponsorCard from '../../generics/sponsor-card/sponsor-card';
 import User from '../../services/user/user';
 import { UserService } from '../../services/user/user.service';
 
-import { getSponsorAndDonationFromUrl } from '../../services/token.service';
+import { getSponsorFromUrl } from '../../services/token.service';
 import DonationCard from '../../generics/donation/donation-card/donation-card';
 import { isEmpty } from '../../services/helper';
 import store from '../../services/store';
@@ -26,7 +26,6 @@ require('./register.scss');
 
 const FROM_RULES = {
   sponsoredByToken: [],
-  donationToken: [],
   gender: [],
   name: [Validators.required(), Validators.minLength(3), Validators.maxLength(100)],
   email: [Validators.required(), Validators.email()],
@@ -63,7 +62,7 @@ export default class Register extends Component {
     });
 
     // Get sponsor/donation datas
-    let data = await getSponsorAndDonationFromUrl();
+    let data = await getSponsorFromUrl();
     if (data.sponsorUser) this.state.sponsorUser = data.sponsorUser;
     if (data.donation) this.state.donation = data.donation;
 
@@ -83,14 +82,12 @@ export default class Register extends Component {
     if (!isEmpty(userTempProfile) && userTempProfile.hasCompleteInformations()) {
 
       let sponsorToken = this.state.sponsorUser ? this.state.sponsorUser.sponsorToken : '';
-      let donationToken = this.state.donation ? this.state.donation.donationToken : '';
 
       // Create form
       this.setState({
         showForm: true,
         initValues: {
           sponsoredByToken: sponsorToken,
-          donationToken,
           gender: userTempProfile.gender,
           name: userTempProfile.name,
           email: userTempProfile.email
@@ -131,7 +128,7 @@ export default class Register extends Component {
     });
 
     // Save it
-    UserService.saveKatelleaUser(user, true, values.sponsoredByToken, values.donationToken, UserService.generateSocialNetworkKey());
+    UserService.saveKatelleaUser(user, true, values.sponsoredByToken, UserService.generateSocialNetworkKey());
   }
 
 
@@ -164,9 +161,8 @@ export default class Register extends Component {
                 Cette information nous permet ainsi de gérer cela. En son absence, nous prendrons 6 dons par an."
             />
 
-            <Field name="gender">{({ input }) => (<input {...input} type="hidden" name="gender" />)}</Field>
-            <Field name="sponsoredByToken">{({ input }) => (<input {...input} type="hidden" name="sponsoredByToken" />)}</Field>
-            <Field name="donationToken">{({ input }) => (<input {...input} type="hidden" name="donationToken" />)}</Field>
+            <Field name="gender">{({ input }) => (<input {...input} type="hidden" name="gender" readOnly />)}</Field>
+            <Field name="sponsoredByToken">{({ input }) => (<input {...input} type="hidden" name="sponsoredByToken" readOnly />)}</Field>
 
             <Field name="name">
               {({ input, meta }) => (

@@ -1,22 +1,21 @@
 import React from 'react';
-import PollSuggestionDate from '../../../generics/poll-suggestion-date';
+import PollSuggestionDate from '../../../../generics/poll-suggestion-date';
 
-const PollDates = (props) => {
+const PollDates = ({ donation, removeTrimDiv }) => {
 
-  const { donation, donationPollOnGoing } = props;
-
+  const donationPollOnGoing = donation.isPollOnGoing();
   const nbPollSuggestions = donation.pollSuggestions.length;
   const isMultipleDay = donation.isMultipleDay();
 
   return (
     <div className="poll-header">
-      <div>&nbsp;</div>
+      { removeTrimDiv ? null : <div>&nbsp;</div> }
       {
         donation.pollSuggestions.map(
           (pollSuggestion, index) => <PollSuggestionDate key={index} isMultipleDay={isMultipleDay} pollSuggestion={pollSuggestion} index={index} nbPollSuggestions={nbPollSuggestions} />
         )
       }
-      {donationPollOnGoing ? <div>&nbsp;</div> : null}
+      { removeTrimDiv ? null : (donationPollOnGoing ? <div>&nbsp;</div> : null) }
     </div>
   );
 }

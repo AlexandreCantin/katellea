@@ -1,6 +1,6 @@
 import Notification from '../models/notification';
 
-export const createNotification = async ({ name, forUser, date, donationId, author, data }) => {
+export const createNotification = async ({ name, forUser, date, donationId, username, author, data }) => {
   const notification = new Notification();
 
   if(!name) throw new Error('Missing parameters : name');
@@ -11,6 +11,7 @@ export const createNotification = async ({ name, forUser, date, donationId, auth
   notification.date = date;
   notification.donationId = donationId;
   notification.author = author;
+  notification.username = username;
   notification.dataObject = data;
   await notification.save();
 };

@@ -4,12 +4,12 @@ import DonationEventDate from './event-date';
 const DonationEventCreation = (props) => {
 
   const { event } = props;
-  const author = event.author;
+  const name = event.username || event.author.name;
 
   return (
     <div className="event donation-comment-create">
       <p>
-        Sondage créé par {author.name}, <DonationEventDate date={event.date} />
+        Sondage créé par {name}, <DonationEventDate date={event.date} />
       </p>
     </div>
   );

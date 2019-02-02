@@ -39,7 +39,8 @@ const Press = lazy(() => import('./pages/press/press'));
 const ContactForm = lazy(() => import('./pages/contact-form/contact-form'));
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
 const Profile = lazy(() => import('./pages/profile/profile'));
-const CurrentDonation = lazy(() => import('./pages/donation/donation'));
+const CurrentDonation = lazy(() => import('./pages/donation/current-donation'));
+const Donation = lazy(() => import('./pages/donation/donation'));
 const DonationHistory = lazy(() => import('./pages/history/donation-history'));
 
 const AdminHome = lazy(() => import('./pages/admin/home/admin-home'));
@@ -78,6 +79,7 @@ class App extends Component {
                 <CouldHaveUserRoute component={OurMissionAndTeam} path="/notre-mission-et-notre-equipe" />
                 <CouldHaveUserRoute component={ContactForm} path="/nous-contacter" />
                 <CouldHaveUserRoute component={Press} path="/presse" />
+                <CouldHaveUserRoute component={Donation} path="/donation/:donationToken" />
 
                 <PrivateRoute component={Dashboard} path="/tableau-de-bord" />
                 <PrivateRoute component={Profile} path="/mon-profil" />

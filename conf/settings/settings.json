@@ -68,7 +68,7 @@
     "donationReminderCron": "18 30 * * *"
   },
   "daysBeforeStatisticsAnalytics": 5,
-  "weeksDelayBeforeEligibilty": 3,
+  "weeksDelayBeforeEligibilty": 1,
 
   "mail": {
     "redirectAllMailTo": "",

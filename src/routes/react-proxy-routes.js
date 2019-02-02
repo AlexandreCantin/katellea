@@ -13,30 +13,35 @@ const TITLE_DEFAULT = "Accompagnement don du sang - Katellea";
 const DESCRIPTION_DEFAULT = "Parrainer et accompagner un proche pour son premier don du sang";
 
 const computeTitleAndDescription = async (path, req) => {
-  if(path !== 'token') return {};
-
+  // TOKEN routes
   let title = TITLE_DEFAULT;
   let description = DESCRIPTION_DEFAULT;
 
-  // Sponsor token
-  if(req.query.hasOwnProperty('sponsor')) {
-    try {
-      const sponsor = await User.findOne({ sponsorToken : removeOrigin(req.query.sponsor) });
-      title = `Don du sang : Faites-vous parrainer par ${sponsor.name}`;
-    } catch(err) {}
+  if(path === 'token') {
+
+    // Sponsor token
+    if(req.query.hasOwnProperty('sponsor')) {
+      try {
+        const sponsor = await User.findOne({ sponsorToken : removeOrigin(req.query.sponsor) });
+        title = `Don du sang : Faites-vous parrainer par ${sponsor.name}`;
+      } catch(err) {}
+    }
+
+    return { title, description };
   }
 
-  // Donation token
-  else if(req.query.hasOwnProperty('donation')) {
+  // DONATION ROUTES
+  if(path.startsWith('/donation') && req.params.doantionToken) {
     try {
-      const donation = await Donation.findOne({ donationToken : removeOrigin(req.query.donation) })
+      const donation = await Donation.findOne({ donationToken : req.params.doantionToken })
         .populate({ path: 'createdBy', model: 'User', select: User.publicFields });
 
-      title = `Rejoignez la proposition de don faite par ${donation.createdBy.name}`;
+      const name = donation.getCreatorName();
+      title = `Rejoignez la proposition de don faite par ${name}`;
+      return { title, description };
+
     } catch(err) {}
   }
-
-  return { title, description };
 }
 
 const removeOrigin = (token) => {
@@ -48,6 +53,9 @@ const removeOrigin = (token) => {
 
 const reactRouteData = {
   'root': {
+    title: 'Parrainage pour le don du sang, plasma et plaquettes | Katellea'
+  },
+  'donation': {
     title: 'Parrainage pour le don du sang, plasma et plaquettes | Katellea'
   },
   'create-account': {
@@ -91,6 +99,7 @@ rootRoutes.get('/', async (req, res) => res.render('index', await getRouteData('
 rootRoutes.get('/creer-votre-compte', async (req, res) => res.render('index', await getRouteData('create-account', '/creer-votre-compte')));
 
 rootRoutes.get('/email-verification', async (req, res) => res.render('index', await getRouteData('root', '/')));
+rootRoutes.get('/donation/:donationToken', async (req, res) => res.render('index', await getRouteData('donation', '/donation', req)));
 rootRoutes.get('/token', async (req, res) => res.render('index', await getRouteData('token', '/token', req)));
 
 rootRoutes.get('/mentions-legales', async (req, res) => res.render('index', await getRouteData('legal-terms', '/mentions-legales')));

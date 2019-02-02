@@ -39,10 +39,7 @@
   }
 
   input[type='text'], input[type='email'], input[type='date'], select {
-    padding: 10px;
-    width: 100%;
-    border-radius: 20px;
-    border: solid 1px $border-color;
+    @include mx-input-style();
   }
 
   input[type='checkbox'] {

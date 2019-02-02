@@ -1,33 +1,25 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
 
 import store from '../../services/store';
 
 import HeaderUser from '../../generics/header/user/header-user';
 import Menu from '../../generics/menu/menu';
-import FlashMessage from '../../generics/flash-message';
-import Loader from '../../generics/loader/loader';
-import DonationCreateFormModal from '../../generics/donation/donation-create-form/donation-create-form-modal';
-import CurrentStep from './current-step';
-import Breadcrumb from '../../generics/breadcrumb/breadcrumb';
-import { extractKey, isEmpty } from '../../services/helper';
+import { extractKey, isEmpty, getParameterByName } from '../../services/helper';
 
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
-
+import HeaderHome from '../../generics/header/home/header-home';
+import EscapeLinks from '../../generics/escape-links/escape-links';
 import { DonationService } from '../../services/donation/donation.service';
-import DonationEvents from './donation-events';
-import Poll from './main-content/poll';
-import ShareDonation from './main-content/share-donation';
-import DonationActions from './main-content/donation-actions';
-import { connect } from 'react-redux';
-
-import DonationDefinitiveDateForm from './main-content/donation-definitive-date-form';
-import DonationDateConfirmed from './main-content/donation-date-confirmed';
-import DonationDone from './main-content/donation-done';
+import Loader from '../../generics/loader/loader';
+import DonationDetails from '../../generics/donation/donation-details/donation-details';
+import FlashMessage from '../../generics/flash-message';
+import NoDonationFound from '../../generics/donation/donation-details/no-donation-found';
 
 require('./donation.scss');
 
-class CurrentDonation extends Component {
+class Donation extends Component {
 
   constructor(props) {
     super(props);
@@ -35,86 +27,79 @@ class CurrentDonation extends Component {
     this.user = store.getState().user;
 
     this.state = {
-      loading: this.user.hasCurrentDonation(),
+      loadingDonation: true,
+      loadingIsAdmin: true,
+
+      adminToken: getParameterByName('admin'),
+      isDonationAdmin: false,
+      hasUser: !isEmpty(store.getState().user),
     };
+  }
+
+  componentDidUpdate() {
+    // Check is user isAdmin
+    if (!isEmpty(this.props.donation) && this.state.loadingIsAdmin) {
+      // Is register user is admin
+      if (this.props.donation.isCreator(this.user.id)) {
+        this.setState({ isDonationAdmin: true, loadingIsAdmin: false});
+        return;
+      } else if (this.state.adminToken) {
+        DonationService.isDonationAdmin(this.props.donationToken, this.state.adminToken)
+          .then(() => this.setState({ isDonationAdmin: true, loadingIsAdmin: false }))
+          .catch(() => this.setState({ isDonationAdmin: false, loadingIsAdmin: false }));
+      } else {
+        this.setState({ isDonationAdmin: false, loadingIsAdmin: false });
+      }
+    }
   }
 
   componentDidMount() {
     GoogleAnalyticsService.sendPageView(); // Google Analytics
 
     // Get current donation
-    if (this.user.hasCurrentDonation()) {
-      DonationService.getCurrentDonation(this.user.currentDonation)
-        .then(() => this.setState({ loading: false }))
-        .catch(() => this.setState({ loading: false }));
+    if (this.props.donationToken) {
+      DonationService.getDonationByToken(this.props.donationToken)
+        .then(() => this.setState({ loadingDonation: false }))
+        .catch(() => this.setState({ loadingDonation: false, loadingIsAdmin: false }));
     }
   }
 
   // RENDER
-  renderDonation() {
-    const donation = this.props.donation;
-
-    return (
-      <div>
-        <CurrentStep donation={donation} isMobile={donation.isMobileCollect()} />
-
-        <div className="main-content">
-          <div className="actions">
-            {donation.isPollEnded() ? <DonationDefinitiveDateForm donation={donation} /> : null}
-            {donation.isScheduled() ? <DonationDateConfirmed donation={donation} /> : null}
-            {donation.isDone() ? <DonationDone donation={donation} /> : null}
-            {donation.isCancelled() ? <div className="alert danger">Ce don a été annulé.</div> : null}
-
-            <DonationActions donation={donation} />
-            {+this.user.id === +donation.createdBy.id && donation.isPollOnGoing() ? <ShareDonation donationToken={donation.donationToken} /> : null}
-          </div>
-
-          <Poll donation={donation} />
-          <DonationEvents donation={donation} />
-        </div>
-      </div>
-    );
-  }
-  renderNewDonationButton() {
-    return (
-      <div className="main-content">
-        <div className="new-donation block-base text-center">
-          <p>Vous n'avez aucune proposition de don en cours.</p>
-          <DonationCreateFormModal modalUrl="/don-courant/creer-un-nouveau-don" />
-        </div>
-      </div>
-    );
-  }
-
   render() {
     const { donation } = this.props;
-    const { loading } = this.state;
+    const { loadingDonation, loadingIsAdmin, hasUser, isDonationAdmin, adminToken } = this.state;
 
-    let showDonation = !loading && !isEmpty(donation);
+    const loading = loadingDonation || loadingIsAdmin;
+
+
+    let escapeLinks = [];
+    escapeLinks.push({ href: '#header', text: 'En-tête de la page' });
+    if (hasUser) escapeLinks.push({ href: '#menu', text: 'Menu' });
+    escapeLinks.push({ href: '#main-content', text: 'Contenu principal' });
 
     return (
-      <div id="donation-page" className="page default">
-        <Helmet title="Don en cours" titleTemplate="%s | Katellea" />
+      <div id="donation-page" className={hasUser ? "page default" : "page"}>
+        <Helmet title="Proposition de don" titleTemplate="%s | Katellea" />
 
-        <Menu />
+        <EscapeLinks links={escapeLinks} />
 
-        <main>
-          <HeaderUser />
+        <div id="header" className="sr-only">&nbsp;</div>
+        {hasUser ? <HeaderUser /> : <HeaderHome />}
 
-          <div className="page-title">
-            <div className="title">
-              <h1>Proposition de don en cours</h1>
-              <Breadcrumb links={[{ href: '/don-courant', text: 'Proposition de don en cours' }]} />
-            </div>
-          </div>
+        {hasUser ? <div id="menu" className="sr-only">&nbsp;</div> : null}
+        {hasUser ? <Menu /> : null}
 
-          <FlashMessage scope="current-donation" doScroll />
+
+        <main className={hasUser ? "main-content" : "main-content no-user"}>
+          <FlashMessage scope="donation" doScroll />
 
           {loading ? <Loader /> : null}
-          {showDonation ? this.renderDonation() : this.renderNewDonationButton() }
+          {!loading && isEmpty(donation) ? <NoDonationFound /> : null}
+          {!loading && !isEmpty(donation) ? <DonationDetails donation={donation} isAdmin={isDonationAdmin} adminToken={adminToken} showTitle /> : null}
         </main>
       </div>
     );
   }
 }
-export default connect(state => extractKey(state, 'donation'))(CurrentDonation);
+
+export default connect(state => extractKey(state, 'donation'))(Donation);

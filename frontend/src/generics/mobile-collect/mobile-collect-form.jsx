@@ -25,6 +25,11 @@ export default class MobileCollectSelectForm extends Component {
     };
   }
 
+  componentDidUpdate() {
+    // Notify parent to update their focusable elements (on modal mode only)
+    if(this.props.updateFocusableElements) this.props.updateFocusableElements();
+  }
+
   // SEARCH
   searchByLocalisation = (e) => {
     e.preventDefault();

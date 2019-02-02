@@ -27,7 +27,7 @@ class CouldHaveUserRouteComponent extends Component {
     const { component: Component } = this.props;
     const { showPage } = this.state;
 
-    if (showPage) return <Component />;
+    if (showPage) return <Component {...this.props} />;
     return null;
   }
 

@@ -6,7 +6,7 @@ import FlashMessage from '../../generics/flash-message';
 import HeaderHome from '../../generics/header/home/header-home';
 import { RGPDBar } from '../../generics/rgpd/rgpd';
 import SponsorCard from '../../generics/sponsor-card/sponsor-card';
-import { getSponsorAndDonationFromUrl } from '../../services/token.service';
+import { getSponsorFromUrl } from '../../services/token.service';
 import KatelleaStatistics from './katellea-statistics';
 import DonationCard from '../../generics/donation/donation-card/donation-card';
 import KatelleaFooter from './katellea-footer';
@@ -15,6 +15,7 @@ import Modal from '../../generics/modal';
 import EscapeLinks from '../../generics/escape-links/escape-links';
 import AuthLoginButtons from '../../generics/auth-login-button';
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+import DonationCreateFormModal from '../../generics/donation/donation-create-form/donation-create-form-modal';
 const FakeUserLogin = lazy(() => import('../../generics/fake-user-login'));
 
 require('./home.scss');
@@ -34,7 +35,7 @@ export default class Home extends Component {
   async componentDidMount() {
     GoogleAnalyticsService.sendPageView(); // Google-analytics
 
-    let data = await getSponsorAndDonationFromUrl();
+    let data = await getSponsorFromUrl();
     if (data.sponsorUser) this.setState({ sponsorUser: data.sponsorUser });
     if (data.donation) this.setState({ donation: data.donation });
   }
@@ -88,65 +89,68 @@ export default class Home extends Component {
 
           <div id="main-content" className="sr-only">&nbsp;</div>
           <div className="presentation-container">
+            <h1 className="text-center">Bienvenue sur <span className="no-wrap"><img src="katellea-logo.svg" alt="K" />atellea</span></h1>
             <div>
-              <h1>Bienvenue sur <span className="no-wrap"><img src="katellea-logo.svg" alt="K" />atellea</span></h1>
-
-              <p>Katellea vous permet d'accompagner ou d'être accompagné pour réaliser un don du sang ou plasma en 3 étapes :</p>
               <div>
-                <ol className="katellea-objectives list-unstyled">
-                  <li className="clearfix">
-                    <img src="/icons/social-networks/share.svg" alt="" />
-                    <span><span>1- Créez une proposition de don (lieu, dates possibles...) et partagez-la sur les réseaux sociaux</span></span>
-                  </li>
-                  <li className="clearfix">
-                    <img src="/icons/menu/calendar.svg" alt="" />
-                    <span><span>2- Echangez et décidez ensemble de la meilleure date pour réaliser ce don</span></span>
-                  </li>
-                  <li className="clearfix">
-                    <img src="/icons/menu/speak.svg" alt="" />
-                    <span><span>3- Faites votre don ensemble et partagez ce moment sur les réseaux sociaux pour promouvoir le don du sang !</span></span>
-                  </li>
-                </ol>
-              </div>
-
-              <div className="gay-part">
-                <div className="flag">
-                  <img src="s.png" className="lazyload" data-src="/img/rainbow_flag.svg" alt="" />
-                </div>
+                <p>Katellea vous permet d'accompagner ou d'être accompagné pour réaliser un don du sang ou plasma en 3 étapes :</p>
                 <div>
-                  <h2 className="no-margin">Don pour les homosexuels</h2>
-                  <div>
-                    <ul className="list-unstyled">
-                      <li><span className="bold">Femmes</span> : aucune condition spécifique</li>
-                      <li><span className="bold">Hommes et dons de plasma</span> : aucune condition spécifique</li>
-                      <li><span className="bold">Hommes et dons sang/plaquettes</span> : sous condition</li>
-                    </ul>
-                    <button className="btn" onClick={this.showGayDetailsModal}>En savoir plus</button>
-                  </div>
+                  <ol className="katellea-objectives list-unstyled">
+                    <li className="clearfix">
+                      <img src="/icons/social-networks/share.svg" alt="" />
+                      <span><span>1- Créez une proposition de don (lieu, dates possibles...) et partagez-la sur les réseaux sociaux</span></span>
+                    </li>
+                    <li className="clearfix">
+                      <img src="/icons/menu/calendar.svg" alt="" />
+                      <span><span>2- Echangez et décidez ensemble de la meilleure date pour réaliser ce don</span></span>
+                    </li>
+                    <li className="clearfix">
+                      <img src="/icons/menu/speak.svg" alt="" />
+                      <span><span>3- Faites votre don ensemble et partagez ce moment sur les réseaux sociaux pour promouvoir le don du sang !</span></span>
+                    </li>
+                  </ol>
                 </div>
-                {gayMoreDetailsModal ? this.renderGayDetailsModal() : null}
+
+                <div className="gay-part">
+                  <div className="flag">
+                    <img src="s.png" className="lazyload" data-src="/img/rainbow_flag.svg" alt="" />
+                  </div>
+                  <div>
+                    <h2 className="no-margin">Don pour les homosexuels</h2>
+                    <div>
+                      <ul className="list-unstyled">
+                        <li><span className="bold">Femmes</span> : aucune condition spécifique</li>
+                        <li><span className="bold">Hommes et dons de plasma</span> : aucune condition spécifique</li>
+                        <li><span className="bold">Hommes et dons sang/plaquettes</span> : sous condition</li>
+                      </ul>
+                      <button className="btn" onClick={this.showGayDetailsModal}>En savoir plus</button>
+                    </div>
+                  </div>
+                  {gayMoreDetailsModal ? this.renderGayDetailsModal() : null}
+                </div>
               </div>
-            </div>
 
-            <div className="login">
-              <FlashMessage scope="homePage" />
+              <div className="login">
+                <FlashMessage scope="homePage" />
 
-              {donation ? <DonationCard donation={donation} /> : null}
-              {sponsorUser ? <SponsorCard user={sponsorUser} /> : null}
+                {donation ? <DonationCard donation={donation} /> : null}
+                {sponsorUser ? <SponsorCard user={sponsorUser} /> : null}
 
-              <div className="katellea-form">
-                <p>Vous aussi rejoignez notre communauté de donneurs !</p>
+                <div className="katellea-form">
+                  <p>Vous aussi rejoignez notre communauté de donneurs !</p>
+                  <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong> uniquement</div>
 
-                {/* #Beta => error message + hide buttons */}
-                {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain/marraine pour créer un nouveau compte</div> : null }
-                <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong> uniquement</div>
+                  {<DonationCreateFormModal modalUrl="/nouveau-don" text="Proposer un nouveau don sans créer de compte"/>}
 
-                {<AuthLoginButtons />}
-                {!environment.production ? <FakeUserLogin /> : null}
+                  <hr />
+                  {/* #Beta => error message + hide buttons */}
 
+                  {<AuthLoginButtons />}
+                  {!environment.production ? <FakeUserLogin /> : null}
+
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
 

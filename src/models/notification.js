@@ -9,7 +9,10 @@ const NotificationSchema = mongoose.Schema({
   },
   date: Date,
   donationId: { type: Number, ref: 'Donation' },
-  author: { type: Number, ref: 'User' },
+
+  author: { type: Number, ref: 'User' }, // Registered user
+  username: String, // Guest user
+
   forUser: { type: Number, ref: 'User' },
   data: Object,
 }, { timestamps: true, versionKey: false });

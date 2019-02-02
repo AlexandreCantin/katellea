@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Form, Field } from 'react-final-form';
 
 import DonationEventCreation from './events/create-donation';
 import DonationAddPollAnswer from './events/add-poll-answer';
 import DonationUpdatePollAnswer from './events/update-poll-answer';
-import { DonationService } from '../../services/donation/donation.service';
+import { DonationService } from '../../../services/donation/donation.service';
 
 import DonationEventComment from './events/comment-event';
 import DonationEventClosePoll from './events/close-poll';
@@ -11,31 +12,79 @@ import DonationEventQuit from './events/quit';
 import DonationEventDone from './events/done';
 
 import DonationEventDefinitiveDate from './events/date-confirmed';
-import { DONATION_EVENTS } from '../../enum';
+import { DONATION_EVENTS } from '../../../enum';
 
-import { Form, Field } from 'react-final-form';
-import { validateForm } from '../../services/forms/validate';
-import Validators from '../../services/forms/validators';
-import { isEnter } from '../../services/helper';
+import { validateForm } from '../../../services/forms/validate';
+import Validators from '../../../services/forms/validators';
+import { isEnter, isEmpty, saveToLocalStorage, getLocalStorageValue } from '../../../services/helper';
+import store from '../../../services/store';
 
-const FORM_RULES = {
-  comment: [Validators.required()]
-}
 
 export default class DonationEvents extends Component {
+
+  constructor(props) {
+    super(props);
+
+    const user = store.getState().user;
+    const hasUser = !isEmpty(user);
+
+    // Form data and rules
+    this.initialValues = {};
+    this.formRules = { comment: [Validators.required()] }
+    if(!hasUser) {
+      this.initialValues = { username: getLocalStorageValue('name') };
+      this.formRules['username'] = [Validators.required(), Validators.minLength(3), Validators.maxLength(150), Validators.alphaDash()]
+    }
+
+    this.state = {
+      user,
+      hasUser: !isEmpty(user)
+    }
+  }
 
   sendComment = (values, form) => {
     let isCreation = true;
 
-    DonationService.saveComment(this.props.donation, values, isCreation)
+    // Update (if needed) and save
+    if(!this.state.hasUser) {
+      this.initialValues = { username: values.username };
+      saveToLocalStorage({ name: values.username });
+    }
+
+    DonationService.saveComment(this.props.donation, values, isCreation, values.username ? false : true)
       .then(() => {
         form.reset();
         document.getElementById('comment').value = ''; // FIXME: use a preact way
       });
   }
 
+  renderUsernameField() {
+    return (
+      <div className="name-field">
+        <Field name="username">
+          {({ input, meta }) => (
+            <>
+              <label htmlFor="username">Votre nom :</label>
+              <input {...input} id="username" />
+
+              { meta.error && meta.touched ?
+                <span className="alert error">
+                  {meta.error === 'required' ? <span>Le nom est obligatoire.</span> : null}
+                  {meta.error === 'minLength' ? <span>Taille minimale: 3 caractères.</span> : null}
+                  {meta.error === 'maxLength' ? <span>Taille minimale: 150 caractères.</span> : null}
+                  {meta.error === 'alphaDash' ? <span>Seuls les lettres sont autorisées.</span> : null}
+                </span> : null}
+            </>
+          )}
+        </Field>
+      </div>
+    )
+  }
   render() {
     const { donation } = this.props;
+    const { user } = this.state;
+
+    const hasUser = !isEmpty(user);
 
     const events = donation.events;
 
@@ -56,9 +105,12 @@ export default class DonationEvents extends Component {
         <div className="comment-input">
           <Form
             onSubmit={this.sendComment}
-            validate={values => validateForm(values, FORM_RULES)}
+            initialValues={this.initialValues}
+            validate={values => validateForm(values, this.formRules)}
             render={({ handleSubmit, invalid }) => (
               <form className="form" onSubmit={handleSubmit}>
+
+                { !hasUser ? this.renderUsernameField() : null }
 
                 <Field name="comment">
                   {({ input }) => (

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { environment } from '../../../environment';
-import { SocialNetworksService } from '../../../services/social-network.service';
-import { SHARE_PREFIXES } from '../../../enum';
-import Modal from '../../../generics/modal';
+import { environment } from '../../../../environment';
+import { SocialNetworksService } from '../../../../services/social-network.service';
+import { SHARE_PREFIXES } from '../../../../enum';
+import Modal from '../../../../generics/modal';
 
 const POP_TITLE = `Inscrivez-vous à mon don !`;
 const MESSAGE_TEXT = `Venez participer au don du sang que je viens de lancer !`;
@@ -22,7 +22,7 @@ export default class ShareDonation extends Component {
   showPromoteDonationModal = () => this.setState({ showPromoteModal: true });
 
   generateDonationUrl() {
-    return this.donationUrl = `${environment.FRONT_URL}/token?donation=${this.props.donationToken}`;
+    return this.donationUrl = `${environment.FRONT_URL}${environment.DONATION_ENDPOINT}/${this.props.donationToken}`;
   }
 
   shareOnFacebook = () => { SocialNetworksService.shareOnFacebook(this.donationUrl, POP_TITLE, MESSAGE_TEXT); }

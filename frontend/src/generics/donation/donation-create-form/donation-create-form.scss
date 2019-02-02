@@ -12,7 +12,7 @@ form#create-form-modal {
       margin-bottom: 10px;
       padding: 10px;
       width: 100%;
-      background: lightblue;
+      &:not(.no-style) { background: lightblue; }
     }
   }
 
@@ -43,9 +43,12 @@ form#create-form-modal {
     padding: 10px;
     span { flex: 2; }
     div.establishment-actions {
+      flex: 1;
+      text-align: right;
+      min-width: 250px;
+
       button:first-child { border-radius: 5px 0 0 5px; }
       button.danger { border-radius:  0 5px 5px 0; font-weight: bold; }
-      flex: 1; text-align: right;
     }
     @media (max-width: $min-width-tablet) {
       flex-direction: column;
@@ -99,10 +102,122 @@ form#create-form-modal {
     }
   }
 
+  .coordinates {
+    legend { margin: 0; }
+    .alert {
+      margin-bottom: 10px;
+      padding: 2px !important;
+      text-align: center;
+      border: none !important;
+    }
+    > div {
+      display: flex;
+      > .form-line {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+
+        > div {
+          align-items: center;
+          > input {
+            margin: 5px 0 10px 0;
+            @include mx-input-style();
+          }
+          > label { display: block; }
+        }
+      }
+    }
+
+    .accept-field { margin-top: 10px; }
+  }
+
   .submit-zone {
     text-align: center;
     margin-top: 30px;
     input { font-size: 1.1em; }
   }
-
 }
+
+
+// Global design for mobile-collect-form and establishment-select-form
+#location-select-form {
+  text-align: center;
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .no-results {
+    text-align: center;
+    .btn {
+      margin-top: 15px;
+    }
+  }
+
+  .warning { margin-top: 10px; }
+
+  .search-form-container {
+    display: inline-block;
+
+    > div, span, .form { display: inline-block; }
+    > span { width: 30px; text-align: center; line-height: 33px; }
+
+    input {
+      padding: 7px 10px;
+      width: auto;
+      &[type=text] { border-radius: 20px 0 0 20px; padding: 9px 10px 8px 10px; }
+      &[type=submit] { border-radius: 0 20px 20px 0; }
+    }
+
+    @media (max-width: $min-width-tablet) {
+      span {
+        display: block;
+        width: auto;
+        text-align: center;
+      }
+    }
+  }
+
+  .suggestions {
+    margin-top: 30px;
+    .loader { margin: auto; }
+
+    > .suggestion {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+      line-height: 30px;
+      padding: 0 10px;
+      @media (max-width: $min-width-tablet) {
+        flex-direction: column;
+        padding-bottom: 20px;
+      }
+
+      &:nth-child(odd) { background-color: lightgray; }
+
+      .mobile-connect-result {
+        display: flex;
+        font-size: .9em;
+        a { margin-left: 10px; font-size: .9em; }
+        > div { flex: 1; }
+      }
+
+      .establishment-result {
+        display: flex;
+        text-align: left;
+        align-items: center;
+        > div {
+          padding: 10px 20px;
+          &:first-child { width: 60%; }
+        }
+      }
+
+      > div { flex: 10; }
+      > button { flex: 1; }
+    }
+  }
+}
+

@@ -15,8 +15,8 @@ export const DONATION_REDUCERS = (state = {}, action) => {
     case DONATION_ACTIONS.SET_DONATION:
       return new Donation({
         id: action.data.id,
+        isPublicDonation: action.data.isPublicDonation,
         status: action.data.status,
-        visibility: action.data.visibility,
         establishment: action.data.establishment,
         mobileCollect: action.data.mobileCollect,
         donationType: action.data.donationType,
@@ -24,10 +24,12 @@ export const DONATION_REDUCERS = (state = {}, action) => {
         pollAnswers: action.data.pollAnswers,
         finalDate: action.data.finalDate,
         events: action.data.events,
-        finalAttendees: action.data.finalAttendees,
+        finalAttendeesUser: action.data.finalAttendeesUser,
+        finalAttendeesGuest: action.data.finalAttendeesGuest,
         statisticsDate: action.data.statisticsDate,
         donationToken: action.data.donationToken,
         createdBy: action.data.createdBy,
+        createdByGuest: action.data.createdByGuest,
         createdAt: action.data.createdAt,
         updatedAt: action.data.updatedAt
       });

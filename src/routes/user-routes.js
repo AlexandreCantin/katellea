@@ -100,11 +100,11 @@ const reSendEmailVerificationEmail = async (req, res) => {
 const createUser = async (req, res) => {
 
   {/* #Beta */}
-  const userNumber = await User.countDocuments({});
+  /*const userNumber = await User.countDocuments({});
   if (userNumber >= environment.betaLimit) {
     res.status(FORBIDDEN).send();
     return;
-  }
+  }*/
 
   // Check if sponsor exists
   let sponsorId = undefined;
