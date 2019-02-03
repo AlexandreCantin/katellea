@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import LogoutButton from '../../logout-button';
 import { Link } from '@reach/router';
 
-require('./header-user.scss');
-
 function HeaderAccountItem({ user }) {
   const [hover, setHover] = useState(false);
 

@@ -24,8 +24,6 @@ import Modal from '../../modal';
 
 const MARK_AS_READ_DELAY = 2000;
 
-require('./header-user.scss');
-
 class NotificationItem extends Component {
   constructor(props) {
     super(props);

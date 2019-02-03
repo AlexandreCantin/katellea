@@ -8,9 +8,6 @@ import Validators from '../../../services/forms/validators';
 import { Form, Field } from 'react-final-form';
 import { validateForm } from '../../../services/forms/validate';
 
-
-require('./header-user.scss');
-
 const CONTRADICTIONS = [
   { name: 'Infection, prise d\'antibiotique ou fièvre de plus de 38°C', days: 14, label: '2 semaines' },
   { name: 'Vaccin', days: 28, label: '4 semaines' },

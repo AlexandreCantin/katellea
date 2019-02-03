@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "@reach/router": "^1.2.1",
     "@sentry/browser": "^4.3.4",
     "classnames": "^2.2.6",
@@ -41,7 +42,6 @@
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-config-synacor": "^3.0.3",
-    "prop-types": "^15.6.2",
-    "terser": "^3.14.1"
+    "prop-types": "^15.6.2"
   }
 }

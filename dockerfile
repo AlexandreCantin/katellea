@@ -1,11 +1,11 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 # Update apt-cache
 RUN apt-get update
-RUN apt-get -y install curl bzip2
+RUN apt-get -y install curl bzip2 gnupg
 
 # Install Node.js and create-react-app
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
 ENV NODE_ENV development
 
@@ -20,7 +20,9 @@ RUN npm install --only=production
 # Install React project
 ADD frontend/package.json /usr/local/react_temp/
 WORKDIR /usr/local/react_temp/
-RUN npm install --only=production
+RUN npm install
+RUN rm -r node_modules/terser
+RUN npm install terser@3.14.1 --save-dev
 
 # Copy all the folder
 WORKDIR /code/

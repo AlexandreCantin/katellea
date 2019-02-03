@@ -42,6 +42,8 @@ const computeTitleAndDescription = async (path, req) => {
 
     } catch(err) {}
   }
+
+  return { title, description };
 }
 
 const removeOrigin = (token) => {
