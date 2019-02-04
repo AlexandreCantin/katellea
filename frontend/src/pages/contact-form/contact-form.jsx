@@ -7,7 +7,6 @@ import HeaderUser from '../../generics/header/user/header-user';
 
 import Menu from '../../generics/menu/menu';
 import Validators from '../../services/forms/validators';
-import { isEmpty } from '../../services/helper';
 import store from '../../services/store';
 
 import { ContactService } from '../../services/contact.service';

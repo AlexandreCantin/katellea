@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import DonationEventDate from './event-date';
 import { DonationService } from '../../../../services/donation/donation.service';
-import { isEnter, isEmpty } from '../../../../services/helper';
+import { isEnter } from '../../../../services/helper';
 import store from '../../../../services/store';
 
 import { validateForm } from '../../../../services/forms/validate';

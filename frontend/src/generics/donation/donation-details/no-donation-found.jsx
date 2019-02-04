@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from '@reach/router';
 
 import store from '../../../services/store';
-import { isEmpty } from '../../../services/helper';
 import DonationCreateFormModal from '../donation-create-form/donation-create-form-modal';
 
 const NoDonationFound = () => {

@@ -8,7 +8,7 @@ import HeaderHome from '../../generics/header/home/header-home';
 import HeaderUser from '../../generics/header/user/header-user';
 
 import Menu from '../../generics/menu/menu';
-import { scrollToHash, isEmpty } from '../../services/helper';
+import { scrollToHash } from '../../services/helper';
 import store from '../../services/store';
 import Breadcrumb from '../../generics/breadcrumb/breadcrumb';
 import EscapeLinks from '../../generics/escape-links/escape-links';

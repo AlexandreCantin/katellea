@@ -9,7 +9,7 @@ import store from '../../../../services/store';
 import Validators from '../../../../services/forms/validators';
 import { Form, Field } from 'react-final-form';
 import { validateForm } from '../../../../services/forms/validate';
-import { isEmpty, getLocalStorageValue, saveToLocalStorage } from '../../../../services/helper';
+import { getLocalStorageValue, saveToLocalStorage } from '../../../../services/helper';
 
 
 export default class PollForm extends Component {

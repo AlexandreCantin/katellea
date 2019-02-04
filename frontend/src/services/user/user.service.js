@@ -1,7 +1,7 @@
 import { environment } from '../../environment';
 
 import { FlashMessageService } from '../flash-message/flash-message.service';
-import { getKatelleaTokenHeaders, isEmpty } from '../helper';
+import { getKatelleaTokenHeaders } from '../helper';
 import User from './user';
 import store from '../store';
 

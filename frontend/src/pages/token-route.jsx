@@ -6,7 +6,6 @@ import { UserService } from '../services/user/user.service';
 import { FlashMessageService } from '../services/flash-message/flash-message.service';
 import store from '../services/store';
 import { getSponsorFromUrl } from '../services/token.service';
-import { isEmpty } from '../services/helper';
 
 class TokenRoute extends Component {
   constructor(props) {

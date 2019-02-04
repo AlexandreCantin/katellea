@@ -6,7 +6,7 @@ import PollAnswer from './poll-answer';
 import PollForm from './poll-form';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
-import { extractKey, isEmpty } from '../../../../services/helper';
+import { extractKey } from '../../../../services/helper';
 import DonationCard from '../../../../generics/donation/donation-card/donation-card';
 
 class Poll extends Component {

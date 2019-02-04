@@ -5,7 +5,7 @@ import { Link } from '@reach/router';
 
 import { BetaBadge } from '../../generics/beta-badge/beta-badge';
 import store from '../../services/store';
-import { isEmpty, extractKey } from '../../services/helper';
+import { extractKey } from '../../services/helper';
 
 require('./not-found.scss');
 

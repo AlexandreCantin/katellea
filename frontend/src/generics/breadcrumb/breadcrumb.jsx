@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import cx from 'classnames';
 
-import { isEmpty } from '../../services/helper';
 import store from '../../services/store';
 
 /*

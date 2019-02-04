@@ -6,7 +6,6 @@ import { DONATION_STATUS } from '../../../../services/donation/donation';
 import { FlashMessageService } from '../../../../services/flash-message/flash-message.service';
 import { DonationService } from '../../../../services/donation/donation.service';
 import store from '../../../../services/store';
-import { isEmpty } from '../../../../services/helper';
 import Modal from '../../../../generics/modal';
 import { DONATION_ACTIONS } from '../../../../services/donation/donation.reducers';
 

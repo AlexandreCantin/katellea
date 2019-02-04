@@ -16,7 +16,7 @@ import { DONATION_EVENTS } from '../../../enum';
 
 import { validateForm } from '../../../services/forms/validate';
 import Validators from '../../../services/forms/validators';
-import { isEnter, isEmpty, saveToLocalStorage, getLocalStorageValue } from '../../../services/helper';
+import { isEnter, saveToLocalStorage, getLocalStorageValue } from '../../../services/helper';
 import store from '../../../services/store';
 
 
@@ -79,7 +79,7 @@ export default class DonationEvents extends Component {
   }
   render() {
     const { donation } = this.props;
-    const { user, hasUser } = this.state;
+    const { hasUser } = this.state;
 
     const events = donation.events;
 

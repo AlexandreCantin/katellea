@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from '@reach/router';
 import { connect } from 'react-redux';
 
-import { isEmpty } from '../../services/helper';
 import { UserService } from '../../services/user/user.service';
 import { FlashMessageService } from '../../services/flash-message/flash-message.service';
 import store from '../../services/store';

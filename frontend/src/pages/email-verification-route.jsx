@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import store from '../services/store';
 import Loader from '../generics/loader/loader';
-import { getParameterByName, isEmpty } from '../services/helper';
+import { getParameterByName } from '../services/helper';
 import { FlashMessageService } from '../services/flash-message/flash-message.service';
 import { UserService } from '../services/user/user.service';
 

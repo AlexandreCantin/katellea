@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 
-import { isEmpty } from '../services/helper';
-
 import store from '../services/store';
 import { environment } from '../environment';
 import { USER_ACTIONS } from '../services/user/user.reducers';

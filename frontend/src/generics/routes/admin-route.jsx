@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { UserService } from '../../services/user/user.service';
 import store from '../../services/store';
-import { isEmpty } from '../../services/helper';
 
 class AdminRouteComponent extends Component {
   constructor(props) {
