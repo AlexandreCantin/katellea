@@ -17,7 +17,7 @@ const PollAnswer = ({ donation, pollAnswer }) => {
         {name}
         { canBeEdited ? <EditPollAnswer donation={donation} pollAnswer={pollAnswer} /> : null }
       </div>
-      {pollAnswer.answers.map((answer, index) => <div key={index}>{POLL_ANSWERS_VALUE_TO_LABEL[answer]}</div>)}
+      {pollAnswer.answers.map(answer => <div key={pollAnswer._id}>{POLL_ANSWERS_VALUE_TO_LABEL[answer]}</div>)}
       {donationPollOnGoing ? <div>&nbsp;</div> : null}
     </div>
   );

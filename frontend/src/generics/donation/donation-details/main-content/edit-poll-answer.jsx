@@ -69,7 +69,7 @@ const EditPollAnswer = ({ donation, pollAnswer }) => {
                     if (index === donation.pollSuggestions.length - 1) cssClass = cssClass.concat(' last');
 
                     return (
-                      <div key={index} className={cssClass}>
+                      <div key={name} className={cssClass}>
 
                         <Field name={name} type="radio" value={POLL_ANSWERS.YES}>
                           {({ input }) => (

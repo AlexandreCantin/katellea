@@ -90,7 +90,9 @@ export default class DonationEvents extends Component {
 
     return (
       <div className="events block-base no-padding ">
-        {events.map((event, index) => {
+        {
+          // Note: key value is good as long as there is no live-reload
+          events.map((event, index) => {
           if (event.name === DONATION_EVENTS.CREATE_DONATION) return <DonationEventCreation key={index} event={event} />;
           else if (event.name === DONATION_EVENTS.ADD_POLL_ANSWER) return <DonationAddPollAnswer key={index} event={event} />;
           else if (event.name === DONATION_EVENTS.UPDATE_POLL_ANSWER) return <DonationUpdatePollAnswer key={index} event={event} />;

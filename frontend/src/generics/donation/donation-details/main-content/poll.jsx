@@ -84,7 +84,7 @@ class Poll extends Component {
 
         <div className="poll-table">
           <PollDates donation={donation} />
-          {donation.pollAnswers.map((pa, index) => <PollAnswer key={index} donation={donation} pollAnswer={pa} />)}
+          {donation.pollAnswers.map(pa => <PollAnswer key={pa._id} donation={donation} pollAnswer={pa} />)}
           {donationPollOnGoing ? <PollForm donation={donation} unavailablePollSuggestions={unavailablePollSuggestions} /> : null}
         </div>
       </div>
