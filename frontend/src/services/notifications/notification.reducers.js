@@ -1,4 +1,5 @@
 import { Notification } from './notification';
+import { EMPTY } from '../../enum';
 
 export const NOTIFICATIONS_ACTIONS = {
   ADD_NEW_NOTIFICATION: 'ADD_NEW_NOTIFICATION',
@@ -6,7 +7,7 @@ export const NOTIFICATIONS_ACTIONS = {
   DELETE_NOTIFICATIONS: 'DELETE_NOTIFICATIONS',
 };
 
-export const NOTIFICATION_REDUCERS = (state = {}, action) => {
+export const NOTIFICATION_REDUCERS = (state = EMPTY, action) => {
   switch (action.type) {
 
     /*

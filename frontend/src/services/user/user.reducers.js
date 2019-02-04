@@ -1,4 +1,5 @@
 import User from './user.js';
+import { EMPTY } from '../../enum.js';
 
 // Actions available
 export const USER_ACTIONS = {
@@ -7,7 +8,7 @@ export const USER_ACTIONS = {
   USER_UPDATE_LAST_NOTIFICATION_READ_DATE: 'USER_UPDATE_LAST_NOTIFICATION_READ_DATE',
 };
 
-export const USER_REDUCERS = (state = {}, action) => {
+export const USER_REDUCERS = (state = EMPTY, action) => {
   switch (action.type) {
     case USER_ACTIONS.DELETE_USER:
       return {};

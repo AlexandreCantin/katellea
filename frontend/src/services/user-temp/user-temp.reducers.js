@@ -1,4 +1,5 @@
 import UserTempProfile from './user-temp-profile.js';
+import { EMPTY } from '../../enum.js';
 
 // Actions available
 export const USER_TEMP_ACTIONS = {
@@ -6,7 +7,7 @@ export const USER_TEMP_ACTIONS = {
   DELETE_PROFILE: 'DELETE_PROFILE',
 };
 
-export const USER_TEMP_REDUCERS = (state = {}, action) => {
+export const USER_TEMP_REDUCERS = (state = EMPTY, action) => {
   switch (action.type) {
     case USER_TEMP_ACTIONS.SET_PROFILE:
       return new UserTempProfile({

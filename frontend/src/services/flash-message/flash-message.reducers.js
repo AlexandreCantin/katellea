@@ -1,4 +1,5 @@
 import { FlashMessage, FLASH_MESSAGE_TYPE } from './flash-message';
+import { EMPTY } from '../../enum';
 
 export const FLASH_MESSAGE_ACTIONS = {
   CREATE_INFO: 'CREATE_INFO',
@@ -8,7 +9,7 @@ export const FLASH_MESSAGE_ACTIONS = {
   DELETE: 'DELETE'
 };
 
-export const FLASH_MESSAGE_REDUCERS = (state = {}, action) => {
+export const FLASH_MESSAGE_REDUCERS = (state = EMPTY, action) => {
   switch (action.type) {
     case FLASH_MESSAGE_ACTIONS.CREATE_INFO:
       return new FlashMessage({ type: FLASH_MESSAGE_TYPE.INFO, scope: action.data.scope, messages: action.data.messages });

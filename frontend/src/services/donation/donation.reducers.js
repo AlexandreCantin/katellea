@@ -1,4 +1,5 @@
 import Donation from './donation.js';
+import { EMPTY } from '../../enum.js';
 
 // Actions available
 export const DONATION_ACTIONS = {
@@ -6,7 +7,7 @@ export const DONATION_ACTIONS = {
   DELETE_DONATION: 'DELETE_DONATION',
 };
 
-export const DONATION_REDUCERS = (state = {}, action) => {
+export const DONATION_REDUCERS = (state = EMPTY, action) => {
   switch (action.type) {
 
     case DONATION_ACTIONS.DELETE_DONATION:

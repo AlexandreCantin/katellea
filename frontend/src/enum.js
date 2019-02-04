@@ -1,3 +1,4 @@
+export const EMPTY = {};
 
 export const DAY_PARTS = {
   DAY: 'DAY',
