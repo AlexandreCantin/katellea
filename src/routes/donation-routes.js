@@ -468,7 +468,7 @@ const updateComment = async (req, res) => {
 donationRoutes.get('/eligible-donations', getEligibleDonations);
 donationRoutes.get('/history', getDonationHistory);
 
-donationRoutes.get('/:donationId', getDonation);
+donationRoutes.get('/id/:donationId', getDonation);
 donationRoutes.get('/token/:donationToken', getDonationByToken);
 donationRoutes.get('/:donationToken/is-admin/:adminToken', isDonationAdmin);
 

@@ -6,7 +6,8 @@ import store from '../store';
 class DonationServiceFactory {
 
   async getCurrentDonation(donationId) {
-    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/${donationId}`;
+    // Note: we add /id/ to avoid conflict with /donation/:reqToken in 'react-proxy-routes.js'
+    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/id/${donationId}`;
     let headers = getKatelleaTokenHeaders();
 
     return new Promise(async (resolve, reject) => {

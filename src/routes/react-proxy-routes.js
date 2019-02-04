@@ -5,6 +5,7 @@ import { NOT_FOUND } from 'http-status-codes';
 
 import User from '../models/user';
 import Donation from '../models/donation';
+import { sendError } from '../helper';
 
 
 const rootRoutes = express.Router();
@@ -24,23 +25,33 @@ const computeTitleAndDescription = async (path, req) => {
       try {
         const sponsor = await User.findOne({ sponsorToken : removeOrigin(req.query.sponsor) });
         title = `Don du sang : Faites-vous parrainer par ${sponsor.name}`;
-      } catch(err) {}
+      } catch(err) {
+        sendError(err);
+      }
     }
 
     return { title, description };
   }
 
   // DONATION ROUTES
-  if(path.startsWith('/donation') && req.params.doantionToken) {
+  if(path.startsWith('/donation') && req.params.donationToken) {
     try {
-      const donation = await Donation.findOne({ donationToken : req.params.doantionToken })
-        .populate({ path: 'createdBy', model: 'User', select: User.publicFields });
+      const donation = await Donation.findOne({ donationToken : req.params.donationToken });
 
-      const name = donation.getCreatorName();
-      title = `Rejoignez la proposition de don faite par ${name}`;
+      let name;
+      if(donation.isPublicDonation) {
+        name = donation.createdByGuest.name;
+      } else {
+        const creator = await User.findById(donation.createdBy);
+        name = creator.name;
+      }
+
+      if(name) title = `Rejoignez la proposition de don faite par ${name}`;
       return { title, description };
 
-    } catch(err) {}
+    } catch(err) {
+      sendError(err);
+    }
   }
 
   return { title, description };
