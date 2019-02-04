@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import store from '../../services/store';
@@ -14,13 +15,15 @@ Sources :
 require('./breadcrumb.scss');
 
 export default class Breadcrumb extends Component {
+  static defaultProps = { links: [] };
+  static propTypes = { links: PropTypes.array }
 
   constructor(props) {
     super(props);
 
     const hasUser = store.getState().user.id;
 
-    let links = this.props.links || [];
+    let links = this.props.links;
 
     if(links.length === 0) {
       links = this.addFirstBreadcumbLink(links, hasUser);

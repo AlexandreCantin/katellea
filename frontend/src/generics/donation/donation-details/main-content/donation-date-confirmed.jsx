@@ -2,8 +2,7 @@ import React from 'react';
 import { dateFormatLongDayDayMonthYearHourMinut } from '../../../../services/date-helper';
 import slugify from 'slugify';
 
-const DonationDateConfirmed = (props) => {
-  const { donation } = props;
+const DonationDateConfirmed = ({ donation }) => {
 
   return (
     <div className="donation-confirmed-date block-base">

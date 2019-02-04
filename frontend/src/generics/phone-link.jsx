@@ -5,8 +5,7 @@ const formatPhone = (phone) => {
   return phone.replace('0', '+33').replace(/-/g, '');
 }
 
-function PhoneLink(props) {
-  const establishment = props.establishment;
+function PhoneLink({ establishment }) {
   const formattedPhone = formatPhone(establishment.phone)
 
   return (

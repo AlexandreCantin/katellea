@@ -15,8 +15,7 @@ const ESTABLISHMENT_LABELS = [
 ];
 
 
-const CurrentStep = (props) => {
-  const { donation, isMobile } = props;
+const CurrentStep = ({ donation, isMobile } ) => {
   const labels = isMobile ? MOBILE_LABELS : ESTABLISHMENT_LABELS;
 
   let step4Done = donation.isDone();

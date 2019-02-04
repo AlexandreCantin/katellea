@@ -25,11 +25,12 @@ const FORM_RULES = {
 }
 
 class Notification extends Component {
+  static defaultProps = { notificationSettings: {} };
 
   constructor(props) {
     super(props);
 
-    const notifications = this.props.notificationSettings || {};
+    const notifications = this.props.notificationSettings;
 
     this.state = {
       initialValues: {

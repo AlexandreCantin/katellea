@@ -12,6 +12,7 @@ const ORIGINS = ['facebook', 'twitter', 'google', 'instagram'];
 
 // useState() here
 export default class AuthLoginButtons extends Component {
+  static propTypes = { };
 
   constructor(props) {
     super(props);

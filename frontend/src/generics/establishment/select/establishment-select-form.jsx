@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Loader from '../../../generics/loader/loader';
 import FlashMessage from '../../flash-message';
@@ -15,6 +16,7 @@ const FORM_RULES = {
 }
 
 export default class EstablishmentSelectForm extends Component {
+  static propTypes = { onSelect: PropTypes.func.isRequired }
 
   constructor(props) {
     super(props);

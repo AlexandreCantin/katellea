@@ -13,6 +13,7 @@ const FAKE_USERS = [
 ];
 
 export default class FakeUserLogin extends Component {
+  static propTypes = {};
 
   componentDidMount() {
     // When we get an user : go to dashboard or current-giving

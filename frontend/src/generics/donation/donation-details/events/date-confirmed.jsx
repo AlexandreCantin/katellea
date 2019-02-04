@@ -2,8 +2,7 @@ import React from 'react';
 import DonationEventDate from './event-date';
 import { dateFormatLongDayDayMonthYearHourMinut } from '../../../../services/date-helper';
 
-const DonationEventDefinitiveDate = (props) => {
-  const { event } = props;
+const DonationEventDefinitiveDate = ({ event }) => {
 
   return (
     <div className="event donation-comment-create">

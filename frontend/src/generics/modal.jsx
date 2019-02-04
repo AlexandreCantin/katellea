@@ -45,7 +45,15 @@ const ECHAP_KEY = 27;
 
 export default class Modal extends Component {
   static defaultProps = { level: '1' }
-  static propTypes = { level: PropTypes.string }
+  static propTypes = {
+    level: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    modalUrl: PropTypes.string,
+    noModalUrl: PropTypes.bool,
+    cssClassName: PropTypes.string,
+
+    onClose: PropTypes.func.isRequired,
+  }
 
   constructor(props) {
     super(props);

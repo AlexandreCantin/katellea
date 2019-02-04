@@ -2,9 +2,7 @@ import React from 'react';
 import DonationEventDate from './event-date';
 
 
-const DonationUpdatePollAnswer = (props) => {
-
-  const { event } = props;
+const DonationUpdatePollAnswer = ({ event }) => {
   const name = event.username || event.author.name;
 
   return (

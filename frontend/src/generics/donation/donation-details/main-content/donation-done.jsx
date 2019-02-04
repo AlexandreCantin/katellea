@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 import store from '../../../../services/store';
 import FlashMessage from '../../../../generics/flash-message';
@@ -19,6 +20,12 @@ const FORM_RULES = {
 }
 
 export default class DonationDone extends Component {
+  static propTypes = {
+    donation: PropTypes.object.isRequired,
+    adminToken: PropTypes.string.isRequired,
+    isAdmin: PropTypes.bool.isRequired
+  }
+
 
   constructor(props) {
     super(props);

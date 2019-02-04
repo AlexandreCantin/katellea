@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 import { FLASH_MESSAGE_TYPE } from '../services/flash-message/flash-message';
 import store from '../services/store';
 import { isEmpty, extractKey } from '../services/helper';
 
 class FlashMessage extends Component {
+  static = { scrope: PropTypes.string.isRequired };
 
   constructor(props) {
     super(props);

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 import store from '../../../../services/store';
 import DonationEventDate from '../../../donation/donation-details/events/event-date';
 
 export default class NotificationAddPollAnswer extends Component {
+  static propTypes = {
+    notification: PropTypes.object.isRequired,
+    notRead: PropTypes.bool.isRequired
+  };
 
   renderNotificationContent(notification) {
     const author = notification.author;

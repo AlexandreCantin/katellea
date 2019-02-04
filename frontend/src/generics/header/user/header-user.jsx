@@ -14,6 +14,7 @@ import { BetaBadge } from '../../beta-badge/beta-badge';
 require('./header-user.scss');
 
 class HeaderUser extends Component {
+  static propTypes = {};
 
   openMenu = (e) => {
     e.preventDefault();

@@ -1,9 +1,7 @@
 import React from 'react';
 import DonationEventDate from './event-date';
 
-const DonationEventClosePoll = (props) => {
-
-  const { event } = props;
+const DonationEventClosePoll = ({ event }) => {
 
   const name = event.username || event.author.name;
 

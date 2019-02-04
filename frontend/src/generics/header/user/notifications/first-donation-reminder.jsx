@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import DonationEventDate from '../../../donation/donation-details/events/event-date';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 export default class NotificationFirstDonationReminder extends Component {
+  static propTypes = {
+    notification: PropTypes.object.isRequired,
+    notRead: PropTypes.bool.isRequired,
+    showAdviceModal: PropTypes.func.isRequired
+  };
 
   showAdviceModal = (e) => {
     e.preventDefault();

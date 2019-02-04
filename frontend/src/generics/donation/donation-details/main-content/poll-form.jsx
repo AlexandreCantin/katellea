@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import { POLL_ANSWERS } from '../../../../enum';
@@ -13,6 +14,11 @@ import { getLocalStorageValue, saveToLocalStorage } from '../../../../services/h
 
 
 export default class PollForm extends Component {
+  static propTypes = {
+    donation: PropTypes.object.isRequired,
+    unavailablePollSuggestions: PropTypes.array.isRequired
+  }
+
 
   constructor(props) {
     super(props);

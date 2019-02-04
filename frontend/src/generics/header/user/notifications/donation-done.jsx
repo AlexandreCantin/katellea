@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 import DonationEventDate from '../../../donation/donation-details/events/event-date';
 import store from '../../../../services/store';
 
 export default class NotificationDonationDone extends Component {
+  static propTypes = {
+    notification: PropTypes.object.isRequired,
+    notRead: PropTypes.bool.isRequired
+  };
 
   renderNotificationContent(notification) {
     return (<p>Votre don est passé au status <strong>réalisé</strong>, vous avez désormais 5 jours pour modifier les participants finals au don (si besoin).<br /><DonationEventDate date={notification.date} /></p>);

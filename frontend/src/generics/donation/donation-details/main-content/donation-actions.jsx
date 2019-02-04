@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
+import PropTypes from 'prop-types';
 
 import { DONATION_STATUS } from '../../../../services/donation/donation';
 
@@ -10,6 +11,11 @@ import Modal from '../../../../generics/modal';
 import { DONATION_ACTIONS } from '../../../../services/donation/donation.reducers';
 
 export default class DonationActions extends Component {
+  static propTypes = {
+    donation: PropTypes.object.isRequired,
+    adminToken: PropTypes.string.isRequired,
+    isAdmin: PropTypes.bool.isRequired
+  }
 
   constructor(props) {
     super(props);

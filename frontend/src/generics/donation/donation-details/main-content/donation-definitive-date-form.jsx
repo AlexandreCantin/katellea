@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import dayjs from 'dayjs';
 import slugify from 'slugify';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 import store from '../../../../services/store';
 import PhoneLink from '../../../../generics/phone-link';
@@ -24,6 +25,11 @@ const FORM_RULES = {
 }
 
 export default class DonationDefinitiveDateForm extends Component {
+  static propTypes = {
+    donation: PropTypes.object.isRequired,
+    adminToken: PropTypes.string.isRequired,
+    isAdmin: PropTypes.bool.isRequired
+  }
 
   constructor(props) {
     super(props);

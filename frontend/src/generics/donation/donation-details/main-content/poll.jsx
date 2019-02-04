@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { DONATION_STATUS } from '../../../../services/donation/donation';
 import PollDates from './poll-dates';
@@ -10,6 +11,8 @@ import { extractKey } from '../../../../services/helper';
 import DonationCard from '../../../../generics/donation/donation-card/donation-card';
 
 class Poll extends Component {
+  static PropTypes = { donation: PropTypes.object.isRequired }
+
 
   constructor(props) {
     super(props);

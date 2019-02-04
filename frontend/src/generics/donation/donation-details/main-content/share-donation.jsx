@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { environment } from '../../../../environment';
 import { SocialNetworksService } from '../../../../services/social-network.service';
 import { SHARE_PREFIXES } from '../../../../enum';
@@ -8,6 +10,7 @@ const POP_TITLE = `Inscrivez-vous à mon don !`;
 const MESSAGE_TEXT = `Venez participer au don du sang que je viens de lancer !`;
 
 export default class ShareDonation extends Component {
+  static propTypes = { donationToken: PropTypes.string.isRequired }
 
   constructor(props) {
     super(props);

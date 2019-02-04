@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import DonationEventDate from './event-date';
 import { DonationService } from '../../../../services/donation/donation.service';
@@ -16,6 +17,11 @@ const FORM_RULES = {
 
 // UseHooks here !
 export default class DonationEventComment extends Component {
+  static propTypes = {
+    donation: PropTypes.object.isRequired,
+    event: PropTypes.object.isRequired
+  }
+
 
   constructor(props) {
     super(props);

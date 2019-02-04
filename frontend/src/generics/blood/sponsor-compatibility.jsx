@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { UserService } from '../../services/user/user.service';
 
 const DIRECTION = {
@@ -9,6 +10,7 @@ const DIRECTION = {
 };
 
 export default class SponsorCompatibility extends Component {
+  static propTypes = { userBloodType: PropTypes.string.isRequired }
 
   constructor(props) {
     super(props);

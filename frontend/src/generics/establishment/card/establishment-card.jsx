@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 import PhoneLink from '../../phone-link';
 import { GoogleAnalyticsService } from '../../../services/google-analytics.service';
@@ -17,6 +18,8 @@ const CONTACT_TAB = 'contact';
 const MAP_TAB = 'map';
 
 export default class EstablishmentCard extends Component {
+  static propTypes = { establishment: PropTypes.object.isRequired }
+
 
   constructor(props) {
     super(props);
