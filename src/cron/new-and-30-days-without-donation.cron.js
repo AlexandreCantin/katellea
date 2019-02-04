@@ -9,6 +9,14 @@ import User from '../models/user';
 export default class NewAnd30DaysWithoutDonationCron {
 
   static async run() {
+    try {
+      await NewAnd30DaysWithoutDonationCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
     const users = await User.find({

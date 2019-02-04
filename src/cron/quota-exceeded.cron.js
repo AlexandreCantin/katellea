@@ -9,6 +9,14 @@ In this script, we reset all quota exceeded to false (on 1st January)
 export default class QuotaExceededResetCron {
 
   static async run() {
+    try {
+      await QuotaExceededResetCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
     const users = await User.find({ 'quotaExceeded': true });

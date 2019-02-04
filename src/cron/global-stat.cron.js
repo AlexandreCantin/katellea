@@ -14,6 +14,14 @@ We assume that the oldest values has correct values.
 export default class GlobalStatCron {
 
   static async run() {
+    try {
+      await GlobalStatCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
     // In this script, we assume taht we already have stats object in database.

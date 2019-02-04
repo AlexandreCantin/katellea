@@ -21,7 +21,15 @@ Then we populate the database with the data extracted
 */
 export default class MobileCollectDownloadCron {
 
-  static run() {
+  static async run() {
+    try {
+      await MobileCollectDownloadCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
     // Create the log directory if it does not exist

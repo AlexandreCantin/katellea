@@ -14,6 +14,14 @@ import { SlackService } from '../services/slack.service';
 export default class UserStatisticsCron {
 
   static async run() {
+    try {
+      await UserStatisticsCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
     // Avoid too much request to database by caching objects

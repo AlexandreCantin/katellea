@@ -14,6 +14,14 @@ In this script, we take all users that will do their first donation in two days 
 export default class FirstDonationAdviceCron {
 
   static async run() {
+    try {
+      await FirstDonationAdviceCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
     // In xx days

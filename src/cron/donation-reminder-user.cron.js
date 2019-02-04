@@ -10,6 +10,14 @@ import User from '../models/user';
 export default class DonationReminderCron {
 
   static async run() {
+    try {
+      await DonationReminderCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
 

@@ -35,6 +35,14 @@ export default class GRPDExportCron {
   }
 
   static async run() {
+    try {
+      await GRPDExportCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
     // Create PDF folder if not exists

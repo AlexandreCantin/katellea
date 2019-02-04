@@ -1,5 +1,6 @@
-import { DATE_HOUR_FORMAT } from '../helpers/date.helper';
 import dayjs from 'dayjs';
+
+import { DATE_HOUR_FORMAT } from '../helpers/date.helper';
 import User from '../models/user';
 import { DONATION_TYPE, NOTIFICATION_TYPES } from '../constants';
 import { createNotification } from '../helpers/notification.helper';
@@ -8,7 +9,7 @@ import { environment } from '../../conf/environment';
 import { SlackService } from '../services/slack.service';
 import { sendError } from '../helper';
 import { DONATION_REST_WEEKS } from '../../frontend/src/enum';
-import Donation from '../../frontend/src/services/donation/donation';
+import Donation from '../models/donation';
 
 const WEEKS_DELAY_BEFORE_ELIGIBILITY = environment.weeksDelayBeforeEligibilty;
 
@@ -19,6 +20,14 @@ To them, we send a email reminder and create a new notification.
 export default class BloodDonationEligibleCron {
 
   static async run() {
+    try {
+      await BloodDonationEligibleCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
     let beginPeriodDate = dayjs().set('hour', 0).set('minute', 0).set('second', 0).add(WEEKS_DELAY_BEFORE_ELIGIBILITY, 'week');

@@ -16,6 +16,14 @@ import MailFactory from '../services/mail.service';
 export default class DonationDoneCron {
 
   static async run() {
+    try {
+      await DonationDoneCron.job();
+    } catch(err) {
+      sendError(err);
+    }
+  }
+
+  static async job() {
     const startDate = dayjs();
 
     const statisticsDate = dayjs().add(environment.daysBeforeStatisticsAnalytics, 'day');
