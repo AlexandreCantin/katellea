@@ -290,7 +290,7 @@ const sanitizeObj = (obj) => {
   // Facebook
   authRoutes.get(
     '/auth/facebook',
-    passport.authenticate('facebook', { session: false, scope: ['email', 'user_gender', 'user_age_range', 'user_birthday'] }),
+    passport.authenticate('facebook', { session: false, scope: ['email' ] }),
     facebookLoginResponse
   );
 
