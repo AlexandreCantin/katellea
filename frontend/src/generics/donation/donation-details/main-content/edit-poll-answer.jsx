@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Field } from 'react-final-form';
+import cx from 'classnames';
 
 import Validators from '../../../../services/forms/validators';
 import { POLL_ANSWERS } from '../../../../enum';
@@ -65,11 +66,8 @@ const EditPollAnswer = ({ donation, pollAnswer }) => {
                     let maybeLabel = ''.concat('edit-maybe-', index);
                     let name = ''.concat(index, '-suggestion');
 
-                    let cssClass = 'poll-answer-choices';
-                    if (index === donation.pollSuggestions.length - 1) cssClass = cssClass.concat(' last');
-
                     return (
-                      <div key={name} className={cssClass}>
+                      <div key={name} className={cx('poll-answer-choices', { 'last': index === donation.pollSuggestions.length - 1 })}>
 
                         <Field name={name} type="radio" value={POLL_ANSWERS.YES}>
                           {({ input }) => (

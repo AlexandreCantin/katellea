@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
+import cx from 'classnames';
 
 import { UserService } from '../../../services/user/user.service';
 import { dateFormatDayMonthYear, dateFormatLongDayDayMonthYear } from '../../../services/date-helper';
@@ -210,11 +211,8 @@ export default class MinimumDateItem extends Component {
 
 
   renderMinimumDateDropdown() {
-    let cssClasses =  'dropdown list-unstyled';
-    if(!this.state.hover) cssClasses +=' sr-only';
-
     return (
-      <ul id="minimum-date-dropdown" className={cssClasses} aria-label="submenu">
+      <ul id="minimum-date-dropdown" className={cx('dropdown list-unstyled', { 'sr-only': !this.state.hover })} aria-label="submenu">
         <li>
           <button className="btn reset" onClick={this.showMinimumDateModal}>{this.createLinkTitle()}</button>
         </li>

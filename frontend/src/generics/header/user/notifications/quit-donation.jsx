@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from '@reach/router';
+import cx from 'classnames';
+
 import DonationEventDate from '../../../donation/donation-details/events/event-date';
 import store from '../../../../services/store';
-import { Link } from '@reach/router';
 
 export default class NotificationQuitDonation extends Component {
 
@@ -10,17 +12,11 @@ export default class NotificationQuitDonation extends Component {
     return (<p><strong>{author.name}</strong> a quitté votre proposition de don,<br /><DonationEventDate date={notification.date} /></p>);
   }
 
-  computeCssClass() {
-    let cssClass = 'notification quit-donation';
-    if (this.props.notRead) cssClass = cssClass.concat(' not-read');
-    return cssClass;
-  }
-
   render() {
     const { notification } = this.props;
 
     const isCurrentDonation = +store.getState().user.currentDonation === +this.props.notification.donationId;
-    const cssClass = this.computeCssClass();
+    const cssClass = cx('notification quit-donation', { 'not-read': this.props.notRead });
 
     if (isCurrentDonation) {
       return (

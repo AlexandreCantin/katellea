@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import cx from 'classnames';
 import { connect } from 'react-redux';
 
 import store from '../../services/store';
@@ -78,7 +79,7 @@ class Donation extends Component {
     escapeLinks.push({ href: '#main-content', text: 'Contenu principal' });
 
     return (
-      <div id="donation-page" className={hasUser ? "page default" : "page"}>
+      <div id="donation-page" className={cx('page', { 'default': hasUser })}>
         <Helmet title="Proposition de don" titleTemplate="%s | Katellea" />
 
         <EscapeLinks links={escapeLinks} />
@@ -90,7 +91,7 @@ class Donation extends Component {
         {hasUser ? <Menu /> : null}
 
 
-        <main className={hasUser ? "main-content" : "main-content no-user"}>
+        <main className={cx('main-content' , { 'no-user': !hasUser })}>
           <FlashMessage scope="donation" doScroll />
 
           {loading ? <Loader /> : null}

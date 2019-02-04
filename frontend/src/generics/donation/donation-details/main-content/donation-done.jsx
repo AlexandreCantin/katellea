@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
+import cx from 'classnames';
 
 import store from '../../../../services/store';
 import FlashMessage from '../../../../generics/flash-message';
@@ -70,7 +71,7 @@ export default class DonationDone extends Component {
                       return (
                         <Field key={id} name="finalAttendees" type="checkbox" value={pa.username} multiple="true">
                           {({ input }) => (
-                            <div className={isSelected ? 'attendee selected' : 'attendee'}>
+                            <div className={cx('attendee', { 'selected': isSelected })}>
                               <label>
                                 <span className="sr-only">Confirmer la présence de {name}</span>
                                 <input {...input} type="checkbox" />

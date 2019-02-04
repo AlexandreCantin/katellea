@@ -1,4 +1,6 @@
 import React from 'react';
+import cx from 'classnames';
+
 import { DAY_PARTS_LABEL } from '../enum';
 import { dateFormatShortDayDayMonthYear } from '../services/date-helper';
 import { DonationService } from '../services/donation/donation.service';
@@ -7,10 +9,11 @@ function PollSuggestionDate({ isMultipleDay, pollSuggestion, index, nbPollSugges
 
   const computeClass = (nbPollSuggestions, index) => {
     // We use this method because last-child/first-child can't be used
-    let base = 'date';
-    if (index === 0) base = base.concat(' first');
-    if (nbPollSuggestions === index + 1) base = base.concat(' last');
-    return base;
+    return cx(
+      'date',
+      { 'first': index === 0 },
+      { 'last': nbPollSuggestions === index + 1 },
+    );
   }
 
   const getPartDayLabel = (dayPart) => {

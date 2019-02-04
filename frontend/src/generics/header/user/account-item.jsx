@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import LogoutButton from '../../logout-button';
 import { Link } from '@reach/router';
+import cx from 'classnames';
+
+import LogoutButton from '../../logout-button';
 
 function HeaderAccountItem({ user }) {
   const [hover, setHover] = useState(false);
@@ -10,11 +12,8 @@ function HeaderAccountItem({ user }) {
   const toggleHover = () => setHover(!hover);
 
   const renderAccountDropdown = () => {
-    let cssClasses =  'dropdown list-unstyled';
-    if(!hover) cssClasses +=' sr-only';
-
     return (
-      <ul id="account-dropdown" className={cssClasses} aria-label="submenu">
+      <ul id="account-dropdown" className={cx('dropdown list-unstyled', { 'sr-only': !hover })} aria-label="submenu">
         <li><Link to="/mon-profil">Mon profil</Link></li>
         <li><LogoutButton /></li>
       </ul>

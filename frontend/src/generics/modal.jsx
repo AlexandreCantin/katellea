@@ -130,9 +130,7 @@ export default class Modal extends Component {
     return this.props.level === '2';
   }
   computeCssClass() {
-    let cssClasses = 'modal-body';
-    if (this.props.cssClass) cssClasses = cssClasses.concat(' ').concat(this.props.cssClass);
-    return cssClasses;
+    return cx('modal-body', this.props.cssClass);
   }
 
   closeModal = () => {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import { extractKey } from '../../services/helper';
 import { connect } from 'react-redux';
+import cx from 'classnames';
 
 import { FacebookKatelleaLink, TwitterKatelleaLink, GithubKatelleaLink, InstagramKatelleaLink } from '../social-network-links';
 import { BetaBadge } from '../beta-badge/beta-badge';
@@ -34,7 +35,7 @@ class Menu extends Component {
     const { menuOpen } = this.props;
 
     return (
-      <nav className={menuOpen ? 'menu menu-open' : 'menu'}>
+      <nav className={cx('menu', { 'menu-open': menuOpen })}>
         <button onClick={this.closeMenu} className="menu hide-desktop">X</button>
 
         <div className="katellea-logo text-center">

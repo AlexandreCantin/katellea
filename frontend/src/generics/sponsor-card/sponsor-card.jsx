@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 
 require('./sponsor-card.scss');
 
@@ -9,7 +10,7 @@ function SponsorCard({ user }) {
   let establishment = user.establishment;
 
   return (
-    <div className={establishment ? 'sponsor-card has-establishment' : 'sponsor-card'}>
+    <div className={cx('sponsor-card', { 'has-establishment' : establishment })}>
       <div>
         <h4>Votre parrain/marraine : {user.name}</h4>
         <ul>

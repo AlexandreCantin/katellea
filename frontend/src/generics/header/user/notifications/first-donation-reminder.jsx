@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import DonationEventDate from '../../../donation/donation-details/events/event-date';
+import cx from 'classnames';
 
 export default class NotificationFirstDonationReminder extends Component {
-
-  computeCssClass() {
-    let cssClass = 'notification first-donation-reminder';
-    if (this.props.notRead) cssClass = cssClass.concat(' not-read');
-    return cssClass;
-  }
 
   showAdviceModal = (e) => {
     e.preventDefault();
@@ -18,7 +13,7 @@ export default class NotificationFirstDonationReminder extends Component {
     const { notification } = this.props;
 
     return (
-      <li className={this.computeCssClass()}>
+      <li className={cx('notification first-donation-reminder', { 'not-read': this.props.notRead })}>
         <button className="reset" onClick={this.showAdviceModal}>
           <strong>Dans deux jours</strong>, vous allez effectuer votre premier don et nous vous remercions par avance !<br />
           Cliquer ici pour des conseils de dernière minute !<br />

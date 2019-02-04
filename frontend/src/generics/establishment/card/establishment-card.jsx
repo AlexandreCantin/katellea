@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
+
 import PhoneLink from '../../phone-link';
 import { GoogleAnalyticsService } from '../../../services/google-analytics.service';
 import { computeTabAttributes, computeTabPanelAttributes } from '../../../services/tab-helper';
@@ -48,8 +50,7 @@ export default class EstablishmentCard extends Component {
   }
 
   cssClass = (tabName) => {
-    let cssClasses = 'reset text-center';
-    return this.state.selectTab === tabName ? cssClasses.concat(' selected') : cssClasses;
+    return cx('reset text-center', { 'selected': this.state.selectTab === tabName });
   }
 
   selectTab = (e) => {

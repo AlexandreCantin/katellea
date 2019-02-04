@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import dayjs from 'dayjs';
+import cx from 'classnames';
 
 import { extractKey, isEmpty } from '../../../services/helper';
 import { NotificationService } from '../../../services/notifications/notification.service';
@@ -59,8 +60,7 @@ class NotificationItem extends Component {
   }
 
   computeClass() {
-    if (this.props.notifications.length < 10) return '';
-    return 'big';
+    return cx('dropdown list-unstyled', { 'sr-only': !this.state.hover })
   }
 
 
@@ -136,11 +136,8 @@ class NotificationItem extends Component {
   renderNotificationDropdown() {
     if (isEmpty(this.props.notifications)) return;
 
-    let cssClasses =  'dropdown list-unstyled';
-    if(!this.state.hover) cssClasses +=' sr-only';
-
     return (
-      <ul id="notification-item-dropdown" className={cssClasses} aria-label="submenu">
+      <ul id="notification-item-dropdown" className={this.computeClass()} aria-label="submenu">
         <li className="mark-as-read text-right"><button onClick={this.markNotificationsAsReadClick}>Marquer tout comme lu</button></li>
         {
           this.props.notifications.map(notification => {
@@ -173,7 +170,7 @@ class NotificationItem extends Component {
           <span className={this.computeClass()}>
             {notReadNotificationNumber} <span className="sr-only">notifications non lues</span>
           </span>
-          <img className={notReadNotificationNumber.length ? 'ringing' : ''} src="/icons/header/bell.svg" alt="" />
+          <img className={cx({'ringing': notReadNotificationNumber.length })} src="/icons/header/bell.svg" alt="" />
         </button>
         {this.renderNotificationDropdown()}
         {showAdviceModal ? this.renderFirstDonationAdviceModal() : null}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import cx from'classnames';
 
 import HeaderHome from '../../generics/header/home/header-home';
 import HeaderUser from '../../generics/header/user/header-user';
@@ -35,7 +36,7 @@ export default class LegalTerms extends Component {
     escapeLinks.push({ href: '#main-content', text: 'Contenu principal' });
 
     return (
-      <div className={`page text-only ${hasUser ? 'has-menu' : ''}`}>
+      <div className={cx('page text-only', { 'has-menu': hasUser })}>
         <Helmet title="Mentions légales" titleTemplate="%s | Katellea" />
 
         <EscapeLinks links={escapeLinks} />

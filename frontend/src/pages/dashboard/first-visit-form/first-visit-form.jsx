@@ -3,6 +3,7 @@ import { navigate } from '@reach/router';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import dayjs from 'dayjs';
+import cx from 'classnames';
 
 import { DONATION_REST_WEEKS } from '../../../enum';
 import { extractKey } from '../../../services/helper';
@@ -228,7 +229,7 @@ class FirstVisitForm extends Component {
               </Field>
 
               <hr />
-              <div className={ this.state.lastDonationDateDateDisabled ? 'donation disabled':'donation' }>
+              <div className={cx('donation', { 'disabled': this.state.lastDonationDateDateDisabled })}>
 
                 <Field name="lastDonationDate">
                   {({ input, meta }) => (

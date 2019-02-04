@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import cx from 'classnames';
 
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 
@@ -39,7 +40,7 @@ export default class Press extends Component {
     escapeLinks.push({ href: '#main-content', text: 'Contenu principal' });
 
     return (
-      <div className={`page text-only ${hasUser ? 'has-menu' : ''}`}>
+      <div className={cx('page text-only', { 'has-menu': hasUser })}>
         <Helmet title="Kit presse" titleTemplate="%s | Katellea" />
 
         <EscapeLinks links={escapeLinks} />

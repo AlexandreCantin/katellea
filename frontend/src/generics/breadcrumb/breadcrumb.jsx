@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
+import cx from 'classnames';
+
 import { isEmpty } from '../../services/helper';
 import store from '../../services/store';
 
@@ -41,7 +43,7 @@ export default class Breadcrumb extends Component {
     const { links, hasUser } = this.state;
 
     return (
-      <nav className={hasUser ? 'breadcrumb-nav has-user' : 'breadcrumb-nav'} aria-label="breadcrumb" itemScope itemType="http://schema.org/BreadcrumbList">
+      <nav className={cx('breadcrumb-nav', { 'has-user': hasUser })} aria-label="breadcrumb" itemScope itemType="http://schema.org/BreadcrumbList">
         <ol className="inline-list list-unstyled">
           {
             links.map((el, index) => {

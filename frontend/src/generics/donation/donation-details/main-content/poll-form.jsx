@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 
 import { POLL_ANSWERS } from '../../../../enum';
 import { DonationService } from '../../../../services/donation/donation.service';
@@ -150,12 +151,8 @@ export default class PollForm extends Component {
 
                 const isUnavailable = this.isUnavailableDate(ps.date);
 
-                let cssClass = 'poll-answer-choices';
-                if (isUnavailable) cssClass = cssClass.concat(' red');
-                if (index === donation.pollSuggestions.length - 1) cssClass = cssClass.concat(' last');
-
                 return (
-                  <div key={name} className={cssClass}>
+                  <div key={name} className={cx('poll-answer-choices', { 'red': isUnavailable }, { 'last': index === donation.pollSuggestions.length - 1 })}>
                     <Field name={name} type="radio" value={POLL_ANSWERS.YES}>
                       {({ input }) => (
                         <div>

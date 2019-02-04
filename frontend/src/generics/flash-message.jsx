@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import cx from 'classnames';
 
 import { FLASH_MESSAGE_TYPE } from '../services/flash-message/flash-message';
 import store from '../services/store';
@@ -69,7 +70,7 @@ class FlashMessage extends Component {
     flashMessage.display = true;
 
     return (
-      <div className={'alert ' + this.getFlashMessageClass()} ref={this.flashMessageElementRef}>
+      <div className={cx('alert', this.getFlashMessageClass())} ref={this.flashMessageElementRef}>
         <ul className="list-unstyled list-no-margin-padding">{flashMessage.messages.map((message) => <li key={message.substr(0, 10)}>{message}</li>)}</ul>
       </div>
     );

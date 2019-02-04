@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 
 function Pagination({ currentPage, pageSize, total, onPageChange }) {
 
@@ -20,7 +21,7 @@ function Pagination({ currentPage, pageSize, total, onPageChange }) {
         {
           pageArray.map(page => (
             <li key={page}>
-              <button data-page={page-1} onClick={onPageChangeClick} className={currentPage+1 === page ? 'selected' : '' }>{page}</button>
+              <button data-page={page-1} onClick={onPageChangeClick} className={cx({ 'selected': currentPage+1 === page })}>{page}</button>
             </li>
           ))
         }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
 import slugify from 'slugify';
+import cx from 'classnames';
 
 import store from '../../../../services/store';
 import PhoneLink from '../../../../generics/phone-link';
@@ -104,8 +105,8 @@ export default class DonationDefinitiveDateForm extends Component {
 
                     return (
                       <Field key={id} name="finalAttendees" type="checkbox" value={pa.username} multiple="true">
-                        {({ input, meta }) => (
-                          <div className={isSelected ? 'attendee selected' : 'attendee'}>
+                        {({ input }) => (
+                          <div className={cx('attendee', { 'selected': isSelected })}>
                             <label>
                                 <span className="sr-only">Confirmer la présence de {name}</span>
                                 <input {...input} type="checkbox" disabled={disabled} />
