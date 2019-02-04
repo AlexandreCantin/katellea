@@ -32,7 +32,7 @@ class EmailVerificationRouteComponent extends Component {
   static async getDerivedStateFromProps(newProps, currentState) {
     // We get user from validateUserMail()
     let user = store.getState().user;
-    if(isEmpty(user)) {EmailVerificationRouteComponent.redirectToHomePage(); return; }
+    if(!user.id) {EmailVerificationRouteComponent.redirectToHomePage(); return; }
 
     if(user.emailVerified) {
       FlashMessageService.createSuccess('Votre email a été validé', 'dashboard');

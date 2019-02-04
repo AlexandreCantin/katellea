@@ -11,7 +11,7 @@ class AdminRouteComponent extends Component {
     super(props);
     let user = store.getState().user;
     this.state = {
-      hasUser: !isEmpty(user),
+      hasUser: user.id,
       isAdmin: false,
       loading: true,
       doRedirect: false
@@ -48,7 +48,7 @@ class AdminRouteComponent extends Component {
 
   static getDerivedStateFromProps(props, currentState) {
     let user = store.getState().user;
-    currentState.hasUser = !isEmpty(user);
+    currentState.hasUser = user.id;
     return currentState;
   }
 

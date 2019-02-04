@@ -32,7 +32,7 @@ export default class DonationActions extends Component {
 
   static isUserAnsweredPoll = (pollAnswers, user) => {
     // Filter only when user is logged
-    if(isEmpty(user)) return pollAnswers;
+    if(!user.id) return pollAnswers;
 
     return pollAnswers.filter(pa => pa.author ? pa.author.id === user.id : false).length > 0;
   }

@@ -32,7 +32,7 @@ class DonationContainer extends Component {
 
     this.storeUnsubscribeFn = store.subscribe(() => {
       let user = store.getState().user;
-      if (isEmpty(user)) return;
+      if (!user.id) return;
 
       let newUserHasCurrentDonation = store.getState().user.hasCurrentDonation();
       if (!this.userHasCurrentDonation && newUserHasCurrentDonation) {

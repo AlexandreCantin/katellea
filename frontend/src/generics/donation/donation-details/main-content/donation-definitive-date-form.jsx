@@ -31,7 +31,7 @@ export default class DonationDefinitiveDateForm extends Component {
     this.user = store.getState().user;
 
     this.initialValues = {}
-    if(!isEmpty(this.user)) this.initialValues = { finalAttendees: [this.props.donation.createdBy.id] };
+    if(this.user.id) this.initialValues = { finalAttendees: [this.props.donation.createdBy.id] };
     else this.initialValues = { finalAttendees: [this.props.donation.createdByGuest.name] };
 
     this.state = {
@@ -100,8 +100,8 @@ export default class DonationDefinitiveDateForm extends Component {
                     const id = pa.author ? pa.author.id : slugify(pa.username);
                     const name = pa.username || pa.author.name;
 
-                    const disabled = isEmpty(this.user) ? this.props.donation.createdByGuest.name === name : id === this.user.id;
-                    const isSelected = isEmpty(this.user) ? values.finalAttendees.includes(pa.username) : values.finalAttendees.includes(id);
+                    const disabled = !this.user.id ? this.props.donation.createdByGuest.name === name : id === this.user.id;
+                    const isSelected = !this.user.id ? values.finalAttendees.includes(pa.username) : values.finalAttendees.includes(id);
 
                     return (
                       <Field key={id} name="finalAttendees" type="checkbox" value={pa.username} multiple="true">

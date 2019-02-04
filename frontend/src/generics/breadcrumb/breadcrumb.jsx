@@ -19,7 +19,7 @@ export default class Breadcrumb extends Component {
   constructor(props) {
     super(props);
 
-    const hasUser = !isEmpty(store.getState().user);
+    const hasUser = store.getState().user.id;
 
     let links = this.props.links || [];
 

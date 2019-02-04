@@ -20,7 +20,7 @@ export default class OurMissionAndTeam extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasUser: !isEmpty(store.getState().user)
+      hasUser: store.getState().user.id
     };
   }
 

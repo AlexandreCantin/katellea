@@ -44,7 +44,7 @@ export default class DonationCreateForm extends Component {
     this.user = store.getState().user;
 
     this.formData = {
-      isPublicDonation: isEmpty(this.user),
+      isPublicDonation: !this.user.id,
       donationType: this.user.donationPreference || 'BLOOD',
       establishment: this.user.establishment,
       hourSuggestions: [dateFormatHourMinut(dayjs())],
@@ -67,14 +67,14 @@ export default class DonationCreateForm extends Component {
 
   componentDidMount() {
     // When donation created, set it as current for the user
-    if(!isEmpty(this.user)) {
+    if(this.user.id) {
       this.storeUnsubscribeFn = store.subscribe(() => {
         if (!isEmpty(store.getState().donation)) UserService.updateUser({ currentDonation: store.getState().donation.id });
       });
     }
   }
   componentWillUnmount() {
-    if(!isEmpty(this.user)) this.storeUnsubscribeFn();
+    if(this.user.id) this.storeUnsubscribeFn();
   }
 
   componentDidUpdate() {
@@ -131,7 +131,7 @@ export default class DonationCreateForm extends Component {
   validate = (values) => {
     const rules = this.isEstablishment() ? ESTABLISHMENT_FORM_RULES : MOBILE_COLLECT_FORM_RULES;
     // Handle registered vs non-register donation
-    if(isEmpty(this.user)) {
+    if(!this.user.id) {
       rules.email = [Validators.required(), Validators.email()];
       rules.name = [Validators.required(), Validators.minLength(3), Validators.maxLength(150), Validators.alphaDash()];
       rules.rgpd = [Validators.required()];
@@ -525,7 +525,7 @@ export default class DonationCreateForm extends Component {
             {this.showPollSuggestionsMobileCollect() ?
               <>
                 {this.state.multipleDayDonation ? this.renderPollSuggestionsMultipleDay() : this.renderPollSuggestionsOneDay()}
-                {isEmpty(this.user) ? this.renderNonRegisteredFields() : null}
+                {!this.user.id ? this.renderNonRegisteredFields() : null}
               </>
               : null}
 
@@ -536,7 +536,7 @@ export default class DonationCreateForm extends Component {
             {this.showPollSuggestionsEstablishment() ?
               <>
                 {this.renderPollSuggestionsMultipleDay()}
-                {isEmpty(this.user) ? this.renderNonRegisteredFields() : null}
+                {!this.user.id ? this.renderNonRegisteredFields() : null}
               </>
             : null}
 

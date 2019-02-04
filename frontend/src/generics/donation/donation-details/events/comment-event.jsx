@@ -21,7 +21,7 @@ export default class DonationEventComment extends Component {
     super(props);
 
     const user = store.getState().user;
-    const isEditable = isEmpty(user) || !this.props.event.author ? false : this.props.event.author.id === user.id;
+    const isEditable = !user.id || !this.props.event.author ? false : this.props.event.author.id === user.id;
 
     this.formData = {};
 

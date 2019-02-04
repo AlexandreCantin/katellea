@@ -35,7 +35,7 @@ export default class ContactForm extends Component {
     super(props);
 
     this.state = {
-      hasUser: !isEmpty(store.getState().user)
+      hasUser: store.getState().user.id
     };
   }
 

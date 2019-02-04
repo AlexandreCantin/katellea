@@ -52,7 +52,7 @@ class TokenRoute extends Component {
   static async getDerivedStateFromProps(newProps, currentState) {
     // We get user from getKatelleaUserWithReminder()
     let user = store.getState().user;
-    if(isEmpty(user)) return;
+    if(!user.id) return;
 
     const sponsor = currentState.sponsor || {};
 

@@ -20,7 +20,7 @@ export default class PollForm extends Component {
     this.user = store.getState().user;
 
     let userAnswers = [];
-    if(!isEmpty(this.user)) {
+    if(this.user.id) {
       let userAnswers = this.props.donation.pollAnswers.filter(pollAnswer => pollAnswer.author ? +pollAnswer.author.id === +this.user.id : false);
       if (userAnswers.length) userAnswers = userAnswers[0].answers;
     }
@@ -37,7 +37,7 @@ export default class PollForm extends Component {
 
 
   static getDerivedStateFromProps(nextProps, currentState) {
-    if(isEmpty(currentState.user)) return currentState;
+    if(!currentState.user.id) return currentState;
 
     let userAnswers = nextProps.donation.pollAnswers.filter(pollAnswer => pollAnswer.author ? +pollAnswer.author.id === +currentState.user.id : false);
     currentState.userHasAnswerPoll= (userAnswers.length !== 0);
@@ -52,7 +52,7 @@ export default class PollForm extends Component {
     this.localUserAnswers = {};
 
     // Add name field if user is not logged
-    if(isEmpty(this.user)) {
+    if(!this.user.id) {
       this.formRules['name'] = [Validators.required(), Validators.minLength(3), Validators.maxLength(150), Validators.alphaDash()];
       this.localUserAnswers['name'] = getLocalStorageValue('name');
     }
@@ -130,7 +130,7 @@ export default class PollForm extends Component {
     const { donation } = this.props;
     const { userHasAnswerPoll, user } = this.state;
 
-    const hasUser = !isEmpty(user);
+    const hasUser = user.id;
 
     return (
       <Form

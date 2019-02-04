@@ -26,7 +26,7 @@ export default class DonationEvents extends Component {
     super(props);
 
     const user = store.getState().user;
-    const hasUser = !isEmpty(user);
+    const hasUser = user.id;
 
     // Form data and rules
     this.initialValues = {};
@@ -36,10 +36,7 @@ export default class DonationEvents extends Component {
       this.formRules['username'] = [Validators.required(), Validators.minLength(3), Validators.maxLength(150), Validators.alphaDash()]
     }
 
-    this.state = {
-      user,
-      hasUser: !isEmpty(user)
-    }
+    this.state = { user, hasUser }
   }
 
   sendComment = (values, form) => {
@@ -82,9 +79,7 @@ export default class DonationEvents extends Component {
   }
   render() {
     const { donation } = this.props;
-    const { user } = this.state;
-
-    const hasUser = !isEmpty(user);
+    const { user, hasUser } = this.state;
 
     const events = donation.events;
 

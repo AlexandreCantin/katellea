@@ -21,7 +21,7 @@ export default class FakeUserLogin extends Component {
     this.storeUnsubscribeFn = store.subscribe(() => {
       let user = store.getState().user;
 
-      if (!isEmpty(user) && user.isProfileComplete()) {
+      if (user.id && user.isProfileComplete()) {
         if (user.hasCurrentDonation()) { navigate('/don-courant'); return; }
         navigate('/tableau-de-bord');
       }

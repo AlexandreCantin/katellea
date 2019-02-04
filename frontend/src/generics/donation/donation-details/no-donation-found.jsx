@@ -7,7 +7,7 @@ import DonationCreateFormModal from '../donation-create-form/donation-create-for
 
 const NoDonationFound = () => {
 
-  const hasUser = !isEmpty(store.getState().user);
+  const hasUser = store.getState().user.id;
 
   return (
     <div className="text-center no-donation-found">

@@ -26,7 +26,7 @@ class Poll extends Component {
       currentState.userPoll = undefined;
     }
 
-    if(isEmpty(nextProps.user)) return currentState;
+    if(!nextProps.user.id) return currentState;
     currentState.unavailablePollSuggestions = Poll.determineUnavaiblePollSuggestions(nextProps.user, nextProps.donation.pollSuggestions);
 
     return currentState;
@@ -34,7 +34,7 @@ class Poll extends Component {
 
 
   static determineUnavaiblePollSuggestions(user, pollSuggestions) {
-    if(isEmpty(user)) return [];
+    if(!user.id) return [];
 
     let minimumDate = dayjs(user.minimumDate);
     return pollSuggestions.filter(pollSuggestion => dayjs(pollSuggestion.date).isBefore(minimumDate));

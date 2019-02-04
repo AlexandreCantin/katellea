@@ -58,7 +58,7 @@ export default class Register extends Component {
     // When we get an user : go to dashboard
     this.userStoreUnsubscribeFn = store.subscribe(() => {
       let user = store.getState().user;
-      if (!isEmpty(user) && user.isProfileComplete()) navigate('/tableau-de-bord');
+      if (user.id && user.isProfileComplete()) navigate('/tableau-de-bord');
     });
 
     // Get sponsor/donation datas

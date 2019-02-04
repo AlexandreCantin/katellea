@@ -15,16 +15,9 @@ export const ALREADY_SEND_LAST_HOUR = 'ALREADY_SEND_LAST_HOUR';
 
 class UserServiceFactory {
 
-  isAuthentificated() {
-    let currentUser = store.getState().user || {};
-    if (!isEmpty(currentUser)) return true;
-    return false;
-  }
-
-
   isProfileComplete() {
     let currentUser = store.getState().user || {};
-    if (isEmpty(currentUser)) return false;
+    if (!currentUser.id) return false;
     return currentUser.isProfileComplete();
   }
 
