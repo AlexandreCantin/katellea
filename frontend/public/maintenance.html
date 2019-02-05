@@ -96,6 +96,14 @@
     display: flex;
   }
 
+  #maintenance main > div:first-child img {
+    max-width: 300px;
+  }
+
+  #maintenance main > div:nth-child(2) {
+    margin: 0 90px;
+  }
+
   @media (max-width: 760px) {
     #maintenance main {
       flex-direction: column;
@@ -142,9 +150,10 @@
     <div id="app">
       <div tabindex="-1" role="group" style="outline: none;">
         <div id="maintenance">
-          <main><img class="maintenance" src="/icons/500.svg" alt="">
+          <main>
+            <div><img class="maintenance" src="./icons/maintenance.svg" alt=""></div>
             <div>
-              <div class="no-wrap logo"><img src="/katellea-logo.svg" alt="K"><span>atellea</span><span class="beta-badge">beta</span></div>
+              <div class="no-wrap logo"><img src="./katellea-logo.svg" alt="K"><span>atellea</span><span class="beta-badge">beta</span></div>
               <p>Le site est en maintenance... Nous revenons bientôt !</p><a class="btn big" href="/">Retourner à l'accueil du site</a>
             </div>
           </main>
