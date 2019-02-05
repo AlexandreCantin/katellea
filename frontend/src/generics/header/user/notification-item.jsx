@@ -167,7 +167,7 @@ class NotificationItem extends Component {
     return (
       <div role="menuitem" className="notifications dropdown-container" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
         <button className="btn reset has-dropdown" aria-haspopup="true" aria-expanded={hover ? 'true' : 'false'} aria-controls="#notification-item-dropdown" onClick={this.toggleHover}>
-          <span className={this.computeClass()}>
+          <span>
             {notReadNotificationNumber} <span className="sr-only">notifications non lues</span>
           </span>
           <img className={cx({'ringing': notReadNotificationNumber.length })} src="/icons/header/bell.svg" alt="" />
