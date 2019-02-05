@@ -143,8 +143,7 @@ export default class Home extends Component {
 
                   <hr />
                   {/* #Beta => error message + hide buttons */}
-
-                  {/*<AuthLoginButtons />*/}
+                  {<AuthLoginButtons />}
                   {!environment.production ? <FakeUserLogin /> : null}
 
                 </div>
