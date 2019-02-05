@@ -16,6 +16,7 @@
 
   "cronWebhookUrl": "",
   "contactFormWebhookUrl": "",
+  "cronDonationCreatedhookUrl": "",
 
   "database": {
     "name": "katellea",

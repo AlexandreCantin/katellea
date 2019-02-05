@@ -159,6 +159,8 @@ const createDonation = async (req, res) => {
     await donation.save();
     const donationCreated = await _getDonationByToken(donation.donationToken);
 
+    SlackService.sendDonationCreated(donationCreated);
+
     // Notify his network that user created a new donation
     if(!donation.isPublicDonation) notifyCreatorNetwork(donation);
     if(donation.isPublicDonation) sendDonationAdminMail(req.body.createdByGuest, donation);

@@ -10,6 +10,7 @@ class SlackServiceFactory {
   constructor() {
     if(environment.cronWebhookUrl) this.cronWebhook = new IncomingWebhook(environment.cronWebhookUrl);
     if(environment.contactFormWebhookUrl) this.contactFormWebhook = new IncomingWebhook(environment.contactFormWebhookUrl);
+    if(environment.cronDonationCreatedhookUrl) this.cronDonationCreatedhook = new IncomingWebhook(environment.cronDonationCreatedhookUrl);
   }
 
   sendCronMessage(message) {
@@ -24,6 +25,16 @@ class SlackServiceFactory {
     if(!environment.contactFormWebhookUrl) return;
 
     this.contactFormWebhook.send(htmlBody, function(err, res) {
+      if (err) sendError(err);
+    });
+  }
+
+  sendDonationCreated(donation) {
+    if(!environment.cronDonationCreatedhookUrl) return;
+
+    const message = `Don créé =>  ${environment.frontUrl}/donation/${donation.donationToken}`;
+
+    this.cronDonationCreatedhook.send(message, function(err, res) {
       if (err) sendError(err);
     });
   }
