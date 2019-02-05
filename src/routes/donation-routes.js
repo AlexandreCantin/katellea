@@ -15,6 +15,7 @@ import MailFactory from '../services/mail.service';
 import { createNotification } from '../helpers/notification.helper';
 import sanitize from 'sanitize-html';
 import { DonationService } from '../services/donation.service';
+import { SlackService } from '../services/slack.service';
 import { sendError } from '../helper';
 import { generateRandomString } from '../helpers/string.helper';
 
