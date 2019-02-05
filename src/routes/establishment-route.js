@@ -50,8 +50,8 @@ const getEstablishmentFromCoordinates = async (longitude, latitude, res) => {
       }
     },
     // #Beta
-    longitude: { $gt: -2.8, $lt: -0.9 },
-    latitude: { $gt: 46.8833, $lt: 47.88 },
+    longitude: { $gt: -4.958, $lt: 1.042605 },
+    latitude: { $gt: 46.181568, $lt: 48.874451 },
   }).limit(3);
 
   establishments.forEach(es => {

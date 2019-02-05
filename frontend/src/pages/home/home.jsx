@@ -137,7 +137,7 @@ export default class Home extends Component {
 
                 <div className="katellea-form">
                   <p>Vous aussi rejoignez notre communauté de donneurs !</p>
-                  <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong> uniquement</div>
+                  <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Bretagne et aux Pays de la Loire</strong> uniquement.</div>
 
                   {<DonationCreateFormModal modalUrl="/nouveau-don" text="Proposer un nouveau don sans créer de compte"/>}
 

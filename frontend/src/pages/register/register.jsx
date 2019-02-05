@@ -227,7 +227,7 @@ export default class Register extends Component {
           {sponsorUser ? <SponsorCard user={sponsorUser} /> : null}
 
           {/* #Beta => error message + limiting form display*/}
-          <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Loire-Atlantique</strong> uniquement</div>
+          <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Bretagne et aux Pays de la Loire</strong> uniquement.</div>
           {!sponsorUser ? <div className="alert error">Katellea est actuellement en Beta. Vous devez avoir un parrain/marraine pour créer un nouveau compte (sauf pour les 100 premiers utilisateurs)</div> : null }
 
           <FlashMessage scope="registerForm" />
