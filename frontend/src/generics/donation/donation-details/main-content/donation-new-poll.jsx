@@ -60,7 +60,7 @@ export default class DonationNewPoll extends Component {
     return (
       <Modal cssclassName="new-poll" role="alertdialog" title="Lancer un nouveau sondage ?" onClose={this.closeNewPollModal} modalUrl="/donation/nouveau-sondage">
         <div className="text-center">
-          <p className="alert warning">L'ensemble des réponses sera supprimé.</p>
+          <p className="alert danger">Attention ! L'ensemble des réponses sera supprimé.</p>
           <Form
             onSubmit={this.updatePollSuggestions}
             mutators={{ ...arrayMutators }}
