@@ -2,6 +2,7 @@ import { DATE_HOUR_FORMAT } from '../helpers/date.helper';
 import dayjs from 'dayjs';
 import { SlackService } from '../services/slack.service';
 import User from '../models/user';
+import { sendError } from '../helper';
 
 
 /**
