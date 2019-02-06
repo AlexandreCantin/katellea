@@ -18,10 +18,10 @@ const MORE_VIDEOS = [
   { title: 'Les étapes du don', url: 'https://www.youtube.com/embed/_ai4sRE5PqU', modalUrl: '/tableau-de-bord/videos/etapes-du-don' }
 ];
 
-const AboutContainer = () => {
+const AboutContainer = ({ inModal = false }) => {
   return (
     <div id="about" className="block-base">
-      <h2>À propos du don du sang</h2>
+      { !inModal ? <h2>À propos du don du sang</h2> : null }
       <h3>Son importance</h3>
       <ul className="list-unstyled">{IMPORTANCE_VIDEOS.map(video => <li key={video.url}><YoutubeModalLink {...video} /></li>)}</ul>
 

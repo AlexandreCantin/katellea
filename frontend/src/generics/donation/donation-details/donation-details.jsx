@@ -9,6 +9,7 @@ import DonationActions from './main-content/donation-actions';
 import DonationDefinitiveDateForm from './main-content/donation-definitive-date-form';
 import DonationDateConfirmed from './main-content/donation-date-confirmed';
 import DonationDone from './main-content/donation-done';
+import DonationConditions from './donation-conditions';
 
 
 export default class DonationDetails extends Component {
@@ -34,6 +35,9 @@ export default class DonationDetails extends Component {
             <DonationActions donation={donation} isAdmin={isAdmin} adminToken={adminToken} />
             {isAdmin && donation.isPollOnGoing() ? <ShareDonation donationToken={donation.donationToken} /> : null}
           </div>
+
+          { console.log(donation) }
+          { donation.isPublicDonation ? <DonationConditions /> : null }
 
           <Poll donation={donation} />
           <DonationEvents donation={donation} />

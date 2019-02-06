@@ -73,6 +73,10 @@ $event-bg-color: lightblue;
 
       }
 
+      @media (max-width: 1650px) {
+        margin: 80px 20px 20px 20px;
+      }
+
       @media (max-width: $min-width-tablet) {
         margin: 80px 20px 20px 20px;
         .main-content {
@@ -88,11 +92,14 @@ $event-bg-color: lightblue;
     p { margin-bottom: 20px; }
   }
 
-  .main-content > .actions {
-    grid-column: span 2;
-    @media (max-width: $min-width-tablet) { grid-column: span 1; }
-    // margin-top: 30px;
+  .main-content {
+    > .actions, > .conditions {
+      grid-column: span 2;
+      @media (max-width: $min-width-tablet) { grid-column: span 1; }
+    }
+  }
 
+  .main-content > .actions {
     .donation-actions { float: left; }
     .share-actions {
       float: right;
@@ -380,3 +387,6 @@ $event-bg-color: lightblue;
 
   }
 }
+
+// About modal
+@include mx-about($padding: 0);
