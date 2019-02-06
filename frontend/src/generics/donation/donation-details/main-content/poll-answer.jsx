@@ -12,13 +12,13 @@ const PollAnswer = ({ donation, pollAnswer }) => {
   const isRegisteredUser = pollAnswer.author;
 
   return (
-    <div className={cx('poll-answer text-center', { 'poll-on-going' : donationPollOnGoing })}>
+    <div key={pollAnswer._id} className={cx('poll-answer text-center', { 'poll-on-going' : donationPollOnGoing })}>
       <div>
         { isRegisteredUser ?  <img src="/icons/user.svg" alt="Utilisateur enregistré" title="Utilisateur enregistré" /> : null }
         {name}
         { canBeEdited ? <EditPollAnswer donation={donation} pollAnswer={pollAnswer} /> : null }
       </div>
-      {pollAnswer.answers.map(answer => <div key={pollAnswer._id}>{POLL_ANSWERS_VALUE_TO_LABEL[answer]}</div>)}
+      {pollAnswer.answers.map((answer, index) => <div key={index}>{POLL_ANSWERS_VALUE_TO_LABEL[answer]}</div>)}
       {donationPollOnGoing ? <div>&nbsp;</div> : null}
     </div>
   );

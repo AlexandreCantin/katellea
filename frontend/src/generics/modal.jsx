@@ -44,13 +44,15 @@ const TAB_KEY = 9;
 const ECHAP_KEY = 27;
 
 export default class Modal extends Component {
-  static defaultProps = { level: '1' }
+  static defaultProps = { level: '1', role: 'dialog', hideClose: false }
   static propTypes = {
     level: PropTypes.string,
     title: PropTypes.string.isRequired,
     modalUrl: PropTypes.string,
     noModalUrl: PropTypes.bool,
     cssClassName: PropTypes.string,
+    role: PropTypes.string,
+    hideClose: PropTypes.bool,
 
     onClose: PropTypes.func.isRequired,
   }
@@ -62,11 +64,6 @@ export default class Modal extends Component {
     this.modalSelector = '#modal.modal';
     if(this.isSecondLevel()) this.modalSelector += '.level-2';
     this.modalSelector += ' .modal-content';
-
-    this.state = {
-      role: this.props.role || 'dialog',
-      hideClose: this.props.hideClose || false
-    }
   }
 
   componentDidMount() {
@@ -142,7 +139,7 @@ export default class Modal extends Component {
   }
 
   closeModal = () => {
-    if (this.state.hideClose) return;
+    if (this.props.hideClose) return;
 
     // Focus on the last element
     this.activeElement.focus(); // FIXME: not working (element is always: <body></body>)
@@ -150,8 +147,7 @@ export default class Modal extends Component {
   }
 
   render() {
-    const { title, children } = this.props;
-    const { role, hideClose } = this.state;
+    const { title, children, role, hideClose} = this.props;
 
     const childrenWithProps = React.Children.map(children, child => {
       if(child === null) return null;

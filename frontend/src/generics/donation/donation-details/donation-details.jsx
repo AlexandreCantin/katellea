@@ -36,7 +36,6 @@ export default class DonationDetails extends Component {
             {isAdmin && donation.isPollOnGoing() ? <ShareDonation donationToken={donation.donationToken} /> : null}
           </div>
 
-          { console.log(donation) }
           { donation.isPublicDonation ? <DonationConditions /> : null }
 
           <Poll donation={donation} />

@@ -9,6 +9,7 @@ import { DonationService } from '../../../../services/donation/donation.service'
 import store from '../../../../services/store';
 import Modal from '../../../../generics/modal';
 import { DONATION_ACTIONS } from '../../../../services/donation/donation.reducers';
+import DonationNewPoll from './donation-new-poll';
 
 export default class DonationActions extends Component {
   static propTypes = {
@@ -72,6 +73,7 @@ export default class DonationActions extends Component {
       .catch(() => FlashMessageService.createError('Erreur lors de la suppression du don. Veuillez réessayer ultérieurement', 'donation'));
   }
 
+  // Delete donation
   showDeleteDonationModal = () => this.setState({ showDeleteDonationModal: true });
   closeDeleteDonationModal = () => this.setState({ showDeleteDonationModal: false });
 
@@ -92,17 +94,16 @@ export default class DonationActions extends Component {
     );
   }
 
-
-
   render() {
     const { donationPollOnGoing, showDeleteDonationModal } = this.state;
-    const { isAdmin } = this.props;
+    const { donation, isAdmin, adminToken } = this.props;
 
     return (
       <div className="donation-actions">
         <ul className="actions inline-list list-unstyled">
           {isAdmin ? <li><button onClick={this.showDeleteDonationModal} className="btn danger">Supprimer de don</button></li> : null}
           {isAdmin && donationPollOnGoing ? <li><button className="btn" onClick={this.closePoll}>Terminer le sondage</button></li> : null}
+          {isAdmin && donationPollOnGoing ? <li><DonationNewPoll donation={donation} adminToken={adminToken} /></li> : null}
         </ul>
 
         { showDeleteDonationModal ? this.renderDeleteDonationModal() : null}

@@ -8,7 +8,7 @@ import { DONATION_EVENTS, DONATION_STATUS, DONATION_VISIBILITY, POLL_ANSWERS, NO
 import { wellFormedPollAnswers, notifyCreatorNetwork, sendDonationAdminMail } from '../helpers/donation.helper';
 
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
-import { canAccessDonation, canEditAsCreator, isUserCurrentDonation } from '../middlewares/can-access-donation';
+import { canAccessDonation, canEditAsCreator, isUserCurrentDonation, canBeUpdated } from '../middlewares/can-access-donation';
 import { INTERNAL_SERVER_ERROR, BAD_REQUEST, NOT_FOUND, UNAUTHORIZED, OK } from 'http-status-codes';
 import { getSmallNetworkIds, getCloseNetworkIds } from '../helpers/user.helper';
 import MailFactory from '../services/mail.service';
@@ -157,8 +157,8 @@ const createDonation = async (req, res) => {
 
 
   try {
-    await donation.save();
-    const donationCreated = await _getDonationByToken(donation.donationToken);
+    const donationFullObject =  await donation.save(); // All fields
+    const donationCreated = await _getDonationByToken(donation.donationToken); // Only public fields
 
     SlackService.sendDonationCreated(donationCreated);
 
@@ -166,13 +166,51 @@ const createDonation = async (req, res) => {
     if(!donation.isPublicDonation) notifyCreatorNetwork(donation);
     if(donation.isPublicDonation) sendDonationAdminMail(req.body.createdByGuest, donation);
 
-    return res.json(donationCreated);
+    // Add admin token (for frontend redirect as admin)
+    const donationObj = donationCreated.toObject();
+    donationObj.adminToken = donationFullObject.adminToken;
+
+    return res.json(donationObj);
   } catch (err) {
     sendError(err);
     return res.status(INTERNAL_SERVER_ERROR).send();
   }
 
 };
+
+
+const resetPoll = async (req, res) => {
+  const donation = await Donation.findOne({ donationToken: req.params.donationToken });
+  if (!donation) return res.status(BAD_REQUEST).send();
+
+  // Check access
+  const canAccess = await canAccessDonation(donation, req.user);
+  if (!canAccess) return res.status(NOT_FOUND).send();
+
+  if(!canEditAsCreator(donation, req.user, req.query.adminToken)) return res.status(UNAUTHORIZED).send();
+  if (!canBeUpdated(donation) || donation.status !== DONATION_STATUS.POLL_ON_GOING) return res.status(UNAUTHORIZED).send();
+
+  // Update all pollSugestions
+  donation.pollSuggestions = req.body.pollSuggestions;
+  if(donation.isPublicDonation) {
+    const username = donation.createdByGuest.name;
+
+    donation.events.push({ name: DONATION_EVENTS.RESET_POLL, username, date: new Date() });
+    donation.pollAnswers = [{ username, answers: donation.pollSuggestions.map(() => POLL_ANSWERS.YES) }];
+  } else {
+    donation.events.push({ name: DONATION_EVENTS.RESET_POLL, author: req.userId, date: new Date() });
+    donation.pollAnswers = [{ author: req.userId, answers: donation.pollSuggestions.map(() => POLL_ANSWERS.YES) }];
+  }
+
+  try {
+    await donation.save();
+    const donationUpdated = await _getDonationByToken(req.params.donationToken);
+    return res.json(donationUpdated);
+  } catch (err) {
+    sendError(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
+  }
+}
 
 
 const updateDonation = async (req, res) => {
@@ -184,13 +222,8 @@ const updateDonation = async (req, res) => {
   if (!canAccess) return res.status(NOT_FOUND).send();
 
   if(!canEditAsCreator(donation, req.user, req.query.adminToken)) return res.status(UNAUTHORIZED).send();
+  if (!canBeUpdated(donation)) return res.status(UNAUTHORIZED).send();
 
-  // Is donation can still be updated ?
-  if (donation.statisticsDate) {
-    const maxDate = dayjs(donation.statisticsDate);
-    const today = dayjs();
-    if (today.isAfter(maxDate)) return res.status(UNAUTHORIZED).send();
-  }
 
   // Determine event
   const isPollClosing = (donation.status == DONATION_STATUS.POLL_ON_GOING && req.body.status == DONATION_STATUS.POLL_ENDED);
@@ -479,6 +512,7 @@ donationRoutes.get('/can-access/token/:donationToken', canAccessDonationByToken)
 donationRoutes.post('/:donationId/remove-user/:userId', addQuitUserEvent);
 donationRoutes.post('/', createDonation);
 donationRoutes.put('/:donationToken', updateDonation);
+donationRoutes.put('/reset-poll/:donationToken', resetPoll);
 donationRoutes.delete('/:donationToken', deleteDonation);
 
 // Routes => pollAnswers

@@ -48,6 +48,7 @@ export const environmentValues = {
   NOTIFICATIONS_ENDPOINT: '/notifications',
 
   DONATION_ENDPOINT: '/donation',
+  DONATION_ENDPOINT_RESET_POLL: '/donation/reset-poll',
   DONATION_HISTORY: '/donation/history',
   DONATION_ELIGIBLE_URL: '/donation/eligible-donations',
   DONATION_TOKEN_ENDPOINT: '/donation/token/',

@@ -97,6 +97,10 @@ DonationSchema.methods.getCreatorName = function() {
   return this.createdBy.name;
 }
 
+DonationSchema.methods.getAdminToken = function() {
+  return this.adminToken;
+}
+
 DonationSchema.methods.notifyCreator = function(notificationType, authorName, userId = undefined) {
   // Register user
   if(this.createdBy) {

@@ -165,6 +165,24 @@ class DonationServiceFactory {
     });
   }
 
+  resetPoll(donation, newPollValues, adminToken='') {
+    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT_RESET_POLL}/${donation.donationToken}`;
+    if(adminToken) url = `${url}?adminToken=${adminToken}`;
+    let headers = getKatelleaTokenHeaders(!adminToken);
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url, { headers, method: 'PUT', body: JSON.stringify(newPollValues) });
+      if (response.status === 200) {
+        let donationData = await response.json();
+        if (donationData) {
+          this.saveDonationInLocalStore(donationData);
+          return resolve();
+        }
+      }
+      reject();
+    });
+  }
+
 
   saveComment(donation, commentData, isCreation = false, addToken = false) {
     let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/${donation.donationToken}${environment.COMMENT_ENDPOINT}`;

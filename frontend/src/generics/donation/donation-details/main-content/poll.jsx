@@ -11,7 +11,7 @@ import { extractKey } from '../../../../services/helper';
 import DonationCard from '../../../../generics/donation/donation-card/donation-card';
 
 class Poll extends Component {
-  static PropTypes = { donation: PropTypes.object.isRequired }
+  static propTypes = { donation: PropTypes.object.isRequired }
 
 
   constructor(props) {

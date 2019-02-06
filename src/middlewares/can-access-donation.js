@@ -34,3 +34,12 @@ export const canEditAsCreator = (donation, user, adminToken) => {
   const userId = user.id || user._id;
   return +donation.createdBy === +userId;
 };
+
+export const canBeUpdated = (donation) => {
+  if (donation.statisticsDate) {
+    const maxDate = dayjs(donation.statisticsDate);
+    const today = dayjs();
+    if (today.isAfter(maxDate)) return false;
+  }
+  return true;
+}

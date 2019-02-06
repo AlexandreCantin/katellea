@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
 import arrayMutators from 'final-form-arrays'
-import { FieldArray } from 'react-final-form-arrays'
 import { Form, Field } from 'react-final-form';
 import { navigate } from '@reach/router';
 
@@ -21,10 +20,12 @@ import EstablishmentSelectForm from '../../establishment/select/establishment-se
 import MobileCollectSelectForm from '../../mobile-collect/mobile-collect-form';
 import Donation from '../../../services/donation/donation';
 import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
+import { datesValidationMultipleDays, datesValidationOneDay } from '../donation-helper';
+import { PollSuggestionsMultipleDay, PollSuggestionsOneDay } from './donation-date-suggestion';
 
 require('./donation-create-form.scss');
 
-const POLL_SUGGESTION_MAX_SIZE = 5;
+
 
 const MOBILE_COLLECT_FORM_RULES = {
   donationLocation: [Validators.required()],
@@ -141,7 +142,8 @@ export default class DonationCreateForm extends Component {
     let errors = validateForm(values, rules);
     if (!isEmpty(errors)) return errors;
 
-    errors = this.state.multipleDayDonation ? datesValidationMultipleDays(values.dateSuggestions, 'dateSuggestions', true) : datesValidationOneDay(values.hourSuggestions, 'hourSuggestions');
+    errors = this.state.multipleDayDonation ?
+      datesValidationMultipleDays(values.dateSuggestions, 'dateSuggestions', true) : datesValidationOneDay(values.hourSuggestions, 'hourSuggestions');
     if (!isEmpty(errors)) return errors;
   }
 
@@ -184,7 +186,7 @@ export default class DonationCreateForm extends Component {
       FlashMessageService.createSuccess('Le don a été créé avec succès', 'donation');
 
       // Redirect to donation page
-      const url = `/donation/${donationCreated.donationToken}`;
+      const url = `/donation/${donationCreated.donationToken}?admin=${donationCreated.adminToken}`;
       setTimeout(() => navigate(url), 1000);
     } catch (error) {
       FlashMessageService.createError('Erreur lors de la création du don.. Veuillez nous excuser..!', 'donation-create-form');
@@ -193,113 +195,7 @@ export default class DonationCreateForm extends Component {
 
 
   // RENDER
-  renderPollSuggestionsMultipleDay() {
-    return (
-      <fieldset>
-        <legend>4 - Proposition de dates</legend>
 
-        <div className="alert info">
-          Afin d'améliorer vos chances pour prendre rendez-vous avec l'EFS, nous vous conseillons de prendre rendez-vous à minima deux semaines avant la date voulue.
-        </div>
-
-        <FieldArray name="dateSuggestions">
-          {({ fields, meta }) => (
-            <>
-              <div className="poll-suggestions clearfix">
-                <button className="btn" onClick={(e) => { e.preventDefault(); fields.push({ date: dateFormatYearMonthDay(dayjs().add(1, 'day')), dayPart: 'DAY' }) }} disabled={fields.length >= POLL_SUGGESTION_MAX_SIZE}>Ajouter une nouvelle date</button>
-              </div>
-
-              {fields.length >= POLL_SUGGESTION_MAX_SIZE ? <div className="alert info">Vous ne pouvez pas ajouter plus de {POLL_SUGGESTION_MAX_SIZE} propositions.</div> : null}
-
-              {fields.map((name, index) => {
-                const error = meta.error && meta.error[index] ? meta.error[index].error : undefined;
-                return (
-                  <div key={name}>
-                    <div className="poll-suggestion">
-                      <strong>{index + 1} : </strong>
-                      <div>
-                        <Field name={`${name}.date`}>
-                          {({ input }) => (<><input {...input} type="date" id={name + '-hour'} /><label htmlFor={name + '-hour'} className="sr-only">Heure proposé n°{index + 1}</label></>)}
-                        </Field>
-                      </div>
-
-                      <ul className="list-unstyled inline-list">
-                        <li>
-                          <Field name={`${name}.dayPart`} value="DAY" type="radio">
-                            {({ input }) => (<><input {...input} type="radio" id={name + '-day'} /><label htmlFor={name + '-day'}>Journée</label></>)}
-                          </Field>
-                        </li>
-                        <li>
-                          <Field name={`${name}.dayPart`} value="MORNING" type="radio">
-                            {({ input }) => (<><input {...input} type="radio" id={name + '-morning'} /><label htmlFor={name + '-morning'}>Matin</label></>)}
-                          </Field>
-                        </li>
-                        <li>
-                          <Field name={`${name}.dayPart`} value="AFTERNOON" type="radio">
-                            {({ input }) => (<><input {...input} type="radio" id={name + '-afternoon'} /><label htmlFor={name + '-afternoon'}>Après-midi</label></>)}
-                          </Field>
-                        </li>
-                      </ul>
-                      {fields.length > 1 ? <button className="btn" onClick={() => fields.remove(index)}>x</button> : null}
-                    </div>
-
-                    {error ?
-                      <div className="alert error">
-                        {error === 'required' ? <div>Cette date n'est pas renseignée</div> : null}
-                        {error === 'noFutureDate' ? <div>La date doit être dans le futur</div> : null}
-                        {error === 'sameDate' ? <div>Cette date existe déjà</div> : null}
-                      </div> : null
-                    }
-                  </div>
-                )
-              })}
-            </>
-          )}
-        </FieldArray>
-      </fieldset>
-    );
-  }
-
-  renderPollSuggestionsOneDay() {
-    return (
-      <fieldset>
-        <legend>3 - Proposition d'heures</legend>
-
-        <FieldArray name="hourSuggestions">
-          {({ fields, meta }) => (
-            <>
-              <div className="poll-suggestions clearfix">
-                <button className="btn" onClick={(e) => { e.preventDefault(); fields.push(dateFormatHourMinut(dayjs())) }} disabled={fields.length >= POLL_SUGGESTION_MAX_SIZE}>Ajouter une nouvelle heure</button>
-              </div>
-
-              {fields.length >= POLL_SUGGESTION_MAX_SIZE ? <div className="alert info">Vous ne pouvez pas ajouter plus de {POLL_SUGGESTION_MAX_SIZE} propositions.</div> : null}
-              {fields.map((name, index) => {
-                const error = meta.error && meta.error[index] ? meta.error[index].error : undefined;
-                return (
-                  <div key={name}>
-                    <div className="poll-suggestion">
-                      <strong>{index + 1} : </strong>
-                      <div>
-                        <Field name={name}>{({ input }) => (<input {...input} type="time" />)}</Field>
-                      </div>
-                      {fields.length > 1 ? <button className="btn" onClick={() => fields.remove(index)}>x</button> : null}
-                    </div>
-                    {error ?
-                      <div className="alert error">
-                        {error === 'required' ? <div>L'heure n'est pas renseignée</div> : null}
-                        {error === 'sameDate' ? <div>Vous avez déjà proposé cette horaire</div> : null}
-                      </div> : null
-                    }
-                  </div>
-                )
-              }
-              )}
-            </>
-          )}
-        </FieldArray>
-      </fieldset>
-    );
-  }
   renderDonationType() {
     return (
       <fieldset>
@@ -453,7 +349,7 @@ export default class DonationCreateForm extends Component {
             <div className="form-line accept-field">
               <div>
                 <input {...input} id="accept-rgpd" type="checkbox" />
-                <label htmlFor="accept-rgpd">J'accepte que Katellea stocke ces informations durant toute la durée de cette proposition de don.</label>
+                <label htmlFor="accept-rgpd">J'accepte que Katellea stocke ces informations durant toute la durée de cette proposition de don <em>(obligatoire)</em> </label>
               </div>
               {meta.error && meta.touched ?
                 <div className="alert error">
@@ -467,7 +363,7 @@ export default class DonationCreateForm extends Component {
             <div className="form-line accept-field">
               <div>
                 <input {...input} id="accept-eligible-new-donation" type="checkbox" />
-                <label htmlFor="accept-eligible-new-donation">J'accepte d'être sollicité lorsque je serai disponible pour un nouveau don.</label>
+                <label htmlFor="accept-eligible-new-donation">J'accepte d'être sollicité lorsque je serai disponible pour un nouveau don <em>(optionnel)</em></label>
               </div>
             </div>
           )}
@@ -524,7 +420,7 @@ export default class DonationCreateForm extends Component {
             {this.isMobileCollect() ? this.renderFindMobileCollect() : null}
             {this.showPollSuggestionsMobileCollect() ?
               <>
-                {this.state.multipleDayDonation ? this.renderPollSuggestionsMultipleDay() : this.renderPollSuggestionsOneDay()}
+                {this.state.multipleDayDonation ? <PollSuggestionsMultipleDay />: <PollSuggestionsOneDay />}
                 {!this.user.id ? this.renderNonRegisteredFields() : null}
               </>
               : null}
@@ -535,7 +431,7 @@ export default class DonationCreateForm extends Component {
             {this.showDonationType() ? this.renderDonationType() : null}
             {this.showPollSuggestionsEstablishment() ?
               <>
-                {this.renderPollSuggestionsMultipleDay()}
+                <PollSuggestionsMultipleDay />
                 {!this.user.id ? this.renderNonRegisteredFields() : null}
               </>
             : null}
@@ -556,67 +452,3 @@ export default class DonationCreateForm extends Component {
 
 
 
-function datesValidationMultipleDays(values, fieldName) {
-  let errors = {};
-  errors[fieldName] = [];
-
-  // 1 - Check all date are set
-  values.forEach((ps, index) => {
-    if (isEmpty(errors) && !ps.date) errors[fieldName][index] = { error: 'required' }; // errors.push('Certaines dates ne sont pas renseignées.');
-  });
-  if (!isEmpty(errors[fieldName])) return errors;
-
-  // 2 - Check all date are in the future
-  let today = dayjs();
-  values.forEach((ps, index) => {
-    if (errors.length > 0) return;
-    if (dayjs(ps.date).isBefore(today)) errors[fieldName][index] = { error: 'noFutureDate' }; // errors.push('Certaines dates ne sont pas dans le futur.');
-  });
-  if (!isEmpty(errors[fieldName])) return errors;
-
-  // 3 - Check all date are distinct
-  let length = values.length;
-  for (let i = 0; i < length; i++) {
-    if (errors.length > 0) break;
-
-    for (let j = i + 1; j < length; j++) {
-      if (errors.length > 0) break;
-
-      let date1 = dayjs(values[i].date);
-      let date2 = dayjs(values[j].date);
-
-      if (dayjs(date1).isSame(date2)) errors[fieldName][j] = { error: 'sameDate' }; // errors.push('Certaines dates sont identiques');
-    }
-  }
-  if (!isEmpty(errors[fieldName])) return errors;
-
-
-  return {};
-}
-
-
-function datesValidationOneDay(values, fieldName) {
-
-  let errors = {};
-  errors[fieldName] = [];
-
-  // 1 - Check all date are set
-  values.forEach((val, index) => {
-    if (isEmpty(errors) && !val) errors[fieldName][index] = { error: 'required' }; // errors.push('Certaines dates ne sont pas renseignées.');
-  });
-  if (!isEmpty(errors[fieldName])) return errors;
-
-  // 2 - Check all date are distinct
-  for (let i = 0; i < values.length; i++) {
-    if (errors.length > 0) break;
-
-    for (let j = i + 1; j < values.length; j++) {
-      if (errors.length > 0) break;
-
-      if (values[i] === values[j]) errors[fieldName][j] = { error: 'sameDate' };
-    }
-  }
-  if (!isEmpty(errors[fieldName])) return errors;
-
-  return {};
-}

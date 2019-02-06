@@ -10,6 +10,7 @@ import DonationEventComment from './events/comment-event';
 import DonationEventClosePoll from './events/close-poll';
 import DonationEventQuit from './events/quit';
 import DonationEventDone from './events/done';
+import DonationResetPoll from './events/reset-poll';
 
 import DonationEventDefinitiveDate from './events/date-confirmed';
 import { DONATION_EVENTS } from '../../../enum';
@@ -96,6 +97,7 @@ export default class DonationEvents extends Component {
           else if (event.name === DONATION_EVENTS.SCHEDULE_DONATION) return <DonationEventDefinitiveDate key={index} event={event} />;
           else if (event.name === DONATION_EVENTS.QUIT) return <DonationEventQuit key={index} event={event} />;
           else if (event.name === DONATION_EVENTS.DONE) return <DonationEventDone key={index} event={event} />;
+          else if (event.name === DONATION_EVENTS.RESET_POLL) return <DonationResetPoll key={index} event={event} />;
           return null;
         })}
 
