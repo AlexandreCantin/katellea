@@ -9,6 +9,9 @@
       "experimentalObjectRestSpread": true
     }
   },
+  "plugins": [
+    "react-hooks"
+  ],
   "overrides": [
     {
       "files": [ "*.js", "**/*.js" ],
@@ -21,6 +24,7 @@
     "brace-style": [2, "1tbs", { "allowSingleLine": true }],
     "comma-dangle": ["error", "only-multiline"],
     "keyword-spacing": 0,
+    "react-hooks/rules-of-hooks": "error",
 
     "react/prefer-stateless-function": 0,
     "react/sort-comp": 0,
