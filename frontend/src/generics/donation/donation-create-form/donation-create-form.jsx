@@ -70,7 +70,7 @@ export default class DonationCreateForm extends Component {
     // When donation created, set it as current for the user
     if(this.user.id) {
       this.storeUnsubscribeFn = store.subscribe(() => {
-        if (!isEmpty(store.getState().donation)) UserService.updateUser({ currentDonation: store.getState().donation.id });
+        if (!isEmpty(store.getState().donation)) UserService.updateUser({ currentDonationToken: store.getState().donation.donationToken });
       });
     }
   }

@@ -55,7 +55,7 @@ export default class DonationDone extends Component {
 
   renderDefinitiveDateModal() {
     return (
-      <Modal cssclassName="donation-done" title="Modifier le don définitif" onClose={this.closeDonationDoneUpdateModal} modalUrl="/don-courant/participants-definitifs" cssClass="definitive-attendees-form">
+      <Modal cssclassName="donation-done" title="Modifier le don définitif" onClose={this.closeDonationDoneUpdateModal} modalUrl="/donation/participants-definitifs" cssClass="definitive-attendees-form">
         <FlashMessage scope="update-attendees" />
         <div>
           <p>Selectionner les participants définitifs pour ce don :</p>

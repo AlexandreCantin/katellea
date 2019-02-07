@@ -110,7 +110,8 @@ DonationSchema.methods.notifyCreator = function(notificationType, authorName, us
       username: authorName,
       forUser: this.createdBy,
       date: new Date(),
-      donationId: this.id
+      donationId: this.id,
+      donationToken: this.donationToken
     });
   } else {
     // Not register user

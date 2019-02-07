@@ -21,7 +21,7 @@ export default class NewAnd30DaysWithoutDonationCron {
 
     const users = await User.find({
       $where : "this.createdAt == this.minimumDate",
-      currentDonation: null,
+      currentDonationToken: null,
       quotaExceeded: false,
     });
 

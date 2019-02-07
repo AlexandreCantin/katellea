@@ -88,7 +88,7 @@ const UserSchema = mongoose.Schema({
   lastNotificationReadDate: Date,
 
   // Foreign Keys
-  currentDonation: { type: Number, ref: 'Donation' },
+  currentDonationToken: String,
   sponsor: { type: Number, ref: 'User' },
   establishment: { type: Number, ref: 'Establishment' },
 

@@ -61,7 +61,7 @@ export default class UserStatisticsCron {
         const isSponsored = user.hasOwnProperty('sponsor');
 
         user.lastDonationDate = donation.finalDate;
-        user.currentDonation = null;
+        user.currentDonationToken = null;
 
         switch (donation.donationType) {
           case DONATION_TYPE.BLOOD:

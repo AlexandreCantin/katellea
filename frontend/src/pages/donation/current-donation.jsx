@@ -39,7 +39,7 @@ class CurrentDonation extends Component {
 
     // Get current donation
     if (this.user.hasCurrentDonation()) {
-      DonationService.getCurrentDonation(this.user.currentDonation)
+      DonationService.getDonationByToken(this.user.donationToken)
         .then(() => this.setState({ loading: false }))
         .catch(() => this.setState({ loading: false }));
     }
@@ -56,7 +56,7 @@ class CurrentDonation extends Component {
       <div className="main-content">
         <div className="new-donation block-base text-center">
           <p className="block">Vous n'avez aucune proposition de don en cours.</p>
-          <DonationCreateFormModal modalUrl="/don-courant/nouveau-don"/>
+          <DonationCreateFormModal modalUrl="/donation/nouveau-don"/>
         </div>
       </div>
     );

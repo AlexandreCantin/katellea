@@ -13,10 +13,11 @@ export const NOTIFICATION_TYPES = {
 };
 
 export class Notification {
-  constructor({ type, date, donationId, author, data }) {
+  constructor({ type, date, donationId, donationToken, author, data }) {
     this.type = type;
     this.date = date;
     this.donationId = donationId;
+    this.donationToken = donationToken;
     this.author = author;
     this.data = data;
   }

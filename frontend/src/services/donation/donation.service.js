@@ -5,27 +5,6 @@ import store from '../store';
 
 class DonationServiceFactory {
 
-  async getCurrentDonation(donationId) {
-    // Note: we add /id/ to avoid conflict with /donation/:reqToken in 'react-proxy-routes.js'
-    let url = `${environment.SERVER_URL}${environment.DONATION_ENDPOINT}/id/${donationId}`;
-    let headers = getKatelleaTokenHeaders();
-
-    return new Promise(async (resolve, reject) => {
-      let response = await fetch(url, { headers });
-      if (response.status === 200) {
-
-        let donationData = await response.json();
-        if (donationData) {
-          this.saveDonationInLocalStore(donationData);
-          resolve();
-          return;
-        }
-
-      }
-      reject();
-    });
-  }
-
   async getEligibleDonations() {
     let url = `${environment.SERVER_URL}${environment.DONATION_ELIGIBLE_URL}`;
     let headers = getKatelleaTokenHeaders();

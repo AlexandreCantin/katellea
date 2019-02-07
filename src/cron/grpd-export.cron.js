@@ -58,13 +58,15 @@ export default class GRPDExportCron {
       //  1.1 - User data
       const user = await User.findById(userId)
         .populate({ path: 'establishment', model: 'Establishment' })
-        .populate({ path: 'sponsor', model: 'User', select: User.publicFields })
-        .populate({ path: 'currentDonation', model: 'Donation' });
+        .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
 
       // Is user still exists ?
       if (user.email !== '') {
 
-        if(user.currentDonation) user.currentDonation = await GRPDExportCron.keepOnlyUserData(userId, user.currentDonation);
+        if(user.currentDonationToken) {
+          const donation = await Donation.findOne({ donationToken: currentDonationToken });
+          user.currentDonation = await GRPDExportCron.keepOnlyUserData(userId, donation);
+        }
 
         //  1.2 - Donations data
         const donationsHistory = await Donation.find({

@@ -1,5 +1,5 @@
 [
-  { "_id" : 1, "katelleaToken" : "", "name" : "John Doe", "email" : "johnDoe@mail.com", "gender" : "UNKNOWN", "firstVisit" : false, "sponsorToken" : "275b9996a878b781ec375c12b54cd92d98507b8e6bff57145177da0a3d50fef1e70b79278e0be7395a4601682489fcd084c0d99c74141598b9594fa2981adc85", "__v" : 0, "bloodType" : "O+", "establishment" : 42, "plateletActive" : true, "currentDonation" : 2 },
+  { "_id" : 1, "katelleaToken" : "", "name" : "John Doe", "email" : "johnDoe@mail.com", "gender" : "UNKNOWN", "firstVisit" : false, "sponsorToken" : "275b9996a878b781ec375c12b54cd92d98507b8e6bff57145177da0a3d50fef1e70b79278e0be7395a4601682489fcd084c0d99c74141598b9594fa2981adc85", "__v" : 0, "bloodType" : "O+", "establishment" : 42, "plateletActive" : true, "donationToken": "FAKE_TOKEN" },
   { "_id" : 2, "plateletActive" : false, "katelleaToken" : "", "name" : "Alan Poe", "email" : "alan@mail.com", "gender" : "FEMALE", "firstVisit" : false, "sponsorToken" : "KkDILJc6EO", "__v" : 0, "bloodType" : "AB-", "establishment" : 70, "sponsor" : 1 },
   { "_id" : 3, "plateletActive" : false, "katelleaToken" : "", "name" : "Antoine Pierre", "email" : "antoine.pierre@mail.com", "gender" : "MALE", "firstVisit" : false, "sponsorToken" : "IkDILJc6EO", "__v" : 0, "bloodType" : "AB-", "establishment" : 70 }
 ]

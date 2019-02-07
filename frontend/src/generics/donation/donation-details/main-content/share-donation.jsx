@@ -15,6 +15,8 @@ export default class ShareDonation extends Component {
   constructor(props) {
     super(props);
 
+    this.donationUrl = `${environment.FRONT_URL}${environment.DONATION_ENDPOINT}/${this.props.donationToken}`
+
     this.state = {
       showPromoteModal: false,
       showCopiedTooltip: false,
@@ -23,10 +25,6 @@ export default class ShareDonation extends Component {
 
   closePromoteDonationModal = () => this.setState({ showPromoteModal: false, showCopiedTooltip: false });
   showPromoteDonationModal = () => this.setState({ showPromoteModal: true });
-
-  generateDonationUrl() {
-    return this.donationUrl = `${environment.FRONT_URL}${environment.DONATION_ENDPOINT}/${this.props.donationToken}`;
-  }
 
   shareOnFacebook = () => { SocialNetworksService.shareOnFacebook(this.donationUrl, POP_TITLE, MESSAGE_TEXT); }
   shareOnTwitter = () => { SocialNetworksService.shareOnTwitter(this.donationUrl, POP_TITLE, MESSAGE_TEXT); }
@@ -43,11 +41,11 @@ export default class ShareDonation extends Component {
 
 
   renderPromoteDonationModal = () => (
-    <Modal title="Invitez des personnes à rejoindre votre don !" onClose={this.closePromoteDonationModal} modalUrl="/don-courant/partage-du-don">
+    <Modal title="Invitez des personnes à rejoindre votre don !" onClose={this.closePromoteDonationModal} modalUrl="/donation/partage-du-don">
       <div className="copy-link-container">
         En diffusant le lien suivant :
         <div className="button-container">
-          <input type="text" value={this.generateDonationUrl(SHARE_PREFIXES.DIRECT)} id="donation-url-input" />
+          <input type="text" value={this.donationUrl} id="donation-url-input" />
           <button onClick={this.copyToClipboard}>Copier</button>
           {this.state.showCopiedTooltip ? <div className="tooltip">Copié !</div> : null}
         </div>

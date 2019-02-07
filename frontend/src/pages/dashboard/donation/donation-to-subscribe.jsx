@@ -14,8 +14,8 @@ export default class DonationToSubscribe extends Component {
   }
 
   subscribeToDonation = (e) => {
-    let donationId = +e.target.getAttribute('data-donation-id');
-    UserService.updateUser({ currentDonation: donationId });
+    let donationToken = +e.target.getAttribute('data-donation-token');
+    UserService.updateUser({ currentDonationToken: donationToken });
   }
 
   render() {
@@ -40,7 +40,7 @@ export default class DonationToSubscribe extends Component {
             }
           </div>
         </div>
-        <button className="btn" data-donation-id={donation._id} onClick={this.subscribeToDonation}>Rejoindre</button>
+        <button className="btn" data-donation-token={donation.donationToken} onClick={this.subscribeToDonation}>Rejoindre</button>
       </div>
     );
   }

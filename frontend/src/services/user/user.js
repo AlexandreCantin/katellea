@@ -10,7 +10,7 @@ export default class User {
     email,
     emailVerified,
     gender,
-    currentDonation,
+    currentDonationToken,
     lastDonationDate,
     quotaExceeded,
     lastDonationType,
@@ -36,7 +36,7 @@ export default class User {
     this.email = email;
     this.emailVerified = emailVerified;
     this.gender = gender ? gender.toUpperCase(): undefined;
-    this.currentDonation = currentDonation;
+    this.currentDonationToken = currentDonationToken;
     this.lastDonationDate = lastDonationDate;
     this.quotaExceeded = quotaExceeded;
     this.lastDonationType = lastDonationType;
@@ -68,8 +68,12 @@ export default class User {
     return this.createdAt;
   }
 
+  computeCurrentDonationUrl() {
+    return this.currentDonationToken ? `/donation/${this.currentDonationToken}`:'/don-courant';
+  }
+
   hasCurrentDonation() {
-    return this.currentDonation !== undefined && this.currentDonation !== null;
+    return this.currentDonationToken !== undefined && this.currentDonationToken !== null;
   }
 
   toJSON() {
@@ -77,7 +81,7 @@ export default class User {
       name: this.name,
       email: this.email,
       gender: this.gender !== GENDER.MALE && this.gender === GENDER.FEMALE ? this.gender : GENDER.UNKNOWN,
-      currentDonation: this.currentDonation,
+      currentDonationToken: this.currentDonationToken,
       lastDonationDate: this.lastDonationDate ? dateFormatYearMonthDay(this.lastDonationDate) : null,
       lastDonationType: this.lastDonationType,
       donationPreference: this.donationPreference,
@@ -97,7 +101,7 @@ export default class User {
       email: this.email,
       emailVerified: this.emailVerified,
       gender: this.gender,
-      currentDonation: this.currentDonation,
+      currentDonationToken: this.currentDonationToken,
       lastDonationDate: this.lastDonationDate,
       quotaExceeded: this.quotaExceeded,
       lastDonationType: this.lastDonationType,
@@ -134,7 +138,7 @@ export default class User {
       email: null,
       emailVerified: null,
       gender: null,
-      currentDonation: null,
+      currentDonationToken: null,
       lastDonationDate: sponsorData.lastDonationDate,
       quotaExceeded: null,
       lastDonationType: sponsorData.lastDonationType,

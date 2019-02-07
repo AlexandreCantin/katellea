@@ -131,7 +131,7 @@ class FirstVisitForm extends Component {
       await UserService.saveKatelleaUser(user);
       if (user.hasCurrentDonation()) {
         FlashMessageService.createSuccess('Votre compte a été créé avec succès. Bienvenue sur Katellea !', 'donation');
-        setTimeout(() => navigate('don-courant'), 750);
+        setTimeout(() => navigate(user.computeCurrentDonationUrl()), 750);
       } else {
         FlashMessageService.createSuccess('Votre compte a été créé avec succès. Bienvenue sur Katellea !', 'dashboard');
       }

@@ -115,13 +115,6 @@ const createUser = async (req, res) => {
     else res.status(BAD_REQUEST).send();
   }
 
-  // Get current donation token
-  let currentDonationId = undefined;
-  if (req.body.donationToken) {
-    const donation = await Donation.findOne({ donationToken: req.body.donationToken });
-    if (donation) currentDonationId = donation._id;
-  }
-
   const user = new User();
   user.name = sanitize(req.body.name);
 
@@ -139,7 +132,7 @@ const createUser = async (req, res) => {
   user.lastNotificationReadDate = new Date();
   user.sponsorToken = await UserService.generateUniqueToken();
   user.sponsor = sponsorId ? sponsorId : undefined;
-  user.currentDonation = currentDonationId ? currentDonationId : undefined;
+  user.currentDonationToken = undefined;
 
   user.socialNetworkKey = req.body.socialNetworkKey;
   user.godchildNumber = 0;
@@ -237,19 +230,19 @@ const updateUser = async (req, res) => {
   user.firstVisit = false;
 
   // If we get null has currentDonation, we delete the current donation
-  if (req.body.hasOwnProperty('currentDonation') && req.body.currentDonation == null) user.currentDonation = null;
-  else if (req.body.currentDonation && user.currentDonation == undefined) {
+  if (req.body.hasOwnProperty('currentDonationToken') && req.body.currentDonationToken == null) user.currentDonationToken = null;
+  else if (req.body.currentDonationToken && user.currentDonationToken == undefined) {
     // Add new currentDonation => Check access
-    const donation = await Donation.findById(req.body.currentDonation);
+    const donation = await Donation.findOne({ donationToken: req.body.currentDonationToken });
     const canAccess = await canAccessDonation(donation, req.user);
     if (!canAccess) return res.status(UNAUTHORIZED).send();
-    user.currentDonation = req.body.currentDonation;
-  } else if (req.body.currentDonation != user.currentDonation) {
+    user.currentDonationToken = req.body.currentDonationToken;
+  } else if (req.body.currentDonationToken != user.currentDonationToken) {
     // Change current donation => Check access
-    const donation = await Donation.findById(req.body.currentDonation);
+    const donation = await Donation.findOne({ donationToken: req.body.currentDonationToken });
     const canAccess = await canAccessDonation(donation, req.user);
     if (!canAccess) return res.status(UNAUTHORIZED).send();
-    user.currentDonation = req.body.currentDonation;
+    user.currentDonationToken = req.body.currentDonationToken;
   }
 
   try {

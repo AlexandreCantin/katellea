@@ -321,6 +321,11 @@ const deleteDonation = async (req, res) => {
 
   try {
     await Donation.deleteOne({ donationToken: req.params.donationToken });
+
+    // Delete all users with current donation is the donations
+    const users = User.find({ currentDonationToken: req.params.donationToken });
+    users.forEach((user) => { user.currentDonationToken = null; user.save(); });
+
     return res.status(OK).send();
   } catch(err) {
     sendError(err);
@@ -354,6 +359,11 @@ const createPollAnswer = async (req, res) => {
   } else {
     currentResponses.push({ author: req.userId, answers: req.body.answers });
     donation.events.push({ name: DONATION_EVENTS.ADD_POLL_ANSWER, author: req.userId, date: new Date() });
+
+    // Set donation as current for User
+    const user = req.user.toObject();
+    user.currentDonationToken = req.params.donationToken;
+    await User.findOneAndUpdate({ _id: req.userId }, user);
   }
   donation.pollAnswers = currentResponses;
 

@@ -20,7 +20,7 @@ export const USER_REDUCERS = (state = EMPTY, action) => {
         email: action.data.email,
         emailVerified: action.data.emailVerified,
         gender: action.data.gender,
-        currentDonation: action.data.currentDonation ? action.data.currentDonation : undefined,
+        currentDonationToken: action.data.currentDonationToken ? action.data.currentDonationToken : undefined,
         lastDonationDate: action.data.lastDonationDate,
         quotaExceeded: action.data.quotaExceeded,
         lastDonationType: action.data.lastDonationType,

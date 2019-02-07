@@ -9,6 +9,7 @@ const NotificationSchema = mongoose.Schema({
   },
   date: Date,
   donationId: { type: Number, ref: 'Donation' },
+  donationToken: String,
 
   author: { type: Number, ref: 'User' }, // Registered user
   username: String, // Guest user

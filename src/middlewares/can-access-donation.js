@@ -24,7 +24,7 @@ export const canAccessDonation = async (donation, user) => {
 
 
 export const isUserCurrentDonation = async (donation, user) => {
-  return user.currentDonation = donation.id;
+  return user.currentDonationToken = donation.donationToken;
 };
 
 

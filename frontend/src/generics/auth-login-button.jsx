@@ -48,7 +48,7 @@ export default class AuthLoginButtons extends Component {
     this.storeUnsubscribeFn2 = store.subscribe(() => {
       let user = store.getState().user;
       if (user.id && user.isProfileComplete()) {
-        if (user.hasCurrentDonation()) { navigate('/don-courant'); return; }
+        if (user.hasCurrentDonation()) { navigate(user.computeCurrentDonationUrl()); return; }
         navigate('/tableau-de-bord');
       }
     });

@@ -32,7 +32,7 @@ class Menu extends Component {
   }
 
   render() {
-    const { menuOpen } = this.props;
+    const { menuOpen, user } = this.props;
 
     return (
       <nav className={cx('menu', { 'menu-open': menuOpen })}>
@@ -55,7 +55,7 @@ class Menu extends Component {
             </Link>
           </li>
           <li>
-            <Link onClick={this.linkClicked} to="/don-courant" getProps={isActive}>
+            <Link onClick={this.linkClicked} to={user.computeCurrentDonationUrl()} getProps={isActive}>
               <img src="/icons/menu/calendar.svg" alt="" />
               Proposition de don en cours
             </Link>
@@ -94,4 +94,6 @@ class Menu extends Component {
   }
 }
 
-export default connect(state => extractKey(state, 'menuOpen'))(Menu);
+export default connect(
+  state => Object.assign({}, extractKey(state, 'menuOpen'), extractKey(state, 'user'))
+)(Menu);

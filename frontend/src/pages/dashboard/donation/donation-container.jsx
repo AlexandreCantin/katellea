@@ -38,7 +38,7 @@ class DonationContainer extends Component {
       if (!this.userHasCurrentDonation && newUserHasCurrentDonation) {
         this.userHasCurrentDonation = true;
         FlashMessageService.createSuccess('Félicitations, vous venez de rejoindre cette proposition de don !', 'donation');
-        navigate('/don-courant');
+        navigate(user.computeCurrentDonationUrl());
       }
     });
   }
@@ -48,7 +48,7 @@ class DonationContainer extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, currentState) {
-    if (nextProps.currentDonation) {
+    if (nextProps.currentDonationToken) {
       currentState.loading = false;
     }
     return currentState;
@@ -56,7 +56,7 @@ class DonationContainer extends Component {
 
   updateUserDonationStatus(user) {
     if (user.hasCurrentDonation()) {
-      DonationService.getCurrentDonation(user.currentDonation);
+      DonationService.getDonationByToken(user.currentDonationToken);
     } else {
       DonationService.getEligibleDonations()
         .then(donations => this.setState({ loading: false, eligibleDonations: donations }))
@@ -66,15 +66,12 @@ class DonationContainer extends Component {
 
   // RENDER
   render() {
-    const { currentDonation, user } = this.props;
-    const { loading, eligibleDonations } = this.state;
+    const { user } = this.props;
+    const { loading, eligibleDonations, currentDonationToken} = this.state;
+
+    if (!currentDonationToken) return null;
 
     if (loading) return (<div id="donation" className="block-base text-center"><Loader /></div>);
-
-    else if (!isEmpty(currentDonation)) {
-      return (<div id="donation" className="block-base"><DonationCard donation={currentDonation} /> </div>);
-    }
-
     else if(user.quotaExceeded) {
       return (
         <div id="donation" className="block-base">
@@ -102,4 +99,4 @@ class DonationContainer extends Component {
   }
 }
 
-export default connect(state => (Object.assign({}, extractKey(state, 'donation', 'currentDonation'), extractKey(state, 'user'))))(DonationContainer);
+export default connect(state => (Object.assign({}, extractKey(state, 'donation', 'currentDonationToken'), extractKey(state, 'user'))))(DonationContainer);

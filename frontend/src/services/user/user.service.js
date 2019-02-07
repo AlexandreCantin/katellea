@@ -144,7 +144,7 @@ class UserServiceFactory {
             email: null,
             emailVerified: null,
             gender: null,
-            currentDonation: null,
+            currentDonationToken: null,
             lastDonationDate: userData.lastDonationDate,
             quotaExceeded: null,
             lastDonationType: userData.lastDonationType,

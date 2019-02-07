@@ -40,7 +40,7 @@ export const notifyCreatorNetwork = async donation => {
   // Compute request
   const users = await User.find({
     _id: { $in: ids },
-    currentDonation: { $exists: false },
+    currentDonationToken: { $exists: false },
     minimumDate: { $lte: maximumDate.toDate() }
   });
 

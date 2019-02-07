@@ -20,7 +20,7 @@ export default class NotificationQuitDonation extends Component {
   render() {
     const { notification } = this.props;
 
-    const isCurrentDonation = +store.getState().user.currentDonation === +this.props.notification.donationId;
+    const isCurrentDonation = +store.getState().user.currentDonationToken === +this.props.notification.donationToken;
     const cssClass = cx('notification quit-donation', { 'not-read': this.props.notRead });
 
     if (isCurrentDonation) {

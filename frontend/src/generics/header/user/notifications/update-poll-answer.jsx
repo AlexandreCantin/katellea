@@ -15,7 +15,9 @@ export default class NotificationUpdatePollAnswer extends Component {
   render() {
     const { notification } = this.props;
 
-    const isCurrentDonation = +store.getState().user.currentDonation === +this.props.notification.donationId;
+    const user = store.getState().user;
+    const isCurrentDonation = +user.currentDonationToken === +this.props.notification.donationToken;
+
     const cssClass = cx('notification update-poll-answer', { 'not-read': this.props.notRead });
 
     if (isCurrentDonation) {
