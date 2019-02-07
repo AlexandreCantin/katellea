@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { environment } from '../../../../environment';
 import { SocialNetworksService } from '../../../../services/social-network.service';
-import { SHARE_PREFIXES } from '../../../../enum';
 import Modal from '../../../../generics/modal';
 
 const POP_TITLE = `Inscrivez-vous à mon don !`;

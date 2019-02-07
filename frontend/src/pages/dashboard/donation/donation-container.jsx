@@ -6,9 +6,8 @@ import DonationCreateFormModal from '../../../generics/donation/donation-create-
 import { DonationService } from '../../../services/donation/donation.service';
 import Loader from '../../../generics/loader/loader';
 import DonationToSubscribe from './donation-to-subscribe';
-import DonationCard from '../../../generics/donation/donation-card/donation-card';
 import store from '../../../services/store';
-import { extractKey, isEmpty } from '../../../services/helper';
+import { extractKey } from '../../../services/helper';
 import { FlashMessageService } from '../../../services/flash-message/flash-message.service';
 
 require('./donation_container.scss');
