@@ -83,7 +83,11 @@ export default class DonationCreateForm extends Component {
     if(this.props.updateFocusableElements) this.props.updateFocusableElements();
   }
 
-  updateDonationLocation = (e) => this.setState({ donationLocation: e.target.value });
+  updateDonationLocation = (e) => {
+    const donationLocation = e.target.value;
+    this.getField('donationLocation').change(donationLocation);
+    this.setState({ donationLocation });
+  }
   getField = (fieldName) => this.formRef.current.form.getFieldState(fieldName);
 
   // Establishment steps
@@ -396,7 +400,7 @@ export default class DonationCreateForm extends Component {
                     <div>
                       <label>
                         <span className="block"><img src={DONATION_LOCATION.ESTABLISHMENT.src} alt="" /></span>
-                        <input {...input} type="radio" onInput={this.updateDonationLocation} /> Etablissement de l'<acronym title="Etablissement français du sang">EFS</acronym>
+                        <input {...input} type="radio" onChange={this.updateDonationLocation} /> Etablissement de l'<acronym title="Etablissement français du sang">EFS</acronym>
                       </label>
                     </div>
                   )}
@@ -407,7 +411,7 @@ export default class DonationCreateForm extends Component {
                     <div>
                       <label>
                         <span className="block"><img src={DONATION_LOCATION.MOBILE_COLLECT.src} alt="" /></span>
-                        <input {...input} type="radio" onInput={this.updateDonationLocation} /> Collecte mobile
+                        <input {...input} type="radio" onChange={this.updateDonationLocation} /> Collecte mobile
                       </label>
                     </div>
                   )}
@@ -417,6 +421,7 @@ export default class DonationCreateForm extends Component {
 
 
             {/* Mobile collect form steps */}
+            {console.log(this.state)}
             {this.isMobileCollect() ? this.renderFindMobileCollect() : null}
             {this.showPollSuggestionsMobileCollect() ?
               <>
