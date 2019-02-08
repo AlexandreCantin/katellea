@@ -128,8 +128,8 @@ class UserServiceFactory {
   }
 
   // SPONSOR
-  getSponsorUser(sponsorToken) {
-    let url = `${environment.SERVER_URL}${environment.USER_SPONSOR_ENDPOINT}${sponsorToken}`;
+  getSponsorUser(networkToken) {
+    let url = `${environment.SERVER_URL}${environment.USER_BY_TOKEN_ENDPOINT}${networkToken}`;
 
     return new Promise(async (resolve, reject) => {
       let response = await fetch(url);
@@ -151,10 +151,11 @@ class UserServiceFactory {
             donationPreference: userData.donationPreference,
             bloodType: null,
             sponsor: userData.sponsor,
+            network: null,
             establishment: userData.establishment,
             firstVisit: null,
             minimumDate: null,
-            sponsorToken: userData.sponsorToken,
+            networkToken: userData.networkToken,
             katelleaToken: null,
             plateletActive: null,
             godchildNumber: null,
@@ -173,7 +174,7 @@ class UserServiceFactory {
   }
 
   getSponsorCompatibility(bloodType) {
-    let url = `${environment.SERVER_URL}${environment.USER_SPONSOR_COMPATIBILITY_ENDPOINT}/${bloodType}`;
+    let url = `${environment.SERVER_URL}${environment.USER_COMPATIBILITY_ENDPOINT}/${bloodType}`;
     let headers = getKatelleaTokenHeaders();
 
     return new Promise(async (resolve, reject) => {
@@ -289,9 +290,9 @@ class UserServiceFactory {
   }
 
 
-  getGodchilds() {
-    let url = `${environment.SERVER_URL}${environment.USER_GODCHILDS_ENDPOINT}`;
-    let headers = getKatelleaTokenHeaders();
+  getNetwork() {
+    let url = `${environment.SERVER_URL}${environment.USER_NETWORK_ENDPOINT}`;
+    let headers = getKatelleaTokenHeaders(true);
 
     return new Promise(async (resolve, reject) => {
       let response = await fetch(url, { headers });
@@ -302,6 +303,25 @@ class UserServiceFactory {
       reject();
     });
   }
+
+  addFriendship(friendNetworkToken) {
+    let url = `${environment.SERVER_URL}${environment.USER_ADD_FRIEND_ENDPOINT}`;
+    let headers = getKatelleaTokenHeaders();
+
+    return new Promise(async (resolve, reject) => {
+      let response = await fetch(url, { headers, method: 'POST', body: JSON.stringify({ friendNetworkToken }) });
+      if(response.status === 200) {
+        let userData = await response.json();
+        if (userData) {
+          this.saveUserInLocalStore(userData);
+          resolve();
+          return;
+        }
+      }
+      reject();
+    });
+  }
+
 }
 
 

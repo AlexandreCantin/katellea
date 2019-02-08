@@ -11,9 +11,9 @@ class UserServiceFactory {
     let isUnique = false;
     let token = generateRandomString(length);
     while(!isUnique) {
-      const donations = await User.find({ sponsorToken: token });
+      const users = await User.find({ networkToken: token });
 
-      if(donations.length === 0) {
+      if(users.length === 0) {
         isUnique = true;
       } else {
         token = generateRandomString(length);

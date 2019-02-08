@@ -1,5 +1,5 @@
 import { DONATION_VISIBILITY } from '../constants';
-import { getCloseNetworkIds, getSmallNetworkIds } from '../helpers/user.helper';
+import { getNetworkIds } from '../helpers/user.helper';
 
 export const canAccessDonation = async (donation, user) => {
 
@@ -11,11 +11,7 @@ export const canAccessDonation = async (donation, user) => {
   let allowedIds = [];
   const creatorId = donation.createdBy._id || donation.createdBy;
 
-  if (donation.visibility === DONATION_VISIBILITY.SMALL_NETWORK) {
-    allowedIds = await getSmallNetworkIds(creatorId);
-  } else if (donation.visibility === DONATION_VISIBILITY.CLOSE_NETWORK) {
-    allowedIds = await getCloseNetworkIds(creatorId);
-  }
+  if (donation.visibility === DONATION_VISIBILITY.PRIVATE) allowedIds = getNetworkIds(creatorId, user);
 
   const userId = +user.id || +user._id;
   canAccess = allowedIds.includes(userId);

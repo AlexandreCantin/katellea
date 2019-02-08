@@ -58,7 +58,8 @@ export default class GRPDExportCron {
       //  1.1 - User data
       const user = await User.findById(userId)
         .populate({ path: 'establishment', model: 'Establishment' })
-        .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
+        .populate({ path: 'sponsor', model: 'User', select: User.publicFields })
+        .populate({ path: 'network', model: 'User', select: User.publicFields });
 
       // Is user still exists ?
       if (user.email !== '') {

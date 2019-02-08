@@ -33,8 +33,8 @@ export default class AuthLoginButtons extends Component {
       if (userTempProfile.hasCompleteInformations()) {
         let url = '/creer-votre-compte';
 
-        let sponsorToken = getParameterByName('sponsor');
-        if (sponsorToken) url += `?sponsor=${sponsorToken}`;
+        let networkToken = getParameterByName('sponsor');
+        if (networkToken) url += `?sponsor=${networkToken}`;
 
         let donationToken = getParameterByName('donation');
         if (donationToken) url += `?donation=${donationToken}`;

@@ -48,7 +48,7 @@ export default class SponsorCompatibility extends Component {
       <>
         <h2>Compatibilité avec votre parrain</h2>
         <div className="alert info">{directionData.text}</div>
-        <img className="img-responsive" src={'/img/sponsor-compatibility/' + directionData.img} alt="" />
+        <img className="img-responsive" src={'/img/user-compatibility/' + directionData.img} alt="" />
       </>
     );
   }

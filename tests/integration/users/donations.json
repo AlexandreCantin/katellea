@@ -1,3 +1,3 @@
 [
-  { "_id" : 1, "pollSuggestions" : [ { "dayPart" : "DAY" }, { "dayPart" : "DAY" }, { "dayPart" : "DAY" } ], "pollAnswers" : [ { "answers" : [ "YES", "YES", "YES" ], "author" : 1 } ], "events" : [ { "name" : "CREATE_DONATION", "author" : 1}, { "name" : "ADD_COMMENT", "author" : 1, "comment" : "hjhj" } ], "status" : "POLL_ON_GOING", "visibility" : "SMALL_NETWORK", "mobileCollect" : null, "establishment" : 42, "donationType" : "BLOOD", "createdBy" : 1}
+  { "_id" : 1, "pollSuggestions" : [ { "dayPart" : "DAY" }, { "dayPart" : "DAY" }, { "dayPart" : "DAY" } ], "pollAnswers" : [ { "answers" : [ "YES", "YES", "YES" ], "author" : 1 } ], "events" : [ { "name" : "CREATE_DONATION", "author" : 1}, { "name" : "ADD_COMMENT", "author" : 1, "comment" : "hjhj" } ], "status" : "POLL_ON_GOING", "visibility" : "PRIVATE", "mobileCollect" : null, "establishment" : 42, "donationType" : "BLOOD", "createdBy" : 1}
 ]

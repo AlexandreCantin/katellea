@@ -15,14 +15,13 @@ import { addWeeksToDate } from '../helpers/date.helper';
 import { EmailVerificationService } from '../services/email-verification.service';
 import { UserService } from '../services/user.service';
 import { sendError } from '../helper';
-import { environment } from '../../conf/environment';
 
 
 const userRoutes = express.Router();
 userRoutes.use(injectUserFromToken);
 
-const getSponsorUser = async (req, res) => {
-  const user = await User.findOne({ sponsorToken: req.params.token })
+const getUser = async (req, res) => {
+  const user = await User.findOne({ networkToken: req.params.token })
     .select(User.publicFields)
     .populate({ path: 'establishment', model: 'Establishment' }).exec();
   if (user == null) return res.status(NOT_FOUND).send();
@@ -30,23 +29,23 @@ const getSponsorUser = async (req, res) => {
   return res.json(user);
 };
 
-const getGodchilds = async(req, res) => {
-  const godchilds = await User.find({ sponsor: req.userId }).select(User.compatibilityFields);
-  let godchildObj = godchilds.map(godchild => godchild.toObject());
+const getNetworkUsers = async(req, res) => {
+  const friends = await User.find({ '_id' : { $in: req.user.network } });
+  let friendsObj = friends.map(friend => friend.toObject());
 
   if(req.user.bloodType !== 'UNKNOWN') {
-    godchildObj.forEach(godchild => {
-      if(godchild.bloodType !== 'UNKNOWN') {
-        godchild.compatibility = BLOOD_COMPATIBILITY[req.user.bloodType][godchild.bloodType];
-        godchild.bloodType = undefined; // Delete bloodType
+    friendsObj.forEach(friend => {
+      if(friend.bloodType !== 'UNKNOWN') {
+        friend.compatibility = BLOOD_COMPATIBILITY[req.user.bloodType][friend.bloodType];
+        friend.bloodType = undefined; // Delete bloodType
       }
     });
   }
 
-  return res.json(godchildObj);
+  return res.json(friendsObj);
 }
 
-const getSponsorUserCompatibility = async (req, res) => {
+const getUserCompatibility = async (req, res) => {
   if(!req.user.sponsor) return res.json({ direction: '' });
 
   // Get sponsor
@@ -99,17 +98,10 @@ const reSendEmailVerificationEmail = async (req, res) => {
 
 const createUser = async (req, res) => {
 
-  {/* #Beta */}
-  /*const userNumber = await User.countDocuments({});
-  if (userNumber >= environment.betaLimit) {
-    res.status(FORBIDDEN).send();
-    return;
-  }*/
-
   // Check if sponsor exists
   let sponsorId = undefined;
   if (req.body.sponsoredByToken) {
-    const sponsorUser = await User.findOne({ sponsorToken: req.body.sponsoredByToken });
+    const sponsorUser = await User.findOne({ networkToken: req.body.sponsoredByToken });
     if (sponsorUser) sponsorId = sponsorUser.id;
     // #Beta only ?
     else res.status(BAD_REQUEST).send();
@@ -130,8 +122,9 @@ const createUser = async (req, res) => {
   user.firstVisit = true;
   user.minimumDate = new Date();
   user.lastNotificationReadDate = new Date();
-  user.sponsorToken = await UserService.generateUniqueToken();
+  user.networkToken = await UserService.generateUniqueToken();
   user.sponsor = sponsorId ? sponsorId : undefined;
+  user.network = sponsorId ? [sponsorId] : undefined;
   user.currentDonationToken = undefined;
 
   user.socialNetworkKey = req.body.socialNetworkKey;
@@ -152,10 +145,11 @@ const createUser = async (req, res) => {
     // Increment godchildNumber for sponsor
     // Why not before ? because if creating fails we don't want to increase godchildNumber
     if (req.body.sponsoredByToken) {
-      const sponsorUser = await User.findOne({ sponsorToken: req.body.sponsoredByToken });
+      const sponsorUser = await User.findOne({ networkToken: req.body.sponsoredByToken });
       if (sponsorUser) {
         const godchildNumber = sponsorUser.godchildNumber || 0;
         sponsorUser.godchildNumber = godchildNumber+1;
+        sponsorUser.network = sponsorUser.network.push(userCreated._id)
         sponsorUser.save();
       }
     }
@@ -200,7 +194,7 @@ const updateUser = async (req, res) => {
   // Get sponsor
   let sponsorId = undefined;
   if (req.body.sponsoredByToken) {
-    const sponsorUser = await User.findOne({ sponsorToken: req.body.sponsoredByToken });
+    const sponsorUser = await User.findOne({ networkToken: req.body.sponsoredByToken });
 
     // Note: you can't be your own sponsor
     if (sponsorUser && sponsorUser.id !== req.userId) sponsorId = sponsorUser.id;
@@ -278,7 +272,8 @@ const deleteUser = async (req, res, next) => {
   user.bloodType = null;
   user.firstVisit = null;
   user.minimumDate = null;
-  user.sponsorToken = null;
+  user.networkToken = null;
+  user.network = [];
   user.katelleaToken = null;
   user.gender = null;
   user.socialNetworkKey = null;
@@ -300,13 +295,44 @@ const deleteUser = async (req, res, next) => {
 };
 
 
+const addFriend = async (req, res) => {
+  if(!req.userId || !req.body.friendNetworkToken) return res.status(BAD_REQUEST).send();
+
+  const friend = await User.findOne({ networkToken: req.body.friendNetworkToken });
+  if(!friend) return res.status(BAD_REQUEST).send();
+
+  const userNetwork = req.user.network || [];
+  const friendNetwork = friend.network || [];
+
+  if(userNetwork.includes(friend._id) ||friendNetwork.includes(req.userId)) return res.status(BAD_REQUEST).send();
+
+  req.user.network.push(friend._id);
+  friend.network.push(req.userId);
+
+  try {
+    await req.user.save();
+    await friend.save();
+
+    const userUpdated = await User.findById(req.userId)
+      .populate({ path: 'establishment', model: 'Establishment' })
+      .populate({ path: 'sponsor', model: 'User', select: User.publicFields });
+
+    return res.json(userUpdated);
+  } catch(err) {
+    sendError(err);
+    return res.status(INTERNAL_SERVER_ERROR).send();
+  }
+}
+
+
 // Routes
 userRoutes.post('/is-admin', isAdminUser);
-userRoutes.get('/godchilds', getGodchilds);
+userRoutes.get('/network', getNetworkUsers);
 userRoutes.post('/email-verification/:token', validateUser);
 userRoutes.post('/re-send-email-verification', reSendEmailVerificationEmail);
-userRoutes.get('/sponsor-compatibility/:bloodType', getSponsorUserCompatibility);
-userRoutes.get('/sponsor/:token', getSponsorUser);
+userRoutes.get('/user-compatibility/:bloodType', getUserCompatibility);
+userRoutes.get('/by-token/:token', getUser);
+userRoutes.post('/add-friend', addFriend);
 userRoutes.post('/', createUser);
 userRoutes.put('/update-notification-read-date', updateNotificationReadDate);
 userRoutes.put('/', updateUser);

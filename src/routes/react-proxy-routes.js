@@ -21,10 +21,10 @@ const computeTitleAndDescription = async (path, req) => {
   if(path === 'token') {
 
     // Sponsor token
-    if(req.query.hasOwnProperty('sponsor')) {
+    if(req.query.hasOwnProperty('networkToken')) {
       try {
-        const sponsor = await User.findOne({ sponsorToken : removeOrigin(req.query.sponsor) });
-        title = `Don du sang : Faites-vous parrainer par ${sponsor.name}`;
+        const user = await User.findOne({ networkToken : removeOrigin(req.query.networkToken) });
+        title = `Don du sang : Faites-vous parrainer par ${user.name}`;
       } catch(err) {
         sendError(err);
       }

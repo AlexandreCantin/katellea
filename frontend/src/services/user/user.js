@@ -17,10 +17,11 @@ export default class User {
     donationPreference,
     bloodType,
     sponsor,
+    network,
     establishment,
     firstVisit,
     minimumDate,
-    sponsorToken,
+    networkToken,
     katelleaToken,
     plateletActive,
     godchildNumber,
@@ -42,8 +43,9 @@ export default class User {
     this.lastDonationType = lastDonationType;
     this.donationPreference = donationPreference;
     this.bloodType = bloodType;
-    this.sponsorToken = sponsorToken;
+    this.networkToken = networkToken;
     this.sponsor = sponsor ? User.sponsorFromJSON(sponsor) : null;
+    this.network = network;
     this.katelleaToken = katelleaToken;
 
     this.establishment = establishment ? Establishment.fromJSON(establishment) : null;
@@ -108,10 +110,11 @@ export default class User {
       donationPreference: this.donationPreference,
       bloodType: this.bloodType,
       sponsor: this.sponsor,
+      network: this.network,
       establishment: this.establishment,
       firstVisit: this.firstVisit,
       minimumDate: dateFormatYearMonthDay(this.minimumDate),
-      sponsorToken: this.sponsorToken,
+      networkToken: this.networkToken,
       katelleaToken: this.katelleaToken,
       plateletActive: this.plateletActive,
       godchildNumber: this.godchildNumber,
@@ -126,7 +129,7 @@ export default class User {
   toString() {
     return `id: ${this.id} - name: ${this.name} - email: ${this.email} - gender: ${this.gender}
             - lastDonationDate: ${this.lastDonationDate} - katelleaToken: ${this.katelleaToken} - bloodType: ${this.bloodType}
-            - sponsorToken: ${this.sponsorToken} - minimumDate: ${this.minimumDate} - donationPreference: ${this.donationPreference}`;
+            - networkToken: ${this.networkToken} - minimumDate: ${this.minimumDate} - donationPreference: ${this.donationPreference}`;
   }
 
 
@@ -145,10 +148,11 @@ export default class User {
       donationPreference: sponsorData.donationPreference,
       bloodType: sponsorData.bloodType,
       sponsor: null,
+      network: [],
       establishment: sponsorData.establishment,
       firstVisit: null,
       minimumDate: null,
-      sponsorToken: sponsorData.sponsorToken,
+      networkToken: sponsorData.networkToken,
       katelleaToken: null,
       plateletActive: null,
       godchildNumber: null,

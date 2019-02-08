@@ -27,10 +27,11 @@ export const USER_REDUCERS = (state = EMPTY, action) => {
         donationPreference: action.data.donationPreference,
         bloodType: action.data.bloodType,
         sponsor: action.data.sponsor,
+        network: action.data.network,
         establishment: action.data.establishment,
         firstVisit: action.data.firstVisit,
         minimumDate: action.data.minimumDate,
-        sponsorToken: action.data.sponsorToken,
+        networkToken: action.data.networkToken,
         katelleaToken: action.data.katelleaToken ? action.data.katelleaToken : state.katelleaToken, // Keep token if no token given
         plateletActive: action.data.plateletActive,
         godchildNumber: action.data.godchildNumber,

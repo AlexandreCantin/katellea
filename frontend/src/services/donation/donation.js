@@ -9,11 +9,7 @@ export const DONATION_STATUS = {
   CANCELED: 'CANCELED'
 };
 
-export const DONATION_VISIBILITY = {
-  PRIVATE: 'PRIVATE',
-  SMALL_NETWORK: 'SMALL_NETWORK',
-  PUBLIC: 'PUBLIC'
-};
+export const DONATION_VISIBILITY = { PRIVATE: 'PRIVATE', PUBLIC: 'PUBLIC' };
 
 export default class Donation {
 

@@ -53,9 +53,9 @@
       </li>
     <% } %>
 
-    <% if(user.sponsorToken) { %>
+    <% if(user.networkToken) { %>
       <li>
-        <strong>Jeton de parrainage: <%= user.sponsorToken %></strong>
+        <strong>Jeton de parrainage: <%= user.networkToken %></strong>
       </li>
     <% } %>
 
@@ -87,6 +87,17 @@
   <% if (user.sponsor) { %>
     <ul>
       <li><strong>Nom: </strong><%= user.sponsor.name %></li>
+    </ul>
+  <% } %>
+
+  <h3>Votre réseau de proche</h3>
+  <% if (user.network.length === 0) { %>Pas de réseau<% } %>
+
+  <% if (user.network.length !== 0) { %>
+    <ul>
+      <% for(var i=0; i < user.network.length; i++) "{ %>
+        <li><strong>Nom: </strong><%= user.network[i].name %></li>
+      <% } %>
     </ul>
   <% } %>
 

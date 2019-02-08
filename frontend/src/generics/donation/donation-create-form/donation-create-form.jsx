@@ -421,7 +421,6 @@ export default class DonationCreateForm extends Component {
 
 
             {/* Mobile collect form steps */}
-            {console.log(this.state)}
             {this.isMobileCollect() ? this.renderFindMobileCollect() : null}
             {this.showPollSuggestionsMobileCollect() ?
               <>

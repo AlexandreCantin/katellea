@@ -47,14 +47,13 @@ const UserSchema = mongoose.Schema({
     type: String,
     enum: extractEnumValues(BLOOD_TYPE)
   },
-  sponsorToken: String,
   isAdmin: Boolean,
   firstVisit: Boolean,
 
-  godchildNumber: {
-    type: Number,
-    default: 0
-  },
+  networkToken: String,
+  godchildNumber: { type: Number, default: 0 },
+  sponsor: { type: Number, ref: 'User' },
+  network: [{ type: Number, ref: 'User' }],
 
   plateletActive: {
     type: Boolean,
@@ -89,7 +88,6 @@ const UserSchema = mongoose.Schema({
 
   // Foreign Keys
   currentDonationToken: String,
-  sponsor: { type: Number, ref: 'User' },
   establishment: { type: Number, ref: 'Establishment' },
 
   // Sponsor & établissement
@@ -128,7 +126,7 @@ UserSchema.methods.addKatelleaToken = function() {
 const User = mongoose.model('User', UserSchema);
 
 // Global
-User.publicFields = '_id name establishment sponsorToken';
+User.publicFields = '_id name establishment networkToken';
 User.compatibilityFields = '_id name bloodType';
 User.adminLogFields = '_id name';
 

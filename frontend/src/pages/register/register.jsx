@@ -81,13 +81,13 @@ export default class Register extends Component {
     let userTempProfile = store.getState().userTempProfile;
     if (!isEmpty(userTempProfile) && userTempProfile.hasCompleteInformations()) {
 
-      let sponsorToken = this.state.sponsorUser ? this.state.sponsorUser.sponsorToken : '';
+      let networkToken = this.state.sponsorUser ? this.state.sponsorUser.networkToken : '';
 
       // Create form
       this.setState({
         showForm: true,
         initValues: {
-          sponsoredByToken: sponsorToken,
+          sponsoredByToken: networkToken,
           gender: userTempProfile.gender,
           name: userTempProfile.name,
           email: userTempProfile.email
@@ -113,10 +113,11 @@ export default class Register extends Component {
       donationPreference: null,
       bloodType: null,
       sponsor: values.sponsor,
+      network: [],
       establishment: null,
       firstVisit: null,
       minimumDate: null,
-      sponsorToken: null,
+      networkToken: null,
       katelleaToken: null,
       plateletActive: null,
       godchildNumber: null,

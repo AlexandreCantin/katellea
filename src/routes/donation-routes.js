@@ -10,7 +10,6 @@ import { wellFormedPollAnswers, notifyCreatorNetwork, sendDonationAdminMail } fr
 import { injectUserFromToken } from '../middlewares/inject-user-from-token';
 import { canAccessDonation, canEditAsCreator, isUserCurrentDonation, canBeUpdated } from '../middlewares/can-access-donation';
 import { INTERNAL_SERVER_ERROR, BAD_REQUEST, NOT_FOUND, UNAUTHORIZED, OK } from 'http-status-codes';
-import { getSmallNetworkIds, getCloseNetworkIds } from '../helpers/user.helper';
 import MailFactory from '../services/mail.service';
 import { createNotification } from '../helpers/notification.helper';
 import sanitize from 'sanitize-html';
@@ -18,6 +17,7 @@ import { DonationService } from '../services/donation.service';
 import { SlackService } from '../services/slack.service';
 import { sendError } from '../helper';
 import { generateRandomString } from '../helpers/string.helper';
+import { getNetworkIds } from '../helpers/user.helper';
 
 
 const donationRoutes = express.Router();
@@ -72,14 +72,12 @@ const getDonation = async (req, res) => {
 
 
 const getEligibleDonations = async (req, res) => {
-  const smallNetworkIds = await getSmallNetworkIds(req.user, false);
-  const closeNetworkIds = await getCloseNetworkIds(req.user, false);
+  const networkIds = getNetworkIds(req.user, false);
 
   const donations = await Donation.find({
     status: DONATION_STATUS.POLL_ON_GOING,
     $or: [
-      { visibility: DONATION_VISIBILITY.SMALL_NETWORK, createdBy: { $in: smallNetworkIds } },
-      { visibility: DONATION_VISIBILITY.CLOSE_NETWORK, createdBy: { $in: closeNetworkIds } },
+      { visibility: DONATION_VISIBILITY.PRIVATE, createdBy: { $in: networkIds } },
     ]
   }, Donation.publicFieldsAsArray)
     .populate({ path: 'establishment', model: 'Establishment' })
@@ -87,7 +85,6 @@ const getEligibleDonations = async (req, res) => {
 
   return res.json(donations);
 };
-
 
 const getDonationHistory = async (req, res) => {
   const donations = await Donation.find({

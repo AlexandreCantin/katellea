@@ -66,14 +66,6 @@ class Menu extends Component {
               Historique des dons
             </Link>
           </li>
-          {/*
-            <li>
-              <Link to="/sponsorship">
-                <img src="/icons/menu/teamwork.svg" alt="" />
-                Parrainage
-              </Link>
-            </li>
-          */}
         </ul>
 
         <ul className="list-unstyled nav-footer">

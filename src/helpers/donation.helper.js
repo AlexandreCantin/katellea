@@ -20,17 +20,11 @@ export const wellFormedPollAnswers = (donation, answers) => {
 };
 
 
-export const notifyCreatorNetwork = async donation => {
+export const notifyCreatorNetwork = async (donation, user) => {
   const WEEKS_DELAY_BEFORE_ELIGIBILITY = environment.weeksDelayBeforeEligibilty;
 
   // Compute ids
-  let ids = [];
-  const creatorId = donation.createdBy._id;
-  if (donation.visibility === DONATION_VISIBILITY.SMALL_NETWORK || donation.visibility === DONATION_VISIBILITY.PUBLIC) {
-    ids = await getSmallNetworkIds(creatorId, false);
-  } else if (donation.visibility === DONATION_VISIBILITY.CLOSE_NETWORK) {
-    ids = await getCloseNetworkIds(creatorId, false);
-  }
+  let ids = user.network;
   if (ids.length === 0) return;
 
   // Get oldest date and add 1 week => if user is eligible to the oldest date, he is eligible to the donation
