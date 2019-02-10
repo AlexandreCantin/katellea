@@ -73,7 +73,7 @@ export default class Home extends Component {
       <div id="home-page">
         <Helmet>
           <title>Parrainage pour le don du sang, plasma et plaquettes | Katella</title>
-          <meta name="robots" content="noindex,follow" />
+          <meta name="robots" content="index,follow" />
         </Helmet>
 
         <EscapeLinks links={[
