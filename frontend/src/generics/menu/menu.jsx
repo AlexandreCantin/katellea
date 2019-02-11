@@ -34,6 +34,9 @@ class Menu extends Component {
   render() {
     const { menuOpen, user } = this.props;
 
+    // Avoid JS error when user logout
+    if(!user) return null;
+
     return (
       <nav className={cx('menu', { 'menu-open': menuOpen })}>
         <button onClick={this.closeMenu} className="menu hide-desktop">X</button>

@@ -44,7 +44,7 @@ export default class ShareDonation extends Component {
       <div className="copy-link-container">
         En diffusant le lien suivant :
         <div className="button-container">
-          <input type="text" value={this.donationUrl} id="donation-url-input" />
+          <input readOnly type="text" defaultValue={this.donationUrl} id="donation-url-input" />
           <button onClick={this.copyToClipboard}>Copier</button>
           {this.state.showCopiedTooltip ? <div className="tooltip">Copié !</div> : null}
         </div>
