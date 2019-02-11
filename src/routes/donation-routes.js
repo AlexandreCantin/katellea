@@ -320,7 +320,7 @@ const deleteDonation = async (req, res) => {
     await Donation.deleteOne({ donationToken: req.params.donationToken });
 
     // Delete all users with current donation is the donations
-    const users = User.find({ currentDonationToken: req.params.donationToken });
+    const users = await User.find({ currentDonationToken: req.params.donationToken });
     users.forEach((user) => { user.currentDonationToken = null; user.save(); });
 
     return res.status(OK).send();
