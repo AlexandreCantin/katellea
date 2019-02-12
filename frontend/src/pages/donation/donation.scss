@@ -133,6 +133,7 @@ $event-bg-color: lightblue;
   }
 
   .selfie {
+    position: relative;
     display: flex;
     margin-top: 30px;
     padding: 15px;
@@ -144,6 +145,22 @@ $event-bg-color: lightblue;
     .hashtags {
       color: $hashtag-color;
       li { margin-right: 20px; }
+    }
+
+    .well-done {
+      position: absolute;
+      left: 0;
+      top: 0;
+      max-width: inherit;
+      max-height: inherit;
+      height: 250px;  width: 250px; opacity: 1;
+
+      animation: splash .25s linear 1;
+
+      @keyframes splash {
+        0% { height: 2500px;  width: 2500px; opacity: 0; }
+        100% { height: 250px;  width: 250px; opacity: 1;}
+      }
     }
   }
 

@@ -134,6 +134,7 @@ export default class DonationDone extends Component {
 
         <div className="selfie alert info">
           <img src="/icons/selfie.svg" alt="" />
+          <img key="well-done" src="/icons/well-done.svg" alt="" className="well-done"/>
           <div className="text-center">
             <p className="block">
               N'hésitez pas à partager les réseaux sociaux les photos/selfies durant de votre don.<br />
