@@ -67,7 +67,7 @@ const EditPollAnswer = ({ donation, pollAnswer }) => {
                     let name = ''.concat(index, '-suggestion');
 
                     return (
-                      <div key={name} className={cx('poll-answer-choices', { 'last': index === donation.pollSuggestions.length - 1 })}>
+                      <div key={name} className={cx('poll-answer-choices', { 'last': index === donation.pollSuggestions.length - 1 })} role="radiogroup" >
 
                         <Field name={name} type="radio" value={POLL_ANSWERS.YES}>
                           {({ input }) => (

@@ -22,6 +22,8 @@ $event-bg-color: lightblue;
     border-radius: 50%;
     background-color: $badge-grey;
 
+    @media (max-width: $min-width-mobile) { margin: 0 10px; }
+
     &.done {
       background-color: $badge-done;
       color: white;
@@ -48,7 +50,7 @@ $event-bg-color: lightblue;
   > hr {
     flex: 1;
     height: 3px;
-    margin-top: 12px;
+    margin-top: 15px;
     background-color: $badge-grey;
     border: solid 1px $badge-grey;
 
@@ -100,7 +102,10 @@ $event-bg-color: lightblue;
   }
 
   .main-content > .actions {
-    .donation-actions { float: left; }
+    .donation-actions {
+      float: left;
+      li { margin-bottom: 10px; }
+    }
     .share-actions {
       float: right;
       a, img { width: 30px; height: 30px; }

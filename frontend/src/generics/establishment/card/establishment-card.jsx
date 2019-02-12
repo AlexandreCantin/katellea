@@ -69,7 +69,7 @@ export default class EstablishmentCard extends Component {
   renderPresentation(establishment) {
     return (
       <div  {...computeTabPanelAttributes(PRESENTATION_TAB)}>
-        <h5>Adresse</h5>
+        <h4>Adresse</h4>
         <p>{establishment.address}</p>
         <h5>Dons possibles</h5>
         <ul>
@@ -82,7 +82,7 @@ export default class EstablishmentCard extends Component {
   renderOpeningHours(establishment) {
     return (
       <div {...computeTabPanelAttributes(OPENING_HOURS_TAB)}>
-        <h5>Horaires d'ouverture</h5>
+        <h4>Horaires d'ouverture</h4>
         <ul>
           <li>Lundi : {establishment.mondayHours}</li>
           <li>Mardi : {establishment.tuesdayHours}</li>

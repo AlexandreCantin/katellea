@@ -91,6 +91,7 @@ class Donation extends Component {
         {hasUser ? <Menu /> : null}
 
 
+        <div id="main-content" className="sr-only">&nbsp;</div>
         <main className={cx('main-content' , { 'no-user': !hasUser })}>
           <FlashMessage scope="donation" doScroll />
 

@@ -69,7 +69,10 @@ export default class DonationEventComment extends Component {
               <Field name="commentId">{({ input }) => (<input {...input} type="hidden" readOnly />)}</Field>
               <Field name="comment">
                 {({ input }) => (
-                  <textarea {...input} id="comment" name="comment" onKeyPress={(e) => isEnter(e) ? handleSubmit() : null}></textarea>
+                  <>
+                    <label htmlFor="comment" className="sr-only">Votre commentaire</label>
+                    <textarea {...input} id="comment" name="comment" onKeyPress={(e) => isEnter(e) ? handleSubmit() : null}></textarea>
+                  </>
                 )}
               </Field>
 

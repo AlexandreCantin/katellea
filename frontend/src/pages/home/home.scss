@@ -21,6 +21,8 @@
     margin: auto;
     padding: 25px 50px 50px 50px;
 
+    @media (max-width: $min-width-mobile) { padding: 20px 0; }
+
     > div {
       display: flex;
       > div {

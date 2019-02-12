@@ -6,6 +6,7 @@ export const computeTabAttributes = (tabId, selectTab, cssClass) => {
     id: tabId,
     'aria-controls': '#' + tabId + '-tab',
     'aria-selected': isSelected,
+    'role': 'tab',
     className: cssClass
   };
   if (!isSelected) values.tabIndex = -1;

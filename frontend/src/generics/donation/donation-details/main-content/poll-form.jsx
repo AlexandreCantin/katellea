@@ -158,7 +158,7 @@ export default class PollForm extends Component {
                 const isUnavailable = this.isUnavailableDate(ps.date);
 
                 return (
-                  <div key={name} className={cx('poll-answer-choices', { 'red': isUnavailable }, { 'last': index === donation.pollSuggestions.length - 1 })}>
+                  <div key={name} className={cx('poll-answer-choices', { 'red': isUnavailable }, { 'last': index === donation.pollSuggestions.length - 1 })} role="radiogroup">
                     <Field name={name} type="radio" value={POLL_ANSWERS.YES}>
                       {({ input }) => (
                         <div>

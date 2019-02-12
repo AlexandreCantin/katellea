@@ -13,8 +13,8 @@ import DonationNewPoll from './donation-new-poll';
 
 export default class DonationActions extends Component {
   static propTypes = {
+    adminToken: PropTypes.string,
     donation: PropTypes.object.isRequired,
-    adminToken: PropTypes.string.isRequired,
     isAdmin: PropTypes.bool.isRequired
   }
 

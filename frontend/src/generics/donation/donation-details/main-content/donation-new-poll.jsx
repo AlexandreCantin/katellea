@@ -18,7 +18,7 @@ import { FlashMessageService } from '../../../../services/flash-message/flash-me
 export default class DonationNewPoll extends Component {
   static propTypes = {
     donation: PropTypes.object.isRequired,
-    adminToken: PropTypes.string.isRequired
+    adminToken: PropTypes.string
   }
 
 

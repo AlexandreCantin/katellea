@@ -47,7 +47,7 @@ class CurrentDonation extends Component {
 
   isAdmin(donation) {
     if(!donation.createdBy) return false;
-    return +this.user.id === +donation.createdBy.id
+    return +this.user.id === +donation.createdBy.id;
   }
 
   // RENDER
