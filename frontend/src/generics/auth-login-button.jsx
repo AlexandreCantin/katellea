@@ -117,7 +117,7 @@ export default class AuthLoginButtons extends Component {
 
     return (
       <>
-        <p>En créant un compte, vous pourrez : consulter vos historiques de don, gérer vos périodes d'indisponibilité ou encore créer un réseau privé pour vos dons !</p>
+        <p className="account-introduction">En créant un compte, vous pourrez : consulter votre historique de dons, gérer vos périodes d'indisponibilité ou encore créer un réseau privé pour vos dons !</p>
         { this.state.showRGPDModal ? this.renderRGPDModal() : null }
 
         <div className="social-auth-buttons">

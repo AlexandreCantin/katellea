@@ -101,7 +101,7 @@ export default class DonationActions extends Component {
     return (
       <div className="donation-actions">
         <ul className="actions inline-list list-unstyled">
-          {isAdmin ? <li><button onClick={this.showDeleteDonationModal} className="btn danger">Supprimer de don</button></li> : null}
+          {isAdmin && !donation.isDone() ? <li><button onClick={this.showDeleteDonationModal} className="btn danger">Supprimer ce don</button></li> : null}
           {isAdmin && donationPollOnGoing ? <li><button className="btn" onClick={this.closePoll}>Terminer le sondage</button></li> : null}
           {isAdmin && donationPollOnGoing ? <li><DonationNewPoll donation={donation} adminToken={adminToken} /></li> : null}
         </ul>

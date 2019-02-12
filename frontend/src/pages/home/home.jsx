@@ -7,7 +7,6 @@ import HeaderHome from '../../generics/header/home/header-home';
 import { RGPDBar } from '../../generics/rgpd/rgpd';
 import SponsorCard from '../../generics/sponsor-card/sponsor-card';
 import { getSponsorFromUrl } from '../../services/token.service';
-import KatelleaStatistics from './katellea-statistics';
 import DonationCard from '../../generics/donation/donation-card/donation-card';
 import KatelleaFooter from './katellea-footer';
 
@@ -90,45 +89,8 @@ export default class Home extends Component {
           <div id="main-content" className="sr-only">&nbsp;</div>
           <div className="presentation-container">
             <h1 className="text-center">Bienvenue sur <span className="no-wrap"><img src="katellea-logo.svg" alt="K" />atellea</span></h1>
+            <h2 className="text-center">Katellea facilite l'organisation de dons de sang avec vos amis !</h2>
             <div>
-              <div>
-                <p>Katellea vous permet d'accompagner ou d'être accompagné pour réaliser un don du sang ou plasma en 3 étapes :</p>
-                <div>
-                  <ol className="katellea-objectives list-unstyled">
-                    <li className="clearfix">
-                      <img src="/icons/social-networks/share.svg" alt="" />
-                      <span><span>1- Créez une proposition de don (lieu, dates possibles...) et partagez-la sur les réseaux sociaux</span></span>
-                    </li>
-                    <li className="clearfix">
-                      <img src="/icons/menu/calendar.svg" alt="" />
-                      <span><span>2- Echangez et décidez ensemble de la meilleure date pour réaliser ce don</span></span>
-                    </li>
-                    <li className="clearfix">
-                      <img src="/icons/menu/speak.svg" alt="" />
-                      <span><span>3- Faites votre don ensemble et partagez ce moment sur les réseaux sociaux pour promouvoir le don du sang !</span></span>
-                    </li>
-                  </ol>
-                </div>
-
-                <div className="gay-part">
-                  <div className="flag">
-                    <img src="s.png" className="lazyload" data-src="/img/rainbow_flag.svg" alt="" />
-                  </div>
-                  <div>
-                    <h2 className="no-margin">Don pour les homosexuels</h2>
-                    <div>
-                      <ul className="list-unstyled">
-                        <li><span className="bold">Femmes</span> : aucune condition spécifique</li>
-                        <li><span className="bold">Hommes et dons de plasma</span> : aucune condition spécifique</li>
-                        <li><span className="bold">Hommes et dons sang/plaquettes</span> : sous condition</li>
-                      </ul>
-                      <button className="btn" onClick={this.showGayDetailsModal}>En savoir plus</button>
-                    </div>
-                  </div>
-                  {gayMoreDetailsModal ? this.renderGayDetailsModal() : null}
-                </div>
-              </div>
-
               <div className="login">
                 <FlashMessage scope="homePage" />
 
@@ -136,10 +98,10 @@ export default class Home extends Component {
                 {sponsorUser ? <SponsorCard user={sponsorUser} /> : null}
 
                 <div className="katellea-form">
-                  <p>Vous aussi rejoignez notre communauté de donneurs !</p>
                   <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Bretagne et aux Pays de la Loire</strong> uniquement.</div>
 
-                  {<DonationCreateFormModal modalUrl="/nouveau-don" text="Proposer un nouveau don sans créer de compte"/>}
+                  {<DonationCreateFormModal modalUrl="/nouveau-don" text="Proposer un nouveau don sans créer de compte" addSubtext />}
+                  <div className="life-saved text-center">1 don de sang = 3 vies sauvées</div>
 
                   <hr />
                   {/* #Beta => error message + hide buttons */}
@@ -156,10 +118,47 @@ export default class Home extends Component {
 
         <div id="secondary-content" className="sr-only">&nbsp;</div>
         <main className="katellea-main">
-          {/*<div>
-            <h2>Depuis sa création, Katellea a permis le recueil de :</h2>
-            <KatelleaStatistics />
-          </div>*/}
+
+          <div className="katellea-steps">
+            <h2>Faire un don de sang en 3 étapes</h2>
+            <ul className="list-unstyled">
+              <li className="clearfix">
+                <img src="/icons/social-networks/share.svg" alt="" />
+                <span><span>1- Créez une proposition de don (lieu, dates possibles...) et partagez-la à vos amis</span></span>
+              </li>
+              <li className="clearfix">
+                <img src="/icons/menu/calendar.svg" alt="" />
+                <span><span>2- Discuter et décidez de la meilleure date pour réaliser ce don</span></span>
+              </li>
+              <li className="clearfix">
+                <img src="/icons/menu/speak.svg" alt="" />
+                <span><span>3- Faites votre don ensemble et partagez ce moment sur les réseaux sociaux pour promouvoir le don du sang !</span></span>
+              </li>
+            </ul>
+          </div>
+
+
+          <div className="gay-part">
+            <h2>Don pour les homosexuels</h2>
+            <div>
+
+              <div>
+                <div className="flag">
+                  <img src="s.png" className="lazyload" data-src="/img/rainbow_flag.svg" alt="" />
+                </div>
+
+                <ul className="list-unstyled">
+                  <li><span className="bold">Femmes</span> : aucune condition spécifique</li>
+                  <li><span className="bold">Hommes et dons de plasma</span> : aucune condition spécifique</li>
+                  <li><span className="bold">Hommes et dons sang/plaquettes</span> : sous condition</li>
+                </ul>
+              </div>
+              <button className="btn" onClick={this.showGayDetailsModal}>En savoir plus</button>
+            </div>
+
+            {gayMoreDetailsModal ? this.renderGayDetailsModal() : null}
+          </div>
+
 
           <div className="katellea-donations">
             <h2>Les dons de sang, plasma et plaquettes permettent...</h2>

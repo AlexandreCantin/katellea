@@ -21,7 +21,7 @@
     margin: auto;
     padding: 25px 50px 50px 50px;
 
-    @media (max-width: $min-width-mobile) { padding: 20px 0; }
+    @media (max-width: $min-width-mobile) { padding: 20px; }
 
     > div {
       display: flex;
@@ -35,79 +35,62 @@
         }
       }
 
-      @media (max-width: $min-width-mobile) { padding: 20px; }
-
       @media (max-width: $min-width-tablet) {
         flex-direction: column;
         > div:first-child { margin-bottom: 30px; }
       }
-
     }
 
-    h1 {
-      grid-column: span 2;
-      font-size: 3em;
-      margin: 0 0 50px 0;
-      img {
-        height: 60px;
-        position: relative;
-        top: 2px;
-        left: 6px;
+    .btn.new-donation {
+      font-size: 1.25em;
+      margin-top: 30px;
+      padding: 15px 70px !important;
+      @media (max-width: $min-width-mobile) { padding: 15px !important; }
+
+      span {
+        display: block;
+        font-size: .8em;
+        margin-top: 7px;
       }
     }
+    .life-saved { margin: 10px 0; font-weight: bold; }
+    hr { margin: 40px 0 30px 0; }
+    .account-introduction { font-size: .9em; margin-bottom: -10px; }
+  }
 
-    ol.katellea-objectives {
-      margin-top: 10px;
+  h1 {
+    grid-column: span 2;
+    font-size: 3em;
+    margin: 0 0 30px 0;
+    @media (max-width: $min-width-mobile) { font-size: 2em; }
 
-      li {
-        padding: 10px 5px;
-        display: inline-flex;
-        font-weight: bold;
-
-        > span {
-          display: inline-block;
-          margin-left: 15px;
-          align-self: center;
-        }
-        img {
-          display: inline-block;
-          width: 50px;
-          height: 50px;
-        }
-      }
-    }
-
-    .gay-part {
-      display: table; display: grid; /* table for old browser compatibility */
-      margin: 20px auto 0 auto;
-      font-size: .9em;
-      grid-template-columns: 100px 1fr;
-      img { max-width: 150px;}
-      @media (max-width: $min-width-mobile) {
-        grid-template-columns: 1fr;
-        img { width: 100px; margin: 0 auto 10px auto; }
-      }
-      background-color: aliceblue;
-      padding: 10px 20px;
-      width: 100%;
-
-      div { text-align: center; }
-      ul { margin: 10px 0 15px 0;}
-      .flag { align-self: center; }
+    img {
+      height: 60px;
+      position: relative;
+      top: 2px;
+      left: 6px;
     }
   }
 
+  h2 {
+    margin-bottom: 10px;
+    @media (max-width: $min-width-mobile) { font-size: 1.25em; }
+  }
 
   .login {
     text-align: center;
     align-self: center;
 
     // #Beta
-    .alert { margin-top: 10px; }
+    .alert { margin-top: 10px; padding: 5px !important; font-size: .9em; }
 
     @include mx-social-auth();
+    .social-auth-buttons {
+      > button, > a { padding: 7px; font-size: .9em; }
+    }
   }
 }
+
 
 #modal .modal-body.gay-modal {
   text-align: center;
@@ -119,14 +102,83 @@
   }
 }
 
+
 .katellea-main {
   background-color: white;
+  > div { padding-top: 30px; }
+
   h2 {
+    text-align: center;
+    font-size: 2em;
+    padding: 20px 0 25px 0;
+    margin: 0;
+    @media (max-width: $min-width-mobile) { font-size: 1.5em; padding: 10px 0; }
+  }
+
+  .katellea-steps {
+    ul {
+      display: flex;
+      max-width: 70%;
+      margin: auto;
+      @media (max-width: $min-width-tablet) { max-width: 90%;}
+      @media (max-width: $min-width-mobile) { flex-direction: column; }
+    }
+
+    li {
+      padding: 10px 5px;
+      display: flex;
+      flex: 1;
+      font-weight: bold;
+      flex-direction: column;
       text-align: center;
-      font-size: 2.5em;
-      padding: 65px 0 25px 0;
-      margin: 0;
-      @media (max-width: $min-width-mobile) { font-size: 1.5em; }
+
+      > span {
+        display: inline-block;
+        margin-left: 15px;
+        align-self: center;
+      }
+
+      > img {
+        width: 120px;
+        height: 150px;
+        margin: 10px auto;
+      }
+
+      @media (max-width: $min-width-mobile) {
+        flex-direction: row;
+        > img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+  }
+
+
+  .gay-part {
+    margin: 20px auto 0 auto;
+    font-size: .9em;
+    img { max-width: 150px;}
+    @media (max-width: $min-width-mobile) {
+      img { width: 100px; margin: 0 auto 10px auto; }
+    }
+    background-color: aliceblue;
+    padding-bottom: 30px;
+
+    > div {
+      text-align: center;
+      width: 70%;
+      margin: auto;
+      @media (max-width: $min-width-mobile) { width: 100%; }
+
+      > div {
+        display: flex;
+        align-self: center;
+        @media (max-width: $min-width-mobile) { flex-direction: column; }
+        > div.flag { flex: 1; }
+        > ul { flex: 3; margin: 10px 0 15px 0; }
+      }
+    }
   }
 
   .katellea-statistics {
@@ -235,9 +287,10 @@
 
 .katellea-footer {
   padding: 30px;
-  margin-top: 30px;
+  margin-top: 50px;
   background-color: lightgray;
   display: flex;
+  align-items: center;
 
   @media (max-width: $min-width-mobile) {
     flex-direction: column;
@@ -247,7 +300,7 @@
   > div { flex: 1; }
 
   .katellea-links {
-    flex: 2;
+    flex: 3;
     > ul {
       column-count: 4;
       column-gap: 20px;

@@ -35,7 +35,7 @@ class Menu extends Component {
     const { menuOpen, user } = this.props;
 
     // Avoid JS error when user logout
-    if(!user) return null;
+    if(!user.id) return null;
 
     return (
       <nav className={cx('menu', { 'menu-open': menuOpen })}>
