@@ -22,22 +22,26 @@
 
 .btn.facebook {
   background-color: #3B5998 !important;
-  border: none;
+  border: solid 1px #3B5998;
   background-image: none;
+  .logo { background: white; }
 }
 .btn.google {
   background-color: #4d90fe !important;
-  border-color: #3079ed;
+  border: solid 1px #3079ed;
   background-image: none;
+  .logo { background: white; }
 }
 .btn.twitter {
   background-color: #00aef0 !important;
-  border-color: #00aef0;
+  border:solid 1px #00aef0;
   background-image: none;
+  .logo { background: white; }
 }
 .btn.instagram {
   background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-  border: none;
+  border:solid 1px #f09433;
+  .logo { background: white; }
 }
 
 .btn.grey {

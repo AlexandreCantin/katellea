@@ -113,7 +113,7 @@ export default class AuthLoginButtons extends Component {
   }
 
   render() {
-    const socialNetworks = ['facebook',/*'twitter',*/'google','instagram'];
+    const socialNetworks = ['facebook',/*'twitter'*/,'google','instagram'];
 
     return (
       <>
@@ -129,7 +129,8 @@ export default class AuthLoginButtons extends Component {
               title={this.computeLinkTitle(origin)}
               href={AuthService.computeConnectURL(origin)}
               onClick={this.waitForAuthLogin}>
-                {this.computeLinkText(origin)}
+                <span className="logo"><img src={`/icons/social-networks/${origin}-login.svg`} alt="" className="logo" /></span>
+                <span>{this.computeLinkText(origin)}</span>
             </a>
           ))}
         </div>

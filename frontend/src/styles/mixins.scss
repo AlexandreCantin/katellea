@@ -18,10 +18,27 @@
     margin: 20px auto 0 auto;
     display: flex;
     flex-direction: column;
+    span { flex: 5; }
+    span.logo {
+      flex: 1 1;
+      display: flex;
+      height: 40px;
+      width: 40px;
+      align-items: center;
+
+      img {
+        width: 20px;
+        height: 20px;
+        margin: auto;
+      }
+    }
     > button, > a {
+      display: flex;
+      align-items: center;
+
       color: white;
       margin-top: 10px;
-      padding: 10px;
+      padding: 0;
       border-radius: 0;
     }
   }

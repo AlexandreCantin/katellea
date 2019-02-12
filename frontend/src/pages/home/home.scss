@@ -86,7 +86,7 @@
 
     @include mx-social-auth();
     .social-auth-buttons {
-      > button, > a { padding: 7px; font-size: .9em; }
+      > button, > a { font-size: .9em; }
     }
   }
 }
