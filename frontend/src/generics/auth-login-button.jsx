@@ -113,7 +113,7 @@ export default class AuthLoginButtons extends Component {
   }
 
   render() {
-    const socialNetworks = ['facebook',/*'twitter'*/,'google','instagram'];
+    const socialNetworks = ['facebook',/*'twitter',*/'google','instagram'];
 
     return (
       <>

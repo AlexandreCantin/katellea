@@ -17,6 +17,8 @@ import Loader from '../../generics/loader/loader';
 import DonationDetails from '../../generics/donation/donation-details/donation-details';
 import FlashMessage from '../../generics/flash-message';
 import NoDonationFound from '../../generics/donation/donation-details/no-donation-found';
+import Modal from '../../generics/modal';
+import ShareDonation from '../../generics/donation/donation-details/main-content/share-donation';
 
 require('./donation.scss');
 
@@ -32,6 +34,7 @@ class Donation extends Component {
       loadingIsAdmin: true,
 
       adminToken: getParameterByName('admin'),
+      showFirstVisitModal: getParameterByName('first-visit') === 'true',
       isDonationAdmin: false,
       hasUser: !isEmpty(store.getState().user),
     };
@@ -65,10 +68,14 @@ class Donation extends Component {
     }
   }
 
+  closeFirstVisitModal = () => {
+    this.setState({ showFirstVisitModal: false });
+  }
+
   // RENDER
   render() {
     const { donation } = this.props;
-    const { loadingDonation, loadingIsAdmin, hasUser, isDonationAdmin, adminToken } = this.state;
+    const { loadingDonation, loadingIsAdmin, hasUser, isDonationAdmin, adminToken, showFirstVisitModal } = this.state;
 
     const loading = loadingDonation || loadingIsAdmin;
 
@@ -99,6 +106,16 @@ class Donation extends Component {
           {!loading && isEmpty(donation) ? <NoDonationFound /> : null}
           {!loading && !isEmpty(donation) ? <DonationDetails donation={donation} isAdmin={isDonationAdmin} adminToken={adminToken} showTitle /> : null}
         </main>
+
+        { showFirstVisitModal && !loading && !isEmpty(donation) ?
+          <Modal title="Bienvenue sur votre proposition de don" onClose={this.closeFirstVisitModal} modalUrl='/donation/firs-visit' cssClass="first-visit-donation-modal" centerTitle >
+            <div className="text-center">
+              <p>Pour commencer, l'équipe de Katellea et l'Etablissement Français du Sang souhaite vous remercier pour votre démarche !</p>
+              <p>Nous vous invitons dès maintenant à diffuser votre proposition de don auprès de vos amis/famille/collègues :</p>
+              <ShareDonation donationToken={donation.donationToken} />
+              <p>Merci d'avance !</p>
+            </div>
+          </Modal> : null }
       </div>
     );
   }

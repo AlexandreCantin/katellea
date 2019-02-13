@@ -320,6 +320,13 @@ $event-bg-color: lightblue;
   }
 }
 
+#modal .modal-body.first-visit-donation-modal {
+  h1 { text-align: center; }
+  p { margin: 20px 0; }
+  ul { margin: 30px 0; }
+  img { width: 48px; height: 48px; }
+}
+
 .no-donation-found {
   margin-top: 30px;
   .btn {

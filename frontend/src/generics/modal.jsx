@@ -44,7 +44,7 @@ const TAB_KEY = 9;
 const ECHAP_KEY = 27;
 
 export default class Modal extends Component {
-  static defaultProps = { level: '1', role: 'dialog', hideClose: false }
+  static defaultProps = { level: '1', role: 'dialog', hideClose: false, centerTitle: false }
   static propTypes = {
     level: PropTypes.string,
     title: PropTypes.string.isRequired,
@@ -53,6 +53,7 @@ export default class Modal extends Component {
     cssClassName: PropTypes.string,
     role: PropTypes.string,
     hideClose: PropTypes.bool,
+    centerTitle: PropTypes.bool,
 
     onClose: PropTypes.func.isRequired,
   }
@@ -147,7 +148,7 @@ export default class Modal extends Component {
   }
 
   render() {
-    const { title, children, role, hideClose} = this.props;
+    const { title, children, role, hideClose, centerTitle } = this.props;
 
     const childrenWithProps = React.Children.map(children, child => {
       if(child === null) return null;
@@ -159,7 +160,7 @@ export default class Modal extends Component {
         <div className="dark-background" onClick={this.closeModal}>&nbsp;</div>
         <div className="modal-content">
           {!hideClose ? <button className="btn close" onClick={this.closeModal} ref={c => this.closeButton = c}><span className="sr-only">Close</span>X</button> : null}
-          <div className="modal-title"><h1>{title}</h1></div>
+          <div className="modal-title"><h1 className={cx({'text-center': centerTitle })}>{title}</h1></div>
 
           <div className={this.computeCssClass()}>{childrenWithProps}</div>
         </div>

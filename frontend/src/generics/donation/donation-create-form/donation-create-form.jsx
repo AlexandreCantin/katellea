@@ -190,7 +190,7 @@ export default class DonationCreateForm extends Component {
       FlashMessageService.createSuccess('Le don a été créé avec succès', 'donation');
 
       // Redirect to donation page
-      const url = `/donation/${donationCreated.donationToken}?admin=${donationCreated.adminToken}`;
+      const url = `/donation/${donationCreated.donationToken}?admin=${donationCreated.adminToken}&first-visit=true`;
       setTimeout(() => navigate(url), 1000);
     } catch (error) {
       FlashMessageService.createError('Erreur lors de la création du don.. Veuillez nous excuser..!', 'donation-create-form');
