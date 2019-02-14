@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { SlackService } from '../services/slack.service';
 import User from '../models/user';
 import { sendError } from '../helper';
+import MailFactory from '../services/mail.service';
 
 
 /**
