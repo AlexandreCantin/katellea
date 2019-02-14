@@ -1,3 +1,6 @@
+# IDE
+.vscode/settings.json
+
 # Node-Server
 /node_modules/
 conf/settings/settings-local.json
