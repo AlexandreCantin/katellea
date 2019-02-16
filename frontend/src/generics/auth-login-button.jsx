@@ -62,7 +62,10 @@ export default class AuthLoginButtons extends Component {
   closeRGPDModal = (e) => this.setState({ showRGPDModal: false, origin: undefined });
 
   waitForAuthLogin = e => {
-    let origin = e.target.getAttribute('data-origin');
+    let target = e.target;
+    while (target.nodeName.toLowerCase() !== 'a') target = target.parentNode;
+
+    let origin = target.getAttribute('data-origin');
     localStorage.removeItem('USER_TOKEN');
 
     // Not accepts RGPD ? Temporary modal
@@ -124,8 +127,8 @@ export default class AuthLoginButtons extends Component {
           {socialNetworks.map(origin => (
             <a key={origin}
               className={"btn big "+ origin}
-              data-origin={origin}
               target="_blank"
+              data-origin={origin}
               title={this.computeLinkTitle(origin)}
               href={AuthService.computeConnectURL(origin)}
               onClick={this.waitForAuthLogin}>
