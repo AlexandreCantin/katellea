@@ -54,16 +54,18 @@ $animation-duration: 1s;
 
     button.close {
       position: absolute;
-      top: 0;
-      right: 0;
-      border-radius: 0 10px 0 0;
-      font-weight: bold;
+      top: 5px;
+      right: 5px;
+      border-radius: 50%;
       overflow: hidden;
-
+      padding: 4px 9px;
+      border: solid 1px lightgray;
       background: transparent;
       background-image: none;
       font-size: 1.25em;
       color: $text-color;
+
+      img { height: 13px; width: 13px; }
     }
   }
 

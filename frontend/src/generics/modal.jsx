@@ -159,7 +159,10 @@ export default class Modal extends Component {
       <div id="modal" className={cx('modal', { 'level-2': this.props.level === '2'})} aria-modal="true" tabIndex="-1" role={role} aria-label={title} onKeyDown={this.onKeyDown}>
         <div className="dark-background" onClick={this.closeModal}>&nbsp;</div>
         <div className="modal-content">
-          {!hideClose ? <button className="btn close" onClick={this.closeModal} ref={c => this.closeButton = c}><span className="sr-only">Close</span>X</button> : null}
+          {!hideClose ? 
+            <button className="btn close" onClick={this.closeModal} ref={c => this.closeButton = c}>
+              <img src="/icons/close.svg" alt="Fermer la fenêtre" />
+            </button> : null}
           <div className="modal-title"><h1 className={cx({'text-center': centerTitle })}>{title}</h1></div>
 
           <div className={this.computeCssClass()}>{childrenWithProps}</div>
