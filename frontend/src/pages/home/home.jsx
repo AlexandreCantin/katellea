@@ -100,7 +100,7 @@ export default class Home extends Component {
                 <div className="katellea-form">
                   <div className="alert warning"><strong>Important !</strong> Dans le cadre de la beta, les établissements et les collectes mobiles sont restreints à la <strong>Bretagne et aux Pays de la Loire</strong> uniquement.</div>
 
-                  {<DonationCreateFormModal modalUrl="/nouveau-don" text="Proposer un nouveau don sans créer de compte" addSubtext />}
+                  {<DonationCreateFormModal modalUrl="/nouveau-don" text="Proposer un nouveau don et sauver des vies" addSubtext />}
                   <div className="life-saved text-center">1 don de sang = 3 vies sauvées</div>
 
                   <hr />

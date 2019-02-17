@@ -11,7 +11,7 @@ function DonationCreateFormModal({ modalUrl, text, addSubtext = false }) {
     return (
       <button className="btn big new-donation" onClick={() => setShowNewDonationModal(true)} >
         { buttonText }
-        { addSubtext ? <span>- En 30 secondes -</span> : null }
+        { addSubtext ? <span>En 30 secondes - Pas de création de compte</span> : null }
       </button>);
   }
 
