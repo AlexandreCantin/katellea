@@ -37,8 +37,8 @@ export default class DonationDefinitiveDateForm extends Component {
     this.user = store.getState().user;
 
     this.initialValues = {}
-    if(this.user.id) this.initialValues = { finalAttendees: [this.props.donation.createdBy.id] };
-    else this.initialValues = { finalAttendees: [this.props.donation.createdByGuest.name] };
+    //if(!isEmpty(this.user)) this.initialValues = { finalAttendees: [this.props.donation.createdBy.id] };
+    //else this.initialValues = { finalAttendees: [this.props.donation.createdByGuest.name] };
 
     this.state = {
       showDefinitiveDateModal: false,
