@@ -112,6 +112,7 @@ form#create-form-modal {
     }
     > div {
       display: flex;
+      @media (max-width: $min-width-mobile) { flex-direction: column; }
       > .form-line {
         flex: 1;
         display: flex;
