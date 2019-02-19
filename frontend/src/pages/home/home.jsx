@@ -10,7 +10,6 @@ import { getSponsorFromUrl } from '../../services/token.service';
 import DonationCard from '../../generics/donation/donation-card/donation-card';
 import KatelleaFooter from './katellea-footer';
 
-import Modal from '../../generics/modal';
 import EscapeLinks from '../../generics/escape-links/escape-links';
 import AuthLoginButtons from '../../generics/auth-login-button';
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
@@ -25,7 +24,6 @@ export default class Home extends Component {
     super(props);
 
     this.state = {
-      gayMoreDetailsModal: false,
       sponsorUser: undefined,
       donation: undefined,
     };
@@ -39,35 +37,8 @@ export default class Home extends Component {
     if (data.donation) this.setState({ donation: data.donation });
   }
 
-  // Modal
-  showGayDetailsModal = () => this.setState({ gayMoreDetailsModal: true });
-  closeGayDetailsModal = () => this.setState({ gayMoreDetailsModal: false });
-
-  renderGayDetailsModal() {
-    return (
-      <Modal cssclassName="gay-modal" title="Don pour les homosexuels" onClose={this.closeGayDetailsModal} modalUrl="/don-homosexuel">
-        <p>Depuis le 10 juillet 2016, de nouveaux droits s'appliquent pour les personnes homosexuelles.</p>
-
-        <div className="women">
-          <h3>Femmes homosexuelles</h3>
-          <p>Même conditions que les personnes hétérosexuelles.</p>
-        </div>
-
-        <div className="men">
-          <h3>Hommes homosexuels</h3>
-
-          <h4>Don de plasma</h4>
-          <p>Même conditions que les personnes hétérosexuelles.<br />Toutefois, pour garantir que le plasma du premier don est sain, un deuxième don est nécessaire dans les 60 jours.</p>
-
-          <h4>Dons du sang et plaquettes</h4>
-          <p>Possible après un an d'abstinence.</p>
-        </div>
-
-      </Modal>
-    );
-  }
   render() {
-    const { sponsorUser, donation, gayMoreDetailsModal } = this.state;
+    const { sponsorUser, donation } = this.state;
     return (
       <div id="home-page">
         <Helmet>
@@ -146,17 +117,34 @@ export default class Home extends Component {
                 <div className="flag">
                   <img src="s.png" className="lazyload" data-src="/img/rainbow_flag.svg" alt="" />
                 </div>
+                <div className="text">
+                  <p>Depuis le 10 juillet 2016, de nouveaux droits s'appliquent pour les personnes homosexuelles.</p>
 
-                <ul className="list-unstyled">
-                  <li><span className="bold">Femmes</span> : aucune condition spécifique</li>
-                  <li><span className="bold">Hommes et dons de plasma</span> : aucune condition spécifique</li>
-                  <li><span className="bold">Hommes et dons sang/plaquettes</span> : sous condition</li>
-                </ul>
+                  <div>
+                    <div className="women">
+                      <h3>Femmes homosexuelles</h3>
+                      <p>Même conditions que les personnes hétérosexuelles.</p>
+                    </div>
+
+                    <div className="men">
+                      <h3>Hommes homosexuels</h3>
+
+                      <h4>Don de plasma</h4>
+                      <p>Même conditions que les personnes hétérosexuelles. Toutefois, pour garantir que le plasma du premier don est sain, un deuxième don est nécessaire dans les 60 jours.</p>
+
+                      <h4>Dons du sang et plaquettes</h4>
+                      <p>Possible après un an d'abstinence.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <button className="btn" onClick={this.showGayDetailsModal}>En savoir plus</button>
+              <a
+                className="btn big" target="_blank" rel="noopener noreferrer"
+                href="https://dondesang.efs.sante.fr/qui-peut-donner-les-contre-indications/tout-savoir-sur-les-contre-indications"
+                title=" sur le site de l'EFS (ouverture dans une nouvelle fenêtre)">
+                  En savoir plus
+              </a>
             </div>
-
-            {gayMoreDetailsModal ? this.renderGayDetailsModal() : null}
           </div>
 
 
