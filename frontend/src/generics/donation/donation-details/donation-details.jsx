@@ -21,7 +21,7 @@ export default class DonationDetails extends Component {
 
     return (
       <div>
-        {this.props.showTitle ? <h1>Proposition de don de {name}</h1> : null }
+        {this.props.showTitle ? <h1>Proposition de don organisée par {name}</h1> : null }
 
         <CurrentStep donation={donation} isMobile={donation.isMobileCollect()} />
 

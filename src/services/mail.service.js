@@ -205,7 +205,7 @@ export default class MailFactory {
     const adminDonationUrl = `${environment.frontUrl}/donation/${donation.donationToken}?admin=${donation.adminToken}`;
 
     const htmlContent = await ejs.renderFile('./src/templates/emails/guest-creator/donation-admin-mail.ejs',
-      { name, donationUrl, adminDonationUrl, FOOTER_TEAM }
+      { name, establishment: donation.establishment, donationUrl, adminDonationUrl, FOOTER_TEAM }
     );
 
     try {

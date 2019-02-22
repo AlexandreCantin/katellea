@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 import { extractKey } from '../../../../services/helper';
 import DonationCard from '../../../../generics/donation/donation-card/donation-card';
+import { AvailibityWarning, MobileCollectAvailibityWarning } from '../../../availibility-warning';
 
 class Poll extends Component {
   static propTypes = { donation: PropTypes.object.isRequired }
@@ -78,8 +79,10 @@ class Poll extends Component {
       <div className="poll block-base">
 
         {donationPollOnGoing ?
-          <div className="alert info">Veuillez renseigner vos disponibilités.</div> :
-          <div className="alert info">Le sondage a été clotûré</div>
+          <>
+            <div className="alert info">Veuillez renseigner vos disponibilités.</div>
+            { donation.isMultipleDay() ? <AvailibityWarning /> : <MobileCollectAvailibityWarning /> }
+          </> : <div className="alert info">Le sondage a été clotûré</div>
         }
 
         {this.renderUnavaiblePollSuggestions(unavailablePollSuggestions)}

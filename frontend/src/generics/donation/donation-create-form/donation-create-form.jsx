@@ -443,8 +443,8 @@ export default class DonationCreateForm extends Component {
             {
               valid ?
                 <div className="submit-zone">
-                  <label htmlFor="submit" className="sr-only">Proposer ce nouveau don</label>
-                  <input id="submit" type="submit" className="btn" value="Proposer ce nouveau don" />
+                  <label htmlFor="submit" className="sr-only">Organiser ce nouveau don</label>
+                  <input id="submit" type="submit" className="btn" value="Organiser ce nouveau don" />
                 </div> : null
             }
 

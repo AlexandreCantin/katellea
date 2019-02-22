@@ -156,7 +156,17 @@ export default class DonationDefinitiveDateForm extends Component {
         {isCreator && isEstablishmentDonation ?
           <div className="phone-link alert info">
             Pour appeler {donation.establishment.name}, cliquer sur ce lien : <PhoneLink establishment={donation.establishment} />
-          </div> : null}
+          </div> : null }
+
+        { isCreator ?
+          <div>
+            Vous pouvez utiliser la plate-forme de réservation en ligne de l'EFS : 
+            <a href="https://mon-rdv-dondesang.efs.sante.fr/" target="_blank" rel="noopener noreferrer"
+              title="Se rendre sur le site de rendez-vous de l'EFS (ouverture dans un nouvel onglet)">
+                https://mon-rdv-dondesang.efs.sante.fr/
+            </a>
+          </div> : null
+        }
 
         {isCreator ?
           <div className="text-center">

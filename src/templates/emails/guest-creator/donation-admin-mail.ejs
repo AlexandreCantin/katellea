@@ -2,7 +2,23 @@
 
 <p><%= name %>,</p>
 
-<p>Merci d'avoir crée un nouveau don sur Katellea !</p><br />
+<p>Merci d'avoir organisé une nouvelle proposition de don sur Katellea !</p>
+
+<% if(establishment) { %>
+  <p style="font-style: italic">
+    Pour rappel, cette proposition de don ne constitue pas et ne dispense pas d'une réservation pour un don auprès de l'EFS.
+    De plus, afin d'améliorer vos chances, nous vous conseillons de prendre rendez-vous à minima deux semaines avant la date voulue.
+  </p><br />
+<% } %>
+
+<% if(!establishment) { %>
+  <p style="font-style: italic">
+    Pour rappel, cette proposition de don ne constitue pas une réservation dans une collecte mobile (qui n'en propose d'ailleurs pas).
+    Un délai d'attente est donc possible quelque soit l'horaire choisie.
+    Afin d'améliorer vos chances, nous vous conseillons d'éviter les horaires trop proche de la fermeture de la collecte.
+  </p><br />
+<% } %>
+
 <p>Vous pouvez partager avec vos proches en utilisant le lien suivant : <a href="<%- donationUrl %>"><%- donationUrl %></a></p>
 <p>Pour administrer votre don, veuillez utiliser le lien suivant : <a href="<%- adminDonationUrl %>"><%- adminDonationUrl %></a></p>
 <p><%- FOOTER_TEAM %></p>

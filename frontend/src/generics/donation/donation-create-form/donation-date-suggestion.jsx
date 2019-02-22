@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays'
 import { dateFormatYearMonthDay, dateFormatHourMinut } from '../../../services/date-helper';
+import { AvailibityWarning, MobileCollectAvailibityWarning } from '../../availibility-warning';
 
 
 const POLL_SUGGESTION_MAX_SIZE = 5;
@@ -17,9 +18,7 @@ export class PollSuggestionsMultipleDay extends Component {
       <fieldset>
         <legend>{ this.props.isEdit ? 'Proposition de dates' : '4 - Proposition de dates'}</legend>
 
-        <div className="alert info">
-          Afin d'améliorer vos chances pour prendre rendez-vous avec l'EFS, nous vous conseillons de prendre rendez-vous à minima deux semaines avant la date voulue.
-      </div>
+        <AvailibityWarning />
 
         <FieldArray name="dateSuggestions">
           {({ fields, meta }) => (
@@ -87,13 +86,13 @@ export class PollSuggestionsOneDay extends Component {
   static propTypes = { isEdit: PropTypes.bool, donation: PropTypes.object }
 
   render() {
-    const {isEdit, donation } = this.props;
+    const {isEdit } = this.props;
 
     return (
       <fieldset>
         <legend>{ isEdit ? 'Proposition d\'heures' : '3 - Proposition d\'heures'}</legend>
 
-        { donation && donation.isMobileCollect() ? <p className="alert info">{donation.mobileCollect}</p> : null }
+        <MobileCollectAvailibityWarning />
 
         <FieldArray name="hourSuggestions">
           {({ fields, meta }) => (

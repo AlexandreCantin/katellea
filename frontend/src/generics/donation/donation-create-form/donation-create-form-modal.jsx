@@ -5,7 +5,7 @@ import Modal from '../../modal';
 
 function DonationCreateFormModal({ modalUrl, text, addSubtext = false }) {
   const [showNewDonationModal, setShowNewDonationModal] = useState(false);
-  const buttonText = text || "Proposer un nouveau don";
+  const buttonText = text || "Organiser un nouveau don";
 
   if (!showNewDonationModal) {
     return (
@@ -16,7 +16,7 @@ function DonationCreateFormModal({ modalUrl, text, addSubtext = false }) {
   }
 
   return (
-    <Modal title="Proposer un nouveau don" onClose={() => setShowNewDonationModal(false)} modalUrl={modalUrl}>
+    <Modal title="Organiser un nouveau don" onClose={() => setShowNewDonationModal(false)} modalUrl={modalUrl}>
       <DonationCreateForm />
     </Modal>
   );

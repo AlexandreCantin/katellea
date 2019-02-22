@@ -73,7 +73,7 @@ export default class DonationNewPoll extends Component {
                 {donation.isMultipleDay() ? <PollSuggestionsMultipleDay isEdit /> : <PollSuggestionsOneDay donation={donation} isEdit />}
 
                 <div className="submit-zone">
-                  <label htmlFor="new-poll" className="sr-only">Proposer ce nouveau don</label>
+                  <label htmlFor="new-poll" className="sr-only">Organiser ce nouveau don</label>
                   <input id="new-poll" type="submit" className="btn" disabled={!valid} value="Créer un nouveau sondage" />
                 </div>
               </form>
